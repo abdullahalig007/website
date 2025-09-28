@@ -9,10 +9,12 @@
 
   <title>Dr Abdulla | CV</title>
   <link rel="canonical" href="/website/cv.html">
-  <!-- Tailwind CSS CDN for vibrant styling -->
+  <!-- Tailwind CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome CDN for colorful icons -->
+  <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <link rel="alternate" href="/website/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
@@ -29,48 +31,83 @@
   <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
 
   <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Merriweather', serif;
+    }
     .hero {
-      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      background: linear-gradient(135deg, #1e3a8a, #4b5563);
       color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" opacity="0.1"><path fill="%23ffffff" d="M0 0h20v20H0zM60 0h20v20H60zM0 60h20v20H0zM60 60h20v20H60z"/></svg>');
+      opacity: 0.1;
     }
     .sticky-nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: linear-gradient(90deg, #1e3a8a, #6b21a8);
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .nav-link {
       transition: all 0.3s ease;
+      color: #f3f4f6;
     }
     .nav-link:hover {
+      color: #eab308;
       transform: translateY(-2px);
-      color: #a5b4fc;
     }
     .section-header {
-      border-bottom: 3px solid #10b981;
+      border-bottom: 2px solid #eab308;
       padding-bottom: 0.5rem;
     }
     .icon-link {
       transition: all 0.3s ease;
+      color: #f3f4f6;
     }
     .icon-link:hover {
-      transform: scale(1.3);
-      color: #a5b4fc;
+      transform: scale(1.2);
+      color: #eab308;
     }
     .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      transition: all 0.3s ease;
     }
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      background-color: #f3e8ff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      border-image: linear-gradient(45deg, #d97706, #eab308) 1;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
-<body class="bg-gradient-to-b from-gray-100 to-purple-100 font-sans">
+<body class="bg-gray-50">
   <!-- Hero Section -->
-  <section class="hero py-12 text-center">
+  <section class="hero py-12 text-center relative">
     <div class="container mx-auto px-4">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr Abdulla</h1>
       <p class="text-lg md:text-xl">Assistant Professor at Jamia Millia Islamia</p>
@@ -83,23 +120,23 @@
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
       <nav class="space-x-6">
-        <a href="/website/cv.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/resource.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-book mr-1"></i> Resource</a>
+        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
+        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
+        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
       </nav>
     </div>
   </header>
 
   <main class="container mx-auto px-4 py-8">
-    <section id="cv" class="mb-12">
+    <section id="cv" class="mb-12 fade-in">
       <h1 class="text-3xl font-semibold text-gray-800 section-header">CV</h1>
-      <div class="mt-4 bg-white p-6 rounded-lg shadow card">
-        <p class="text-gray-700">
-          Download my CV: <a href="/website/CV.pdf" class="text-blue-500 hover:underline"><i class="fas fa-download mr-1"></i> CV.pdf</a>
+      <div class="mt-4 bg-white p-6 card">
+        <p class="text-gray-600">
+          Download my CV: <a href="/website/CV.pdf" class="text-indigo-600 hover:underline"><i class="fas fa-download mr-1"></i> CV.pdf</a>
         </p>
-        <h3 class="text-xl font-medium text-purple-700 mt-4">Education</h3>
-        <ul class="list-disc pl-5 mt-2 text-gray-700">
+        <h3 class="text-xl font-medium text-gray-900 mt-4">Education</h3>
+        <ul class="list-disc pl-5 mt-2 text-gray-600">
           <li>Ph.D. in Economics, Aligarh Muslim University</li>
           <li>M.Phil. in Economics, Aligarh Muslim University</li>
           <li>M.A. in Economics, Aligarh Muslim University</li>
@@ -109,10 +146,10 @@
     </section>
   </main>
 
-  <footer class="bg-gradient-to-r from-purple-800 to-blue-800 text-white py-8">
+  <footer class="bg-gray-900 text-white py-8">
     <div class="container mx-auto px-4 text-center">
       <div class="text-lg font-semibold">Agricultural Economics</div>
-      <nav class="mt-4 flex justify-center space-x-6">
+      <nav class="mt-4 flex justify-center space-x-8">
         <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
         <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
         <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
