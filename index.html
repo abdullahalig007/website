@@ -9,10 +9,12 @@
 
   <title>Dr Abdulla | Assistant Professor at Jamia Millia Islamia</title>
   <link rel="canonical" href="/">
-  <!-- Tailwind CSS CDN for vibrant styling -->
+  <!-- Tailwind CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome CDN for colorful icons -->
+  <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
@@ -29,72 +31,119 @@
   <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
 
   <style>
-    /* Custom styles for vibrant design */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8fafc;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
     .hero {
-      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      background: linear-gradient(135deg, #2a4365, #3182ce);
       color: white;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
-    .photo-frame {
-      border: 8px solid transparent;
-      border-image: linear-gradient(45deg, #8b5cf6, #10b981) 1;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .photo-frame:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path fill="%23ffffff" d="M0 0h25v25H0zM75 0h25v25H75zM0 75h25v25H0zM75 75h25v25H75z"/></svg>');
+      opacity: 0.05;
     }
     .sticky-nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: linear-gradient(90deg, #1e3a8a, #6b21a8);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
     .nav-link {
       transition: all 0.3s ease;
+      color: #e2e8f0;
     }
     .nav-link:hover {
-      transform: translateY(-2px);
-      color: #a5b4fc;
+      color: #60a5fa;
+      transform: translateY(-1px);
     }
     .section-header {
-      border-bottom: 3px solid #10b981;
+      border-bottom: 3px solid #60a5fa;
       padding-bottom: 0.5rem;
+      color: #1e40af;
     }
     .icon-link {
       transition: all 0.3s ease;
+      color: #e2e8f0;
     }
     .icon-link:hover {
-      transform: scale(1.3);
-      color: #a5b4fc;
+      transform: scale(1.15);
+      color: #60a5fa;
     }
     .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      background: #ffffff;
+      transition: all 0.3s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      background-color: #f3e8ff;
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      border-color: #60a5fa;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    a {
+      color: #1e40af;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #60a5fa;
+      text-decoration: underline;
+    }
+    .photo-frame {
+      border: 6px solid #60a5fa;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .photo-frame:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     .cta-button {
       transition: all 0.3s ease;
+      background-color: #1e40af;
     }
     .cta-button:hover {
-      background-color: #10b981;
-      transform: scale(1.05);
+      background-color: #60a5fa;
+      transform: scale(1.03);
     }
   </style>
 </head>
 
-<body class="bg-gradient-to-b from-gray-100 to-purple-100 font-sans">
+<body>
   <!-- Hero Section -->
-  <section class="hero py-16 text-center">
+  <section class="hero py-20 text-center relative">
     <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr Abdulla</h1>
-      <p class="text-lg md:text-xl mb-2">Assistant Professor at Jamia Millia Islamia</p>
-      <p class="text-md mb-6">Specializing in Agricultural Economics, Climate Change, and Sustainable Development</p>
-      <a href="/website/research.html" class="cta-button inline-block bg-purple-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-500">Explore My Research</a>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">Dr Abdulla</h1>
+      <p class="text-xl md:text-2xl mb-3">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-md mb-8">Expert in Agricultural Economics, Climate Change, and Sustainable Development</p>
+      <a href="/website/research.html" class="cta-button inline-block text-white font-semibold py-3 px-8 rounded-lg">Discover My Research</a>
     </div>
   </section>
 
@@ -103,87 +152,88 @@
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
       <nav class="space-x-6">
-        <a href="/website/cv.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-book mr-1"></i> Resource</a>
+        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
+        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
+        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
+        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-8">
+  <main class="container mx-auto px-4 py-10">
     <!-- About Me Section -->
-    <section id="about" class="mb-12">
-      <h1 class="text-3xl font-semibold text-gray-800 section-header">About Me</h1>
-      <div class="flex flex-col md:flex-row items-start mt-4">
-        <div class="md:w-1/3">
-          <img src="/website/ph.jpg" alt="Dr Abdulla profile photo" class="photo-frame w-64 h-auto mx-auto md:mx-0">
-        </div>
-        <div class="md:w-2/3 mt-4 md:mt-0 md:pl-8">
-          <h2 class="text-2xl font-medium text-purple-700">Dr Abdulla</h2>
-          <p class="mt-2 text-gray-700">
-            I am an Assistant Professor at 
-            <a href="https://jmi.ac.in/" class="text-blue-500 hover:underline">Jamia Millia Islamia (Central University)</a>, New Delhi, India. 
-            Prior to joining JMI, I worked as a Research Associate at the 
-            <a href="https://niap.icar.gov.in/" class="text-blue-500 hover:underline">ICAR-National Institute of Agricultural Economics and Policy Research</a>, New Delhi.
-          </p>
-          <p class="mt-2 text-gray-700">
-            I have also worked as a Research Associate at the 
-            <a href="https://naas.org.in/" class="text-blue-500 hover:underline">National Academy of Agricultural Sciences (NAAS)</a>, New Delhi, 
-            and as a Young Professional at the 
-            <a href="https://www.commerce.gov.in/" class="text-blue-500 hover:underline">Department of Commerce, Ministry of Commerce and Industry, Government of India</a>.
-          </p>
-          <p class="mt-2 text-gray-700">
-            I hold M.Phil. and Ph.D. degrees in Economics from 
-            <a href="https://www.amu.ac.in/" class="text-blue-500 hover:underline">Aligarh Muslim University (AMU)</a>, Aligarh, India. 
-            My Ph.D. dissertation was <em>“Performance of Sugar Mills in India: A Comparative Study of Maharashtra and Uttar Pradesh”</em>, 
-            and my M.Phil. dissertation was <em>“Efficiency of Sugar Mills in Uttar Pradesh: An Analysis”</em>. 
-            I also earned an M.A. and B.A. (Hons.) in Economics with Mathematics and Statistics from AMU.
-          </p>
-          <p class="mt-2 text-gray-700">
-            My research interests include poverty and inequality, trade, banking, climate change, 
-            climate resilience, development economics, environmental economics, agricultural economics, 
-            agricultural marketing, value chain analysis, agriculture & allied activities, efficiency & productivity, 
-            sustainable agri-food systems, organic farming, sustainable agriculture systems, water management, 
-            and agricultural policy evaluation.
-          </p>
+    <section class="mb-16 fade-in">
+      <h1 class="text-4xl font-semibold section-header">About Me</h1>
+      <div class="card p-8 mt-4">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+          <div class="md:w-1/3">
+            <img src="/website/ph.jpg" alt="Dr Abdulla profile photo" class="photo-frame w-56 h-auto mx-auto md:mx-0">
+          </div>
+          <div class="md:w-2/3">
+            <h2 class="text-2xl font-medium text-gray-900 mb-3">Dr Abdulla</h2>
+            <p class="text-gray-600 mb-3">
+              I am an Assistant Professor at 
+              <a href="https://jmi.ac.in/" class="hover:text-blue-400">Jamia Millia Islamia (Central University)</a>, New Delhi, India. 
+              Previously, I served as a Research Associate at the 
+              <a href="https://niap.icar.gov.in/" class="hover:text-blue-400">ICAR-National Institute of Agricultural Economics and Policy Research</a>, New Delhi.
+            </p>
+            <p class="text-gray-600 mb-3">
+              My prior roles include Research Associate at the 
+              <a href="https://naas.org.in/" class="hover:text-blue-400">National Academy of Agricultural Sciences (NAAS)</a>, New Delhi, 
+              and Young Professional at the 
+              <a href="https://www.commerce.gov.in/" class="hover:text-blue-400">Department of Commerce, Ministry of Commerce and Industry, Government of India</a>.
+            </p>
+            <p class="text-gray-600 mb-3">
+              I hold M.Phil. and Ph.D. degrees in Economics from 
+              <a href="https://www.amu.ac.in/" class="hover:text-blue-400">Aligarh Muslim University (AMU)</a>, Aligarh, India. 
+              My Ph.D. dissertation focused on <em>“Performance of Sugar Mills in India: A Comparative Study of Maharashtra and Uttar Pradesh”</em>, 
+              and my M.Phil. dissertation explored <em>“Efficiency of Sugar Mills in Uttar Pradesh: An Analysis”</em>. 
+              I also earned an M.A. and B.A. (Hons.) in Economics with Mathematics and Statistics from AMU.
+            </p>
+            <p class="text-gray-600">
+              My research spans poverty and inequality, trade, banking, climate change, climate resilience, development economics, 
+              environmental economics, agricultural economics, agricultural marketing, value chain analysis, 
+              agriculture & allied activities, efficiency & productivity, sustainable agri-food systems, organic farming, 
+              sustainable agriculture systems, water management, and agricultural policy evaluation.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Quick Links Section -->
-    <section class="mb-12">
-      <h1 class="text-3xl font-semibold text-gray-800 section-header">Explore More</h1>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
-        <a href="/website/cv.html" class="card bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-file-alt text-4xl text-purple-600 mb-2"></i>
-          <h3 class="text-xl font-medium text-gray-700">Curriculum Vitae</h3>
+    <section class="mb-16 fade-in">
+      <h1 class="text-4xl font-semibold section-header">Explore More</h1>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+        <a href="/website/cv.html" class="card p-6 text-center">
+          <i class="fas fa-file-alt text-3xl text-blue-600 mb-3"></i>
+          <h3 class="text-xl font-medium text-gray-900">Curriculum Vitae</h3>
           <p class="text-gray-600 mt-2">View my academic and professional journey.</p>
         </a>
-        <a href="/website/research.html" class="card bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-flask text-4xl text-purple-600 mb-2"></i>
-          <h3 class="text-xl font-medium text-gray-700">Research</h3>
+        <a href="/website/research.html" class="card p-6 text-center">
+          <i class="fas fa-flask text-3xl text-blue-600 mb-3"></i>
+          <h3 class="text-xl font-medium text-gray-900">Research</h3>
           <p class="text-gray-600 mt-2">Discover my publications and ongoing projects.</p>
         </a>
-        <a href="/website/teaching.html" class="card bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-chalkboard-teacher text-4xl text-purple-600 mb-2"></i>
-          <h3 class="text-xl font-medium text-gray-700">Teaching</h3>
+        <a href="/website/teaching.html" class="card p-6 text-center">
+          <i class="fas fa-chalkboard-teacher text-3xl text-blue-600 mb-3"></i>
+          <h3 class="text-xl font-medium text-gray-900">Teaching</h3>
           <p class="text-gray-600 mt-2">Explore my courses and teaching resources.</p>
         </a>
-        <a href="/website/resource.html" class="card bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-book text-4xl text-purple-600 mb-2"></i>
-          <h3 class="text-xl font-medium text-gray-700">Resources</h3>
+        <a href="/website/resource.html" class="card p-6 text-center">
+          <i class="fas fa-book text-3xl text-blue-600 mb-3"></i>
+          <h3 class="text-xl font-medium text-gray-900">Resources</h3>
           <p class="text-gray-600 mt-2">Access research tools and materials.</p>
         </a>
       </div>
     </section>
   </main>
 
-  <footer class="bg-gradient-to-r from-purple-800 to-blue-800 text-white py-8">
+  <footer class="bg-gray-800 text-white py-10">
     <div class="container mx-auto px-4 text-center">
       <div class="text-lg font-semibold">Agricultural Economics</div>
-      <nav class="mt-4 flex justify-center space-x-6">
+      <nav class="mt-4 flex justify-center space-x-8">
         <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
         <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
         <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
