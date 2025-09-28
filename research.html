@@ -15,9 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <link rel="alternate" href="/website/feed.xml" type="application/atom+xml" title="Dr Abdulla">
+  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
   <meta property="og:title" content="Dr Abdulla | Research">
@@ -93,13 +91,6 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
       border-image: linear-gradient(45deg, #d97706, #eab308) 1;
     }
-    .article-item {
-      transition: all 0.3s ease;
-    }
-    .article-item:hover {
-      background-color: #f3f4f6;
-      transform: translateX(5px);
-    }
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -111,9 +102,35 @@
         transform: translateY(0);
       }
     }
-    canvas {
-      max-width: 100%;
-      height: auto;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #1e3a8a;
+      color: white;
+      font-family: 'Merriweather', serif;
+    }
+    tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+    tr:hover {
+      background-color: #f3f4f6;
+    }
+    a {
+      color: #1e3a8a;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #eab308;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -136,127 +153,202 @@
         <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
         <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
         <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
         <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
       </nav>
     </div>
   </header>
 
   <main class="container mx-auto px-4 py-8">
-    <!-- Research Overview Section with Charts -->
-    <section id="research-overview" class="mb-12 fade-in">
-      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research Overview</h1>
-      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Chart 1: Publications by Year -->
-        <div class="bg-white p-6 card">
-          <h3 class="text-xl font-medium text-gray-900 mb-4">Publications by Year</h3>
-          <canvas id="publicationsByYear"></canvas>
-        </div>
-        <!-- Chart 2: Publication Types -->
-        <div class="bg-white p-6 card">
-          <h3 class="text-xl font-medium text-gray-900 mb-4">Publication Types</h3>
-          <canvas id="publicationTypes"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <!-- Research Details Section -->
     <section id="research" class="mb-12 fade-in">
-      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research Details</h1>
-      <div class="mt-4 bg-white p-6 card">
+      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research</h1>
+      <div class="card bg-white p-6">
         <h3 class="text-xl font-medium text-gray-900">Work in Progress</h3>
         <h4 class="text-lg font-medium text-gray-700 mt-3">Forthcoming Papers</h4>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
-          <li class="article-item py-2">
-            Technical Efficiency of Contract Farm: Evidence from Potato Farmers in Gujarat. <em>Indian Journal of Agricultural Sciences</em> (Forthcoming).
-          </li>
-          <li class="article-item py-2">
-            Impact of Farmer Producers Organization on the Technical Efficiency of Vegetable Crops in J&K: A Stochastic Frontier Approach. <em>Economic and Political Weekly</em> (Forthcoming).
-          </li>
-        </ul>
+        <table class="mt-2">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Journal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Technical Efficiency of Contract Farm: Evidence from Potato Farmers in Gujarat</td>
+              <td>Indian Journal of Agricultural Sciences (Forthcoming)</td>
+            </tr>
+            <tr>
+              <td>Impact of Farmer Producers Organization on the Technical Efficiency of Vegetable Crops in J&K: A Stochastic Frontier Approach</td>
+              <td>Economic and Political Weekly (Forthcoming)</td>
+            </tr>
+          </tbody>
+        </table>
+
         <h4 class="text-lg font-medium text-gray-700 mt-3">Under Review</h4>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
-          <li class="article-item py-2">
-            Abdulla, & Ahmad, I. India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach (Under Review).
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Masood, T. A Meta-Stochastic Frontier Analysis for Energy Efficiency of Sectors in India (Under Review).
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Kumar, S. Growth and Productivity Change of Vegetables and Fruits Processing Industry in India (Under Review).
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Birthal, P. S. A Non-parametric Analysis of Climate Change Nexus on Agricultural Productivity in India: Implications on Food Security (Under Review).
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Bali, D. Climate Change and its Impact on Crops Productivity in Uttar Pradesh (Under Review).
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Kumar, N. R. Spatial Analysis of Climate-Induced Risk in Uttar Pradesh (Under Review).
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Kumar, N. R. Assessing Agriculture Vulnerability in Uttar Pradesh: Evidence from Block Level Data (Under Review).
-          </li>
-        </ul>
+        <table class="mt-2">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Co-authors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach</td>
+              <td>Ahmad, I.</td>
+            </tr>
+            <tr>
+              <td>A Meta-Stochastic Frontier Analysis for Energy Efficiency of Sectors in India</td>
+              <td>Masood, T.</td>
+            </tr>
+            <tr>
+              <td>Growth and Productivity Change of Vegetables and Fruits Processing Industry in India</td>
+              <td>Kumar, S.</td>
+            </tr>
+            <tr>
+              <td>A Non-parametric Analysis of Climate Change Nexus on Agricultural Productivity in India: Implications on Food Security</td>
+              <td>Birthal, P. S.</td>
+            </tr>
+            <tr>
+              <td>Climate Change and its Impact on Crops Productivity in Uttar Pradesh</td>
+              <td>Bali, D.</td>
+            </tr>
+            <tr>
+              <td>Spatial Analysis of Climate-Induced Risk in Uttar Pradesh</td>
+              <td>Kumar, N. R.</td>
+            </tr>
+            <tr>
+              <td>Assessing Agriculture Vulnerability in Uttar Pradesh: Evidence from Block Level Data</td>
+              <td>Kumar, N. R.</td>
+            </tr>
+          </tbody>
+        </table>
 
         <h3 class="text-xl font-medium text-gray-900 mt-4">Research Publications</h3>
         <h4 class="text-lg font-medium text-gray-700 mt-3">Journal Articles</h4>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
-          <li class="article-item py-2">
-            Kumar, N. R., & Abdulla. (2024). Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India. <em>Agricultural Economics Research Review, 37</em>(1), 71–80. 
-            <a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="text-indigo-600 hover:underline">DOI:10.5958/0974-0279.2022.00006.2</a>
-          </li>
-          <li class="article-item py-2">
-            Khan, A. S., & Abdulla. (2023). The Effect of Information Technology on Banking Efficiency. <em>Economic and Political Weekly, 58</em>(37), 40–46. 
-            <a href="https://www.epw.in/journal/2023/37" class="text-indigo-600 hover:underline">Link</a>
-          </li>
-          <li class="article-item py-2">
-            Kumar, S., & Abdulla. (2022). Decomposing Productivity Growth in the Indian Sugar Industry. <em>Agricultural Economics Research Review, 35</em>(1), 71–80. 
-            <a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="text-indigo-600 hover:underline">DOI:10.5958/0974-0279.2022.00006.4</a>
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Kumar, S. (2021). Technical Efficiency and Its Determinants in the Indian Meat Processing Industry. <em>The Indian Journal of Animal Sciences, 91</em>(3), 230–234. 
-            <a href="https://doi.org/10.56093/ijans.v91i3.114149" class="text-indigo-600 hover:underline">DOI:10.56093/ijans.v91i3.114149</a>
-          </li>
-          <li class="article-item py-2">
-            Kumar, S., & Abdulla. (2021). Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry. <em>The Indian Journal of Animal Sciences, 91</em>(2), 137–142. 
-            <a href="https://doi.org/10.56093/ijans.v91i2.113822" class="text-indigo-600 hover:underline">DOI:10.56093/ijans.v91i2.113822</a>
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Kumar, S. (2021). Technical Efficiency and Its Determinants in the Indian Textile Garments Industry. <em>Research Journal of Textile and Apparel, 25</em>(4), 346–360. 
-            <a href="https://doi.org/10.1108/RJTA-09-2020-0110" class="text-indigo-600 hover:underline">DOI:10.1108/RJTA-09-2020-0110</a>
-          </li>
-          <li class="article-item py-2">
-            Kumar, S., & Abdulla. (2020). Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach. <em>The Indian Journal of Agricultural Sciences, 90</em>(8), 1532–1537. 
-            <a href="https://doi.org/10.56093/ijas.v90i8.105958" class="text-indigo-600 hover:underline">DOI:10.56093/ijas.v90i8.105958</a>
-          </li>
-          <li class="article-item py-2">
-            Kumar, S., Abdulla, & Singh, C. P. (2020). Trade Off Between Stubble Management and Ecosystem Services. 
-            <a href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" class="text-indigo-600 hover:underline">Link</a>
-          </li>
-          <li class="article-item py-2">
-            Kumar, S., Abdulla, & Singh, C. (2020). Productivity Growth in India’s Bakery Manufacturing Industry. <em>Journal of Agribusiness in Developing and Emerging Economies</em>. 
-            <a href="https://doi.org/10.1108/JADEE-12-2019-0204" class="text-indigo-600 hover:underline">DOI:10.1108/JADEE-12-2019-0204</a>
-          </li>
-          <li class="article-item py-2">
-            Khan, M. R., & Abdulla. (2019). Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms. <em>SEDME (Small Enterprises Development, Management & Extension Journal), 46</em>(4), 235–247. 
-            <a href="https://doi.org/10.1177/0970846419894775" class="text-indigo-600 hover:underline">DOI:10.1177/0970846419894775</a>
-          </li>
-          <li class="article-item py-2">
-            Abdulla, & Ahmad, M. I. (2017). An Analysis of Poverty Among Social and Religious Groups in Uttar Pradesh. <em>The Indian Economic Journal</em>, December (Special Issue).
-          </li>
-          <li class="article-item py-2">
-            Ahmad, M. I., & Abdulla. (2017). Technical Efficiency and Its Determinants: A Stochastic Frontier Analysis of Sugar Mills in Uttar Pradesh. <em>IUP Journal of Applied Economics, 16</em>(4).
-          </li>
-        </ul>
+        <table class="mt-2">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Title</th>
+              <th>Authors</th>
+              <th>Journal</th>
+              <th>Link/DOI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2024</td>
+              <td>Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India</td>
+              <td>Kumar, N. R., & Abdulla</td>
+              <td>Agricultural Economics Research Review, 37(1), 71–80</td>
+              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2023</td>
+              <td>The Effect of Information Technology on Banking Efficiency</td>
+              <td>Khan, A. S., & Abdulla</td>
+              <td>Economic and Political Weekly, 58(37), 40–46</td>
+              <td><a href="https://www.epw.in/journal/2023/37" class="text-blue-800 hover:text-yellow-600">Link</a></td>
+            </tr>
+            <tr>
+              <td>2022</td>
+              <td>Decomposing Productivity Growth in the Indian Sugar Industry</td>
+              <td>Kumar, S., & Abdulla</td>
+              <td>Agricultural Economics Research Review, 35(1), 71–80</td>
+              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2021</td>
+              <td>Technical Efficiency and Its Determinants in the Indian Meat Processing Industry</td>
+              <td>Abdulla, & Kumar, S.</td>
+              <td>The Indian Journal of Animal Sciences, 91(3), 230–234</td>
+              <td><a href="https://doi.org/10.56093/ijans.v91i3.114149" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2021</td>
+              <td>Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry</td>
+              <td>Kumar, S., & Abdulla</td>
+              <td>The Indian Journal of Animal Sciences, 91(2), 137–142</td>
+              <td><a href="https://doi.org/10.56093/ijans.v91i2.113822" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2021</td>
+              <td>Technical Efficiency and Its Determinants in the Indian Textile Garments Industry</td>
+              <td>Abdulla, & Kumar, S.</td>
+              <td>Research Journal of Textile and Apparel, 25(4), 346–360</td>
+              <td><a href="https://doi.org/10.1108/RJTA-09-2020-0110" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2020</td>
+              <td>Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach</td>
+              <td>Kumar, S., & Abdulla</td>
+              <td>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</td>
+              <td><a href="https://doi.org/10.56093/ijas.v90i8.105958" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2020</td>
+              <td>Trade Off Between Stubble Management and Ecosystem Services</td>
+              <td>Kumar, S., Abdulla, & Singh, C. P.</td>
+              <td>N/A</td>
+              <td><a href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" class="text-blue-800 hover:text-yellow-600">Link</a></td>
+            </tr>
+            <tr>
+              <td>2020</td>
+              <td>Productivity Growth in India’s Bakery Manufacturing Industry</td>
+              <td>Kumar, S., Abdulla, & Singh, C.</td>
+              <td>Journal of Agribusiness in Developing and Emerging Economies</td>
+              <td><a href="https://doi.org/10.1108/JADEE-12-2019-0204" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2019</td>
+              <td>Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms</td>
+              <td>Khan, M. R., & Abdulla</td>
+              <td>SEDME (Small Enterprises Development, Management & Extension Journal), 46(4), 235–247</td>
+              <td><a href="https://doi.org/10.1177/0970846419894775" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+            </tr>
+            <tr>
+              <td>2017</td>
+              <td>An Analysis of Poverty Among Social and Religious Groups in Uttar Pradesh</td>
+              <td>Abdulla, & Ahmad, M. I.</td>
+              <td>The Indian Economic Journal, December (Special Issue)</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>2017</td>
+              <td>Technical Efficiency and Its Determinants: A Stochastic Frontier Analysis of Sugar Mills in Uttar Pradesh</td>
+              <td>Ahmad, M. I., & Abdulla</td>
+              <td>IUP Journal of Applied Economics, 16(4)</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+
         <h4 class="text-lg font-medium text-gray-700 mt-3">Books and Chapters</h4>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
-          <li class="article-item py-2">
-            Abdulla. (2025). <em>Spreadsheet Modelling MBA-1008</em>. Aligarh: Center for Distance Education, Aligarh Muslim University.
-          </li>
-          <li class="article-item py-2">
-            Abdulla, Kumar, S., & Singh, D. (2019). Total Factor Productivity Using Stochastic Frontier Production Function. In <em>Quantitative Methods for Social Sciences</em> (pp. 264–274). ICAR-NIAP.
-          </li>
-        </ul>
+        <table class="mt-2">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Title</th>
+              <th>Authors</th>
+              <th>Publisher/Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025</td>
+              <td>Spreadsheet Modelling MBA-1008</td>
+              <td>Abdulla</td>
+              <td>Aligarh: Center for Distance Education, Aligarh Muslim University</td>
+            </tr>
+            <tr>
+              <td>2019</td>
+              <td>Total Factor Productivity Using Stochastic Frontier Production Function</td>
+              <td>Abdulla, Kumar, S., & Singh, D.</td>
+              <td>In Quantitative Methods for Social Sciences (pp. 264–274). ICAR-NIAP</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
@@ -275,74 +367,5 @@
       <p class="mt-4 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
     </div>
   </footer>
-
-  <script>
-    // Ensure DOM is loaded before initializing charts
-    window.onload = function () {
-      // Chart 1: Publications by Year (Line Chart)
-      const ctx1 = document.getElementById('publicationsByYear')?.getContext('2d');
-      if (ctx1) {
-        new Chart(ctx1, {
-          type: 'line',
-          data: {
-            labels: ['2017', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-            datasets: [
-              {
-                label: 'Journal Articles',
-                data: [2, 1, 2, 3, 1, 1, 1, 0],
-                borderColor: '#1e3a8a',
-                backgroundColor: 'rgba(30, 58, 138, 0.2)',
-                fill: true,
-                tension: 0.4
-              },
-              {
-                label: 'Books/Chapters',
-                data: [0, 1, 0, 0, 0, 0, 0, 1],
-                borderColor: '#eab308',
-                backgroundColor: 'rgba(234, 179, 8, 0.2)',
-                fill: true,
-                tension: 0.4
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { position: 'top', labels: { color: '#1f2937', font: { family: "'Inter', sans-serif" } } },
-              tooltip: { backgroundColor: '#1e3a8a', titleColor: '#fff', bodyColor: '#fff' }
-            },
-            scales: {
-              x: { title: { display: true, text: 'Year', color: '#1f2937' }, grid: { display: false } },
-              y: { title: { display: true, text: 'Number of Publications', color: '#1f2937' }, beginAtZero: true }
-            }
-          }
-        });
-      }
-
-      // Chart 2: Publication Types (Pie Chart)
-      const ctx2 = document.getElementById('publicationTypes')?.getContext('2d');
-      if (ctx2) {
-        new Chart(ctx2, {
-          type: 'pie',
-          data: {
-            labels: ['Journal Articles', 'Books/Chapters', 'Forthcoming', 'Under Review'],
-            datasets: [{
-              data: [12, 2, 2, 7],
-              backgroundColor: ['#1e3a8a', '#eab308', '#4b5563', '#d97706'],
-              borderColor: ['#fff', '#fff', '#fff', '#fff'],
-              borderWidth: 2
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { position: 'top', labels: { color: '#1f2937', font: { family: "'Inter', sans-serif" } } },
-              tooltip: { backgroundColor: '#1e3a8a', titleColor: '#fff', bodyColor: '#fff' }
-            }
-          }
-        });
-      }
-    };
-  </script>
 </body>
 </html>
