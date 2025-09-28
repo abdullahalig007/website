@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-  <link rel="alternate" href="/website/feed.xml" type="application/atom+xml" title="Dr Abdulla">
+  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
   <meta property="og:title" content="Dr Abdulla | CV">
@@ -102,6 +102,36 @@
         transform: translateY(0);
       }
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #1e3a8a;
+      color: white;
+      font-family: 'Merriweather', serif;
+    }
+    tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+    tr:hover {
+      background-color: #f3f4f6;
+    }
+    a {
+      color: #1e3a8a;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #eab308;
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -123,6 +153,7 @@
         <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
         <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
         <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
         <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
       </nav>
     </div>
@@ -131,17 +162,42 @@
   <main class="container mx-auto px-4 py-8">
     <section id="cv" class="mb-12 fade-in">
       <h1 class="text-3xl font-semibold text-gray-800 section-header">CV</h1>
-      <div class="mt-4 bg-white p-6 card">
-        <p class="text-gray-600">
-          Download my CV: <a href="/website/CV.pdf" class="text-indigo-600 hover:underline"><i class="fas fa-download mr-1"></i> CV.pdf</a>
+      <div class="card bg-white p-6">
+        <p class="text-gray-700">
+          Download my CV: <a href="/website/CV.pdf" class="text-blue-800 hover:text-yellow-600"><i class="fas fa-download mr-1"></i> CV.pdf</a>
         </p>
         <h3 class="text-xl font-medium text-gray-900 mt-4">Education</h3>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
-          <li>Ph.D. in Economics, Aligarh Muslim University</li>
-          <li>M.Phil. in Economics, Aligarh Muslim University</li>
-          <li>M.A. in Economics, Aligarh Muslim University</li>
-          <li>B.A. (Hons.) in Economics, Aligarh Muslim University</li>
-        </ul>
+        <table class="mt-2">
+          <thead>
+            <tr>
+              <th>Degree</th>
+              <th>Institution</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ph.D. in Economics</td>
+              <td>Aligarh Muslim University</td>
+              <td>2018</td>
+            </tr>
+            <tr>
+              <td>M.Phil. in Economics</td>
+              <td>Aligarh Muslim University</td>
+              <td>2015</td>
+            </tr>
+            <tr>
+              <td>M.A. in Economics</td>
+              <td>Aligarh Muslim University</td>
+              <td>2011</td>
+            </tr>
+            <tr>
+              <td>B.A. (Hons.) in Economics</td>
+              <td>Aligarh Muslim University</td>
+              <td>2009</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
