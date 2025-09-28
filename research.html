@@ -1,0 +1,254 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Dr Abdulla">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <meta name="description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
+
+  <title>Dr Abdulla | Research</title>
+  <link rel="canonical" href="/research.html">
+  <!-- Tailwind CSS CDN for vibrant styling -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Font Awesome CDN for colorful icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
+
+  <!-- Open Graph for SEO -->
+  <meta property="og:title" content="Dr Abdulla | Research">
+  <meta property="og:description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-github-username.github.io/research.html">
+  <meta property="og:image" content="https://your-github-username.github.io/ph.jpg">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dr Abdulla | Research">
+  <meta name="twitter:description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
+  <meta name="twitter:image" content="https://your-github-username.github.io/ph.jpg">
+
+  <style>
+    /* Custom styles for vibrant design */
+    .hero {
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      color: white;
+    }
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(90deg, #1e3a8a, #6b21a8);
+    }
+    .nav-link {
+      transition: all 0.3s ease;
+    }
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: #a5b4fc;
+    }
+    .section-header {
+      border-bottom: 3px solid #10b981;
+      padding-bottom: 0.5rem;
+    }
+    .icon-link {
+      transition: all 0.3s ease;
+    }
+    .icon-link:hover {
+      transform: scale(1.3);
+      color: #a5b4fc;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .article-item:hover {
+      background-color: #f3e8ff;
+      transform: translateX(5px);
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-gray-100 to-purple-100 font-sans">
+  <!-- Hero Section -->
+  <section class="hero py-12 text-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr Abdulla</h1>
+      <p class="text-lg md:text-xl">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-md mt-2">Research Publications and Work in Progress</p>
+    </div>
+  </section>
+
+  <!-- Navigation -->
+  <header class="sticky-nav shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-white">Dr Abdulla</a>
+      <nav class="space-x-6">
+        <a href="/cv.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-file-alt mr-1"></i> CV</a>
+        <a href="/" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-user mr-1"></i> About</a>
+        <a href="/research.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="/resource.html" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-book mr-1"></i> Resource</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <section id="research" class="mb-12">
+      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research</h1>
+      <div class="mt-4 bg-white p-6 rounded-lg shadow card">
+        <h3 class="text-xl font-medium text-purple-700">Work in Progress</h3>
+        <h4 class="text-lg font-medium text-gray-700 mt-3">Forthcoming Papers</h4>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
+          <li class="article-item py-2 transition-all">
+            Technical Efficiency of Contract Farm: Evidence from Potato Farmers in Gujarat. <em>Indian Journal of Agricultural Sciences</em> (Forthcoming).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Impact of Farmer Producers Organization on the Technical Efficiency of Vegetable Crops in J&K: A Stochastic Frontier Approach. <em>Economic and Political Weekly</em> (Forthcoming).
+          </li>
+        </ul>
+        <h4 class="text-lg font-medium text-gray-700 mt-3">Under Review</h4>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Ahmad, I. India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach (Under Review).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Masood, T. A Meta-Stochastic Frontier Analysis for Energy Efficiency of Sectors in India (Under Review).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Kumar, S. Growth and Productivity Change of Vegetables and Fruits Processing Industry in India (Under Review).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Birthal, P. S. A Non-parametric Analysis of Climate Change Nexus on Agricultural Productivity in India: Implications on Food Security (Under Review).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Bali, D. Climate Change and its Impact on Crops Productivity in Uttar Pradesh (Under Review).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Kumar, N. R. Spatial Analysis of Climate-Induced Risk in Uttar Pradesh (Under Review).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Kumar, N. R. Assessing Agriculture Vulnerability in Uttar Pradesh: Evidence from Block Level Data (Under Review).
+          </li>
+        </ul>
+
+        <h3 class="text-xl font-medium text-purple-700 mt-4">Research Publications</h3>
+        <h4 class="text-lg font-medium text-gray-700 mt-3">Journal Articles</h4>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
+          <li class="article-item py-2 transition-all">
+            Kumar, N. R., & Abdulla. (2024). Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India. <em>Agricultural Economics Research Review, 37</em>(1), 71–80. 
+            <a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="text-blue-500 hover:underline">DOI:10.5958/0974-0279.2022.00006.2</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Khan, A. S., & Abdulla. (2023). The Effect of Information Technology on Banking Efficiency. <em>Economic and Political Weekly, 58</em>(37), 40–46. 
+            <a href="https://www.epw.in/journal/2023/37" class="text-blue-500 hover:underline">Link</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Kumar, S., & Abdulla. (2022). Decomposing Productivity Growth in the Indian Sugar Industry. <em>Agricultural Economics Research Review, 35</em>(1), 71–80. 
+            <a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="text-blue-500 hover:underline">DOI:10.5958/0974-0279.2022.00006.4</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Kumar, S. (2021). Technical Efficiency and Its Determinants in the Indian Meat Processing Industry. <em>The Indian Journal of Animal Sciences, 91</em>(3), 230–234. 
+            <a href="https://doi.org/10.56093/ijans.v91i3.114149" class="text-blue-500 hover:underline">DOI:10.56093/ijans.v91i3.114149</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Kumar, S., & Abdulla. (2021). Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry. <em>The Indian Journal of Animal Sciences, 91</em>(2), 137–142. 
+            <a href="https://doi.org/10.56093/ijans.v91i2.113822" class="text-blue-500 hover:underline">DOI:10.56093/ijans.v91i2.113822</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Kumar, S. (2021). Technical Efficiency and Its Determinants in the Indian Textile Garments Industry. <em>Research Journal of Textile and Apparel, 25</em>(4), 346–360. 
+            <a href="https://doi.org/10.1108/RJTA-09-2020-0110" class="text-blue-500 hover:underline">DOI:10.1108/RJTA-09-2020-0110</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Kumar, S., & Abdulla. (2020). Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach. <em>The Indian Journal of Agricultural Sciences, 90</em>(8), 1532–1537. 
+            <a href="https://doi.org/10.56093/ijas.v90i8.105958" class="text-blue-500 hover:underline">DOI:10.56093/ijas.v90i8.105958</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Kumar, S., Abdulla, & Singh, C. P. (2020). Trade Off Between Stubble Management and Ecosystem Services. 
+            <a href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" class="text-blue-500 hover:underline">Link</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Kumar, S., Abdulla, & Singh, C. (2020). Productivity Growth in India’s Bakery Manufacturing Industry. <em>Journal of Agribusiness in Developing and Emerging Economies</em>. 
+            <a href="https://doi.org/10.1108/JADEE-12-2019-0204" class="text-blue-500 hover:underline">DOI:10.1108/JADEE-12-2019-0204</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Khan, M. R., & Abdulla. (2019). Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms. <em>SEDME (Small Enterprises Development, Management & Extension Journal), 46</em>(4), 235–247. 
+            <a href="https://doi.org/10.1177/0970846419894775" class="text-blue-500 hover:underline">DOI:10.1177/0970846419894775</a>
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, & Ahmad, M. I. (2017). An Analysis of Poverty Among Social and Religious Groups in Uttar Pradesh. <em>The Indian Economic Journal</em>, December (Special Issue).
+          </li>
+          <li class="article-item py-2 transition-all">
+            Ahmad, M. I., & Abdulla. (2017). Technical Efficiency and Its Determinants: A Stochastic Frontier Analysis of Sugar Mills in Uttar Pradesh. <em>IUP Journal of Applied Economics, 16</em>(4).
+          </li>
+        </ul>
+        <h4 class="text-lg font-medium text-gray-700 mt-3">Books and Chapters</h4>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
+          <li class="article-item py-2 transition-all">
+            Abdulla. (2025). <em>Spreadsheet Modelling MBA-1008</em>. Aligarh: Center for Distance Education, Aligarh Muslim University.
+          </li>
+          <li class="article-item py-2 transition-all">
+            Abdulla, Kumar, S., & Singh, D. (2019). Total Factor Productivity Using Stochastic Frontier Production Function. In <em>Quantitative Methods for Social Sciences</em> (pp. 264–274). ICAR-NIAP.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gradient-to-r from-purple-800 to-blue-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="text-lg font-semibold">Agricultural Economics</div>
+      <nav class="mt-4 flex justify-center space-x-6">
+        <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+        <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
+      </nav>
+      <p class="mt-4 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
