@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <link rel="alternate" href="/website/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
@@ -109,6 +111,10 @@
         transform: translateY(0);
       }
     }
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 
@@ -136,8 +142,26 @@
   </header>
 
   <main class="container mx-auto px-4 py-8">
+    <!-- Research Overview Section with Charts -->
+    <section id="research-overview" class="mb-12 fade-in">
+      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research Overview</h1>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chart 1: Publications by Year -->
+        <div class="bg-white p-6 card">
+          <h3 class="text-xl font-medium text-gray-900 mb-4">Publications by Year</h3>
+          <canvas id="publicationsByYear"></canvas>
+        </div>
+        <!-- Chart 2: Publication Types -->
+        <div class="bg-white p-6 card">
+          <h3 class="text-xl font-medium text-gray-900 mb-4">Publication Types</h3>
+          <canvas id="publicationTypes"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Details Section -->
     <section id="research" class="mb-12 fade-in">
-      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research</h1>
+      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research Details</h1>
       <div class="mt-4 bg-white p-6 card">
         <h3 class="text-xl font-medium text-gray-900">Work in Progress</h3>
         <h4 class="text-lg font-medium text-gray-700 mt-3">Forthcoming Papers</h4>
@@ -251,5 +275,74 @@
       <p class="mt-4 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Ensure DOM is loaded before initializing charts
+    window.onload = function () {
+      // Chart 1: Publications by Year (Line Chart)
+      const ctx1 = document.getElementById('publicationsByYear')?.getContext('2d');
+      if (ctx1) {
+        new Chart(ctx1, {
+          type: 'line',
+          data: {
+            labels: ['2017', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [
+              {
+                label: 'Journal Articles',
+                data: [2, 1, 2, 3, 1, 1, 1, 0],
+                borderColor: '#1e3a8a',
+                backgroundColor: 'rgba(30, 58, 138, 0.2)',
+                fill: true,
+                tension: 0.4
+              },
+              {
+                label: 'Books/Chapters',
+                data: [0, 1, 0, 0, 0, 0, 0, 1],
+                borderColor: '#eab308',
+                backgroundColor: 'rgba(234, 179, 8, 0.2)',
+                fill: true,
+                tension: 0.4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'top', labels: { color: '#1f2937', font: { family: "'Inter', sans-serif" } } },
+              tooltip: { backgroundColor: '#1e3a8a', titleColor: '#fff', bodyColor: '#fff' }
+            },
+            scales: {
+              x: { title: { display: true, text: 'Year', color: '#1f2937' }, grid: { display: false } },
+              y: { title: { display: true, text: 'Number of Publications', color: '#1f2937' }, beginAtZero: true }
+            }
+          }
+        });
+      }
+
+      // Chart 2: Publication Types (Pie Chart)
+      const ctx2 = document.getElementById('publicationTypes')?.getContext('2d');
+      if (ctx2) {
+        new Chart(ctx2, {
+          type: 'pie',
+          data: {
+            labels: ['Journal Articles', 'Books/Chapters', 'Forthcoming', 'Under Review'],
+            datasets: [{
+              data: [12, 2, 2, 7],
+              backgroundColor: ['#1e3a8a', '#eab308', '#4b5563', '#d97706'],
+              borderColor: ['#fff', '#fff', '#fff', '#fff'],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'top', labels: { color: '#1f2937', font: { family: "'Inter', sans-serif" } } },
+              tooltip: { backgroundColor: '#1e3a8a', titleColor: '#fff', bodyColor: '#fff' }
+            }
+          }
+        });
+      }
+    };
+  </script>
 </body>
 </html>
