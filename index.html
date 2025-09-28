@@ -4,197 +4,90 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
-  <meta name="description" content="Articles by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-  <title>Articles | Dr Abdulla</title>
-  <link rel="canonical" href="/website/latest/">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lora:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    :root {
-      --primary-color: #1e3a8a;
-      --secondary-color: #3b82f6;
-      --bg-light: #f9fafb;
-      --bg-dark: #1f2937;
-      --text-light: #1f2937;
-      --text-dark: #f9fafb;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-light);
-      line-height: 1.7;
-      scroll-behavior: smooth;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark-mode {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    header {
-      background-color: var(--primary-color);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header .title {
-      font-family: 'Lora', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    header .title:hover {
-      color: var(--secondary-color);
-    }
-    header nav {
-      display: flex;
-      align-items: center;
-    }
-    header nav a {
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 500;
-      margin-left: 1.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    header nav a:hover {
-      background-color: var(--secondary-color);
-      color: var(--text-dark);
-    }
-    #theme-toggle {
-      background: none;
-      border: none;
-      color: var(--text-dark);
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-left: 1.5rem;
-    }
-    article {
-      background-color: var(--bg-light);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin: 2rem auto;
-    }
-    body.dark-mode article {
-      background-color: #374151;
-    }
-    article h1 {
-      font-family: 'Lora', serif;
-      font-size: 2.2rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-      border-bottom: 3px solid var(--secondary-color);
-      padding-bottom: 0.5rem;
-    }
-    article p {
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
-    }
-    footer {
-      background-color: var(--primary-color);
-      color: var(--text-dark);
-      padding: 2rem 0;
-      text-align: center;
-    }
-    footer div {
-      font-family: 'Lora', serif;
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-    footer nav a {
-      margin: 0 1rem;
-      color: var(--text-dark);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    footer nav i {
-      font-size: 1.8rem;
-    }
-    footer nav a:hover i {
-      color: var(--secondary-color);
-    }
-    @media (max-width: 768px) {
-      header .container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      header nav {
-        margin-top: 1rem;
-        flex-wrap: wrap;
-      }
-      header nav a {
-        margin: 0.5rem;
-      }
-    }
-  </style>
+  <meta name="generator" content="Jekyll v4.2.2">
+  <meta name="description" content="Official website of Dr Abdulla, Assistant Professor at Jamia Millia Islamia. Research in economics, agriculture, climate change, and development.">
+
+  <title>Dr Abdulla | Assistant Professor at Jamia Millia Islamia</title>
+  <link rel="canonical" href="/">
+  <link rel="stylesheet" href="/assets/css/frame.css">
+  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
+
+  <!-- Open Graph for SEO -->
+  <meta property="og:title" content="Dr Abdulla | Assistant Professor at Jamia Millia Islamia">
+  <meta property="og:description" content="Research in agricultural economics, poverty, inequality, trade, climate change, and sustainable development.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:image" content="https://yourdomain.com/ph.jpg">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dr Abdulla | Assistant Professor at Jamia Millia Islamia">
+  <meta name="twitter:description" content="Official website with articles, working papers, and research resources.">
+  <meta name="twitter:image" content="https://yourdomain.com/ph.jpg">
 </head>
+
 <body>
-  <header>
-    <div class="container">
-      <a href="/website/" class="title">Dr Abdulla</a>
-      <nav>
-        <a href="../CV.pdf" target="_blank" rel="noopener" aria-label="Download CV">CV</a>
-        <a href="../latest/" aria-label="View Articles">Articles</a>
-        <a href="../wp/" aria-label="View Working Papers">Working Papers</a>
-        <a href="../more/" aria-label="Explore Research Resources">Research Resources</a>
-        <button id="theme-toggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-      </nav>
-    </div>
-  </header>
 
-  <main class="container">
-    <article>
-      <h1>Welcome to My Articles</h1>
-      <p>Here you will find my latest articles and research insights.</p>
-    </article>
-  </main>
+<header>
+  <a href="/" class="title">Dr Abdulla</a>
+  <nav>
+    <a href="/CV.pdf">CV</a>
+    <a href="/latest/">Articles</a>
+    <a href="/wp/">Working Papers</a>
+    <a href="/more/">Research Resources</a>
+  </nav>
+</header>
 
-  <footer>
-    <div>© 2025 Dr Abdulla</div>
-    <nav>
-      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="mailto:abdulla@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-    </nav>
-  </footer>
+<main>
+  <article>
+    <header>
+      <h1>About Me</h1>
+    </header>
 
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      const icon = themeToggle.querySelector('i');
-      if (document.body.classList.contains('dark-mode')) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-      }
-    });
-  </script>
+    <p align="left">
+      <img width="200" height="280" src="ph.jpg" alt="Dr Abdulla profile photo">
+    </p>
+
+    <h2 id="bio">Dr Abdulla</h2>
+    <p>I am an Assistant Professor at 
+      <a href="https://jmi.ac.in/">Jamia Millia Islamia (Central University)</a>, New Delhi, India. 
+      Prior to joining JMI, I worked as a Research Associate at the 
+      <a href="https://niap.icar.gov.in/">ICAR-National Institute of Agricultural Economics and Policy Research</a>, New Delhi.
+    </p>
+
+    <p>I have also worked as a Research Associate at the 
+      <a href="https://naas.org.in/">National Academy of Agricultural Sciences (NAAS)</a>, New Delhi, 
+      and as a Young Professional at the 
+      <a href="https://www.commerce.gov.in/">Department of Commerce, Ministry of Commerce and Industry, Government of India</a>.
+    </p>
+  
+    <p>I hold M.Phil. and Ph.D. degrees in Economics from 
+      <a href="https://www.amu.ac.in/">Aligarh Muslim University (AMU)</a>, Aligarh, India. 
+      My Ph.D. dissertation was <em>“Performance of Sugar Mills in India: A Comparative Study of Maharashtra and Uttar Pradesh”</em>, 
+      and my M.Phil. dissertation was <em>“Efficiency of Sugar Mills in Uttar Pradesh: An Analysis”</em>. 
+      I also earned an M.A. and B.A. (Hons.) in Economics with Mathematics and Statistics from AMU.
+    </p>
+
+    <p>My research interests include poverty and inequality, trade, banking, climate change, 
+      climate resilience, development economics, environmental economics, agricultural economics, 
+      agricultural marketing, value chain analysis, agriculture & allied activities, efficiency & productivity, 
+      sustainable agri-food systems, organic farming, sustainable agriculture systems, water management, 
+      and agricultural policy evaluation.
+    </p>
+  </article>
+</main>
+
+<footer>
+  <div>Agricultural Economics</div>
+  <nav>
+    <a href="mailto:abdullahalig007@gmail.com" aria-label="Email"><svg class="icon"><use xlink:href="/assets/fontawesome/icons.svg#envelope"></use></svg></a>
+    <a href="https://x.com/abdullahalig07" aria-label="Twitter"><svg class="icon"><use xlink:href="/assets/fontawesome/icons.svg#twitter"></use></svg></a>
+    <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate"><svg class="icon"><use xlink:href="/assets/fontawesome/icons.svg#researchgate"></use></svg></a>
+    <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn"><svg class="icon"><use xlink:href="/assets/fontawesome/icons.svg#linkedin"></use></svg></a>
+    <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID"><svg class="icon"><use xlink:href="/assets/fontawesome/icons.svg#orcid"></use></svg></a>
+    <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar"><svg class="icon"><use xlink:href="/assets/fontawesome/icons.svg#google"></use></svg></a>
+  </nav>
+</footer>
+
 </body>
 </html>
