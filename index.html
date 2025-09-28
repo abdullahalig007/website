@@ -9,9 +9,9 @@
 
   <title>Dr Abdulla | Assistant Professor at Jamia Millia Islamia</title>
   <link rel="canonical" href="/">
-  <!-- Tailwind CSS CDN for styling -->
+  <!-- Tailwind CSS CDN for vibrant styling -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome CDN for icons -->
+  <!-- Font Awesome CDN for colorful icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
@@ -29,42 +29,74 @@
   <meta name="twitter:image" content="https://your-github-username.github.io/ph.jpg">
 
   <style>
-    /* Custom styles for photo frame and additional enhancements */
+    /* Custom styles for vibrant design */
+    .hero {
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      color: white;
+    }
     .photo-frame {
-      border: 5px solid #f3f4f6;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      border: 8px solid #8b5cf6;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .photo-frame:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
     }
     .sticky-nav {
       position: sticky;
       top: 0;
       z-index: 50;
+      background: linear-gradient(90deg, #1e3a8a, #6b21a8);
+    }
+    .nav-link {
+      transition: all 0.3s ease;
+    }
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: #a5b4fc;
     }
     .section-header {
-      border-bottom: 2px solid #4b5563;
+      border-bottom: 3px solid #10b981;
       padding-bottom: 0.5rem;
     }
+    .icon-link {
+      transition: all 0.3s ease;
+    }
     .icon-link:hover {
-      color: #3b82f6;
-      transform: scale(1.2);
-      transition: all 0.2s ease;
+      transform: scale(1.3);
+      color: #a5b4fc;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
 
-<body class="bg-gray-100 font-sans">
-  <header class="bg-white shadow sticky-nav">
+<body class="bg-gradient-to-b from-gray-100 to-purple-100 font-sans">
+  <!-- Hero Section -->
+  <section class="hero py-12 text-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr Abdulla</h1>
+      <p class="text-lg md:text-xl">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-md mt-2">Specializing in Agricultural Economics, Climate Change, and Sustainable Development</p>
+    </div>
+  </section>
+
+  <!-- Navigation -->
+  <header class="sticky-nav shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/" class="text-2xl font-bold text-gray-800">Dr Abdulla</a>
-      <nav class="space-x-4">
-        <a href="#cv" class="text-gray-600 hover:text-blue-500"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="#about" class="text-gray-600 hover:text-blue-500"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="#research" class="text-gray-600 hover:text-blue-500"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="#resource" class="text-gray-600 hover:text-blue-500"><i class="fas fa-book mr-1"></i> Resource</a>
+      <a href="/" class="text-2xl font-bold text-white">Dr Abdulla</a>
+      <nav class="space-x-6">
+        <a href="#cv" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-file-alt mr-1"></i> CV</a>
+        <a href="#about" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-user mr-1"></i> About</a>
+        <a href="#research" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="#resource" class="nav-link text-white hover:text-indigo-300"><i class="fas fa-book mr-1"></i> Resource</a>
       </nav>
     </div>
   </header>
@@ -77,27 +109,27 @@
           <img src="ph.jpg" alt="Dr Abdulla profile photo" class="photo-frame w-48 h-auto mx-auto md:mx-0">
         </div>
         <div class="md:w-2/3 mt-4 md:mt-0 md:pl-8">
-          <h2 class="text-2xl font-medium text-gray-700">Dr Abdulla</h2>
-          <p class="mt-2 text-gray-600">
+          <h2 class="text-2xl font-medium text-purple-700">Dr Abdulla</h2>
+          <p class="mt-2 text-gray-700">
             I am an Assistant Professor at 
             <a href="https://jmi.ac.in/" class="text-blue-500 hover:underline">Jamia Millia Islamia (Central University)</a>, New Delhi, India. 
             Prior to joining JMI, I worked as a Research Associate at the 
             <a href="https://niap.icar.gov.in/" class="text-blue-500 hover:underline">ICAR-National Institute of Agricultural Economics and Policy Research</a>, New Delhi.
           </p>
-          <p class="mt-2 text-gray-600">
+          <p class="mt-2 text-gray-700">
             I have also worked as a Research Associate at the 
             <a href="https://naas.org.in/" class="text-blue-500 hover:underline">National Academy of Agricultural Sciences (NAAS)</a>, New Delhi, 
             and as a Young Professional at the 
             <a href="https://www.commerce.gov.in/" class="text-blue-500 hover:underline">Department of Commerce, Ministry of Commerce and Industry, Government of India</a>.
           </p>
-          <p class="mt-2 text-gray-600">
+          <p class="mt-2 text-gray-700">
             I hold M.Phil. and Ph.D. degrees in Economics from 
             <a href="https://www.amu.ac.in/" class="text-blue-500 hover:underline">Aligarh Muslim University (AMU)</a>, Aligarh, India. 
             My Ph.D. dissertation was <em>“Performance of Sugar Mills in India: A Comparative Study of Maharashtra and Uttar Pradesh”</em>, 
             and my M.Phil. dissertation was <em>“Efficiency of Sugar Mills in Uttar Pradesh: An Analysis”</em>. 
             I also earned an M.A. and B.A. (Hons.) in Economics with Mathematics and Statistics from AMU.
           </p>
-          <p class="mt-2 text-gray-600">
+          <p class="mt-2 text-gray-700">
             My research interests include poverty and inequality, trade, banking, climate change, 
             climate resilience, development economics, environmental economics, agricultural economics, 
             agricultural marketing, value chain analysis, agriculture & allied activities, efficiency & productivity, 
@@ -110,13 +142,12 @@
 
     <section id="cv" class="mb-12">
       <h1 class="text-3xl font-semibold text-gray-800 section-header">CV</h1>
-      <p class="mt-4 text-gray-600">
-        Download my CV: <a href="/CV.pdf" class="text-blue-500 hover:underline"><i class="fas fa-download mr-1"></i> CV.pdf</a>
-      </p>
-      <!-- Add more CV details as needed -->
-      <div class="mt-4">
-        <h3 class="text-xl font-medium text-gray-700">Education</h3>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
+      <div class="mt-4 bg-white p-6 rounded-lg shadow card">
+        <p class="text-gray-700">
+          Download my CV: <a href="/CV.pdf" class="text-blue-500 hover:underline"><i class="fas fa-download mr-1"></i> CV.pdf</a>
+        </p>
+        <h3 class="text-xl font-medium text-purple-700 mt-4">Education</h3>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
           <li>Ph.D. in Economics, Aligarh Muslim University</li>
           <li>M.Phil. in Economics, Aligarh Muslim University</li>
           <li>M.A. in Economics, Aligarh Muslim University</li>
@@ -127,14 +158,14 @@
 
     <section id="research" class="mb-12">
       <h1 class="text-3xl font-semibold text-gray-800 section-header">Research</h1>
-      <div class="mt-4">
-        <h3 class="text-xl font-medium text-gray-700">Articles</h3>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
+      <div class="mt-4 bg-white p-6 rounded-lg shadow card">
+        <h3 class="text-xl font-medium text-purple-700">Articles</h3>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
           <li>Article 1: [Add description and link here]</li>
           <!-- Add more articles as needed -->
         </ul>
-        <h3 class="text-xl font-medium text-gray-700 mt-4">Working Papers</h3>
-        <ul class="list-disc pl-5 mt-2 text-gray-600">
+        <h3 class="text-xl font-medium text-purple-700 mt-4">Working Papers</h3>
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
           <li>Working Paper 1: [Add description and link here]</li>
           <!-- Add more working papers as needed -->
         </ul>
@@ -143,23 +174,25 @@
 
     <section id="resource" class="mb-12">
       <h1 class="text-3xl font-semibold text-gray-800 section-header">Resource</h1>
-      <ul class="list-disc pl-5 mt-4 text-gray-600">
-        <li>Resource 1: [Add description and link here]</li>
-        <!-- Add more resources as needed -->
-      </ul>
+      <div class="mt-4 bg-white p-6 rounded-lg shadow card">
+        <ul class="list-disc pl-5 mt-2 text-gray-700">
+          <li>Resource 1: [Add description and link here]</li>
+          <!-- Add more resources as needed -->
+        </ul>
+      </div>
     </section>
   </main>
 
-  <footer class="bg-gray-800 text-white py-6">
+  <footer class="bg-gradient-to-r from-purple-800 to-blue-800 text-white py-8">
     <div class="container mx-auto px-4 text-center">
       <div class="text-lg font-semibold">Agricultural Economics</div>
-      <nav class="mt-4 flex justify-center space-x-4">
-        <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-lg"></i></a>
-        <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-lg"></i></a>
-        <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-lg"></i></a>
-        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-lg"></i></a>
-        <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-lg"></i></a>
-        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-lg"></i></a>
+      <nav class="mt-4 flex justify-center space-x-6">
+        <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+        <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
       </nav>
       <p class="mt-4 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
     </div>
