@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
   <meta name="generator" content="Jekyll v4.2.2">
-  <meta name="description" content="Research resources for agricultural economics by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
+  <meta name="description" content=" Research resources for Agricultural Economics/Economics by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
 
   <title>Dr Abdulla | Research Resources</title>
   <link rel="canonical" href="/website/resource.html">
@@ -14,7 +14,7 @@
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="alternate" href="/website/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
@@ -31,18 +31,49 @@
   <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
 
   <style>
+    :root {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --accent-color: #facc15;
+      --link-color: #93c5fd;
+      --hover-link: #facc15;
+      --secondary-accent: #10b981;
+    }
+
+    body.light-mode {
+      --bg-color: #f8fafc;
+      --text-color: #1e293b;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --accent-color: #1e3a8a;
+      --link-color: #1e40af;
+      --hover-link: #2563eb;
+      --secondary-accent: #059669;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
     }
+
     h1, h2, h3, h4 {
-      font-family: 'Merriweather', serif;
+      font-family: 'Playfair Display', serif;
+      color: var(--text-color);
     }
+
     .hero {
-      background: linear-gradient(135deg, #1e3a8a, #4b5563);
+      background: linear-gradient(135deg, var(--bg-color), var(--accent-color));
       color: white;
       position: relative;
       overflow: hidden;
+      transition: background 0.4s ease;
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -50,108 +81,228 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" opacity="0.1"><path fill="%23ffffff" d="M0 0h20v20H0zM60 0h20v20H60zM0 60h20v20H0zM60 60h20v20H60z"/></svg>');
-      opacity: 0.1;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%);
+      animation: pulse 5s infinite;
     }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
     .sticky-nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.4s ease, transform 0.3s ease;
     }
+
+    .sticky-nav.scrolled {
+      transform: translateY(0);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .sticky-nav {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     .nav-link {
       transition: all 0.3s ease;
-      color: #f3f4f6;
+      color: var(--text-color);
+      position: relative;
     }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
     .nav-link:hover {
-      color: #eab308;
-      transform: translateY(-2px);
+      color: var(--accent-color);
     }
+
+    .theme-toggle {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: rotate(180deg);
+    }
+
     .section-header {
-      border-bottom: 2px solid #eab308;
+      border-bottom: 3px solid var(--accent-color);
       padding-bottom: 0.5rem;
+      color: var(--accent-color);
+      position: relative;
+      overflow: hidden;
     }
-    .icon-link {
-      transition: all 0.3s ease;
-      color: #f3f4f6;
+
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent-color), var(--secondary-accent));
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
     }
-    .icon-link:hover {
-      transform: scale(1.2);
-      color: #eab308;
+
+    .section-header.in-view::after {
+      transform: translateX(0);
     }
+
     .card {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
       transition: all 0.3s ease;
+      overflow: hidden;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-      border-image: linear-gradient(45deg, #d97706, #eab308) 1;
+      transform: translateY(-10px);
+      border-color: var(--accent-color);
+      box-shadow: 0 15px 30px rgba(250, 204, 21, 0.2);
     }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease forwards;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    table {
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
     }
-    th, td {
-      border: 1px solid #e5e7eb;
-      padding: 0.75rem;
-      text-align: left;
+
+    .card:hover::before {
+      left: 100%;
     }
-    th {
-      background-color: #1e3a8a;
-      color: white;
-      font-family: 'Merriweather', serif;
-    }
-    tr:nth-child(even) {
-      background-color: #f9fafb;
-    }
-    tr:hover {
-      background-color: #f3f4f6;
-    }
+
     a {
-      color: #1e3a8a;
-      text-decoration: none;
-      transition: color 0.3s ease;
+      color: var(--link-color);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
     a:hover {
-      color: #eab308;
-      text-decoration: underline;
+      color: var(--hover-link);
+      text-shadow: 0 0 5px var(--hover-link);
     }
+
+    .icon-link {
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    .icon-link:hover {
+      color: var(--accent-color);
+      transform: scale(1.2) rotate(360deg);
+    }
+
+    footer {
+      background: var(--bg-color);
+      border-top: 1px solid var(--border-color);
+      transition: background 0.4s ease;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, var(--bg-color), transparent);
+      pointer-events: none;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      text-align: left;
+      transition: background-color 0.3s ease;
+    }
+    th {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+      font-family: 'Playfair Display', serif;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(249, 250, 251, 0.5);
+    }
+    tr:hover {
+      background-color: rgba(243, 244, 246, 0.8);
+    }
+    body.light-mode tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+    body.light-mode tr:hover {
+      background-color: #f3f4f6;
+    }
+
     .search-container {
       margin-bottom: 1.5rem;
     }
     input[type="text"] {
       width: 100%;
       padding: 0.5rem;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      border-color: var(--accent-color);
+      outline: none;
     }
   </style>
 </head>
 
-<body class="bg-gray-50">
+<body>
   <!-- Hero Section -->
-  <section class="hero py-12 text-center relative">
+  <section class="hero py-16 text-center relative">
     <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr Abdulla</h1>
-      <p class="text-lg md:text-xl">Assistant Professor at Jamia Millia Islamia</p>
-      <p class="text-md mt-2">Research Resources for Agricultural Economics</p>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Dr Abdulla</h1>
+      <p class="text-xl md:text-2xl mb-3 font-light">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-md md:text-lg mt-2 italic">Research Resources for Agricultural Economics</p>
     </div>
   </section>
 
@@ -159,25 +310,28 @@
   <header class="sticky-nav shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-6">
+      <nav class="space-x-6 flex items-center">
         <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
         <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
         <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
         <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
         <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
+        <div id="theme-toggle" class="theme-toggle ml-4">
+          <i class="fas fa-moon fa-lg" style="color: #facc15;"></i>
+        </div>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-8">
-    <article class="bg-white p-6 card fade-in">
+  <main class="container mx-auto px-4 py-12">
+    <article class="card p-8 relative fade-in">
       <header>
-        <h1 class="text-3xl font-semibold text-gray-800 section-header">Research Resources</h1>
+        <h1 class="text-4xl font-semibold section-header">Research Resources</h1>
       </header>
 
       <!-- Data Sources -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="data-sources">1. Data Sources</h2>
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="data-sources">1. Data Sources</h2>
         <div class="search-container">
           <input type="text" id="dataSearch" placeholder="Search data sources..." aria-label="Search data sources">
         </div>
@@ -384,164 +538,152 @@
               <td><a href="https://www.nfsm.gov.in/" target="_blank" rel="noopener" aria-label="National Food Security Mission">Link</a></td>
             </tr>
             <tr>
-             <!-- 33. Survey of India -->
-              <tr>
-                <td>33.</td>
-                <td>
-                  Indian Maps and Shape Files (State, District, Taluk and Village Boundaries)
-                  <p>
-                    The Survey of India under the Ministry of Science & Technology provides digital map data, including administrative boundaries at multiple levels. 
-                    These resources support GIS applications, planning, and analysis. 
-                  </p>
-                </td>
-                <td>Survey of India, MoS&T</td>
-                <td>
-                  <a href="https://onlinemaps.surveyofindia.gov.in/Digital_Product_Show.aspx" target="_blank" rel="noopener" aria-label="Indian maps and shape files">
-                    Link
-                  </a>
-                </td>
-              </tr>
-          
-              <!-- 34. NSO / MoSPI Microdata -->
-              <tr>
-                <td>34.</td>
-                <td>
-                  <strong>National Statistics Office (NSO), Ministry of Statistics and Programme Implementation (MoSPI) — Microdata Access Portal</strong>
-                  <p>
-                    The NSO provides open access to microdata from its extensive surveys and censuses through its 
-                    <em>Microdata Access Portal</em>, powered by the National Data Archive (NADA) software of the IHSN.
-                    Researchers and policymakers can browse, search, and download metadata and unit-level data for over 178 surveys.
-                  </p>
-                  <ul>
-                    <li>Annual Survey of Industries</li>
-                    <li>Index of Industrial Production</li>
-                    <li>Household Consumption Expenditure</li>
-                    <li>Economic Census</li>
-                    <li>Enterprises Surveys</li>
-                    <li>Periodic Labour Force Survey</li>
-                    <li>Employment and Unemployment</li>
-                    <li>Land and Livestock Holding Surveys</li>
-                    <li>Other Surveys</li>
-                  </ul>
-                </td>
-                <td>National Statistics Office (NSO), MoSPI</td>
-                <td>
-                  <a href="https://microdata.gov.in/" target="_blank" rel="noopener" aria-label="National Statistics Office Microdata Portal">
-                    Link
-                  </a>
-                </td>
-              </tr>
-          
-              <!-- 35. IndiaStat -->
-              <tr>
-                <td>35.</td>
-                <td>
-                  IndiaStat — Socio-economic & Electoral Data Bank (Subscription Service)
-                  <p>
-                    IndiaStat, managed by Datanet India Pvt. Ltd., offers a comprehensive database of socio-economic and electoral statistics.
-                    It compiles data across multiple domains and serves as a paid subscription platform for in-depth statistical analysis.
-                  </p>
-                  <ul>
-                    <li>General & demographic statistics</li>
-                    <li>Economic indicators & growth data</li>
-                    <li>Agriculture & land statistics</li>
-                    <li>Industry & infrastructure metrics</li>
-                    <li>Health, education, and social welfare data</li>
-                    <li>Electoral & constituency level data</li>
-                    <li>Environmental, forest, and natural resource data</li>
-                  </ul>
-                </td>
-                <td>Datanet India / IndiaStat (Subscription)</td>
-                <td>
-                  <a href="https://www.indiastat.com/" target="_blank" rel="noopener" aria-label="IndiaStat Subscription Database">
-                    Link
-                  </a>
-                </td>
-              </tr>
-          
-              <!-- 36. EPWRFITS -->
-              <tr>
-                <td>36.</td>
-                <td>
-                  EPWRF India Time Series (EPWRFITS) — Online Time Series Database (Subscription)
-                  <p>
-                    EPWRFITS is a subscription-based online database developed by the EPW Research Foundation (EPWRF). 
-                    It offers long-term, sector-wise time-series data on the Indian economy, with over 100,000 variables across 27 modules.
-                  </p>
-                  <p>
-                    The platform provides consistent data series, metadata, visualisation tools, and downloadable datasets for researchers and analysts.
-                  </p>
-                </td>
-                <td>EPW Research Foundation (EPWRF)</td>
-                <td>
-                  <a href="https://epwrfits.in/" target="_blank" rel="noopener" aria-label="EPWRF India Time Series">
-                    Link
-                  </a>
-                </td>
-              </tr>
-          
-              <!-- 37. CMIE -->
-              <tr>
-                <td>37.</td>
-                <td>
-                  CMIE — Centre for Monitoring Indian Economy (Subscription / Commercial)
-                  <p>
-                    CMIE is a leading business information and analytics company in India, established in 1976. 
-                    It provides databases and analytical tools covering company performance, investment activity, household surveys, and economic trends.
-                  </p>
-                  <ul>
-                    <li>Prowess / Prowess dx (company financials)</li>
-                    <li>CapEx / CapEx dx (investment tracking)</li>
-                    <li>Economic Outlook</li>
-                    <li>States of India</li>
-                    <li>Industry Outlook</li>
-                    <li>Trade dx</li>
-                    <li>Consumer Pyramids dx</li>
-                    <li>Beliefs & Behaviour</li>
-                  </ul>
-                </td>
-                <td>Centre for Monitoring Indian Economy (CMIE)</td>
-                <td>
-                  <a href="https://www.cmie.com/" target="_blank" rel="noopener" aria-label="CMIE subscription and data services">
-                    Link
-                  </a>
-                </td>
-              </tr>
-          
-              <!-- 38. Capitaline -->
-              <tr>
-                <td>38.</td>
-                <td>
-                  Capitaline — Indian Corporate & Financial Data Platform (Subscription)
-                  <p>
-                    Capitaline provides detailed financial and non-financial information on over 45,000 listed and unlisted Indian companies. 
-                    It offers modular databases and analytical tools for corporate research, industry analysis, and investment insights.
-                  </p>
-                  <ul>
-                    <li>Company financials & ratios</li>
-                    <li>Industry aggregates & benchmarks</li>
-                    <li>Screener / query modules</li>
-                    <li>Corporate events & disclosures</li>
-                    <li>Mutual fund data (“NAV” module)</li>
-                    <li>Transfer pricing / trade data module</li>
-                    <li>Analytical & export tools</li>
-                  </ul>
-                </td>
-                <td>Capital Market Publishers / Capitaline (Subscription)</td>
-                <td>
-                  <a href="https://www.capitaline.com/" target="_blank" rel="noopener" aria-label="Capitaline Data Platform">
-                    Link
-                  </a>
-                </td>
-              </tr>
-         </tbody>
+              <td>33.</td>
+              <td>
+                Indian Maps and Shape Files (State, District, Taluk and Village Boundaries)
+                <p>
+                  The Survey of India under the Ministry of Science & Technology provides digital map data, including administrative boundaries at multiple levels. 
+                  These resources support GIS applications, planning, and analysis. 
+                </p>
+              </td>
+              <td>Survey of India, MoS&T</td>
+              <td>
+                <a href="https://onlinemaps.surveyofindia.gov.in/Digital_Product_Show.aspx" target="_blank" rel="noopener" aria-label="Indian maps and shape files">
+                  Link
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>34.</td>
+              <td>
+                <strong>National Statistics Office (NSO), Ministry of Statistics and Programme Implementation (MoSPI) — Microdata Access Portal</strong>
+                <p>
+                  The NSO provides open access to microdata from its extensive surveys and censuses through its 
+                  <em>Microdata Access Portal</em>, powered by the National Data Archive (NADA) software of the IHSN.
+                  Researchers and policymakers can browse, search, and download metadata and unit-level data for over 178 surveys.
+                </p>
+                <ul>
+                  <li>Annual Survey of Industries</li>
+                  <li>Index of Industrial Production</li>
+                  <li>Household Consumption Expenditure</li>
+                  <li>Economic Census</li>
+                  <li>Enterprises Surveys</li>
+                  <li>Periodic Labour Force Survey</li>
+                  <li>Employment and Unemployment</li>
+                  <li>Land and Livestock Holding Surveys</li>
+                  <li>Other Surveys</li>
+                </ul>
+              </td>
+              <td>National Statistics Office (NSO), MoSPI</td>
+              <td>
+                <a href="https://microdata.gov.in/" target="_blank" rel="noopener" aria-label="National Statistics Office Microdata Portal">
+                  Link
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>35.</td>
+              <td>
+                IndiaStat — Socio-economic & Electoral Data Bank (Subscription Service)
+                <p>
+                  IndiaStat, managed by Datanet India Pvt. Ltd., offers a comprehensive database of socio-economic and electoral statistics.
+                  It compiles data across multiple domains and serves as a paid subscription platform for in-depth statistical analysis.
+                </p>
+                <ul>
+                  <li>General & demographic statistics</li>
+                  <li>Economic indicators & growth data</li>
+                  <li>Agriculture & land statistics</li>
+                  <li>Industry & infrastructure metrics</li>
+                  <li>Health, education, and social welfare data</li>
+                  <li>Electoral & constituency level data</li>
+                  <li>Environmental, forest, and natural resource data</li>
+                </ul>
+              </td>
+              <td>Datanet India / IndiaStat (Subscription)</td>
+              <td>
+                <a href="https://www.indiastat.com/" target="_blank" rel="noopener" aria-label="IndiaStat Subscription Database">
+                  Link
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>36.</td>
+              <td>
+                EPWRF India Time Series (EPWRFITS) — Online Time Series Database (Subscription)
+                <p>
+                  EPWRFITS is a subscription-based online database developed by the EPW Research Foundation (EPWRF). 
+                  It offers long-term, sector-wise time-series data on the Indian economy, with over 100,000 variables across 27 modules.
+                </p>
+                <p>
+                  The platform provides consistent data series, metadata, visualisation tools, and downloadable datasets for researchers.
+                </p>
+              </td>
+              <td>EPW Research Foundation (EPWRF)</td>
+              <td>
+                <a href="https://epwrfits.in/" target="_blank" rel="noopener" aria-label="EPWRF India Time Series">
+                  Link
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>37.</td>
+              <td>
+                CMIE — Centre for Monitoring Indian Economy (Subscription / Commercial)
+                <p>
+                  CMIE is a leading business information and analytics company in India, established in 1976. 
+                  It provides databases and analytical tools covering company performance, investment activity, household surveys, and economic trends.
+                </p>
+                <ul>
+                  <li>Prowess / Prowess dx (company financials)</li>
+                  <li>CapEx / CapEx dx (investment tracking)</li>
+                  <li>Economic Outlook</li>
+                  <li>States of India</li>
+                  <li>Industry Outlook</li>
+                  <li>Trade dx</li>
+                  <li>Consumer Pyramids dx</li>
+                  <li>Beliefs & Behaviour</li>
+                </ul>
+              </td>
+              <td>Centre for Monitoring Indian Economy (CMIE)</td>
+              <td>
+                <a href="https://www.cmie.com/" target="_blank" rel="noopener" aria-label="CMIE subscription and data services">
+                  Link
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>38.</td>
+              <td>
+                Capitaline — Indian Corporate & Financial Data Platform (Subscription)
+                <p>
+                  Capitaline provides detailed financial and non-financial information on over 45,000 listed and unlisted Indian companies. 
+                  It offers modular databases and analytical tools for corporate research, industry analysis, and investment insights.
+                </p>
+                <ul>
+                  <li>Company financials & ratios</li>
+                  <li>Industry aggregates & benchmarks</li>
+                  <li>Screener / query modules</li>
+                  <li>Corporate events & disclosures</li>
+                  <li>Mutual fund data (“NAV” module)</li>
+                  <li>Transfer pricing / trade data module</li>
+                  <li>Analytical & export tools</li>
+                </ul>
+              </td>
+              <td>Capital Market Publishers / Capitaline (Subscription)</td>
+              <td>
+                <a href="https://www.capitaline.com/" target="_blank" rel="noopener" aria-label="Capitaline Data Platform">
+                  Link
+                </a>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <!-- Literature Reviews -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="literature-reviews">2. Literature Reviews</h2>
-        <ol class="list-decimal pl-5 mt-2 text-gray-600">
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="literature-reviews">2. Literature Reviews</h2>
+        <ol class="list-decimal pl-5 mt-4 text-gray-600">
           <li><a href="https://www.annualreviews.org/" target="_blank" rel="noopener" aria-label="Annual Reviews">Annual Reviews</a></li>
           <li><a href="https://voxdev.org/voxdevlit" target="_blank" rel="noopener" aria-label="VoxDevLit">VoxDevLit</a></li>
           <li><a href="https://developmentevidence.3ieimpact.org/" target="_blank" rel="noopener" aria-label="3ie Systematic Reviews">3ie Systematic Reviews</a></li>
@@ -549,9 +691,9 @@
       </section>
 
       <!-- Search Engines for Literature Review -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="search-engines">3. Search Engines for Literature Review</h2>
-        <ol class="list-decimal pl-5 mt-2 text-gray-600">
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="search-engines">3. Search Engines for Literature Review</h2>
+        <ol class="list-decimal pl-5 mt-4 text-gray-600">
           <li><a href="https://scholar.google.co.in/" target="_blank" rel="noopener" aria-label="Google Scholar">Google Scholar</a></li>
           <li><a href="https://ideas.repec.org/search.html" target="_blank" rel="noopener" aria-label="REPEC">REPEC</a></li>
           <li><a href="https://ageconsearch.umn.edu/?ln=en" target="_blank" rel="noopener" aria-label="AgEcon">AgEcon</a></li>
@@ -571,18 +713,18 @@
       </section>
 
       <!-- Methods to Download Papers -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="download-papers">4. Methods and Ways to Download Papers for Free</h2>
-        <ol class="list-decimal pl-5 mt-2 text-gray-600">
-          <li>Journal articles download by installing the Chrome extension “Unpaywall”: <a href="https://unpaywall.org/" target="_blank" rel="noopener" aria-label="Unpaywall extension">Link</a></li>
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="download-papers">4. Methods and Ways to Download Papers for Free</h2>
+        <ol class="list-decimal pl-5 mt-4 text-gray-600">
+          <li>Journal articles download by installing the installing the Chrome extension “Unpaywall”: <a href="https://unpaywall.org/" target="_blank" rel="noopener" aria-label="Unpaywall extension">Link</a></li>
           <li>Supplementary file download from ScienceDirect: <a href="https://www.sciencedirect.com/" target="_blank" rel="noopener" aria-label="ScienceDirect supplementary file">Link</a></li>
         </ol>
       </section>
 
       <!-- Teaching and Learning Resources -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="teaching-resources">5. Teaching and Learning Resources for Impact Evaluation (Mostly RCT)</h2>
-        <table>
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="teaching-resources">5. Teaching and Learning Resources for Impact Evaluation (Mostly RCT)</h2>
+        <table class="mt-4">
           <thead>
             <tr>
               <th>Sl. No</th>
@@ -636,9 +778,9 @@
       </section>
 
       <!-- Research Grant Sites -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="grant-sites">6. Research Grant Sites</h2>
-        <ol class="list-decimal pl-5 mt-2 text-gray-600">
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="grant-sites">6. Research Grant Sites</h2>
+        <ol class="list-decimal pl-5 mt-4 text-gray-600">
           <li><a href="https://www.nifa.usda.gov/grants/funding-opportunities/rural-cooperative-development-grant-program" target="_blank" rel="noopener" aria-label="NIFA Rural Cooperative Development Grants">NIFA Rural Cooperative Development Grants (Deadline: September 4, 2025)</a></li>
           <li><a href="https://foundationfar.org/grants-funding/" target="_blank" rel="noopener" aria-label="FFAR Grants">Foundation for Food & Agriculture Research (FFAR) Grants</a></li>
           <li><a href="https://www.nifa.usda.gov/grants/funding-opportunities/agriculture-food-research-initiative-foundational-applied-science" target="_blank" rel="noopener" aria-label="AFRI Foundational and Applied Science Program">Agriculture and Food Research Initiative - Foundational and Applied Science Program (AFRI)</a></li>
@@ -650,9 +792,9 @@
       </section>
 
       <!-- GIS Tools -->
-      <section class="mt-6">
-        <h2 class="text-2xl font-medium text-gray-900 section-header" id="gis-tools">7. GIS Tools</h2>
-        <table>
+      <section class="mt-8">
+        <h2 class="text-3xl font-medium section-header" id="gis-tools">7. GIS Tools</h2>
+        <table class="mt-4">
           <thead>
             <tr>
               <th>Sl. No</th>
@@ -698,7 +840,7 @@
               <td>Open-source software for spatial data analysis, exploratory data analysis, and spatial regression, useful for regional agricultural studies.</td>
               <td><a href="https://geodacenter.github.io/" target="_blank" rel="noopener" aria-label="GeoDa website">Link</a></td>
             </tr>
-          <tr>
+            <tr>
               <td>7</td>
               <td>GeoFlow</td>
               <td>
@@ -729,7 +871,6 @@
                 </a>
               </td>
             </tr>
-        
             <tr>
               <td>9</td>
               <td>geoplot (Stata)</td>
@@ -744,7 +885,6 @@
                 </a>
               </td>
             </tr>
-        
             <tr>
               <td>10</td>
               <td>tmap (Stata)</td>
@@ -760,7 +900,6 @@
                 </a>
               </td>
             </tr>
-        
             <tr>
               <td>11</td>
               <td>bimap (Stata)</td>
@@ -781,22 +920,65 @@
     </article>
   </main>
 
-  <footer class="bg-gray-900 text-white py-8">
-    <div class="container mx-auto px-4 text-center">
-      <div class="text-lg font-semibold">Agricultural Economics</div>
-      <nav class="mt-4 flex justify-center space-x-8">
-        <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-        <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
-      </nav>
-      <p class="mt-4 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
-    </div>
+  <footer class="py-12 text-center relative">
+    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
+    <nav class="mt-4 flex justify-center space-x-10">
+      <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+      <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+      <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+      <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
+    </nav>
+    <p class="mt-6 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = toggle.querySelector('i');
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-mode');
+      icon.classList.replace('fa-moon', 'fa-sun');
+      icon.style.color = '#1e3a8a';
+    }
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+
+      icon.classList.toggle('fa-sun', isLight);
+      icon.classList.toggle('fa-moon', !isLight);
+      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // Intersection Observer for fade-in and section-header animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in, .section-header').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Scrolled class for nav
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.sticky-nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
     // Search functionality for Data Sources table
     document.getElementById('dataSearch')?.addEventListener('input', function (e) {
       const searchText = e.target.value.toLowerCase();
