@@ -14,7 +14,7 @@
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
   <!-- Open Graph for SEO -->
@@ -31,18 +31,49 @@
   <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
 
   <style>
+    :root {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --accent-color: #facc15;
+      --link-color: #93c5fd;
+      --hover-link: #facc15;
+      --secondary-accent: #10b981;
+    }
+
+    body.light-mode {
+      --bg-color: #f8fafc;
+      --text-color: #1e293b;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --accent-color: #1e3a8a;
+      --link-color: #1e40af;
+      --hover-link: #2563eb;
+      --secondary-accent: #059669;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
     }
+
     h1, h2, h3, h4 {
-      font-family: 'Merriweather', serif;
+      font-family: 'Playfair Display', serif;
+      color: var(--text-color);
     }
+
     .hero {
-      background: linear-gradient(135deg, #1e3a8a, #4b5563);
+      background: linear-gradient(135deg, var(--bg-color), var(--accent-color));
       color: white;
       position: relative;
       overflow: hidden;
+      transition: background 0.4s ease;
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -50,98 +81,210 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" opacity="0.1"><path fill="%23ffffff" d="M0 0h20v20H0zM60 0h20v20H60zM0 60h20v20H0zM60 60h20v20H60z"/></svg>');
-      opacity: 0.1;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%);
+      animation: pulse 5s infinite;
     }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
     .sticky-nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.4s ease, transform 0.3s ease;
     }
+
+    .sticky-nav.scrolled {
+      transform: translateY(0);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .sticky-nav {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     .nav-link {
       transition: all 0.3s ease;
-      color: #f3f4f6;
+      color: var(--text-color);
+      position: relative;
     }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
     .nav-link:hover {
-      color: #eab308;
-      transform: translateY(-2px);
+      color: var(--accent-color);
     }
+
+    .theme-toggle {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: rotate(180deg);
+    }
+
     .section-header {
-      border-bottom: 2px solid #eab308;
+      border-bottom: 3px solid var(--accent-color);
       padding-bottom: 0.5rem;
+      color: var(--accent-color);
+      position: relative;
+      overflow: hidden;
     }
-    .icon-link {
-      transition: all 0.3s ease;
-      color: #f3f4f6;
+
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent-color), var(--secondary-accent));
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
     }
-    .icon-link:hover {
-      transform: scale(1.2);
-      color: #eab308;
+
+    .section-header.in-view::after {
+      transform: translateX(0);
     }
+
     .card {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
       transition: all 0.3s ease;
+      overflow: hidden;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-      border-image: linear-gradient(45deg, #d97706, #eab308) 1;
+      transform: translateY(-10px);
+      border-color: var(--accent-color);
+      box-shadow: 0 15px 30px rgba(250, 204, 21, 0.2);
     }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease forwards;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    table {
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
     }
-    th, td {
-      border: 1px solid #e5e7eb;
-      padding: 0.75rem;
-      text-align: left;
+
+    .card:hover::before {
+      left: 100%;
     }
-    th {
-      background-color: #1e3a8a;
-      color: white;
-      font-family: 'Merriweather', serif;
-    }
-    tr:nth-child(even) {
-      background-color: #f9fafb;
-    }
-    tr:hover {
-      background-color: #f3f4f6;
-    }
+
     a {
-      color: #1e3a8a;
-      text-decoration: none;
-      transition: color 0.3s ease;
+      color: var(--link-color);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
     a:hover {
-      color: #eab308;
-      text-decoration: underline;
+      color: var(--hover-link);
+      text-shadow: 0 0 5px var(--hover-link);
+    }
+
+    .icon-link {
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    .icon-link:hover {
+      color: var(--accent-color);
+      transform: scale(1.2) rotate(360deg);
+    }
+
+    footer {
+      background: var(--bg-color);
+      border-top: 1px solid var(--border-color);
+      transition: background 0.4s ease;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, var(--bg-color), transparent);
+      pointer-events: none;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      text-align: left;
+      transition: background-color 0.3s ease;
+    }
+    th {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+      font-family: 'Playfair Display', serif;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(249, 250, 251, 0.5);
+    }
+    tr:hover {
+      background-color: rgba(243, 244, 246, 0.8);
+    }
+    body.light-mode tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+    body.light-mode tr:hover {
+      background-color: #f3f4f6;
     }
   </style>
 </head>
 
-<body class="bg-gray-50">
+<body>
   <!-- Hero Section -->
-  <section class="hero py-12 text-center relative">
+  <section class="hero py-16 text-center relative">
     <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr Abdulla</h1>
-      <p class="text-lg md:text-xl">Assistant Professor at Jamia Millia Islamia</p>
-      <p class="text-md mt-2">Research Publications and Work in Progress</p>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Dr Abdulla</h1>
+      <p class="text-xl md:text-2xl mb-3 font-light">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-md md:text-lg mt-2 italic">Research Publications and Work in Progress</p>
     </div>
   </section>
 
@@ -149,22 +292,25 @@
   <header class="sticky-nav shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-6">
+      <nav class="space-x-6 flex items-center">
         <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
         <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
         <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
         <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
         <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
+        <div id="theme-toggle" class="theme-toggle ml-4">
+          <i class="fas fa-moon fa-lg" style="color: #facc15;"></i>
+        </div>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-8">
+  <main class="container mx-auto px-4 py-12">
     <section id="research" class="mb-12 fade-in">
-      <h1 class="text-3xl font-semibold text-gray-800 section-header">Research</h1>
-      <div class="card bg-white p-6">
-        <h3 class="text-xl font-medium text-gray-900">Work in Progress</h3>
-        <h4 class="text-lg font-medium text-gray-700 mt-3">Forthcoming Papers</h4>
+      <h1 class="text-4xl font-semibold section-header">Research</h1>
+      <div class="card p-8 mt-6 relative">
+        <h3 class="text-2xl font-medium mb-4">Work in Progress</h3>
+        <h4 class="text-xl font-medium mb-3">Forthcoming Papers</h4>
         <table class="mt-2">
           <thead>
             <tr>
@@ -184,7 +330,7 @@
           </tbody>
         </table>
 
-        <h4 class="text-lg font-medium text-gray-700 mt-3">Under Review</h4>
+        <h4 class="text-xl font-medium mb-3 mt-6">Under Review</h4>
         <table class="mt-2">
           <thead>
             <tr>
@@ -224,8 +370,8 @@
           </tbody>
         </table>
 
-        <h3 class="text-xl font-medium text-gray-900 mt-4">Research Publications</h3>
-        <h4 class="text-lg font-medium text-gray-700 mt-3">Journal Articles</h4>
+        <h3 class="text-2xl font-medium mb-4 mt-8">Research Publications</h3>
+        <h4 class="text-xl font-medium mb-3">Journal Articles</h4>
         <table class="mt-2">
           <thead>
             <tr>
@@ -242,70 +388,70 @@
               <td>Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India</td>
               <td>Kumar, N. R., & Abdulla</td>
               <td>Agricultural Economics Research Review, 37(1), 71–80</td>
-              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2023</td>
               <td>The Effect of Information Technology on Banking Efficiency</td>
               <td>Khan, A. S., & Abdulla</td>
               <td>Economic and Political Weekly, 58(37), 40–46</td>
-              <td><a href="https://www.epw.in/journal/2023/37" class="text-blue-800 hover:text-yellow-600">Link</a></td>
+              <td><a href="https://www.epw.in/journal/2023/37" class="hover:text-blue-400">Link</a></td>
             </tr>
             <tr>
               <td>2022</td>
               <td>Decomposing Productivity Growth in the Indian Sugar Industry</td>
               <td>Kumar, S., & Abdulla</td>
               <td>Agricultural Economics Research Review, 35(1), 71–80</td>
-              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2021</td>
               <td>Technical Efficiency and Its Determinants in the Indian Meat Processing Industry</td>
               <td>Abdulla, & Kumar, S.</td>
               <td>The Indian Journal of Animal Sciences, 91(3), 230–234</td>
-              <td><a href="https://doi.org/10.56093/ijans.v91i3.114149" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.56093/ijans.v91i3.114149" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2021</td>
               <td>Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry</td>
               <td>Kumar, S., & Abdulla</td>
               <td>The Indian Journal of Animal Sciences, 91(2), 137–142</td>
-              <td><a href="https://doi.org/10.56093/ijans.v91i2.113822" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.56093/ijans.v91i2.113822" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2021</td>
               <td>Technical Efficiency and Its Determinants in the Indian Textile Garments Industry</td>
               <td>Abdulla, & Kumar, S.</td>
               <td>Research Journal of Textile and Apparel, 25(4), 346–360</td>
-              <td><a href="https://doi.org/10.1108/RJTA-09-2020-0110" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.1108/RJTA-09-2020-0110" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2020</td>
               <td>Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach</td>
               <td>Kumar, S., & Abdulla</td>
               <td>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</td>
-              <td><a href="https://doi.org/10.56093/ijas.v90i8.105958" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.56093/ijas.v90i8.105958" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2020</td>
               <td>Trade Off Between Stubble Management and Ecosystem Services</td>
               <td>Kumar, S., Abdulla, & Singh, C. P.</td>
               <td>N/A</td>
-              <td><a href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" class="text-blue-800 hover:text-yellow-600">Link</a></td>
+              <td><a href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" class="hover:text-blue-400">Link</a></td>
             </tr>
             <tr>
               <td>2020</td>
               <td>Productivity Growth in India’s Bakery Manufacturing Industry</td>
               <td>Kumar, S., Abdulla, & Singh, C.</td>
               <td>Journal of Agribusiness in Developing and Emerging Economies</td>
-              <td><a href="https://doi.org/10.1108/JADEE-12-2019-0204" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.1108/JADEE-12-2019-0204" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2019</td>
               <td>Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms</td>
               <td>Khan, M. R., & Abdulla</td>
               <td>SEDME (Small Enterprises Development, Management & Extension Journal), 46(4), 235–247</td>
-              <td><a href="https://doi.org/10.1177/0970846419894775" class="text-blue-800 hover:text-yellow-600">DOI</a></td>
+              <td><a href="https://doi.org/10.1177/0970846419894775" class="hover:text-blue-400">DOI</a></td>
             </tr>
             <tr>
               <td>2017</td>
@@ -324,7 +470,7 @@
           </tbody>
         </table>
 
-        <h4 class="text-lg font-medium text-gray-700 mt-3">Books and Chapters</h4>
+        <h4 class="text-xl font-medium mb-3 mt-6">Books and Chapters</h4>
         <table class="mt-2">
           <thead>
             <tr>
@@ -353,19 +499,64 @@
     </section>
   </main>
 
-  <footer class="bg-gray-900 text-white py-8">
-    <div class="container mx-auto px-4 text-center">
-      <div class="text-lg font-semibold">Agricultural Economics</div>
-      <nav class="mt-4 flex justify-center space-x-8">
-        <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-        <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
-      </nav>
-      <p class="mt-4 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
-    </div>
+  <footer class="py-12 text-center relative">
+    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
+    <nav class="mt-4 flex justify-center space-x-10">
+      <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+      <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+      <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+      <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
+    </nav>
+    <p class="mt-6 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = toggle.querySelector('i');
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-mode');
+      icon.classList.replace('fa-moon', 'fa-sun');
+      icon.style.color = '#1e3a8a';
+    }
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+
+      icon.classList.toggle('fa-sun', isLight);
+      icon.classList.toggle('fa-moon', !isLight);
+      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // Intersection Observer for fade-in and section-header animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in, .section-header').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Scrolled class for nav
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.sticky-nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>
