@@ -251,17 +251,22 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: table; /* Ensure table displays correctly */
     }
     th, td {
       border: 1px solid var(--border-color);
       padding: 1rem;
       text-align: left;
       transition: background-color 0.3s ease;
+      vertical-align: top; /* Align content to top for consistency */
     }
     th {
       background-color: var(--accent-color);
       color: var(--bg-color);
       font-family: 'Playfair Display', serif;
+    }
+    tr {
+      display: table-row; /* Ensure rows are visible */
     }
     tr:nth-child(even) {
       background-color: rgba(249, 250, 251, 0.5);
@@ -281,17 +286,36 @@
     }
     input[type="text"] {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.75rem;
       border: 1px solid var(--border-color);
       border-radius: 8px;
       font-family: 'Roboto', sans-serif;
       background-color: var(--card-bg);
       color: var(--text-color);
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     input[type="text"]:focus {
-      border-color: var(--accent-color);
       outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.1);
+    }
+
+    ol {
+      color: var(--text-color);
+    }
+    ol li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Ensure table content with nested elements renders correctly */
+    td p, td ul {
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+    }
+    td ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
     }
   </style>
 </head>
@@ -324,13 +348,13 @@
   </header>
 
   <main class="container mx-auto px-4 py-12">
-    <article class="card p-8 relative fade-in">
+    <article class="card p-8 fade-in">
       <header>
         <h1 class="text-4xl font-semibold section-header">Research Resources</h1>
       </header>
 
       <!-- Data Sources -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="data-sources">1. Data Sources</h2>
         <div class="search-container">
           <input type="text" id="dataSearch" placeholder="Search data sources..." aria-label="Search data sources">
@@ -539,151 +563,48 @@
             </tr>
             <tr>
               <td>33.</td>
-              <td>
-                Indian Maps and Shape Files (State, District, Taluk and Village Boundaries)
-                <p>
-                  The Survey of India under the Ministry of Science & Technology provides digital map data, including administrative boundaries at multiple levels. 
-                  These resources support GIS applications, planning, and analysis. 
-                </p>
-              </td>
+              <td>Indian Maps and Shape Files (State, District, Taluk and Village Boundaries)<p>The Survey of India under the Ministry of Science & Technology provides digital map data, including administrative boundaries at multiple levels. These resources support GIS applications, planning, and analysis.</p></td>
               <td>Survey of India, MoS&T</td>
-              <td>
-                <a href="https://onlinemaps.surveyofindia.gov.in/Digital_Product_Show.aspx" target="_blank" rel="noopener" aria-label="Indian maps and shape files">
-                  Link
-                </a>
-              </td>
+              <td><a href="https://onlinemaps.surveyofindia.gov.in/Digital_Product_Show.aspx" target="_blank" rel="noopener" aria-label="Indian maps and shape files">Link</a></td>
             </tr>
             <tr>
               <td>34.</td>
-              <td>
-                <strong>National Statistics Office (NSO), Ministry of Statistics and Programme Implementation (MoSPI) — Microdata Access Portal</strong>
-                <p>
-                  The NSO provides open access to microdata from its extensive surveys and censuses through its 
-                  <em>Microdata Access Portal</em>, powered by the National Data Archive (NADA) software of the IHSN.
-                  Researchers and policymakers can browse, search, and download metadata and unit-level data for over 178 surveys.
-                </p>
-                <ul>
-                  <li>Annual Survey of Industries</li>
-                  <li>Index of Industrial Production</li>
-                  <li>Household Consumption Expenditure</li>
-                  <li>Economic Census</li>
-                  <li>Enterprises Surveys</li>
-                  <li>Periodic Labour Force Survey</li>
-                  <li>Employment and Unemployment</li>
-                  <li>Land and Livestock Holding Surveys</li>
-                  <li>Other Surveys</li>
-                </ul>
-              </td>
+              <td><strong>National Statistics Office (NSO), Ministry of Statistics and Programme Implementation (MoSPI) — Microdata Access Portal</strong><p>The NSO provides open access to microdata from its extensive surveys and censuses through its <em>Microdata Access Portal</em>, powered by the National Data Archive (NADA) software of the IHSN. Researchers and policymakers can browse, search, and download metadata and unit-level data for over 178 surveys.</p><ul><li>Annual Survey of Industries</li><li>Index of Industrial Production</li><li>Household Consumption Expenditure</li><li>Economic Census</li><li>Enterprises Surveys</li><li>Periodic Labour Force Survey</li><li>Employment and Unemployment</li><li>Land and Livestock Holding Surveys</li><li>Other Surveys</li></ul></td>
               <td>National Statistics Office (NSO), MoSPI</td>
-              <td>
-                <a href="https://microdata.gov.in/" target="_blank" rel="noopener" aria-label="National Statistics Office Microdata Portal">
-                  Link
-                </a>
-              </td>
+              <td><a href="https://microdata.gov.in/" target="_blank" rel="noopener" aria-label="National Statistics Office Microdata Portal">Link</a></td>
             </tr>
             <tr>
               <td>35.</td>
-              <td>
-                IndiaStat — Socio-economic & Electoral Data Bank (Subscription Service)
-                <p>
-                  IndiaStat, managed by Datanet India Pvt. Ltd., offers a comprehensive database of socio-economic and electoral statistics.
-                  It compiles data across multiple domains and serves as a paid subscription platform for in-depth statistical analysis.
-                </p>
-                <ul>
-                  <li>General & demographic statistics</li>
-                  <li>Economic indicators & growth data</li>
-                  <li>Agriculture & land statistics</li>
-                  <li>Industry & infrastructure metrics</li>
-                  <li>Health, education, and social welfare data</li>
-                  <li>Electoral & constituency level data</li>
-                  <li>Environmental, forest, and natural resource data</li>
-                </ul>
-              </td>
+              <td>IndiaStat — Socio-economic & Electoral Data Bank (Subscription Service)<p>IndiaStat, managed by Datanet India Pvt. Ltd., offers a comprehensive database of socio-economic and electoral statistics. It compiles data across multiple domains and serves as a paid subscription platform for in-depth statistical analysis.</p><ul><li>General & demographic statistics</li><li>Economic indicators & growth data</li><li>Agriculture & land statistics</li><li>Industry & infrastructure metrics</li><li>Health, education, and social welfare data</li><li>Electoral & constituency level data</li><li>Environmental, forest, and natural resource data</li></ul></td>
               <td>Datanet India / IndiaStat (Subscription)</td>
-              <td>
-                <a href="https://www.indiastat.com/" target="_blank" rel="noopener" aria-label="IndiaStat Subscription Database">
-                  Link
-                </a>
-              </td>
+              <td><a href="https://www.indiastat.com/" target="_blank" rel="noopener" aria-label="IndiaStat Subscription Database">Link</a></td>
             </tr>
             <tr>
               <td>36.</td>
-              <td>
-                EPWRF India Time Series (EPWRFITS) — Online Time Series Database (Subscription)
-                <p>
-                  EPWRFITS is a subscription-based online database developed by the EPW Research Foundation (EPWRF). 
-                  It offers long-term, sector-wise time-series data on the Indian economy, with over 100,000 variables across 27 modules.
-                </p>
-                <p>
-                  The platform provides consistent data series, metadata, visualisation tools, and downloadable datasets for researchers.
-                </p>
-              </td>
+              <td>EPWRF India Time Series (EPWRFITS) — Online Time Series Database (Subscription)<p>EPWRFITS is a subscription-based online database developed by the EPW Research Foundation (EPWRF). It offers long-term, sector-wise time-series data on the Indian economy, with over 100,000 variables across 27 modules.</p><p>The platform provides consistent data series, metadata, visualisation tools, and downloadable datasets for researchers and analysts.</p></td>
               <td>EPW Research Foundation (EPWRF)</td>
-              <td>
-                <a href="https://epwrfits.in/" target="_blank" rel="noopener" aria-label="EPWRF India Time Series">
-                  Link
-                </a>
-              </td>
+              <td><a href="https://epwrfits.in/" target="_blank" rel="noopener" aria-label="EPWRF India Time Series">Link</a></td>
             </tr>
             <tr>
               <td>37.</td>
-              <td>
-                CMIE — Centre for Monitoring Indian Economy (Subscription / Commercial)
-                <p>
-                  CMIE is a leading business information and analytics company in India, established in 1976. 
-                  It provides databases and analytical tools covering company performance, investment activity, household surveys, and economic trends.
-                </p>
-                <ul>
-                  <li>Prowess / Prowess dx (company financials)</li>
-                  <li>CapEx / CapEx dx (investment tracking)</li>
-                  <li>Economic Outlook</li>
-                  <li>States of India</li>
-                  <li>Industry Outlook</li>
-                  <li>Trade dx</li>
-                  <li>Consumer Pyramids dx</li>
-                  <li>Beliefs & Behaviour</li>
-                </ul>
-              </td>
+              <td>CMIE — Centre for Monitoring Indian Economy (Subscription / Commercial)<p>CMIE is a leading business information and analytics company in India, established in 1976. It provides databases and analytical tools covering company performance, investment activity, household surveys, and economic trends.</p><ul><li>Prowess / Prowess dx (company financials)</li><li>CapEx / CapEx dx (investment tracking)</li><li>Economic Outlook</li><li>States of India</li><li>Industry Outlook</li><li>Trade dx</li><li>Consumer Pyramids dx</li><li>Beliefs & Behaviour</li></ul></td>
               <td>Centre for Monitoring Indian Economy (CMIE)</td>
-              <td>
-                <a href="https://www.cmie.com/" target="_blank" rel="noopener" aria-label="CMIE subscription and data services">
-                  Link
-                </a>
-              </td>
+              <td><a href="https://www.cmie.com/" target="_blank" rel="noopener" aria-label="CMIE subscription and data services">Link</a></td>
             </tr>
             <tr>
               <td>38.</td>
-              <td>
-                Capitaline — Indian Corporate & Financial Data Platform (Subscription)
-                <p>
-                  Capitaline provides detailed financial and non-financial information on over 45,000 listed and unlisted Indian companies. 
-                  It offers modular databases and analytical tools for corporate research, industry analysis, and investment insights.
-                </p>
-                <ul>
-                  <li>Company financials & ratios</li>
-                  <li>Industry aggregates & benchmarks</li>
-                  <li>Screener / query modules</li>
-                  <li>Corporate events & disclosures</li>
-                  <li>Mutual fund data (“NAV” module)</li>
-                  <li>Transfer pricing / trade data module</li>
-                  <li>Analytical & export tools</li>
-                </ul>
-              </td>
+              <td>Capitaline — Indian Corporate & Financial Data Platform (Subscription)<p>Capitaline provides detailed financial and non-financial information on over 45,000 listed and unlisted Indian companies. It offers modular databases and analytical tools for corporate research, industry analysis, and investment insights.</p><ul><li>Company financials & ratios</li><li>Industry aggregates & benchmarks</li><li>Screener / query modules</li><li>Corporate events & disclosures</li><li>Mutual fund data (“NAV” module)</li><li>Transfer pricing / trade data module</li><li>Analytical & export tools</li></ul></td>
               <td>Capital Market Publishers / Capitaline (Subscription)</td>
-              <td>
-                <a href="https://www.capitaline.com/" target="_blank" rel="noopener" aria-label="Capitaline Data Platform">
-                  Link
-                </a>
-              </td>
+              <td><a href="https://www.capitaline.com/" target="_blank" rel="noopener" aria-label="Capitaline Data Platform">Link</a></td>
             </tr>
           </tbody>
         </table>
       </section>
 
       <!-- Literature Reviews -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="literature-reviews">2. Literature Reviews</h2>
-        <ol class="list-decimal pl-5 mt-4 text-gray-600">
+        <ol class="list-decimal pl-5 mt-2">
           <li><a href="https://www.annualreviews.org/" target="_blank" rel="noopener" aria-label="Annual Reviews">Annual Reviews</a></li>
           <li><a href="https://voxdev.org/voxdevlit" target="_blank" rel="noopener" aria-label="VoxDevLit">VoxDevLit</a></li>
           <li><a href="https://developmentevidence.3ieimpact.org/" target="_blank" rel="noopener" aria-label="3ie Systematic Reviews">3ie Systematic Reviews</a></li>
@@ -691,9 +612,9 @@
       </section>
 
       <!-- Search Engines for Literature Review -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="search-engines">3. Search Engines for Literature Review</h2>
-        <ol class="list-decimal pl-5 mt-4 text-gray-600">
+        <ol class="list-decimal pl-5 mt-2">
           <li><a href="https://scholar.google.co.in/" target="_blank" rel="noopener" aria-label="Google Scholar">Google Scholar</a></li>
           <li><a href="https://ideas.repec.org/search.html" target="_blank" rel="noopener" aria-label="REPEC">REPEC</a></li>
           <li><a href="https://ageconsearch.umn.edu/?ln=en" target="_blank" rel="noopener" aria-label="AgEcon">AgEcon</a></li>
@@ -713,18 +634,18 @@
       </section>
 
       <!-- Methods to Download Papers -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="download-papers">4. Methods and Ways to Download Papers for Free</h2>
-        <ol class="list-decimal pl-5 mt-4 text-gray-600">
+        <ol class="list-decimal pl-5 mt-2">
           <li>Journal articles download by installing the Chrome extension “Unpaywall”: <a href="https://unpaywall.org/" target="_blank" rel="noopener" aria-label="Unpaywall extension">Link</a></li>
           <li>Supplementary file download from ScienceDirect: <a href="https://www.sciencedirect.com/" target="_blank" rel="noopener" aria-label="ScienceDirect supplementary file">Link</a></li>
         </ol>
       </section>
 
       <!-- Teaching and Learning Resources -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="teaching-resources">5. Teaching and Learning Resources for Impact Evaluation (Mostly RCT)</h2>
-        <table class="mt-4">
+        <table>
           <thead>
             <tr>
               <th>Sl. No</th>
@@ -778,9 +699,9 @@
       </section>
 
       <!-- Research Grant Sites -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="grant-sites">6. Research Grant Sites</h2>
-        <ol class="list-decimal pl-5 mt-4 text-gray-600">
+        <ol class="list-decimal pl-5 mt-2">
           <li><a href="https://www.nifa.usda.gov/grants/funding-opportunities/rural-cooperative-development-grant-program" target="_blank" rel="noopener" aria-label="NIFA Rural Cooperative Development Grants">NIFA Rural Cooperative Development Grants (Deadline: September 4, 2025)</a></li>
           <li><a href="https://foundationfar.org/grants-funding/" target="_blank" rel="noopener" aria-label="FFAR Grants">Foundation for Food & Agriculture Research (FFAR) Grants</a></li>
           <li><a href="https://www.nifa.usda.gov/grants/funding-opportunities/agriculture-food-research-initiative-foundational-applied-science" target="_blank" rel="noopener" aria-label="AFRI Foundational and Applied Science Program">Agriculture and Food Research Initiative - Foundational and Applied Science Program (AFRI)</a></li>
@@ -792,9 +713,9 @@
       </section>
 
       <!-- GIS Tools -->
-      <section class="mt-8">
+      <section class="mt-6">
         <h2 class="text-3xl font-medium section-header" id="gis-tools">7. GIS Tools</h2>
-        <table class="mt-4">
+        <table>
           <thead>
             <tr>
               <th>Sl. No</th>
@@ -889,7 +810,6 @@
     <p class="mt-6 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
     const toggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -905,7 +825,6 @@
     toggle.addEventListener('click', () => {
       body.classList.toggle('light-mode');
       const isLight = body.classList.contains('light-mode');
-
       icon.classList.toggle('fa-sun', isLight);
       icon.classList.toggle('fa-moon', !isLight);
       icon.style.color = isLight ? '#1e3a8a' : '#facc15';
@@ -937,11 +856,19 @@
 
     // Search functionality for Data Sources table
     document.getElementById('dataSearch')?.addEventListener('input', function (e) {
-      const searchText = e.target.value.toLowerCase();
+      const searchText = e.target.value.toLowerCase().trim();
       const rows = document.querySelectorAll('#dataTable tbody tr');
       rows.forEach(row => {
         const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(searchText) ? '' : 'none';
+        row.style.display = searchText === '' || text.includes(searchText) ? 'table-row' : 'none';
+      });
+    });
+
+    // Ensure all tables are visible on load
+    document.querySelectorAll('table').forEach(table => {
+      table.style.display = 'table';
+      table.querySelectorAll('tr').forEach(row => {
+        row.style.display = 'table-row';
       });
     });
   </script>
