@@ -4,288 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
-  <meta name="generator" content="Jekyll v4.2.2">
-  <meta name="description" content="Curated learning paths, courses, and tutorials for Stata, Python, GIS, LaTeX, and more — by Dr Abdulla.">
-  <title>Dr Abdulla | Learning Resources</title>
-  <link rel="canonical" href="/website/resources/learning-resources.html">
+  <meta name="description" content="Stata Learning Hub: Templates, Jupyter, Reproducibility — by Dr Abdulla">
+  <title>Dr Abdulla | Stata Learning Hub</title>
+  <link rel="canonical" href="https://abdullahalig007.github.io/website/learning-resources.html">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome CDN -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Dr Abdulla | Learning Resources">
-  <meta property="og:description" content="Structured learning paths in research tools: Stata, Python, GIS, and more.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://abdullahalig007.github.io/website/resources/learning-resources.html">
-  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg">
-
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dr Abdulla | Learning Resources">
-  <meta name="twitter:description" content="Structured learning paths in research tools: Stata, Python, GIS, and more.">
-  <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
+  <!-- Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
   <style>
     :root {
-      --bg-color: #0f172a;
-      --text-color: #e2e8f0;
-      --card-bg: #1e293b;
-      --border-color: #334155;
-      --accent-color: #facc15;
-      --link-color: #93c5fd;
-      --hover-link: #facc15;
-      --secondary-accent: #10b981;
+      --bg-color: #0f172a; --text-color: #e2e8f0; --card-bg: #1e293b; --border-color: #334155;
+      --accent-color: #facc15; --link-color: #93c5fd; --hover-link: #facc15; --secondary-accent: #10b981;
     }
-
     body.light-mode {
-      --bg-color: #f8fafc;
-      --text-color: #1e293b;
-      --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --accent-color: #1e3a8a;
-      --link-color: #1e40af;
-      --hover-link: #2563eb;
-      --secondary-accent: #059669;
+      --bg-color: #f8fafc; --text-color: #1e293b; --card-bg: #ffffff; --border-color: #e2e8f0;
+      --accent-color: #1e3a8a; --link-color: #1e40af; --hover-link: #2563eb; --secondary-accent: #059669;
     }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s ease, color 0.4s ease;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--text-color);
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--bg-color), var(--accent-color));
-      color: white;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s ease;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%);
-      animation: pulse 5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.2; }
-      100% { transform: scale(1); opacity: 0.5; }
-    }
-
-    .sticky-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: background 0.4s ease, transform 0.3s ease;
-    }
-
-    .sticky-nav.scrolled {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    body.light-mode .sticky-nav {
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-link {
-      transition: all 0.3s ease;
-      color: var(--text-color);
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-color);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-link:hover {
-      color: var(--accent-color);
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .theme-toggle:hover {
-      transform: rotate(180deg);
-    }
-
-    .section-header {
-      border-bottom: 3px solid var(--accent-color);
-      padding-bottom: 0.5rem;
-      color: var(--accent-color);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(to right, var(--accent-color), var(--secondary-accent));
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-
-    .section-header.in-view::after {
-      transform: translateX(0);
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      overflow: hidden;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent-color);
-      box-shadow: 0 15px 30px rgba(250, 204, 21, 0.2);
-    }
-
-    a {
-      color: var(--link-color);
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    a:hover {
-      color: var(--hover-link);
-      text-shadow: 0 0 5px var(--hover-link);
-    }
-
-    .icon-link {
-      color: var(--text-color);
-      transition: all 0.3s ease;
-    }
-    .icon-link:hover {
-      color: var(--accent-color);
-      transform: scale(1.2) rotate(360deg);
-    }
-
-    footer {
-      background: var(--bg-color);
-      border-top: 1px solid var(--border-color);
-      transition: background 0.4s ease;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Learning Path Styles */
-    .learning-path {
-      background: linear-gradient(135deg, rgba(250, 204, 21, 0.1), rgba(16, 185, 129, 0.1));
-      border-left: 5px solid var(--accent-color);
-      padding: 1.5rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
-    }
-
-    body.light-mode .learning-path {
-      background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(5, 150, 105, 0.1));
-      border-left-color: var(--accent-color);
-    }
-
-    .badge {
-      display: inline-block;
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      margin-right: 0.5rem;
-    }
-
-    body.light-mode .badge {
-      background-color: var(--accent-color);
-      color: white;
-    }
-
-    .resource-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .resource-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 1.25rem;
-      transition: all 0.3s ease;
-    }
-
-    .resource-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent-color);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .resource-card h4 {
-      margin: 0 0 0.5rem;
-      color: var(--accent-color);
-    }
-
-    .resource-card .level {
-      font-size: 0.8rem;
-      color: var(--secondary-accent);
-      font-weight: 500;
-    }
+    body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: all 0.4s ease; overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+    .hero { background: linear-gradient(135deg, var(--bg-color), var(--accent-color)); color: white; }
+    .sticky-nav { position: sticky; top: 0; z-index: 50; background: rgba(15,23,42,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    body.light-mode .sticky-nav { background: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .nav-link { color: var(--text-color); position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: var(--accent-color); }
+    .theme-toggle { cursor: pointer; }
+    .theme-toggle:hover { transform: rotate(180deg); }
+    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; transition: all 0.3s; }
+    .card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(250,204,21,0.2); }
+    a { color: var(--link-color); }
+    a:hover { color: var(--hover-link); }
+    .collapse-btn { cursor: pointer; font-weight: 600; color: var(--accent-color); display: flex; align-items: center; gap: .5rem; }
+    .collapse-content { max-height: 0; overflow: hidden; transition: max-height .5s ease; }
+    .collapse-content.open { max-height: 5000px; }
+    pre { background:#1a1a1a!important; padding:1rem!important; border-radius:8px; overflow-x:auto; }
+    code { font-size: .875rem; }
+    .download-btn { @apply inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-600 to-green-600 text-white font-medium rounded-lg hover:from-yellow-500 hover:to-green-500 transition text-sm; }
+    .github-btn { @apply inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition text-lg; }
+    .footer { background: var(--bg-color); border-top: 1px solid var(--border-color); }
+    .fade-in { opacity:0; transform:translateY(20px); transition:all .8s ease-out; }
+    .fade-in.in-view { opacity:1; transform:translateY(0); }
   </style>
 </head>
-
 <body>
-  <!-- Hero Section -->
-  <section class="hero py-16 text-center relative">
+  <!-- Hero -->
+  <section class="hero py-16 text-center relative overflow-hidden">
     <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Learning Resources</h1>
-      <p class="text-xl md:text-2xl mb-3 font-light">Structured Paths to Master Research Tools</p>
-      <p class="text-md md:text-lg mt-2 italic">Curated by Dr Abdulla</p>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Stata Learning Hub</h1>
+      <p class="text-xl md:text-2xl mb-3 font-light">Templates • Jupyter • Reproducibility</p>
+      <p class="text-lg italic">Curated by Dr Abdulla</p>
     </div>
   </section>
 
@@ -299,221 +75,330 @@
         <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
         <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
         <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
+        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
         <div id="theme-toggle" class="theme-toggle ml-4">
-          <i class="fas fa-moon fa-lg" style="color: #facc15;"></i>
+          <i class="fas fa-moon fa-lg" style="color:#facc15;"></i>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="container mx-auto px-4 py-12">
-    <article class="card p-8 relative">
-      <header>
-        <h1 class="text-4xl font-semibold section-header">Structured Learning Paths</h1>
-      </header>
+    <article class="card p-8 fade-in">
 
-      <section class="mt-6 fade-in">
-        <p class="mt-4 leading-relaxed">
-          These learning paths are designed for researchers, students, and academics who want to build proficiency in essential tools. Each path includes beginner, intermediate, and advanced resources.
+      <!-- Intro -->
+      <section class="text-center mb-12">
+        <p class="text-lg leading-relaxed max-w-3xl mx-auto">
+          A complete, one-stop resource for learning Stata — from project templates to interactive Jupyter notebooks.
         </p>
-
-        <!-- Stata Learning Path -->
-        <div class="mt-12">
-          <h2 class="text-3xl font-semibold flex items-center gap-2 text-yellow-400">
-            <i class="fas fa-chart-line"></i> Stata Learning Path
-          </h2>
-          <div class="learning-path">
-            <p><strong>Goal:</strong> From zero to reproducible econometric analysis</p>
-          </div>
-
-          <div class="resource-grid">
-            <!-- Beginner -->
-            <div class="resource-card fade-in">
-              <h4>Beginner Level</h4>
-              <p class="level">Start here if new to Stata</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="http://www-personal.umich.edu/~franzese/Zorn.Stata4Dummies.2007.pdf" target="_blank">Stata for Dummies (PDF)</a></li>
-                <li><a href="https://www.stata.com/bookstore/statacheatsheets.pdf" target="_blank">Official Stata Cheat Sheet</a></li>
-                <li><a href="https://osf.io/37s2m/" target="_blank">World Bank Stata Training</a></li>
-              </ul>
-            </div>
-
-            <!-- Intermediate -->
-            <div class="resource-card fade-in">
-              <h4>Intermediate Level</h4>
-              <p class="level">Workflow & best practices</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://julianreif.com/guide/#stata-coding-tips" target="_blank">Julian Reif's Coding Guide</a></li>
-                <li><a href="https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006" target="_blank">Asjad Naqvi's Workflow</a></li>
-                <li><a href="https://medium.com/the-stata-guide/stata-schemes-5ef99d099585" target="_blank">Custom Schemes (538w)</a></li>
-              </ul>
-            </div>
-
-            <!-- Advanced -->
-            <div class="resource-card fade-in">
-              <h4>Advanced Level</h4>
-              <p class="level">Mata, regex, automation</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="http://repec.org/usug2008/StataMata.beamer.UKSUG14.pdf" target="_blank">Mata Programming</a></li>
-                <li><a href="https://medium.com/the-stata-guide/regular-expressions-regex-in-stata-6e5c200ef27c" target="_blank">Regex in Stata</a></li>
-                <li><a href="https://sites.google.com/site/brianjphillips/stata-tips" target="_blank">Brian Phillips' Tips</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Python Learning Path -->
-        <div class="mt-12">
-          <h2 class="text-3xl font-semibold flex items-center gap-2 text-green-400">
-            <i class="fab fa-python"></i> Python Learning Path
-          </h2>
-          <div class="learning-path">
-            <p><strong>Goal:</strong> Data analysis, visualization, and automation</p>
-          </div>
-
-          <div class="resource-grid">
-            <div class="resource-card fade-in">
-              <h4>Beginner</h4>
-              <p class="level">Learn Python basics</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://swcarpentry.github.io/python-novice-inflammation/" target="_blank">Software Carpentry Python</a></li>
-                <li><a href="https://docs.python.org/3/tutorial/" target="_blank">Official Python Tutorial</a></li>
-              </ul>
-            </div>
-
-            <div class="resource-card fade-in">
-              <h4>Intermediate</h4>
-              <p class="level">Pandas, NumPy, Plotting</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://pandas.pydata.org/docs/getting_started/index.html" target="_blank">Pandas Getting Started</a></li>
-                <li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank">Python Data Science Handbook</a></li>
-              </ul>
-            </div>
-
-            <div class="resource-card fade-in">
-              <h4>Advanced</h4>
-              <p class="level">Optimization & modeling</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://pyomo.readthedocs.io/en/stable/index.html" target="_blank">Pyomo Optimization</a></li>
-                <li><a href="https://www.danielmsullivan.com/pages/tutorial_stata_to_python.html" target="_blank">Stata → Python Equivalents</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- GIS Learning Path -->
-        <div class="mt-12">
-          <h2 class="text-3xl font-semibold flex items-center gap-2 text-blue-400">
-            <i class="fas fa-globe-americas"></i> GIS Learning Path
-          </h2>
-          <div class="learning-path">
-            <p><strong>Goal:</strong> Spatial analysis from basics to automation</p>
-          </div>
-
-          <div class="resource-grid">
-            <div class="resource-card fade-in">
-              <h4>Beginner</h4>
-              <p class="level">Concepts & QGIS</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://ihatecoordinatesystems.com/" target="_blank">I Hate Coordinate Systems</a></li>
-                <li><a href="https://docs.qgis.org/latest/en/docs/training_manual/" target="_blank">QGIS Training Manual</a></li>
-              </ul>
-            </div>
-
-            <div class="resource-card fade-in">
-              <h4>Intermediate</h4>
-              <p class="level">Python GIS</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://automating-gis-processes.github.io/CSC18/index.html" target="_blank">Automating GIS (CSC)</a></li>
-                <li><a href="https://kodu.ut.ee/~kmoch/geopython2019/index.html" target="_blank">GeoPython 2019</a></li>
-              </ul>
-            </div>
-
-            <div class="resource-card fade-in">
-              <h4>Advanced</h4>
-              <p class="level">Raster, LiDAR, GDAL</p>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li><a href="https://zia207.github.io/geospatial-python.io/lesson_06_working-with-raster-data.html" target="_blank">Raster in Python</a></li>
-                <li><a href="https://www.neonscience.org/resources/learning-hub/tutorials/merge-lidar-geotiff-py" target="_blank">LiDAR Mosaicking</a></li>
-                <li><a href="https://kokoalberti.com/articles/geotiff-compression-optimization-guide/" target="_blank">GeoTIFF Compression</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- LaTeX, Git, Emacs -->
-        <div class="mt-12 grid md:grid-cols-3 gap-6">
-          <div class="resource-card fade-in">
-            <h4><i class="fas fa-file-alt text-purple-400"></i> LaTeX</h4>
-            <p class="text-sm mt-2"><a href="https://www.andy-roberts.net/writing/latex" target="_blank">Andrew Roberts' Guide</a></p>
-          </div>
-
-          <div class="resource-card fade-in">
-            <h4><i class="fab fa-git-alt text-orange-400"></i> Git</h4>
-            <p class="text-sm mt-2"><a href="https://about.gitlab.com/images/press/git-cheat-sheet.pdf" target="_blank">GitLab Cheat Sheet</a></p>
-          </div>
-
-          <div class="resource-card fade-in">
-            <h4><i class="fas fa-keyboard text-red-400"></i> Emacs</h4>
-            <p class="text-sm mt-2"><a href="http://emacsrocks.com/" target="_blank">Emacs Rocks!</a></p>
-          </div>
-        </div>
-
+        <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn mt-6">
+          <i class="fab fa-github"></i> Full GitHub Repo
+        </a>
       </section>
+
+      <!-- Do-File Templates -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
+          <i class="fas fa-file-code"></i> Stata Do-File Templates
+        </h2>
+
+        <!-- template.do -->
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template.do — Full Project</h3>
+          <div class="collapse-content mt-3">
+            <pre><code class="language-stata">
+********************************************************************************
+* PROJECT:      [Your Project Title]
+* AUTHOR:       Dr Abdulla
+* DATE:         2025-10-29
+* DESCRIPTION:  [Brief description]
+********************************************************************************
+
+clear all
+set more off
+set varabbrev off
+set linesize 120
+
+*--- Paths -------------------------------------------------------------------
+global project_root   "C:/Users/YourName/Dropbox/Projects/YourProject"
+global data_raw       "$project_root/01_data/raw"
+global data_clean     "$project_root/01_data/clean"
+global code           "$project_root/02_code"
+global output         "$project_root/03_output"
+global log            "$project_root/04_log"
+
+*--- Start log ---------------------------------------------------------------
+capture log close
+log using "$log/analysis_`c(current_date)'.log", replace
+
+*--- Install packages (idempotent) -------------------------------------------
+foreach pkg in estout reghdfe ftools outreg2 {
+    capture which `pkg'
+    if _rc ssc install `pkg', replace
+}
+
+*--- Load and analyze data ---------------------------------------------------
+use "$data_clean/analysis_data.dta", clear
+reg y x1 x2
+esttab using "$output/results.rtf", replace b(3) se(3) star(* 0.10 ** 0.05 *** 0.01)
+
+log close
+********************************************************************************
+            </code></pre>
+            <a href="files/template.do" download class="download-btn mt-2">Download template.do</a>
+          </div>
+        </div>
+
+        <!-- template_regression.do -->
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template_regression.do — Tables</h3>
+          <div class="collapse-content mt-3">
+            <pre><code class="language-stata">
+********************************************************************************
+* REGRESSION ANALYSIS TEMPLATE
+* AUTHOR: Dr Abdulla
+********************************************************************************
+
+clear all
+set more off
+
+*--- Paths -------------------------------------------------------------------
+global data_clean "$project_root/01_data/clean"
+global output     "$project_root/03_output"
+
+*--- Load packages -----------------------------------------------------------
+foreach pkg in reghdfe estout outreg2 ftools {
+    capture which `pkg'
+    if _rc ssc install `pkg', replace
+}
+
+*--- Load data ---------------------------------------------------------------
+use "$data_clean/analysis_data.dta", clear
+
+*--- Run regressions ---------------------------------------------------------
+eststo clear
+eststo: reg y x1 x2 i.year i.state, vce(cluster district)
+eststo: reghdfe y x1 x2, absorb(year state district) vce(cluster district)
+
+*--- Export tables -----------------------------------------------------------
+esttab using "$output/regression_table.rtf", ///
+    replace b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+    scalars(r2 N) label title("Regression Results") ///
+    mtitles("OLS" "FE") ///
+    note("SE clustered at district level.")
+            </code></pre>
+            <a href="files/template_regression.do" download class="download-btn mt-2">Download template_regression.do</a>
+          </div>
+        </div>
+
+        <!-- template_panel.do -->
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template_panel.do — Panel Data</h3>
+          <div class="collapse-content mt-3">
+            <pre><code class="language-stata">
+********************************************************************************
+* PANEL DATA ANALYSIS TEMPLATE
+* AUTHOR: Dr Abdulla
+********************************************************************************
+
+clear all
+set more off
+
+*--- Paths -------------------------------------------------------------------
+global data_clean "$project_root/01_data/clean"
+global output     "$project_root/03_output"
+
+*--- Load packages -----------------------------------------------------------
+foreach pkg in reghdfe xtable {
+    capture which `pkg'
+    if _rc ssc install `pkg', replace
+}
+
+*--- Load data ---------------------------------------------------------------
+use "$data_clean/panel_data.dta", clear
+
+*--- Set panel structure -----------------------------------------------------
+xtset id year
+
+*--- Fixed Effects -----------------------------------------------------------
+eststo: xtreg y x1 x2 i.year, fe vce(cluster id)
+
+*--- Random Effects ----------------------------------------------------------
+eststo: xtreg y x1 x2 i.year, re vce(cluster id)
+
+*--- Hausman test ------------------------------------------------------------
+hausman fe re
+
+*--- Export ------------------------------------------------------------------
+esttab using "$output/panel_table.rtf", replace ///
+    b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+    mtitles("FE" "RE") title("Panel Data Results")
+            </code></pre>
+            <a href="files/template_panel.do" download class="download-btn mt-2">Download template_panel.do</a>
+          </div>
+        </div>
+
+        <!-- template_graph.do -->
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template_graph.do — Graphs</h3>
+          <div class="collapse-content mt-3">
+            <pre><code class="language-stata">
+********************************************************************************
+* GRAPHING TEMPLATE
+* AUTHOR: Dr Abdulla
+********************************************************************************
+
+clear all
+set more off
+set scheme 538w
+
+*--- Paths -------------------------------------------------------------------
+global data_clean "$project_root/01_data/clean"
+global output     "$project_root/03_output"
+
+*--- Install packages --------------------------------------------------------
+foreach pkg in coefplot palettes schemepack {
+    capture which `pkg'
+    if _rc ssc install `pkg', replace
+}
+
+*--- Load data ---------------------------------------------------------------
+use "$data_clean/analysis_data.dta", clear
+
+*--- Scatter plot ------------------------------------------------------------
+twoway (scatter y x, mcolor(navy%60)) ///
+       (lfit y x, lcolor(maroon) lwidth(thick)), ///
+    title("Y vs X") ///
+    xtitle("X") ytitle("Y") ///
+    note("Source: Your Data") ///
+    saving(scatter.gph, replace)
+graph export "$output/scatter.pdf", replace
+
+*--- Coefplot ----------------------------------------------------------------
+reg y x1 x2
+coefplot, vertical xline(0) ///
+    title("Regression Coefficients") ///
+    saving(coefplot.gph, replace)
+graph export "$output/coefplot.pdf", replace
+            </code></pre>
+            <a href="files/template_graph.do" download class="download-btn mt-2">Download template_graph.do</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jupyter Notebooks -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-green-400 mb-6 flex items-center gap-2">
+          <i class="fas fa-laptop-code"></i> Advanced Jupyter/Stata Notebooks
+        </h2>
+
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Interactive Regression + coefplot</h3>
+          <div class="collapse-content mt-3">
+            <p class="mb-3">Run Stata commands interactively in Jupyter with <code>%%stata</code> magic:</p>
+            <pre><code class="language-python"># Install: pip install stata_kernel
+# Run: jupyter lab
+
+%%stata
+sysuse auto, clear
+reghdfe mpg price weight, absorb(rep78) vce(cluster rep78)
+estimates store fe
+coefplot fe, keep(price) vertical xline(0) ///
+    title("Price Effect on MPG") ///
+    note("Fixed Effects Model")
+            </code></pre>
+            <a href="files/advanced_regression.ipynb" download class="download-btn mt-2">Download advanced_regression.ipynb</a>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Dynamic Panel (Arellano-Bond)</h3>
+          <div class="collapse-content mt-3">
+            <p class="mb-3">GMM estimation with lags:</p>
+            <pre><code class="language-python">%%stata
+webuse abdata, clear
+xtset id year
+ssc install xtabond2, replace
+xtabond2 n w k ys L.n, gmm(L.n, lag(2 3)) iv(year) robust
+estimates store gmm
+esttab gmm using results.rtf, replace
+            </code></pre>
+            <a href="files/panel_dynamic.ipynb" download class="download-btn mt-2">Download panel_dynamic.ipynb</a>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Graph Dashboard</h3>
+          <div class="collapse-content mt-3">
+            <p class="mb-3">Create publication-ready graphs:</p>
+            <pre><code class="language-python">%%stata
+sysuse auto, clear
+set scheme 538w
+
+* Scatter plot
+twoway (scatter mpg price, mcolor(navy%60)) ///
+       (lfit mpg price, lcolor(maroon)), ///
+    title("MPG vs Price") ///
+    saving(mpg_price.gph, replace)
+
+* Combine graphs
+graph combine mpg_price.gph, title("Figure 1: Auto Data Analysis")
+graph export "figure1.pdf", replace
+            </code></pre>
+            <a href="files/graph_dashboard.ipynb" download class="download-btn mt-2">Download graph_dashboard.ipynb</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- GitHub -->
+      <section class="text-center py-10 bg-gradient-to-r from-purple-900 to-blue-900 bg-opacity-20 rounded-lg border border-purple-500">
+        <h2 class="text-2xl font-bold text-purple-400 mb-4">GitHub Repository</h2>
+        <p class="mb-4">All files, notebooks, and documentation in one place.</p>
+        <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn">
+          <i class="fab fa-github"></i> abdullahalig007/stata-learning-hub
+        </a>
+      </section>
+
     </article>
   </main>
 
-  <footer class="py-12 text-center">
+  <!-- Footer -->
+  <footer class="footer py-12 text-center">
     <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
-    <nav class="mt-4 flex justify-center space-x-10">
-      <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-      <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
+    <nav class="flex justify-center space-x-10 text-2xl">
+      <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
+      <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter"></i></a>
+      <a href="https://github.com/abdullahalig007" class="icon-link"><i class="fab fa-github"></i></a>
+      <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link"><i class="fab fa-researchgate"></i></a>
+      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin"></i></a>
+      <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid"></i></a>
+      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link"><i class="fas fa-graduation-cap"></i></a>
     </nav>
     <p class="mt-6 text-sm">© 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
 
   <script>
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = toggle.querySelector('i');
-
-    if (localStorage.getItem('theme') === 'light') {
-      body.classList.add('light-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
-      icon.style.color = '#1e3a8a';
-    }
-
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      const isLight = body.classList.contains('light-mode');
-      icon.classList.toggle('fa-sun', isLight);
-      icon.classList.toggle('fa-moon', !isLight);
-      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    // Theme Toggle
+    const t = document.getElementById('theme-toggle'), b = document.body, i = t.querySelector('i');
+    if (localStorage.getItem('theme')==='light') { b.classList.add('light-mode'); i.classList.replace('fa-moon','fa-sun'); i.style.color='#1e3a8a'; }
+    t.addEventListener('click',()=>{ b.classList.toggle('light-mode'); const l=b.classList.contains('light-mode');
+      i.classList.toggle('fa-sun',l); i.classList.toggle('fa-moon',!l); i.style.color=l?'#1e3a8a':'#facc15';
+      localStorage.setItem('theme',l?'light':'dark');
     });
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, { threshold: 0.1 });
+    // Collapse
+    document.querySelectorAll('.collapse-btn').forEach(c=>{ c.addEventListener('click',()=>{ const x=c.nextElementSibling, ic=c.querySelector('i');
+      x.classList.toggle('open'); ic.classList.toggle('fa-chevron-down'); ic.classList.toggle('fa-chevron-up');
+    });});
 
-    document.querySelectorAll('.fade-in, .section-header').forEach(el => {
-      observer.observe(el);
-    });
+    // Fade-in
+    const obs = new IntersectionObserver(e=>{ e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in-view'); }); }, {threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.sticky-nav');
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+    // Highlight active page
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('text-yellow-400', 'font-bold');
       }
     });
   </script>
