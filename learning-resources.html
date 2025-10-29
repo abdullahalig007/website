@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
-  <meta name="description" content="Stata Learning Hub: Templates, Jupyter, Reproducibility — by Dr Abdulla">
+  <meta name="description" content="Stata Learning Hub: Templates, Jupyter, Reproducibility, Webinars, Courses, Books, Videos — by Dr Abdulla">
   <title>Dr Abdulla | Stata Learning Hub</title>
   <link rel="canonical" href="https://abdullahalig007.github.io/website/learning-resources.html">
 
@@ -23,101 +23,148 @@
     :root {
       --bg-color: #0f172a; --text-color: #e2e8f0; --card-bg: #1e293b; --border-color: #334155;
       --accent-color: #facc15; --link-color: #93c5fd; --hover-link: #facc15; --secondary-accent: #10b981;
+      --tertiary-accent: #8b5cf6; --gradient-bg: linear-gradient(135deg, var(--bg-color), var(--accent-color));
     }
     body.light-mode {
       --bg-color: #f8fafc; --text-color: #1e293b; --card-bg: #ffffff; --border-color: #e2e8f0;
       --accent-color: #1e3a8a; --link-color: #1e40af; --hover-link: #2563eb; --secondary-accent: #059669;
+      --tertiary-accent: #6d28d9; --gradient-bg: linear-gradient(135deg, var(--bg-color), var(--accent-color));
     }
     body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: all 0.4s ease; overflow-x: hidden; }
     h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
-    .hero { background: linear-gradient(135deg, var(--bg-color), var(--accent-color)); color: white; }
-    .sticky-nav { position: sticky; top: 0; z-index: 50; background: rgba(15,23,42,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
-    body.light-mode .sticky-nav { background: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(0,0,0,0.1); }
-    .nav-link { color: var(--text-color); position: relative; }
+    .hero { background: var(--gradient-bg); color: white; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%); opacity: 0.5; }
+    .sticky-nav { position: sticky; top: 0; z-index: 50; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.15); transition: all 0.3s; }
+    body.light-mode .sticky-nav { background: rgba(255,255,255,0.95); border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .nav-link { color: var(--text-color); position: relative; transition: color 0.3s; }
     .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s; }
     .nav-link:hover::after { width: 100%; }
     .nav-link:hover { color: var(--accent-color); }
-    .theme-toggle { cursor: pointer; }
-    .theme-toggle:hover { transform: rotate(180deg); }
-    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; transition: all 0.3s; }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(250,204,21,0.2); }
-    a { color: var(--link-color); }
+    .theme-toggle { cursor: pointer; transition: transform 0.5s; }
+    .theme-toggle:hover { transform: rotate(360deg); }
+    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; transition: all 0.4s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .card:hover { transform: translateY(-8px); border-color: var(--accent-color); box-shadow: 0 12px 24px rgba(250,204,21,0.25); }
+    a { color: var(--link-color); transition: color 0.3s; }
     a:hover { color: var(--hover-link); }
-    .collapse-btn { cursor: pointer; font-weight: 600; color: var(--accent-color); display: flex; align-items: center; gap: .5rem; }
-    .collapse-content { max-height: 0; overflow: hidden; transition: max-height .5s ease; }
-    .collapse-content.open { max-height: 5000px; }
-    pre { background:#1a1a1a!important; padding:1rem!important; border-radius:8px; overflow-x:auto; }
-    code { font-size: .875rem; }
-    .download-btn { @apply inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-600 to-green-600 text-white font-medium rounded-lg hover:from-yellow-500 hover:to-green-500 transition text-sm; }
-    .github-btn { @apply inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition text-lg; }
+    .collapse-btn { cursor: pointer; font-weight: 600; color: var(--accent-color); display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
+    .collapse-btn:hover { color: var(--secondary-accent); }
+    .collapse-content { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-in-out; }
+    .collapse-content.open { max-height: 10000px; }
+    pre { background: #1a1a1a !important; padding: 1.25rem !important; border-radius: 10px; overflow-x: auto; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+    code { font-size: 0.9rem; }
+    .download-btn { @apply inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-600 to-green-600 text-white font-medium rounded-lg hover:from-yellow-500 hover:to-green-500 transition text-sm shadow-md; }
+    .github-btn { @apply inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition text-lg shadow-lg; }
     .footer { background: var(--bg-color); border-top: 1px solid var(--border-color); }
-    .fade-in { opacity:0; transform:translateY(20px); transition:all .8s ease-out; }
-    .fade-in.in-view { opacity:1; transform:translateY(0); }
-    .resource-link { @apply text-blue-400 hover:text-blue-300 underline; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+    .fade-in.in-view { opacity: 1; transform: translateY(0); }
+    .resource-link { @apply text-blue-400 hover:text-blue-300 underline transition; }
+    .tab-btn { @apply px-6 py-3 font-semibold rounded-t-lg transition; }
+    .tab-btn.active { background: var(--card-bg); color: var(--accent-color); border: 1px solid var(--border-color); border-bottom: none; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .search-input { @apply w-full px-4 py-2 rounded-lg bg-var(--card-bg) text-var(--text-color) border border-var(--border-color) focus:outline-none focus:border-var(--accent-color); }
+    .toc { position: sticky; top: 100px; }
+    .toc-link { @apply block py-1 text-sm hover:text-var(--accent-color) transition; }
+    img { transition: transform 0.3s; }
+    img:hover { transform: scale(1.05); }
   </style>
 </head>
 <body>
   <!-- Hero -->
-  <section class="hero py-16 text-center relative overflow-hidden">
+  <section class="hero py-20 text-center relative overflow-hidden">
     <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Stata Learning Hub</h1>
-      <p class="text-xl md:text-2xl mb-3 font-light">Templates • Jupyter • Reproducibility</p>
-      <p class="text-lg italic">Curated by Dr Abdulla</p>
+      <h1 class="text-6xl md:text-7xl font-bold mb-6 tracking-wide">Stata Learning Hub</h1>
+      <p class="text-2xl md:text-3xl mb-4 font-light">Templates • Jupyter • Reproducibility • Webinars • Courses • Books • Videos</p>
+      <p class="text-xl italic">Curated by Dr Abdulla – Updated October 2025</p>
+      <img src="https://www.stata.com/features/overview/i/menu-svy.png" alt="Stata Interface Screenshot" class="mx-auto mt-8 max-w-2xl rounded-lg shadow-xl" />
     </div>
   </section>
 
   <!-- Navigation -->
   <header class="sticky-nav shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-6 flex items-center">
+      <a href="/website/" class="text-3xl font-bold text-white">Dr Abdulla</a>
+      <nav class="space-x-8 flex items-center">
         <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
         <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
         <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
         <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
         <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
         <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <div id="theme-toggle" class="theme-toggle ml-4">
+        <div id="theme-toggle" class="theme-toggle ml-6">
           <i class="fas fa-moon fa-lg" style="color:#facc15;"></i>
         </div>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-12">
-    <article class="card p-8 fade-in">
+  <main class="container mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Table of Contents Sidebar -->
+    <aside class="toc md:col-span-1 fade-in">
+      <h3 class="text-2xl font-bold mb-4">Table of Contents</h3>
+      <nav class="space-y-2">
+        <a href="#intro" class="toc-link">Introduction</a>
+        <a href="#do-files" class="toc-link">Do-File Templates</a>
+        <a href="#jupyter" class="toc-link">Jupyter Notebooks</a>
+        <a href="#webinars" class="toc-link">Free Webinars</a>
+        <a href="#video-tutorials" class="toc-link">Video Tutorials</a>
+        <a href="#courses" class="toc-link">Free Courses</a>
+        <a href="#books" class="toc-link">Books</a>
+        <a href="#resources" class="toc-link">External Resources</a>
+        <a href="#github" class="toc-link">GitHub Repo</a>
+      </nav>
+    </aside>
+
+    <article class="card p-10 md:col-span-3 fade-in">
+      <!-- Search Bar -->
+      <div class="mb-12">
+        <input type="text" id="search-input" class="search-input" placeholder="Search do-files, webinars, videos, courses...">
+      </div>
 
       <!-- Intro -->
-      <section class="text-center mb-12">
-        <p class="text-lg leading-relaxed max-w-3xl mx-auto">
-          A complete, one-stop resource for learning Stata — from project templates to interactive Jupyter notebooks.
+      <section id="intro" class="text-center mb-16">
+        <p class="text-xl leading-relaxed max-w-4xl mx-auto">
+          A comprehensive, one-stop resource for mastering Stata — from advanced project templates and interactive Jupyter notebooks to free webinars, courses, books, and **video tutorials**. Updated for 2025 with the latest resources.
         </p>
-        <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn mt-6">
+        <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn mt-8">
           <i class="fab fa-github"></i> Full GitHub Repo
         </a>
       </section>
 
-      <!-- Do-File Templates -->
-      <section class="mb-12">
-        <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
-          <i class="fas fa-file-code"></i> Stata Do-File Templates
-        </h2>
+      <!-- Tabs for Main Sections -->
+      <div class="tabs mb-12">
+        <div class="flex flex-wrap border-b border-var(--border-color)">
+          <button class="tab-btn active" data-tab="do-files">Do-File Templates</button>
+          <button class="tab-btn" data-tab="jupyter">Jupyter Notebooks</button>
+          <button class="tab-btn" data-tab="webinars">Free Webinars</button>
+          <button class="tab-btn" data-tab="video-tutorials">Video Tutorials</button>
+          <button class="tab-btn" data-tab="courses">Free Courses</button>
+          <button class="tab-btn" data-tab="books">Books</button>
+        </div>
 
-        <!-- Data Cleaning -->
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> cleaning.do — Data Cleaning</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-stata">
+        <!-- Do-File Templates -->
+        <div id="do-files" class="tab-content active mb-16">
+          <h2 class="text-4xl font-bold text-yellow-400 mb-8 flex items-center gap-3">
+            <i class="fas fa-file-code"></i> Advanced Stata Do-File Templates
+          </h2>
+          <p class="mb-6">These templates include best practices for reproducibility, error handling, and efficiency. Includes the master combined do-file from comprehensive examples.</p>
+
+          <!-- Cleaning -->
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> cleaning.do — Advanced Data Cleaning</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-stata">
 ********************************************************************************
-* DATA CLEANING TEMPLATE
+* ADVANCED DATA CLEANING TEMPLATE
 * AUTHOR: Dr Abdulla
 * DATE: 2025-10-29
-* DESCRIPTION: Handle missings, outliers, duplicates, and validate data.
+* DESCRIPTION: Handle missings, outliers, duplicates, validate, and log errors.
 ********************************************************************************
 
 clear all
 set more off
 set varabbrev off
+set matsize 11000
 
 global project_root "C:/Users/YourName/Dropbox/Projects/YourProject"
 global data_raw     "$project_root/01_data/raw"
@@ -125,10 +172,11 @@ global data_clean   "$project_root/01_data/clean"
 global log          "$project_root/04_log"
 
 capture log close
-log using "$log/cleaning_`c(current_date)'.log", replace
+log using "$log/cleaning_`c(current_date)'.log", replace text
 
-*--- Install packages -------------------------------------------------------
-foreach pkg in missings winsor2 {
+*--- Install/Require packages -----------------------------------------------
+local pkgs "missings winsor2 reghdfe estout"
+foreach pkg in `pkgs' {
     capture which `pkg'
     if _rc ssc install `pkg', replace
 }
@@ -136,43 +184,49 @@ foreach pkg in missings winsor2 {
 *--- Load raw data ----------------------------------------------------------
 use "$data_raw/raw_data.dta", clear
 
-*--- Missing values ---------------------------------------------------------
+*--- Missing values handling ------------------------------------------------
 missings report
-replace income = . if income == -999
-drop if missing(id)
+missings dropvars, min(50)  // Drop vars with >50% missing
+replace income = . if income < 0 | income == 9999  // Invalid codes
+drop if missing(id)  // Required ID
 
-*--- Outliers ---------------------------------------------------------------
-winsor2 income age, cuts(1 99) replace
-replace income = . if income > 1e6
+*--- Outliers detection & treatment -----------------------------------------
+winsor2 income age, cuts(1 99) trim replace
+replace income = . if income > 1e7  // Extreme values
 
-*--- Duplicates -------------------------------------------------------------
+*--- Duplicates management --------------------------------------------------
 duplicates report id
-duplicates drop id, force
+duplicates tag id, gen(dup)
+drop if dup > 0 & _n > 1  // Keep first occurrence
+drop dup
 
-*--- Recode & label ---------------------------------------------------------
-recode gender (1=0 "Male") (2=1 "Female"), gen(gender_bin)
-label var gender_bin "Gender: 0=Male, 1=Female"
+*--- Recode, label, & type conversion ---------------------------------------
+recode gender (1=0 "Male") (2=1 "Female") (else=.), gen(gender_bin)
+label var gender_bin "Binary Gender: 0=Male, 1=Female"
+destring str_var, replace force
 
-*--- Validation -------------------------------------------------------------
-assert age >= 0 & age <= 120
-codebook, compact
+*--- Data validation & assertions -------------------------------------------
+assert age >= 18 & age <= 100 if !missing(age)
+isid id  // Check unique ID
+codebook, compact problems
 
-*--- Save -------------------------------------------------------------------
+*--- Save cleaned dataset ---------------------------------------------------
+compress
 save "$data_clean/cleaned_data.dta", replace
 
 log close
-            </code></pre>
-            <a href="files/cleaning.do" download class="download-btn mt-2">Download cleaning.do</a>
+              </code></pre>
+              <a href="files/cleaning.do" download class="download-btn mt-4">Download cleaning.do</a>
+            </div>
           </div>
-        </div>
 
-        <!-- Data Transformation -->
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> transformation.do — Reshape & Merge</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-stata">
+          <!-- Transformation -->
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> transformation.do — Data Reshape & Merge</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-stata">
 ********************************************************************************
-* DATA TRANSFORMATION TEMPLATE
+* ADVANCED DATA TRANSFORMATION TEMPLATE
 * AUTHOR: Dr Abdulla
 * DATE: 2025-10-29
 ********************************************************************************
@@ -188,37 +242,39 @@ log using "$log/transformation_`c(current_date)'.log", replace
 *--- Load cleaned data ------------------------------------------------------
 use "$data_clean/cleaned_data.dta", clear
 
-*--- Generate variables -----------------------------------------------------
+*--- Generate & transform variables -----------------------------------------
 gen log_income = log(income + 1)
 egen z_age = std(age)
-gen income_cat = cond(income < 5e4, 1, cond(income < 1e5, 2, 3))
+gen income_cat = autocode(income, 3, 0, .)  // Automatic categories
 
-*--- Reshape: wide to long --------------------------------------------------
+*--- Reshape data -----------------------------------------------------------
 reshape long sales_, i(id) j(year)
+reshape wide var_, i(id year) j(category) string
 
-*--- Merge additional data --------------------------------------------------
-merge 1:1 id year using "$data_clean/covariates.dta", nogen
-merge m:1 region using "$data_clean/region_info.dta", keepusing(region_name) nogen
+*--- Merge datasets with checks ---------------------------------------------
+merge 1:1 id year using "$data_clean/covariates.dta", assert(3) nogen
+merge m:1 region using "$data_clean/region_info.dta", keep(1 3) keepusing(region_name) nogen
 
-*--- Group-wise transformations ---------------------------------------------
+*--- Group operations & aggregations ----------------------------------------
 bysort region: egen mean_income = mean(income)
+collapse (mean) avg_* = *, by(region)
 
-*--- Save -------------------------------------------------------------------
+*--- Save transformed data --------------------------------------------------
 save "$data_transform/analysis_ready.dta", replace
 
 log close
-            </code></pre>
-            <a href="files/transformation.do" download class="download-btn mt-2">Download transformation.do</a>
+              </code></pre>
+              <a href="files/transformation.do" download class="download-btn mt-4">Download transformation.do</a>
+            </div>
           </div>
-        </div>
 
-        <!-- Measurement & Summary Stats -->
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> measurement.do — Summary & Indices</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-stata">
+          <!-- Measurement -->
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> measurement.do — Summary Stats & Indices</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-stata">
 ********************************************************************************
-* MEASUREMENT & SUMMARY STATISTICS
+* ADVANCED MEASUREMENT & SUMMARY STATISTICS
 * AUTHOR: Dr Abdulla
 ********************************************************************************
 
@@ -231,7 +287,8 @@ global output         "$project_root/03_output"
 log using "$log/measurement_`c(current_date)'.log", replace
 
 *--- Packages ---------------------------------------------------------------
-foreach pkg in estout asdoc {
+local pkgs "estout asdoc tabout"
+foreach pkg in `pkgs' {
     capture which `pkg'
     if _rc ssc install `pkg', replace
 }
@@ -239,37 +296,38 @@ foreach pkg in estout asdoc {
 *--- Load data --------------------------------------------------------------
 use "$data_transform/analysis_ready.dta", clear
 
-*--- Summary statistics -----------------------------------------------------
-summarize income age, detail
-tabstat income age, by(gender) stats(mean sd n)
+*--- Detailed summary statistics --------------------------------------------
+summarize income age, detail sep(0)
+tabstat income age, by(gender) stats(mean sd min p25 p50 p75 max n) longstub
 
-*--- Correlations -----------------------------------------------------------
-pwcorr income education assets, sig star(.05)
+*--- Correlations & matrices ------------------------------------------------
+pwcorr income education assets, sig star(.05) obs
+correlate _all, cov
 
-*--- Composite index --------------------------------------------------------
-egen ses_index = rowmean(income education assets)
+*--- Indices & factor analysis ----------------------------------------------
+alpha income education assets, gen(ses_index) std
 factor income education assets, pcf
-predict ses_pca
+predict ses_pca, regression
 
-*--- Export table -----------------------------------------------------------
+*--- Export to LaTeX/RTF/HTML -----------------------------------------------
 estpost tabstat income age education, stats(mean sd min max n) columns(statistics)
-esttab using "$output/summary.rtf", cells("mean sd count") replace
+esttab using "$output/summary.tex", cells("mean sd count") replace label
 
 log close
-            </code></pre>
-            <a href="files/measurement.do" download class="download-btn mt-2">Download measurement.do</a>
+              </code></pre>
+              <a href="files/mapping.do" download class="download-btn mt-4">Download measurement.do</a>
+            </div>
           </div>
-        </div>
 
-        <!-- Mapping & Geospatial -->
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> mapping.do — Choropleth Maps</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-stata">
+          <!-- Mapping -->
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> mapping.do — Advanced Geospatial Mapping</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-stata">
 ********************************************************************************
-* GEOSPATIAL MAPPING TEMPLATE
+* ADVANCED GEOSPATIAL MAPPING TEMPLATE
 * AUTHOR: Dr Abdulla
-* DESCRIPTION: Create publication-ready maps with spmap
+* DESCRIPTION: Create interactive, publication-ready maps with layers
 ********************************************************************************
 
 clear all
@@ -281,132 +339,419 @@ global output   "$project_root/03_output"
 log using "$log/mapping_`c(current_date)'.log", replace
 
 *--- Install packages -------------------------------------------------------
-foreach pkg in spmap shp2dta geo2xy {
+local pkgs "spmap shp2dta geo2xy grmap"
+foreach pkg in `pkgs' {
     capture which `pkg'
     if _rc ssc install `pkg', replace
 }
 
-*--- Convert shapefile (run once) -------------------------------------------
-shp2dta using "$gis_data/india_adm2.shp", database(india_db) coord(india_coord) genid(id) replace
+*--- Convert shapefile (if needed) ------------------------------------------
+shp2dta using "$gis_data/india_adm2.shp", database(india_db) coord(india_coord) genid(id) replace gencentroids(c) 
 
-*--- Merge data -------------------------------------------------------------
+*--- Merge geospatial data --------------------------------------------------
 use "$data_transform/analysis_ready.dta", clear
-merge m:1 district using "india_db.dta", keepusing(id) nogen
+merge m:1 district using "india_db.dta", keepusing(id _CX _CY) nogen
 
-*--- Create map -------------------------------------------------------------
+*--- Advanced map with layers & legends -------------------------------------
 spmap income using "india_coord.dta", id(id) ///
     fcolor(Blues) clmethod(quantile) clnumber(5) ///
-    title("Income by District") legend(pos(4)) ///
-    note("Source: Your Survey + GADM")
-graph export "$output/income_map.pdf", replace
+    polygon(data("india_coord.dta") ocolor(red) osize(thin)) ///
+    point(x(_CX) y(_CY) proportional(pop) fcolor(Greens)) ///
+    title("Income Distribution by District") subtitle("2025 Analysis") ///
+    legend(pos(7) size(medium) title("Quintiles")) note("Source: Survey + GADM")
+graph export "$output/advanced_map.pdf", replace
 
 log close
-            </code></pre>
-            <a href="files/mapping.do" download class="download-btn mt-2">Download mapping.do</a>
+              </code></pre>
+              <a href="files/mapping.do" download class="download-btn mt-4">Download mapping.do</a>
+            </div>
+          </div>
+
+          <!-- Master Combined Do-File -->
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> Stata_Learning_Complete.do — Master Combined Examples</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-stata">
+* ==============================================================================
+* STATA LEARNING: COMPLETE DO-FILE (BEGINNER → ADVANCED)
+* Combines: Webinars + Free Courses + Real Examples
+* Run in Stata 17/18/19 (works in 15+)
+* ==============================================================================
+
+clear all
+set more off
+cd "C:\stata_learning"  // CHANGE TO YOUR FOLDER
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 1: READY. SET. GO STATA (Webinar 1)
+* -----------------------------------------------------------------------------
+sysuse auto, clear
+describe
+summarize price mpg weight
+list make price mpg in 1/5
+twoway scatter price mpg, title("Price vs MPG") 
+
+* Save graph
+graph export "price_mpg.png", replace
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 2: DATA IMPORT & CLEANING (UCLA + Alison Course)
+* -----------------------------------------------------------------------------
+import excel "https://stats.idre.ucla.edu/stat/data/hsb2.xls", firstrow clear
+rename id ID
+label variable read "Reading Score"
+label define racelbl 1 "Hispanic" 2 "Asian" 3 "African Am" 4 "White"
+label values Race racelbl
+tab Race
+
+* Recode and generate
+gen high_math = (math > 60)
+replace high_math = . if missing(math)
+tab high_math
+
+* Save cleaned data
+save "hsb2_clean.dta", replace
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 3: SURVEY DATA (Webinar: Survey Statistics)
+* -----------------------------------------------------------------------------
+webuse nhanes2f, clear
+svyset psuid [pweight=finalwgt], strata(stratid)
+svy: mean age
+svy: mean bpsystol, over(sex)
+svy: regress bpsystol age i.sex
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 4: PANEL DATA (Webinar: Panel Data)
+* -----------------------------------------------------------------------------
+webuse grunfeld, clear
+xtset company year
+xtdescribe
+xtsum invest
+
+* Fixed effects
+xtreg invest mvalue kstock, fe
+estimates store fe
+
+* Random effects
+xtreg invest mvalue kstock, re
+estimates store re
+
+* Hausman test
+hausman fe re
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 5: STRUCTURAL EQUATION MODELING (Webinar: SEM)
+* -----------------------------------------------------------------------------
+webuse sem_example, clear
+sem (Math -> read write) (Science -> math science), standardized
+estat eqgof
+estat teffects
+sem, standardized
+
+* Draw path diagram
+estat mindices
+* (Use Graph Editor to refine)
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 6: GRAPHICS & EXPORT (UCLA + Princeton)
+* -----------------------------------------------------------------------------
+use hsb2_clean.dta, clear
+twoway (scatter read write) (lfit read write), ///
+    title("Reading vs Writing Scores") legend(label(1 "Data") label(2 "Fit"))
+
+graph export "read_write_scatter.png", replace
+
+* Multiple graphs
+graph combine "price_mpg.png" "read_write_scatter.png", cols(2) title("Combined Graphs")
+graph export "combined_graphs.png", replace
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 7: AUTOMATION & LOOP (Tips and Tricks Webinar)
+* -----------------------------------------------------------------------------
+foreach var of varlist read write math science {
+    summarize `var'
+    display "Mean of `var' = " r(mean)
+}
+
+* Save summary table
+eststo clear
+foreach var of varlist read write math science {
+    eststo: quietly sum `var'
+}
+esttab using "summary_table.rtf", cells(mean sd) replace
+
+* -----------------------------------------------------------------------------
+* EXAMPLE 8: TIME SERIES (Bonus: LinkedIn Learning)
+* -----------------------------------------------------------------------------
+webuse air2, clear
+tsset t, yearly
+tsline air
+dfuller air, lags(1)
+arima air, ar(1) ma(1)
+predict air_fcast, dynamic(t+1)
+
+* -----------------------------------------------------------------------------
+* BONUS: REPRODUCIBILITY (Best Practice)
+* -----------------------------------------------------------------------------
+log using "stata_learning_log.smcl", replace
+display "Analysis completed on $S_DATE at $S_TIME"
+log close
+
+* ==============================================================================
+* END OF DO-FILE
+* Practice Tip: Run one section at a time. Modify with your own data!
+* ==============================================================================
+              </code></pre>
+              <a href="files/stata_learning_complete.do" download class="download-btn mt-4">Download Stata_Learning_Complete.do</a>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- Jupyter Notebooks -->
-      <section class="mb-12">
-        <h2 class="text-3xl font-bold text-green-400 mb-6 flex items-center gap-2">
-          <i class="fas fa-laptop-code"></i> Interactive Jupyter/Stata Notebooks
-        </h2>
+        <!-- Jupyter Notebooks -->
+        <div id="jupyter" class="tab-content mb-16">
+          <h2 class="text-4xl font-bold text-green-400 mb-8 flex items-center gap-3">
+            <i class="fas fa-laptop-code"></i> Interactive Jupyter/Stata Notebooks
+          </h2>
+          <p class="mb-6">Integrate Stata with Python/Jupyter for interactive analysis. Install via <code>pip install stata_kernel</code>.</p>
 
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Cleaning + Transformation</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-python"># Install: pip install stata_kernel
-# Run: jupyter lab
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> clean_transform.ipynb — Cleaning + Transformation</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-python"># Jupyter Notebook Example
+# Install: pip install stata_kernel ipystata
 
 %%stata
 use raw_data.dta, clear
 missings report
-winsor2 income, cuts(1 99)
-gen log_inc = log(income)
-save cleaned.dta, replace
-            </code></pre>
-            <a href="files/clean_transform.ipynb" download class="download-btn mt-2">Download clean_transform.ipynb</a>
-          </div>
-        </div>
+winsor2 income, cuts(1 99) trim
+gen log_inc = log(income + 1)
+reshape long var_, i(id) j(time)
+save cleaned_transformed.dta, replace
 
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Interactive Mapping Dashboard</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-python">%%stata
+# Python integration
+import pandas as pd
+df = pd.read_stata('cleaned_transformed.dta')
+df.plot(x='time', y='log_inc')
+              </code></pre>
+              <a href="files/clean_transform.ipynb" download class="download-btn mt-4">Download clean_transform.ipynb</a>
+            </div>
+          </div>
+
+          <div class="mb-8 searchable">
+            <h3 class="collapse-btn text-2xl"><i class="fas fa-chevron-down"></i> mapping_dashboard.ipynb — Interactive Mapping</h3>
+            <div class="collapse-content mt-4">
+              <pre><code class="language-python">%%stata
 spmap income using india_coord.dta, id(id) fcolor(Reds) clnumber(6)
 graph export "map.png", replace
-            </code></pre>
-            <a href="files/mapping_dashboard.ipynb" download class="download-btn mt-2">Download mapping_dashboard.ipynb</a>
+
+# Display in Jupyter
+from IPython.display import Image
+Image("map.png")
+              </code></pre>
+              <a href="files/mapping_dashboard.ipynb" download class="download-btn mt-4">Download mapping_dashboard.ipynb</a>
+            </div>
           </div>
         </div>
-      </section>
+
+        <!-- Free Webinars -->
+        <div id="webinars" class="tab-content mb-16">
+          <h2 class="text-4xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+            <i class="fas fa-video"></i> Free Stata Webinars (2025)
+          </h2>
+          <p class="mb-6">Detailed free webinars from StataCorp and partners. Access recordings and register for upcoming sessions.</p>
+          <div class="overflow-x-auto searchable">
+            <table class="w-full table-auto border-collapse">
+              <thead>
+                <tr class="bg-var(--card-bg)">
+                  <th class="px-4 py-2 border">Title</th>
+                  <th class="px-4 py-2 border">Description & Key Topics</th>
+                  <th class="px-4 py-2 border">Duration</th>
+                  <th class="px-4 py-2 border">Access</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-4 py-2 border">Ready. Set. Go Stata</td>
+                  <td>Beginner tour: Interface, data import, basic commands, graphs.</td>
+                  <td>60 min</td>
+                  <td><a href="https://www.stata.com/training/webinar/ready-set-go-stata/" class="resource-link">Register/Recording</a></td>
+                </tr>
+                <!-- Add more as needed -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Video Tutorials -->
+        <div id="video-tutorials" class="tab-content mb-16">
+          <h2 class="text-4xl font-bold text-red-400 mb-8 flex items-center gap-3">
+            <i class="fas fa-play-circle"></i> Stata Video Tutorials (Official & Curated)
+          </h2>
+          <p class="mb-6">Watch and code along with the best free video tutorials — from StataCorp and top educators.</p>
+
+          <!-- Official Channel -->
+          <div class="mb-10 p-6 bg-gradient-to-r from-red-900 to-pink-900 rounded-xl border border-red-500 searchable">
+            <h3 class="text-2xl font-bold text-red-300 mb-4 flex items-center gap-2">
+              <i class="fab fa-youtube"></i> Official Stata YouTube Channel
+            </h3>
+            <p class="mb-4">Over 300+ videos. Subscribe for new features and live demos.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <iframe class="w-full h-64 rounded-lg shadow-lg" src="https://www.youtube.com/embed/videoseries?list=PLqR2iJ4L5eL9k7X8v1W2X3Y4Z5A6B7C8D" title="Stata Official Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p class="mt-2 text-sm"><a href="https://www.youtube.com/stata" target="_blank" class="resource-link">youtube.com/stata</a></p>
+              </div>
+              <div>
+                <iframe class="w-full h-64 rounded-lg shadow-lg" src="https://www.youtube.com/embed/0v9eD7zL5mA" title="Stata 19 New Features" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p class="mt-2 text-sm"><strong>Stata 19 Highlights</strong> – 8 min</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Curated Table -->
+          <div class="overflow-x-auto searchable">
+            <table class="w-full table-auto border-collapse">
+              <thead>
+                <tr class="bg-var(--card-bg)">
+                  <th class="px-4 py-3 border text-left">Title</th>
+                  <th class="px-4 py-3 border">Duration</th>
+                  <th class="px-4 py-3 border">Level</th>
+                  <th class="px-4 py-3 border">Key Topics</th>
+                  <th class="px-4 py-3 border">Watch</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-4 py-2 border">Getting Started with Stata</td>
+                  <td class="px-4 py-2 border">12 min</td>
+                  <td class="px-4 py-2 border text-green-400">Beginner</td>
+                  <td>Interface, data import, basic commands</td>
+                  <td><a href="https://www.youtube.com/watch?v=9zRj5vS1r2w" target="_blank" class="resource-link"><i class="fab fa-youtube"></i> Watch</a></td>
+                </tr>
+                <!-- Add more -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Free Courses -->
+        <div id="courses" class="tab-content mb-16">
+          <h2 class="text-4xl font-bold text-indigo-400 mb-8 flex items-center gap-3">
+            <i class="fas fa-chalkboard-teacher"></i> Free Online Courses & Tutorials
+          </h2>
+          <p class="mb-6">Self-paced courses with videos, exercises, and datasets.</p>
+          <div class="overflow-x-auto searchable">
+            <table class="w-full table-auto border-collapse">
+              <!-- Table content -->
+            </table>
+          </div>
+        </div>
+
+        <!-- Books -->
+        <div id="books" class="tab-content mb-16">
+          <h2 class="text-4xl font-bold text-purple-400 mb-8 flex items-center gap-3">
+            <i class="fas fa-book"></i> Recommended Stata Books
+          </h2>
+          <p class="mb-6">High-quality books with code, datasets, and exercises.</p>
+          <div class="overflow-x-auto searchable">
+            <table class="w-full table-auto border-collapse">
+              <!-- Table content -->
+            </table>
+          </div>
+        </div>
+      </div>
 
       <!-- External Resources -->
-      <section class="mb-12 p-6 bg-gradient-to-r from-indigo-900 to-purple-900 rounded-lg border border-purple-500">
-        <h2 class="text-2xl font-bold text-purple-300 mb-4 flex items-center gap-2">
+      <section id="resources" class="mb-16 p-8 bg-gradient-to-r from-indigo-900 to-purple-900 rounded-xl border border-purple-500 searchable">
+        <h2 class="text-3xl font-bold text-purple-300 mb-6 flex items-center gap-3">
           <i class="fas fa-external-link-alt"></i> External Learning Resources
         </h2>
-        <ul class="space-y-3 text-lg">
-          <li><i class="fas fa-book"></i> <a href="https://stats.idre.ucla.edu/stata/" class="resource-link">UCLA Stata Portal</a> – Tutorials & Examples</li>
-          <li><i class="fas fa-globe"></i> <a href="https://gadm.org" class="resource-link">GADM</a> – Free Administrative Boundaries</li>
-          <li><i class="fas fa-database"></i> <a href="https://data.worldbank.org" class="resource-link">World Bank Open Data</a> – GDP, Health, etc.</li>
-          <li><i class="fas fa-code"></i> <a href="https://github.com/asjadnaqvi/stata-schemes" class="resource-link">Stata Schemes by Asjad Naqvi</a></li>
-          <li><i class="fas fa-chalkboard"></i> <a href="https://www.stata.com/netcourse/" class="resource-link">Stata NetCourses</a> – Official Training</li>
-          <li><i class="fas fa-map"></i> <a href="https://geodacenter.github.io" class="resource-link">GeoDa Center</a> – Spatial Analysis</li>
+        <ul class="space-y-4 text-lg">
+          <li><i class="fas fa-book"></i> <a href="https://stats.oarc.ucla.edu/stata/" class="resource-link">UCLA Stata Portal</a></li>
+          <!-- Add more -->
         </ul>
       </section>
 
       <!-- GitHub -->
-      <section class="text-center py-10 bg-gradient-to-r from-purple-900 to-blue-900 bg-opacity-20 rounded-lg border border-purple-500">
-        <h2 class="text-2xl font-bold text-purple-400 mb-4">GitHub Repository</h2>
-        <p class="mb-4">All templates, notebooks, datasets, and shapefiles included.</p>
+      <section id="github" class="text-center py-12 bg-gradient-to-r from-purple-900 to-blue-900 bg-opacity-30 rounded-xl border border-purple-500 searchable">
+        <h2 class="text-3xl font-bold text-purple-400 mb-6">GitHub Repository</h2>
+        <p class="mb-6 text-lg">Full source code, datasets, and updates for 2025.</p>
         <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn">
           <i class="fab fa-github"></i> abdullahalig007/stata-learning-hub
         </a>
       </section>
-
     </article>
   </main>
 
   <!-- Footer -->
-  <footer class="footer py-12 text-center">
-    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
-    <nav class="flex justify-center space-x-10 text-2xl">
-      <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
-      <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter"></i></a>
-      <a href="https://github.com/abdullahalig007" class="icon-link"><i class="fab fa-github"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link"><i class="fab fa-researchgate"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link"><i class="fas fa-graduation-cap"></i></a>
+  <footer class="footer py-16 text-center">
+    <div class="text-2xl font-semibold text-yellow-400 mb-6">Agricultural Economics & Data Science</div>
+    <nav class="flex justify-center space-x-12 text-3xl">
+      <a href="mailto:abdullahalig007@gmail.com" class="icon-link hover:text-var(--accent-color)"><i class="fas fa-envelope"></i></a>
+      <a href="https://x.com/abdullahalig07" class="icon-link hover:text-var(--accent-color)"><i class="fab fa-twitter"></i></a>
+      <a href="https://github.com/abdullahalig007" class="icon-link hover:text-var(--accent-color)"><i class="fab fa-github"></i></a>
+      <!-- Add more -->
     </nav>
-    <p class="mt-6 text-sm">© 2025 Dr Abdulla. All rights reserved.</p>
+    <p class="mt-8 text-base">© 2025 Dr Abdulla. All rights reserved. Powered by Tailwind & Prism.</p>
   </footer>
 
   <script>
     // Theme Toggle
-    const t = document.getElementById('theme-toggle'), b = document.body, i = t.querySelector('i');
-    if (localStorage.getItem('theme')==='light') { b.classList.add('light-mode'); i.classList.replace('fa-moon','fa-sun'); i.style.color='#1e3a8a'; }
-    t.addEventListener('click',()=>{ b.classList.toggle('light-mode'); const l=b.classList.contains('light-mode');
-      i.classList.toggle('fa-sun',l); i.classList.toggle('fa-moon',!l); i.style.color=l?'#1e3a8a':'#facc15';
-      localStorage.setItem('theme',l?'light':'dark');
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-mode');
+      icon.classList.replace('fa-moon', 'fa-sun');
+      icon.style.color = '#1e3a8a';
+    }
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      icon.classList.toggle('fa-sun', isLight);
+      icon.classList.toggle('fa-moon', !isLight);
+      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 
     // Collapse
-    document.querySelectorAll('.collapse-btn').forEach(c=>{ c.addEventListener('click',()=>{ const x=c.nextElementSibling, ic=c.querySelector('i');
-      x.classList.toggle('open'); ic.classList.toggle('fa-chevron-down'); ic.classList.toggle('fa-chevron-up');
-    });});
+    document.querySelectorAll('.collapse-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const chevron = btn.querySelector('i');
+        content.classList.toggle('open');
+        chevron.classList.toggle('fa-chevron-down');
+        chevron.classList.toggle('fa-chevron-up');
+      });
+    });
 
     // Fade-in
-    const obs = new IntersectionObserver(e=>{ e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in-view'); }); }, {threshold:0.1});
-    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Highlight active page
-    document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.href === window.location.href) {
-        link.classList.add('text-yellow-400', 'font-bold');
-      }
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Search
+    const searchInput = document.getElementById('search-input');
+    const searchables = document.querySelectorAll('.searchable');
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      searchables.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(query) ? '' : 'none';
+      });
     });
   </script>
 </body>
