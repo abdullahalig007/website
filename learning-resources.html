@@ -53,6 +53,7 @@
     .footer { background: var(--bg-color); border-top: 1px solid var(--border-color); }
     .fade-in { opacity:0; transform:translateY(20px); transition:all .8s ease-out; }
     .fade-in.in-view { opacity:1; transform:translateY(0); }
+    .resource-link { @apply text-blue-400 hover:text-blue-300 underline; }
   </style>
 </head>
 <body>
@@ -102,186 +103,206 @@
           <i class="fas fa-file-code"></i> Stata Do-File Templates
         </h2>
 
-        <!-- template.do -->
+        <!-- Data Cleaning -->
         <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template.do — Full Project</h3>
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> cleaning.do — Data Cleaning</h3>
           <div class="collapse-content mt-3">
             <pre><code class="language-stata">
 ********************************************************************************
-* PROJECT:      [Your Project Title]
-* AUTHOR:       Dr Abdulla
-* DATE:         2025-10-29
-* DESCRIPTION:  [Brief description]
+* DATA CLEANING TEMPLATE
+* AUTHOR: Dr Abdulla
+* DATE: 2025-10-29
+* DESCRIPTION: Handle missings, outliers, duplicates, and validate data.
 ********************************************************************************
 
 clear all
 set more off
 set varabbrev off
-set linesize 120
 
-*--- Paths -------------------------------------------------------------------
-global project_root   "C:/Users/YourName/Dropbox/Projects/YourProject"
-global data_raw       "$project_root/01_data/raw"
-global data_clean     "$project_root/01_data/clean"
-global code           "$project_root/02_code"
-global output         "$project_root/03_output"
-global log            "$project_root/04_log"
+global project_root "C:/Users/YourName/Dropbox/Projects/YourProject"
+global data_raw     "$project_root/01_data/raw"
+global data_clean   "$project_root/01_data/clean"
+global log          "$project_root/04_log"
 
-*--- Start log ---------------------------------------------------------------
 capture log close
-log using "$log/analysis_`c(current_date)'.log", replace
+log using "$log/cleaning_`c(current_date)'.log", replace
 
-*--- Install packages (idempotent) -------------------------------------------
-foreach pkg in estout reghdfe ftools outreg2 {
+*--- Install packages -------------------------------------------------------
+foreach pkg in missings winsor2 {
     capture which `pkg'
     if _rc ssc install `pkg', replace
 }
 
-*--- Load and analyze data ---------------------------------------------------
-use "$data_clean/analysis_data.dta", clear
-reg y x1 x2
-esttab using "$output/results.rtf", replace b(3) se(3) star(* 0.10 ** 0.05 *** 0.01)
+*--- Load raw data ----------------------------------------------------------
+use "$data_raw/raw_data.dta", clear
+
+*--- Missing values ---------------------------------------------------------
+missings report
+replace income = . if income == -999
+drop if missing(id)
+
+*--- Outliers ---------------------------------------------------------------
+winsor2 income age, cuts(1 99) replace
+replace income = . if income > 1e6
+
+*--- Duplicates -------------------------------------------------------------
+duplicates report id
+duplicates drop id, force
+
+*--- Recode & label ---------------------------------------------------------
+recode gender (1=0 "Male") (2=1 "Female"), gen(gender_bin)
+label var gender_bin "Gender: 0=Male, 1=Female"
+
+*--- Validation -------------------------------------------------------------
+assert age >= 0 & age <= 120
+codebook, compact
+
+*--- Save -------------------------------------------------------------------
+save "$data_clean/cleaned_data.dta", replace
 
 log close
-********************************************************************************
             </code></pre>
-            <a href="files/template.do" download class="download-btn mt-2">Download template.do</a>
+            <a href="files/cleaning.do" download class="download-btn mt-2">Download cleaning.do</a>
           </div>
         </div>
 
-        <!-- template_regression.do -->
+        <!-- Data Transformation -->
         <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template_regression.do — Tables</h3>
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> transformation.do — Reshape & Merge</h3>
           <div class="collapse-content mt-3">
             <pre><code class="language-stata">
 ********************************************************************************
-* REGRESSION ANALYSIS TEMPLATE
+* DATA TRANSFORMATION TEMPLATE
+* AUTHOR: Dr Abdulla
+* DATE: 2025-10-29
+********************************************************************************
+
+clear all
+set more off
+
+global data_clean     "$project_root/01_data/clean"
+global data_transform "$project_root/01_data/transformed"
+
+log using "$log/transformation_`c(current_date)'.log", replace
+
+*--- Load cleaned data ------------------------------------------------------
+use "$data_clean/cleaned_data.dta", clear
+
+*--- Generate variables -----------------------------------------------------
+gen log_income = log(income + 1)
+egen z_age = std(age)
+gen income_cat = cond(income < 5e4, 1, cond(income < 1e5, 2, 3))
+
+*--- Reshape: wide to long --------------------------------------------------
+reshape long sales_, i(id) j(year)
+
+*--- Merge additional data --------------------------------------------------
+merge 1:1 id year using "$data_clean/covariates.dta", nogen
+merge m:1 region using "$data_clean/region_info.dta", keepusing(region_name) nogen
+
+*--- Group-wise transformations ---------------------------------------------
+bysort region: egen mean_income = mean(income)
+
+*--- Save -------------------------------------------------------------------
+save "$data_transform/analysis_ready.dta", replace
+
+log close
+            </code></pre>
+            <a href="files/transformation.do" download class="download-btn mt-2">Download transformation.do</a>
+          </div>
+        </div>
+
+        <!-- Measurement & Summary Stats -->
+        <div class="mb-6">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> measurement.do — Summary & Indices</h3>
+          <div class="collapse-content mt-3">
+            <pre><code class="language-stata">
+********************************************************************************
+* MEASUREMENT & SUMMARY STATISTICS
 * AUTHOR: Dr Abdulla
 ********************************************************************************
 
 clear all
 set more off
 
-*--- Paths -------------------------------------------------------------------
-global data_clean "$project_root/01_data/clean"
-global output     "$project_root/03_output"
+global data_transform "$project_root/01_data/transformed"
+global output         "$project_root/03_output"
 
-*--- Load packages -----------------------------------------------------------
-foreach pkg in reghdfe estout outreg2 ftools {
+log using "$log/measurement_`c(current_date)'.log", replace
+
+*--- Packages ---------------------------------------------------------------
+foreach pkg in estout asdoc {
     capture which `pkg'
     if _rc ssc install `pkg', replace
 }
 
-*--- Load data ---------------------------------------------------------------
-use "$data_clean/analysis_data.dta", clear
+*--- Load data --------------------------------------------------------------
+use "$data_transform/analysis_ready.dta", clear
 
-*--- Run regressions ---------------------------------------------------------
-eststo clear
-eststo: reg y x1 x2 i.year i.state, vce(cluster district)
-eststo: reghdfe y x1 x2, absorb(year state district) vce(cluster district)
+*--- Summary statistics -----------------------------------------------------
+summarize income age, detail
+tabstat income age, by(gender) stats(mean sd n)
 
-*--- Export tables -----------------------------------------------------------
-esttab using "$output/regression_table.rtf", ///
-    replace b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
-    scalars(r2 N) label title("Regression Results") ///
-    mtitles("OLS" "FE") ///
-    note("SE clustered at district level.")
+*--- Correlations -----------------------------------------------------------
+pwcorr income education assets, sig star(.05)
+
+*--- Composite index --------------------------------------------------------
+egen ses_index = rowmean(income education assets)
+factor income education assets, pcf
+predict ses_pca
+
+*--- Export table -----------------------------------------------------------
+estpost tabstat income age education, stats(mean sd min max n) columns(statistics)
+esttab using "$output/summary.rtf", cells("mean sd count") replace
+
+log close
             </code></pre>
-            <a href="files/template_regression.do" download class="download-btn mt-2">Download template_regression.do</a>
+            <a href="files/measurement.do" download class="download-btn mt-2">Download measurement.do</a>
           </div>
         </div>
 
-        <!-- template_panel.do -->
+        <!-- Mapping & Geospatial -->
         <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template_panel.do — Panel Data</h3>
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> mapping.do — Choropleth Maps</h3>
           <div class="collapse-content mt-3">
             <pre><code class="language-stata">
 ********************************************************************************
-* PANEL DATA ANALYSIS TEMPLATE
+* GEOSPATIAL MAPPING TEMPLATE
 * AUTHOR: Dr Abdulla
+* DESCRIPTION: Create publication-ready maps with spmap
 ********************************************************************************
 
 clear all
 set more off
 
-*--- Paths -------------------------------------------------------------------
-global data_clean "$project_root/01_data/clean"
-global output     "$project_root/03_output"
+global gis_data "$project_root/01_data/gis"
+global output   "$project_root/03_output"
 
-*--- Load packages -----------------------------------------------------------
-foreach pkg in reghdfe xtable {
+log using "$log/mapping_`c(current_date)'.log", replace
+
+*--- Install packages -------------------------------------------------------
+foreach pkg in spmap shp2dta geo2xy {
     capture which `pkg'
     if _rc ssc install `pkg', replace
 }
 
-*--- Load data ---------------------------------------------------------------
-use "$data_clean/panel_data.dta", clear
+*--- Convert shapefile (run once) -------------------------------------------
+shp2dta using "$gis_data/india_adm2.shp", database(india_db) coord(india_coord) genid(id) replace
 
-*--- Set panel structure -----------------------------------------------------
-xtset id year
+*--- Merge data -------------------------------------------------------------
+use "$data_transform/analysis_ready.dta", clear
+merge m:1 district using "india_db.dta", keepusing(id) nogen
 
-*--- Fixed Effects -----------------------------------------------------------
-eststo: xtreg y x1 x2 i.year, fe vce(cluster id)
+*--- Create map -------------------------------------------------------------
+spmap income using "india_coord.dta", id(id) ///
+    fcolor(Blues) clmethod(quantile) clnumber(5) ///
+    title("Income by District") legend(pos(4)) ///
+    note("Source: Your Survey + GADM")
+graph export "$output/income_map.pdf", replace
 
-*--- Random Effects ----------------------------------------------------------
-eststo: xtreg y x1 x2 i.year, re vce(cluster id)
-
-*--- Hausman test ------------------------------------------------------------
-hausman fe re
-
-*--- Export ------------------------------------------------------------------
-esttab using "$output/panel_table.rtf", replace ///
-    b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
-    mtitles("FE" "RE") title("Panel Data Results")
+log close
             </code></pre>
-            <a href="files/template_panel.do" download class="download-btn mt-2">Download template_panel.do</a>
-          </div>
-        </div>
-
-        <!-- template_graph.do -->
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> template_graph.do — Graphs</h3>
-          <div class="collapse-content mt-3">
-            <pre><code class="language-stata">
-********************************************************************************
-* GRAPHING TEMPLATE
-* AUTHOR: Dr Abdulla
-********************************************************************************
-
-clear all
-set more off
-set scheme 538w
-
-*--- Paths -------------------------------------------------------------------
-global data_clean "$project_root/01_data/clean"
-global output     "$project_root/03_output"
-
-*--- Install packages --------------------------------------------------------
-foreach pkg in coefplot palettes schemepack {
-    capture which `pkg'
-    if _rc ssc install `pkg', replace
-}
-
-*--- Load data ---------------------------------------------------------------
-use "$data_clean/analysis_data.dta", clear
-
-*--- Scatter plot ------------------------------------------------------------
-twoway (scatter y x, mcolor(navy%60)) ///
-       (lfit y x, lcolor(maroon) lwidth(thick)), ///
-    title("Y vs X") ///
-    xtitle("X") ytitle("Y") ///
-    note("Source: Your Data") ///
-    saving(scatter.gph, replace)
-graph export "$output/scatter.pdf", replace
-
-*--- Coefplot ----------------------------------------------------------------
-reg y x1 x2
-coefplot, vertical xline(0) ///
-    title("Regression Coefficients") ///
-    saving(coefplot.gph, replace)
-graph export "$output/coefplot.pdf", replace
-            </code></pre>
-            <a href="files/template_graph.do" download class="download-btn mt-2">Download template_graph.do</a>
+            <a href="files/mapping.do" download class="download-btn mt-2">Download mapping.do</a>
           </div>
         </div>
       </section>
@@ -289,71 +310,57 @@ graph export "$output/coefplot.pdf", replace
       <!-- Jupyter Notebooks -->
       <section class="mb-12">
         <h2 class="text-3xl font-bold text-green-400 mb-6 flex items-center gap-2">
-          <i class="fas fa-laptop-code"></i> Advanced Jupyter/Stata Notebooks
+          <i class="fas fa-laptop-code"></i> Interactive Jupyter/Stata Notebooks
         </h2>
 
         <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Interactive Regression + coefplot</h3>
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Cleaning + Transformation</h3>
           <div class="collapse-content mt-3">
-            <p class="mb-3">Run Stata commands interactively in Jupyter with <code>%%stata</code> magic:</p>
             <pre><code class="language-python"># Install: pip install stata_kernel
 # Run: jupyter lab
 
 %%stata
-sysuse auto, clear
-reghdfe mpg price weight, absorb(rep78) vce(cluster rep78)
-estimates store fe
-coefplot fe, keep(price) vertical xline(0) ///
-    title("Price Effect on MPG") ///
-    note("Fixed Effects Model")
+use raw_data.dta, clear
+missings report
+winsor2 income, cuts(1 99)
+gen log_inc = log(income)
+save cleaned.dta, replace
             </code></pre>
-            <a href="files/advanced_regression.ipynb" download class="download-btn mt-2">Download advanced_regression.ipynb</a>
+            <a href="files/clean_transform.ipynb" download class="download-btn mt-2">Download clean_transform.ipynb</a>
           </div>
         </div>
 
         <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Dynamic Panel (Arellano-Bond)</h3>
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Interactive Mapping Dashboard</h3>
           <div class="collapse-content mt-3">
-            <p class="mb-3">GMM estimation with lags:</p>
             <pre><code class="language-python">%%stata
-webuse abdata, clear
-xtset id year
-ssc install xtabond2, replace
-xtabond2 n w k ys L.n, gmm(L.n, lag(2 3)) iv(year) robust
-estimates store gmm
-esttab gmm using results.rtf, replace
+spmap income using india_coord.dta, id(id) fcolor(Reds) clnumber(6)
+graph export "map.png", replace
             </code></pre>
-            <a href="files/panel_dynamic.ipynb" download class="download-btn mt-2">Download panel_dynamic.ipynb</a>
+            <a href="files/mapping_dashboard.ipynb" download class="download-btn mt-2">Download mapping_dashboard.ipynb</a>
           </div>
         </div>
+      </section>
 
-        <div class="mb-6">
-          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Graph Dashboard</h3>
-          <div class="collapse-content mt-3">
-            <p class="mb-3">Create publication-ready graphs:</p>
-            <pre><code class="language-python">%%stata
-sysuse auto, clear
-set scheme 538w
-
-* Scatter plot
-twoway (scatter mpg price, mcolor(navy%60)) ///
-       (lfit mpg price, lcolor(maroon)), ///
-    title("MPG vs Price") ///
-    saving(mpg_price.gph, replace)
-
-* Combine graphs
-graph combine mpg_price.gph, title("Figure 1: Auto Data Analysis")
-graph export "figure1.pdf", replace
-            </code></pre>
-            <a href="files/graph_dashboard.ipynb" download class="download-btn mt-2">Download graph_dashboard.ipynb</a>
-          </div>
-        </div>
+      <!-- External Resources -->
+      <section class="mb-12 p-6 bg-gradient-to-r from-indigo-900 to-purple-900 rounded-lg border border-purple-500">
+        <h2 class="text-2xl font-bold text-purple-300 mb-4 flex items-center gap-2">
+          <i class="fas fa-external-link-alt"></i> External Learning Resources
+        </h2>
+        <ul class="space-y-3 text-lg">
+          <li><i class="fas fa-book"></i> <a href="https://stats.idre.ucla.edu/stata/" class="resource-link">UCLA Stata Portal</a> – Tutorials & Examples</li>
+          <li><i class="fas fa-globe"></i> <a href="https://gadm.org" class="resource-link">GADM</a> – Free Administrative Boundaries</li>
+          <li><i class="fas fa-database"></i> <a href="https://data.worldbank.org" class="resource-link">World Bank Open Data</a> – GDP, Health, etc.</li>
+          <li><i class="fas fa-code"></i> <a href="https://github.com/asjadnaqvi/stata-schemes" class="resource-link">Stata Schemes by Asjad Naqvi</a></li>
+          <li><i class="fas fa-chalkboard"></i> <a href="https://www.stata.com/netcourse/" class="resource-link">Stata NetCourses</a> – Official Training</li>
+          <li><i class="fas fa-map"></i> <a href="https://geodacenter.github.io" class="resource-link">GeoDa Center</a> – Spatial Analysis</li>
+        </ul>
       </section>
 
       <!-- GitHub -->
       <section class="text-center py-10 bg-gradient-to-r from-purple-900 to-blue-900 bg-opacity-20 rounded-lg border border-purple-500">
         <h2 class="text-2xl font-bold text-purple-400 mb-4">GitHub Repository</h2>
-        <p class="mb-4">All files, notebooks, and documentation in one place.</p>
+        <p class="mb-4">All templates, notebooks, datasets, and shapefiles included.</p>
         <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn">
           <i class="fab fa-github"></i> abdullahalig007/stata-learning-hub
         </a>
