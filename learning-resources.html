@@ -68,6 +68,15 @@
     body.light-mode .search-result { @apply bg-white border-gray-200; }
     body.light-mode th { @apply bg-gray-200; }
     body.light-mode td { @apply border-gray-200; }
+    .code-block { background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px; padding: 1rem; margin: 1.5rem 0; overflow-x: auto; position: relative; }
+    .code-block pre { margin: 0; white-space: pre; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9rem; line-height: 1.4; }
+    .copy-btn { position: absolute; top: 8px; right: 8px; background: #0366d6; color: white; border: none; padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; cursor: pointer; }
+    .copy-btn:hover { background: #024a9e; }
+    details { margin: 1.5rem 0; border: 1px solid #ddd; border-radius: 6px; padding: 0.5rem; }
+    summary { font-weight: 600; cursor: pointer; padding: 0.5rem; background: #f0f0f0; border-radius: 4px; }
+    summary:hover { background: #e6e6e6; }
+    body.light-mode .code-block { background: #f8f9fa; }
+    body.light-mode summary { background: #f0f0f0; }
   </style>
 </head>
 <body>
@@ -122,7 +131,7 @@
 
       <!-- Tabs for Organized Content -->
       <div class="mb-12">
-        <div class="flex border-b border-gray-600">
+        <div class="flex border-b border-gray-600 flex-wrap">
           <div class="tab active" data-tab="templates">Do-File Templates</div>
           <div class="tab" data-tab="jupyter">Jupyter Notebooks</div>
           <div class="tab" data-tab="webinars">Free Webinars</div>
@@ -130,6 +139,7 @@
           <div class="tab" data-tab="books">Books & Communities</div>
           <div class="tab" data-tab="master">Master Do-File & Roadmap</div>
           <div class="tab" data-tab="external">External Resources</div>
+          <div class="tab" data-tab="packages">Stata Packages</div>
         </div>
 
         <!-- Do-File Templates -->
@@ -702,6 +712,7 @@ graph export "combined_graphs.png", replace
 * -----------------------------------------------------------------------------
 foreach var of varlist read write math science {
     summarize `var'
+}
     display "Mean of `var' = " r(mean)
 }
 
@@ -827,6 +838,133 @@ log close
             </ul>
           </section>
         </div>
+
+        <!-- New Tab: Stata Packages -->
+        <div id="packages" class="tab-content">
+          <section class="mb-12">
+            <h1 class="text-4xl font-bold mb-6">Asjad Naqvi – Stata Dataviz & Spatial Packages</h1>
+
+            <!-- Section 1: Dataviz Packages -->
+            <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">Asjad Naqvi's Stata Dataviz Packages</h2>
+            <p class="subtitle mb-4"><strong>Click package name for GitHub repository:</strong></p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-alluvial" target="_blank"><code>alluvial</code></a></td><td>Alluvial charts</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-arcplot" target="_blank"><code>arcplot</code></a></td><td>Arc plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-bimap" target="_blank"><code>bimap</code></a></td><td>Bi-variate maps</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-bumparea" target="_blank"><code>bumparea</code></a></td><td>Ribbon plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-bumpline" target="_blank"><code>bumpline</code></a></td><td>Bump line charts</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-circlebar" target="_blank"><code>circlebar</code></a></td><td>Polar bar graphs</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-circlepack" target="_blank"><code>circlepack</code></a></td><td>Circle packing</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-clipgeo" target="_blank"><code>clipgeo</code></a></td><td>Polygon and polyline shape clipping</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-delaunay-voronoi" target="_blank"><code>delaunay</code></a></td><td>Delaunay triangles, Convex Hull, Voronoi</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-geoboundary" target="_blank"><code>geoboundary</code></a></td><td>Fetching administrative boundaries</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-geoflow" target="_blank"><code>geoflow</code></a></td><td>Generating spatial arcs</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-graphfunctions" target="_blank"><code>graphfunctions</code></a></td><td>Helper functions for figures</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-marimekko" target="_blank"><code>marimekko</code></a></td><td>Marimekko charts</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-polarspike" target="_blank"><code>polarspike</code></a></td><td>Polar spike plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-ridgeline" target="_blank"><code>ridgeline</code></a></td><td>Ridgeline / joyplots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-sankey" target="_blank"><code>sankey</code></a></td><td>Sankey diagrams</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/Stata-schemepack" target="_blank"><code>schemepack</code></a></td><td>A suite of Stata schemes</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-spider" target="_blank"><code>spider</code></a></td><td>Spider plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-splinefit" target="_blank"><code>splinefit</code></a></td><td>Spline fit plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-streamplot" target="_blank"><code>streamplot</code></a></td><td>Streamplots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-sunburst" target="_blank"><code>sunburst</code></a></td><td>Sunburst diagrams</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-ternary" target="_blank"><code>ternary</code></a></td><td>Tri-variate plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-tidytuesday" target="_blank"><code>tidytuesday</code></a></td><td>Fetching TidyTuesday data</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-treecluster" target="_blank"><code>treecluster</code></a></td><td>Tree plots</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-treemap" target="_blank"><code>treemap</code></a></td><td>Tree maps</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-trimap" target="_blank"><code>trimap</code></a></td><td>Tri-variate maps</td></tr>
+                <tr><td><a href="https://github.com/asjadnaqvi/stata-waffle" target="_blank"><code>waffle</code></a></td><td>Waffle plots</td></tr>
+              </tbody>
+            </table>
+
+            <!-- Section 2: Spatial Analysis Packages -->
+            <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2 mt-8">
+              <a href="https://www.stata.com/manuals/sp.pdf" target="_blank">
+                Stata Spatial Analysis Packages
+              </a>
+            </h2>
+            <p class="subtitle mb-4">Built-in (<code>sp</code> commands) + user-written tools for ESDA, mapping, and regression.</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Package / Command</th>
+                  <th>Description</th>
+                  <th>Install / Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>spshape2dta</code></td><td>Import shapefiles to Stata</td><td>Built-in (Stata 15+)</td></tr>
+                <tr><td><code>spset</code></td><td>Declare spatial dataset</td><td>Built-in</td></tr>
+                <tr><td><code>spmat</code></td><td>Create spatial weight matrices</td><td>Built-in</td></tr>
+                <tr><td><code>spregress</code></td><td>SAR, SEM, SDM models (cross-section)</td><td>Built-in</td></tr>
+                <tr><td><code>spxtregress</code></td><td>Spatial panel models (FE/RE)</td><td>Built-in</td></tr>
+                <tr><td><code>spmap</code></td><td>Choropleth & symbol maps</td><td>Built-in (or <code>ssc install spmap</code>)</td></tr>
+                <tr><td><code>spmap</code> (Pisati)</td><td>Advanced mapping</td><td><span class="install">ssc install spmap</span></td></tr>
+                <tr><td><code>xsmle</code></td><td>Spatial panel models (dynamic, FE/RE)</td><td><span class="install">net install xsmle, fro[](http://www.econometrics.it/stata)</span></td></tr>
+                <tr><td><code>sppack</code></td><td>SAR, SEM, GMM for cross-section</td><td><span class="install">ssc install sppack</span></td></tr>
+                <tr><td><code>spregxt</code></td><td>Spatial panel GMM/2SLS</td><td><span class="install">ssc install spregxt</span></td></tr>
+                <tr><td><code>spatlsa</code></td><td>Local Indicators of Spatial Association (LISA)</td><td><span class="install">ssc install spatlsa</span></td></tr>
+                <tr><td><code>spatgsa</code></td><td>Moran’s I, Geary’s C</td><td><span class="install">ssc install spatgsa</span></td></tr>
+                <tr><td><code>shp2dta</code></td><td>Legacy shapefile import</td><td><span class="install">ssc install shp2dta</span></td></tr>
+              </tbody>
+            </table>
+
+            <!-- Section 3: Example Code -->
+            <details class="mt-8">
+              <summary>Example: Spatial Autoregressive Model (SAR) with Map</summary>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre><code class="language-stata">
+// 1. Import shapefile (e.g., US counties)
+spshape2dta us_counties.shp, replace
+
+// 2. Load data and merge with shapefile
+use us_counties, clear
+merge 1:1 _ID using us_counties_shp, nogen
+
+// 3. Declare spatial structure
+spset _ID
+
+// 4. Create contiguity weight matrix (queen)
+spmat use W using us_counties.spmat, replace
+spmat summarize W
+
+// 5. Estimate Spatial Autoregressive Model (SAR)
+spregress income education unemployment, gs2sls dvarlag(W)
+
+// 6. Predict spatial lag and residuals
+predict yhat, xb
+predict resid, residuals
+
+// 7. Visualize results on map
+spmap income using us_counties_shp, id(_ID) clmethod(custom) clbreaks(0 20000 40000 60000 80000) ///
+    title("Median Income by County") legend(pos(5) size(small))
+
+// Optional: Moran’s I test on residuals
+spatgsa resid, weights(W) graph
+</code></pre>
+              </div>
+              <p><strong>Requirements:</strong> Stata 15+, shapefile (<code>.shp</code>), and data merged on <code>_ID</code>.</p>
+            </details>
+
+            <p class="note mt-6">
+              Dataviz packages by <a href="https://github.com/asjadnaqvi" target="_blank">Asjad Naqvi</a> • 
+              <a href="https://asjadnaqvi.github.io/" target="_blank">Website</a> • 
+              <a href="https://medium.com/@asjadnaqvi" target="_blank">Medium</a> • 
+              Full spatial docs: <a href="https://www.stata.com/manuals/sp.pdf" target="_blank">Stata Sp Manual</a>
+            </p>
+          </section>
+        </div>
       </div>
 
       <!-- GitHub -->
@@ -912,6 +1050,15 @@ log close
         }
       });
     });
+
+    // Copy Code Function
+    function copyCode(btn) {
+      const code = btn.nextElementSibling.querySelector('pre').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
   </script>
 </body>
 </html>
