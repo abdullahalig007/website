@@ -3,172 +3,217 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Efficiency & Productivity | Full Guide</title>
-  <meta name="description" content="DEA, SFA, Malmquist, Luenberger, Bootstrapped, Metafrontier — Explained + Full Code">
+  <meta name="author" content="Dr Abdulla">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <meta name="description" content="Complete Guide to Efficiency & Productivity Estimation: DEA, SFA, Malmquist, Bootstrapped, Metafrontier — with Full Stata Code">
+
+  <title>Efficiency & Productivity Estimation | Dr Abdulla</title>
+  <link rel="canonical" href="/website/Efficiency & Productivity Estimation.html">
+  
+  <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Prism.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Efficiency & Productivity Estimation | Dr Abdulla">
+  <meta property="og:description" content="DEA, SFA, Malmquist, Bootstrapped DEA, Metafrontier — Full Stata code + diagnostics">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://abdullahalig007.github.io/website/Efficiency & Productivity Estimation.html">
+  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Efficiency & Productivity Estimation | Dr Abdulla">
+  <meta name="twitter:description" content="Full guide with Stata code, graphs, and interpretation">
+  <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
+
   <style>
-    :root { --bg: #0f172a; --text: #e2e8f0; --card: #1e293b; --border: #334155; --accent: #facc15; --link: #93c5fd; --hover: #facc15; --green: #10b981; --purple: #a855f7; }
-    body.light-mode { --bg: #f8fafc; --text: #1e293b; --card: #fff; --border: #e2e8f0; --accent: #1e3a8a; --link: #1e40af; --hover: #2563eb; --green: #059669; --purple: #7c3aed; }
-    body { font-family: 'Roboto', sans-serif; background: var(--bg); color: var(--text); transition: .4s; }
-    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
-    .hero { background: linear-gradient(135deg, var(--bg), var(--accent)); color: white; }
-    .nav { position: sticky; top: 0; z-index: 50; background: rgba(15,23,42,.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.1); }
-    body.light-mode .nav { background: rgba(255,255,255,.9); border-bottom: 1px solid rgba(0,0,0,.1); }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; transition: .3s; }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-    .collapse-btn { cursor: pointer; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: .5rem; }
+    :root {
+      --bg-color: #0f172a; --text-color: #e2e8f0; --card-bg: #1e293b; --border-color: #334155;
+      --accent-color: #facc15; --link-color: #93c5fd; --hover-link: #facc15; --secondary-accent: #10b981;
+      --purple: #a855f7; --green: #059669;
+    }
+    body.light-mode {
+      --bg-color: #f8fafc; --text-color: #1e293b; --card-bg: #ffffff; --border-color: #e2e8f0;
+      --accent-color: #1e3a8a; --link-color: #1e40af; --hover-link: #2563eb; --secondary-accent: #059669;
+      --purple: #7c3aed; --green: #059669;
+    }
+    body { font-family: 'Roboto', sans-serif; background: var(--bg-color); color: var(--text-color); transition: .4s; overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; color: var(--text-color); }
+
+    .hero { background: linear-gradient(135deg, var(--bg-color), var(--accent-color)); color: white; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%); animation: pulse 5s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 50% { transform: scale(1.2); opacity: .2; } 100% { transform: scale(1); opacity: .5; } }
+
+    .sticky-nav { position: sticky; top: 0; z-index: 50; background: rgba(15,23,42,.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.1); transition: .4s; }
+    .sticky-nav.scrolled { box-shadow: 0 4px 6px rgba(0,0,0,.1); }
+    body.light-mode .sticky-nav { background: rgba(255,255,255,.9); border-bottom: 1px solid rgba(0,0,0,.1); }
+
+    .nav-link { transition: .3s; color: var(--text-color); position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: .3s; }
+    .nav-link:hover::after { width: 100%; } .nav-link:hover { color: var(--accent-color); }
+
+    .theme-toggle { cursor: pointer; transition: .3s; } .theme-toggle:hover { transform: rotate(180deg); }
+
+    .section-header { border-bottom: 3px solid var(--accent-color); padding-bottom: .5rem; color: var(--accent-color); position: relative; overflow: hidden; }
+    .section-header::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, var(--accent-color), var(--secondary-accent)); transform: translateX(-100%); transition: .5s; }
+    .section-header.in-view::after { transform: translateX(0); }
+
+    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; transition: .3s; position: relative; overflow: hidden; }
+    .card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: 0 15px 30px rgba(250,204,21,.2); }
+    .card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,.1), transparent); transition: .5s; }
+    .card:hover::before { left: 100%; }
+
+    a { color: var(--link-color); transition: .3s; } a:hover { color: var(--hover-link); text-shadow: 0 0 5px var(--hover-link); }
+
+    .icon-link { color: var(--text-color); transition: .3s; } .icon-link:hover { color: var(--accent-color); transform: scale(1.2) rotate(360deg); }
+
+    footer { background: var(--bg-color); border-top: 1px solid var(--border-color); transition: .4s; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, var(--bg-color), transparent); pointer-events: none; }
+
+    .fade-in { opacity: 0; transform: translateY(50px); transition: .8s; } .fade-in.in-view { opacity: 1; transform: translateY(0); }
+
+    table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 1rem; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,.1); }
+    th, td { border: 1px solid var(--border-color); padding: 1rem; text-align: left; transition: .3s; }
+    th { background: var(--accent-color); color: var(--bg-color); font-family: 'Playfair Display', serif; }
+    tr:nth-child(even) { background: rgba(249,250,251,.5); } tr:hover { background: rgba(243,244,246,.8); }
+    body.light-mode tr:nth-child(even) { background: #f9fafb; } body.light-mode tr:hover { background: #f3f4f6; }
+
+    .collapse-btn { cursor: pointer; font-weight: 600; color: var(--accent-color); display: flex; align-items: center; gap: .5rem; font-size: 1.25rem; }
     .collapse-content { max-height: 0; overflow: hidden; transition: max-height .6s ease; }
-    .collapse-content.open { max-height: 25000px; }
-    pre { background: #1a1a1a !important; padding: 1rem !important; border-radius: 8px; overflow-x: auto; position: relative; margin: 1rem 0; }
-    .copy-btn { position: absolute; top: 8px; right: 8px; background: #0366d6; color: white; border: none; padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; cursor: pointer; }
+    .collapse-content.open { max-height: 50000px; }
+
+    pre { background: #1a1a1a !important; padding: 1rem !important; border-radius: 8px; overflow-x: auto; position: relative; margin: 1rem 0; font-size: .9rem; }
+    .copy-btn { position: absolute; top: 8px; right: 8px; background: #0366d6; color: white; border: none; padding: 4px 8px; font-size: .8rem; border-radius: 4px; cursor: pointer; }
     .copy-btn:hover { background: #024a9e; }
-    #search-input { @apply w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:border-yellow-400 focus:outline-none; }
-    body.light-mode #search-input { @apply bg-gray-100 text-black border-gray-300; }
-    .download-btn { @apply inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-600 to-green-600 text-white rounded-lg hover:from-yellow-500 hover:to-green-500 text-sm shadow-md; }
-    .badge { @apply px-2 py-1 text-xs rounded-full font-medium; }
-    .badge-dea { @apply bg-blue-600 text-white; }
-    .badge-sfa { @apply bg-purple-600 text-white; }
-    .badge-cost { @apply bg-red-600 text-white; }
-    .badge-prod { @apply bg-green-600 text-white; }
-    .badge-adv { @apply bg-yellow-600 text-white; }
-    table { @apply w-full text-sm border-collapse mt-4; }
-    th { @apply bg-gray-800 p-3 text-left; }
-    td { @apply p-3 border-t border-gray-700; }
-    body.light-mode th { @apply bg-gray-200; }
-    body.light-mode td { @apply border-gray-200; }
-    .note { @apply text-xs italic text-gray-400 mt-2; }
-    .output { background:#111; color:#9cdcfe; padding:1rem; border-radius:8px; margin-top:1rem; font-family:monospace; white-space:pre-wrap; }
+
+    #search-input { width: 100%; padding: .75rem; border-radius: .5rem; background: #1e293b; color: white; border: 1px solid #334155; transition: .3s; }
+    #search-input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(250,204,21,.2); }
+    body.light-mode #search-input { background: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
+
+    .download-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem; background: linear-gradient(to right, #ca8a04, #16a34a); color: white; border-radius: .5rem; font-size: .875rem; text-decoration: none; margin-top: .5rem; box-shadow: 0 4px 6px rgba(0,0,0,.1); }
+    .download-btn:hover { background: linear-gradient(to right, #a16207, #15803d); }
+
+    .badge { padding: .25rem .5rem; font-size: .75rem; border-radius: 9999px; font-weight: 600; }
+    .badge-dea { background: #3b82f6; color: white; }
+    .badge-sfa { background: var(--purple); color: white; }
+    .badge-cost { background: #ef4444; color: white; }
+    .badge-prod { background: var(--green); color: white; }
+    .badge-adv { background: #eab308; color: white; }
+
+    .output { background: #111; color: #9cdcfe; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace; white-space: pre-wrap; font-size: .9rem; }
+    .note { font-size: .875rem; font-style: italic; color: #94a3b8; margin-top: 1rem; }
   </style>
 </head>
+
 <body>
   <!-- Hero -->
-  <section class="hero py-16 text-center">
+  <section class="hero py-16 text-center relative">
     <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-3">Efficiency & Productivity</h1>
-      <p class="text-xl">Full Guide: Methods, Code, Interpretation, Diagnostics</p>
-      <p class="text-lg italic">by Dr Abdulla</p>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Efficiency & Productivity</h1>
+      <p class="text-xl md:text-2xl mb-3 font-light">Full Guide: DEA, SFA, Malmquist, Bootstrapped, Metafrontier</p>
+      <p class="text-md md:text-lg mt-2 italic">by Dr Abdulla</p>
     </div>
   </section>
 
-  <!-- Nav -->
-  <header class="nav shadow">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#" class="text-xl font-bold text-white">Dr Abdulla</a>
-      <div class="flex items-center gap-6 text-sm">
-        <div id="theme-toggle" class="cursor-pointer"><i class="fas fa-moon" style="color:#facc15;"></i></div>
-      </div>
+  <!-- Navigation -->
+  <header class="sticky-nav shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
+      <nav class="space-x-7 flex items-center">
+        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
+        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
+        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
+        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
+        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
+        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
+        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity</a>
+        <div id="theme-toggle" class="theme-toggle ml-4"><i class="fas fa-moon fa-lg" style="color:#facc15;"></i></div>
+      </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-10">
-    <article class="card p-6">
+  <main class="container mx-auto px-4 py-12">
+    <section class="mb-12 fade-in">
+      <h1 class="text-4xl font-semibold section-header">Efficiency & Productivity Estimation</h1>
+      <div class="card p-8 mt-6 relative">
 
-      <!-- Search -->
-      <section class="mb-10">
-        <input type="text" id="search-input" placeholder="Search DEA, Malmquist, bootstrap, metafrontier..." class="w-full">
-        <div id="search-results" class="mt-4"></div>
-      </section>
+        <!-- Search -->
+        <section class="mb-10">
+          <input type="text" id="search-input" placeholder="Search DEA, SFA, Malmquist, bootstrap, metafrontier..." class="w-full">
+          <div id="search-results" class="mt-4"></div>
+        </section>
 
-      <!-- DATA GENERATION (run once) -->
-      <section class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 0. Generate Synthetic Panel Data (run once)
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Why?</strong> All examples below use the same <code>farm_data.dta</code>. This block creates a realistic panel of 200 farms × 5 years with inputs, outputs, prices, regions, and random inefficiency.</p>
-          <pre><code class="language-stata">* -------------------------------------------------
-* 0. CREATE SYNTHETIC PANEL DATA (run once)
+        <!-- 0. Generate Data -->
+        <section class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 0. Generate Synthetic Panel Data (run once)</h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3"><strong>Why?</strong> 200 farms × 5 years. Realistic inefficiency, prices, regions.</p>
+            <pre><code class="language-stata">* -------------------------------------------------
+* 0. CREATE SYNTHETIC PANEL DATA
 * -------------------------------------------------
 clear all
 set seed 13579
-set obs 1000               // 200 farms × 5 years
+set obs 1000
 gen farmid = ceil(_n/5)
 gen year   = 2018 + mod(_n-1,5)
-gen region = ceil(runiform()*3)          // 3 regions
-gen education = runiform(6,18)           // years of schooling
-gen rain      = 800 + rnormal(0,150)     // mm/year
+gen region = ceil(runiform()*3)
+gen education = runiform(6,18)
+gen rain      = 800 + rnormal(0,150)
 
-* True production: Translog + inefficiency + noise
-gen ln_l = ln(20 + rnormal(0,5))         // labor (person-days)
-gen ln_k = ln(50 + rnormal(0,12))        // capital (machine-hours)
+gen ln_l = ln(20 + rnormal(0,5))
+gen ln_k = ln(50 + rnormal(0,12))
 gen ln_l2 = ln_l^2
 gen ln_k2 = ln_k^2
 gen ln_lk = ln_l*ln_k
 
-gen u = abs(rnormal(0,0.3))               // one-sided inefficiency
-gen v = rnormal(0,0.15)                   // noise
+gen u = abs(rnormal(0,0.3))
+gen v = rnormal(0,0.15)
 
-gen ln_y_true = 2.5 + 0.4*ln_l + 0.3*ln_k ///
-              - 0.05*ln_l2 - 0.04*ln_k2 + 0.06*ln_lk ///
-              - u + v
+gen ln_y_true = 2.5 + 0.4*ln_l + 0.3*ln_k - 0.05*ln_l2 - 0.04*ln_k2 + 0.06*ln_lk - u + v
 gen yield = exp(ln_y_true)
 
-* Input prices (vary by region)
 gen wage   = cond(region==1, 120, cond(region==2, 140, 160)) + rnormal(0,10)
 gen rental = cond(region==1, 300, cond(region==2, 350, 400)) + rnormal(0,20)
 
-* Observed variables
 gen labor  = exp(ln_l)
 gen capital= exp(ln_k)
 gen total_cost = wage*labor + rental*capital
 
-label var farmid "Farm ID"
-label var year   "Year"
-label var region "Region (1-3)"
-label var yield  "Output (tons)"
-label var labor  "Labor (person-days)"
-label var capital "Capital (machine-hours)"
-label var wage   "Wage rate"
-label var rental "Rental rate"
-label var total_cost "Total cost"
-
 save "farm_data.dta", replace
-list in 1/10
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="data-do" class="download-btn mt-2">0_generate_data.do</a>
-        </div>
-      </section>
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="data-do" class="download-btn">0_generate_data.do</a>
+          </div>
+        </section>
 
-      <!-- ============================================================= -->
-      <!-- 1. DEA VRS/CRS + SCALE EFFICIENCY -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 1. DEA: VRS vs CRS + Scale Efficiency 
-          <span class="badge badge-dea ml-2">Scale Efficiency</span>
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Theory:</strong> DEA is a non-parametric linear-programming method. <br>
-            • <strong>VRS</strong> allows the frontier to be concave (variable returns). <br>
-            • <strong>CRS</strong> forces a ray through the origin (constant returns). <br>
-            • <strong>Scale Efficiency</strong> = TE<sub>CRS</sub> / TE<sub>VRS</sub>. Values < 1 indicate scale inefficiency.</p>
-
-          <table>
-            <tr><th>TE</th><th>Interpretation</th></tr>
-            <tr><td>1</td><td>Fully efficient (on frontier)</td></tr>
-            <tr><td>0.8–0.99</td><td>Moderately inefficient</td></tr>
-            <tr><td>< 0.8</td><td>Highly inefficient</td></tr>
-          </table>
-
-          <pre><code class="language-stata">********************************************************************************
-* 1. DEA VRS vs CRS + SCALE EFFICIENCY
-********************************************************************************
+        <!-- 1. DEA VRS/CRS -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 1. DEA: VRS vs CRS + Scale Efficiency <span class="badge badge-dea ml-2">Scale Efficiency</span></h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">DEA is non-parametric. Scale Efficiency = TE<sub>CRS</sub> / TE<sub>VRS</sub>.</p>
+            <table>
+              <tr><th>TE</th><th>Interpretation</th></tr>
+              <tr><td>1</td><td>Fully efficient</td></tr>
+              <tr><td>0.8–0.99</td><td>Moderately inefficient</td></tr>
+              <tr><td>&lt; 0.8</td><td>Highly inefficient</td></tr>
+            </table>
+            <pre><code class="language-stata">* VRS
 use "farm_data.dta", clear
-keep if year==2022                     // cross-section for illustration
-
-* ---- VRS ----
+keep if year==2022
 dea labor capital = yield, rts(vrs) saving(dea_vrs, replace)
 rename te te_vrs
 keep farmid te_vrs
 save dea_vrs, replace
 
-* ---- CRS ----
+* CRS
 use "farm_data.dta", clear
 keep if year==2022
 dea labor capital = yield, rts(crs) saving(dea_crs, replace)
@@ -176,359 +221,214 @@ rename te te_crs
 keep farmid te_crs
 save dea_crs, replace
 
-* ---- Merge & Scale Efficiency ----
+* Merge
 use dea_vrs, clear
 merge 1:1 farmid using dea_crs, nogen
 gen se = te_crs / te_vrs
-
-* ---- Summary ----
 summarize te_vrs te_crs se, detail
 list farmid te_vrs te_crs se in 1/15
 
-* ---- Visuals ----
+* Graphs
 histogram te_vrs, freq normal title("TE – VRS") name(vrs, replace)
 histogram te_crs, freq normal title("TE – CRS") name(crs, replace)
-histogram se,     freq normal title("Scale Efficiency") name(se, replace)
+histogram se, freq normal title("Scale Efficiency") name(se, replace)
 graph combine vrs crs se, cols(3) title("DEA Diagnostics")
 graph export "dea_diagnostics.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="dea-do" class="download-btn mt-2">1_dea_scale.do</a>
-
-          <div class="output">Typical output (first 5 obs):<br>
-<code>
-     farmid   te_vrs   te_crs       se
-          1   1.0000   0.9231   0.9231
-          2   0.9873   0.9124   0.9242
-          3   0.9541   0.8812   0.9235
-          ...
-</code></div>
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="dea-do" class="download-btn">1_dea_scale.do</a>
+            <div class="output">farmid   te_vrs   te_crs       se
+   1     1.0000   0.9231   0.9231
+   2     0.9873   0.9124   0.9242
+   3     0.9541   0.8812   0.9235
+...</div>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 2. DEA COST + ALLOCATIVE EFFICIENCY -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 2. DEA Cost Frontier + Allocative Efficiency 
-          <span class="badge badge-cost ml-2">Cost Minimization</span>
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Theory:</strong> Cost-DEA minimizes <em>total cost</em> for a given output level. <br>
-            • <strong>Cost Efficiency (CE)</strong> = min cost / observed cost <br>
-            • <strong>Allocative Efficiency (AE)</strong> = CE / TE (technical) <br>
-            AE < 1 → wrong input mix even if technically efficient.</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 2. DEA COST + ALLOCATIVE EFFICIENCY
-* -------------------------------------------------
-use "farm_data.dta", clear
+        <!-- 2. DEA Cost -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 2. DEA Cost + Allocative Efficiency <span class="badge badge-cost ml-2">Cost Minimization</span></h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">Cost Efficiency = min cost / observed cost. AE = CE / TE.</p>
+            <pre><code class="language-stata">use "farm_data.dta", clear
 keep if year==2022
 gen total_cost = wage*labor + rental*capital
 
-* Technical (VRS) – reuse from section 1
-dea labor capital = yield, rts(vrs) saving(tech, replace)
-rename te te_tech
-keep farmid te_tech
-tempfile tech
-save `tech'
+* Technical (VRS)
+merge 1:1 farmid using dea_vrs, nogen
+rename te_vrs te_tech
 
 * Cost DEA
-use "farm_data.dta", clear
-keep if year==2022
 dea total_cost = yield, rts(vrs) saving(costdea, replace)
 rename te ce
 keep farmid ce total_cost
-merge 1:1 farmid using `tech', nogen
+tempfile cost
+save `cost'
 
-* Allocative
+use dea_vrs, clear
+merge 1:1 farmid using `cost', nogen
 gen ae = ce / te_tech
-
 summarize te_tech ce ae, detail
-list farmid te_tech ce ae total_cost in 1/10
+list farmid te_tech ce ae in 1/10
 
-twoway (scatter ce te_tech, mlabel(farmid)), ///
-       ytitle("Cost Efficiency") xtitle("Technical Efficiency") ///
-       legend(off) title("Cost vs Technical Efficiency")
+twoway (scatter ce te_tech), ytitle("Cost Efficiency") xtitle("Technical Efficiency")
 graph export "cost_vs_tech.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="cost-do" class="download-btn mt-2">2_dea_cost.do</a>
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="cost-do" class="download-btn">2_dea_cost.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 3. SFA PRODUCTION (TRANSLOG) -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 3. SFA Production – Translog (Cross-section)
-          <span class="badge badge-sfa ml-2">Parametric</span>
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Why Translog?</strong> Flexible functional form that nests Cobb-Douglas and allows interaction/curvature. <br>
-            Model: <code>ln y = β0 + β1 ln L + β2 ln K + β3 (ln L)² + β4 (ln K)² + β5 ln L·ln K + v – u</code><br>
-            <code>TE = exp(–u)</code> ∈ (0,1]</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 3. SFA TRANSLOG PRODUCTION (cross-section)
-* -------------------------------------------------
-use "farm_data.dta", clear
+        <!-- 3. SFA Production -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 3. SFA Production – Translog <span class="badge badge-sfa ml-2">Parametric</span></h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">Flexible form. TE = exp(–u).</p>
+            <pre><code class="language-stata">use "farm_data.dta", clear
 keep if year==2022
-
 gen ln_y = ln(yield)
 gen ln_l = ln(labor)
 gen ln_k = ln(capital)
 
-sfcross ln_y ln_l ln_k c.ln_l#c.ln_l c.ln_l#c.ln_k c.ln_k#c.ln_k, ///
-        dist(tnormal) vhet(rain) uhet(education) emean(education)
-
-predict te_sfa, te          // Jondrow et al. (1982) estimator
-predict u_hat, u
-predict v_hat, v
-
-summarize te_sfa u_hat v_hat, detail
-histogram te_sfa, freq normal kdensity title("SFA Technical Efficiency")
+sfcross ln_y ln_l ln_k c.ln_l#c.ln_l c.ln_l#c.ln_k c.ln_k#c.ln_k, dist(tnormal) vhet(rain) uhet(education) emean(education)
+predict te_sfa, te
+summarize te_sfa
+histogram te_sfa, freq normal kdensity title("SFA TE")
 graph export "sfa_te_dist.pdf", replace
-
-* Compare with DEA VRS
-merge 1:1 farmid using dea_vrs, nogen
-twoway (scatter te_sfa te_vrs), ///
-       ytitle("SFA TE") xtitle("DEA VRS TE") ///
-       legend(label(1 "SFA") label(2 "DEA"))
-graph export "sfa_vs_dea.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="sfa-prod-do" class="download-btn mt-2">3_sfa_translog.do</a>
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="sfa-prod-do" class="download-btn">3_sfa_translog.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 4. SFA COST FRONTIER -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 4. SFA Cost Frontier (Translog Cost)
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Cost function:</strong> <code>ln C = f(ln Y, ln w, ln r) + v + u</code> (u ≥ 0). <br>
-            Cost efficiency = <code>exp(–u)</code>. We use <code>sfcross , cost</code>.</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 4. SFA COST FRONTIER
-* -------------------------------------------------
-use "farm_data.dta", clear
+        <!-- 4. SFA Cost -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 4. SFA Cost Frontier</h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">Cost function with inefficiency.</p>
+            <pre><code class="language-stata">use "farm_data.dta", clear
 keep if year==2022
 gen ln_c = ln(wage*labor + rental*capital)
 gen ln_y = ln(yield)
 gen ln_w = ln(wage)
 gen ln_r = ln(rental)
 
-sfcross ln_c ln_y ln_w ln_r c.ln_y#c.ln_w c.ln_y#c.ln_r, ///
-        cost dist(hnormal) 
-
+sfcross ln_c ln_y ln_w ln_r c.ln_y#c.ln_w c.ln_y#c.ln_r c.ln_w#c.ln_r, cost dist(hnormal)
 predict ce_sfa, te
 summarize ce_sfa
-histogram ce_sfa, freq normal title("Cost Efficiency – SFA")
-graph export "sfa_cost_eff.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="sfa-cost-do" class="download-btn mt-2">4_sfa_cost.do</a>
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="sfa-cost-do" class="download-btn">4_sfa_cost.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 5. PANEL SFA – BC95 & TRE -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 5. Panel SFA: Battese-Coelli 1995 (BC95) & True Random Effects (TRE)
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>BC95</strong> separates <em>persistent</em> (time-invariant) and <em>transient</em> (time-varying) inefficiency. <br>
-            <strong>TRE</strong> treats firm effects as random.</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 5. PANEL SFA – BC95
-* -------------------------------------------------
-use "farm_data.dta", clear
+        <!-- 5. Panel SFA -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 5. Panel SFA: BC95</h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">Separates persistent and transient inefficiency.</p>
+            <pre><code class="language-stata">use "farm_data.dta", clear
 xtset farmid year
-
 gen ln_y = ln(yield)
 gen ln_l = ln(labor)
 gen ln_k = ln(capital)
 
-sfpanel ln_y ln_l ln_k, model(bc95) ///
-     uhet(education) vhet(rain) timetrend
-
-predict te_persistent, tebc   // exp(-μ_i)
-predict te_transient,  jlms   // exp(-u_it)
+sfpanel ln_y ln_l ln_k, model(bc95) uhet(education) vhet(rain) timetrend
+predict te_persistent, tebc
+predict te_transient, jlms
 gen te_total = te_persistent * te_transient
-
-summarize te_persistent te_transient te_total
-bysort year: summarize te_total
-
-twoway (line te_total year, lpattern(solid)), ///
-       ytitle("Overall TE") xtitle("Year") title("BC95 – Overall TE")
-graph export "bc95_te_trend.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="panel-do" class="download-btn mt-2">5_panel_sfa_bc95.do</a>
-
-          <p class="note mt-4"><strong>TRE alternative (one line):</strong><br>
-            <code>sfpanel ln_y ln_l ln_k, model(tre) uhet(education)</code></p>
+bysort year: sum te_total
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="panel-do" class="download-btn">5_panel_sfa_bc95.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 6. MALMQUIST PRODUCTIVITY INDEX -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 6. Malmquist Productivity Index (TFPCH = EC × TC)
-          <span class="badge badge-prod ml-2">TFP Growth</span>
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Decomposition:</strong><br>
-            • <strong>EC</strong> = Efficiency Change (catching-up) <br>
-            • <strong>TC</strong> = Technical Change (frontier shift) <br>
-            • <strong>TFPCH</strong> > 1 ⇒ productivity growth.</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 6. MALMQUIST INDEX (user-written: malmq)
-* -------------------------------------------------
+        <!-- 6. Malmquist -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 6. Malmquist Index <span class="badge badge-prod ml-2">TFP Growth</span></h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">TFPCH = EC × TC.</p>
+            <pre><code class="language-stata">ssc install malmq, replace
 use "farm_data.dta", clear
-ssc install malmq, replace
-
-malmq labor capital = yield, rts(vrs) ///
-      time(year) id(farmid) saving(malmq_out, replace)
-
+malmq labor capital = yield, rts(vrs) time(year) id(farmid) saving(malmq_out, replace)
 use malmq_out, clear
-list farmid t tfpch ec tc in 1/20
-
-bysort t: summarize tfpch ec tc
-twoway (line tfpch t, lcolor(red)) ///
-       (line ec t, lcolor(blue)) ///
-       (line tc t, lcolor(green)), ///
-       yline(1) legend(label(1 "TFPCH") label(2 "EC") label(3 "TC")) ///
-       title("Malmquist Productivity Decomposition")
-graph export "malmquist_decomp.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="malm-do" class="download-btn mt-2">6_malmquist.do</a>
+bysort t: sum tfpch ec tc
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="malm-do" class="download-btn">6_malmquist.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 7. LUENBERGER INDICATOR (additive) -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 7. Luenberger Productivity Indicator (Additive)
-          <span class="badge badge-adv ml-2">Handles Zeros/Negatives</span>
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3">Additive analogue of Malmquist. Useful when inputs/outputs contain zeros or undesirable outputs.</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 7. LUENBERGER (user-written)
-* -------------------------------------------------
-ssc install luenberger, replace
-use "farm_data.dta", clear
-
-luenberger labor capital = yield, ///
-           time(year) id(farmid) saving(luen_out, replace)
-
+        <!-- 7. Luenberger -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 7. Luenberger Indicator <span class="badge badge-adv ml-2">Additive</span></h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">Handles zeros/negatives.</p>
+            <pre><code class="language-stata">ssc install luenberger, replace
+luenberger labor capital = yield, time(year) id(farmid) saving(luen_out, replace)
 use luen_out, clear
-list farmid t luen ec tc in 1/15
 bysort t: sum luen
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="luen-do" class="download-btn mt-2">7_luenberger.do</a>
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="luen-do" class="download-btn">7_luenberger.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 8. BOOTSTRAPPED DEA (bias-corrected CIs) -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 8. Bootstrapped DEA – Bias-Corrected Confidence Intervals
-          <span class="badge badge-adv ml-2">Statistical Inference</span>
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3">DEA scores are upward biased in finite samples. Bootstrap (Simar-Wilson) provides bias-corrected estimates and 95% CIs.</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 8. BOOTSTRAPPED DEA
-* -------------------------------------------------
-ssc install deaboot, replace
+        <!-- 8. Bootstrapped DEA -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 8. Bootstrapped DEA <span class="badge badge-adv ml-2">CIs</span></h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">Bias-corrected TE with 95% CI.</p>
+            <pre><code class="language-stata">ssc install deaboot, replace
 use "farm_data.dta", clear
 keep if year==2022
-
-deaboot labor capital = yield, rts(vrs) reps(2000) dots ///
-        saving(boot_out, replace)
-
+deaboot labor capital = yield, rts(vrs) reps(2000) dots saving(boot_out, replace)
 use boot_out, clear
-gen bias = _b_te - te_original
-gen te_bc = te_original - bias
-summarize te_original _b_te bias te_bc
-
-list farmid te_original _b_te _lci _uci in 1/12
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="boot-do" class="download-btn mt-2">8_deaboot.do</a>
+gen te_bc = te_original - (_b_te - te_original)
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="boot-do" class="download-btn">8_deaboot.do</a>
+          </div>
         </div>
-      </div>
 
-      <!-- ============================================================= -->
-      <!-- 9. METAFONTIER ANALYSIS -->
-      <!-- ============================================================= -->
-      <div class="mb-12">
-        <h3 class="collapse-btn text-xl">
-          <i class="fas fa-chevron-down"></i> 9. Metafrontier – Comparing Heterogeneous Groups
-        </h3>
-        <div class="collapse-content mt-4">
-          <p class="mb-3"><strong>Idea:</strong> Each region has its own group frontier; a convex <em>metafrontier</em> envelopes all groups. <br>
-            <strong>Technology Gap Ratio (TGR)</strong> = TE<sub>group</sub> / TE<sub>meta</sub> ∈ (0,1].</p>
-
-          <pre><code class="language-stata">* -------------------------------------------------
-* 9. METAFONTIER
-* -------------------------------------------------
-ssc install metafrontier, replace
+        <!-- 9. Metafrontier -->
+        <div class="mb-12">
+          <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> 9. Metafrontier</h3>
+          <div class="collapse-content mt-4">
+            <p class="mb-3">TGR = TE<sub>group</sub> / TE<sub>meta</sub>.</p>
+            <pre><code class="language-stata">ssc install metafrontier, replace
 use "farm_data.dta", clear
 keep if year==2022
-
-metafrontier labor capital = yield, group(region) rts(vrs) ///
-             saving(meta_out, replace)
-
+metafrontier labor capital = yield, group(region) rts(vrs) saving(meta_out, replace)
 use meta_out, clear
 gen tgr = te_group / te_meta
-bysort region: summarize te_group te_meta tgr
-
-twoway (scatter tgr region), ytitle("TGR") xtitle("Region") ///
-       title("Technology Gap by Region")
-graph export "meta_tgr.pdf", replace
-          </code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <a href="data:application/octet-stream;base64," id="meta-do" class="download-btn mt-2">9_metafrontier.do</a>
+bysort region: sum tgr
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <a href="#" id="meta-do" class="download-btn">9_metafrontier.do</a>
+          </div>
         </div>
-      </div>
 
-    </article>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="text-center py-8 text-xs text-gray-500">
-    <p>© 2025 Dr Abdulla – Full Efficiency & Productivity Guide</p>
+  <footer class="py-12 text-center relative">
+    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
+    <nav class="mt-4 flex justify-center space-x-10">
+      <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+      <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+      <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+      <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
+    </nav>
+    <p class="mt-6 text-sm">© 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
 
-  <!-- ============================================================= -->
-  <!-- JavaScript: Theme | Collapse | Search | Copy | Download Links -->
-  <!-- ============================================================= -->
   <script>
-    // ---------- Theme ----------
+    // Theme
     const toggle = document.getElementById('theme-toggle'), body = document.body, icon = toggle.querySelector('i');
     if (localStorage.getItem('theme') === 'light') { body.classList.add('light-mode'); icon.classList.replace('fa-moon','fa-sun'); icon.style.color='#1e3a8a'; }
     toggle.addEventListener('click', () => {
@@ -539,23 +439,26 @@ graph export "meta_tgr.pdf", replace
       localStorage.setItem('theme', light ? 'light' : 'dark');
     });
 
-    // ---------- Collapse ----------
+    // Observer
+    const observer = new IntersectionObserver(e => e.forEach(en => { if (en.isIntersecting) en.target.classList.add('in-view'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in, .section-header').forEach(el => observer.observe(el));
+
+    // Scroll Nav
+    window.addEventListener('scroll', () => document.querySelector('.sticky-nav').classList.toggle('scrolled', window.scrollY > 100));
+
+    // Collapse
     document.querySelectorAll('.collapse-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const content = btn.nextElementSibling;
-        const chev = btn.querySelector('i');
+        const content = btn.nextElementSibling, chev = btn.querySelector('i');
         content.classList.toggle('open');
-        chev.classList.toggle('fa-chevron-down');
-        chev.classList.toggle('fa-chevron-up');
+        chev.classList.toggle('fa-chevron-down'); chev.classList.toggle('fa-chevron-up');
       });
     });
 
-    // ---------- Search ----------
-    const searchIn = document.getElementById('search-input');
-    const results = document.getElementById('search-results');
+    // Search
+    const searchIn = document.getElementById('search-input'), results = document.getElementById('search-results');
     searchIn.addEventListener('input', e => {
-      const q = e.target.value.toLowerCase().trim();
-      results.innerHTML = '';
+      const q = e.target.value.toLowerCase().trim(); results.innerHTML = '';
       if (q.length < 2) return;
       document.querySelectorAll('h3, code, p, td').forEach(el => {
         if (el.innerText.toLowerCase().includes(q)) {
@@ -563,39 +466,38 @@ graph export "meta_tgr.pdf", replace
           card.className = 'p-3 bg-gray-800 rounded mb-2 text-sm cursor-pointer hover:bg-gray-700';
           const title = el.tagName === 'H3' ? el.innerText : el.innerText.split('\n')[0];
           card.innerHTML = `<strong>${title}</strong><p class="text-gray-400">${el.closest('.collapse-content')?.innerText.slice(0,180)}...</p>`;
-          card.onclick = () => { el.scrollIntoView({behavior:'smooth'}); };
+          card.onclick = () => el.scrollIntoView({behavior:'smooth'});
           results.appendChild(card);
         }
       });
     });
 
-    // ---------- Copy ----------
+    // Copy
     function copyCode(btn) {
       const code = btn.parentElement.querySelector('code').innerText;
       navigator.clipboard.writeText(code).then(() => {
-        const orig = btn.textContent;
-        btn.textContent = 'Copied!';
+        const orig = btn.textContent; btn.textContent = 'Copied!';
         setTimeout(() => btn.textContent = orig, 2000);
       });
     }
 
-    // ---------- Auto-generate downloadable .do files ----------
+    // Download .do files
     const doFiles = {
-      '0_generate_data.do'   : document.querySelectorAll('pre code')[0].innerText,
-      '1_dea_scale.do'       : document.querySelectorAll('pre code')[1].innerText,
-      '2_dea_cost.do'        : document.querySelectorAll('pre code')[2].innerText,
-      '3_sfa_translog.do'    : document.querySelectorAll('pre code')[3].innerText,
-      '4_sfa_cost.do'        : document.querySelectorAll('pre code')[4].innerText,
-      '5_panel_sfa_bc95.do'  : document.querySelectorAll('pre code')[5].innerText,
-      '6_malmquist.do'       : document.querySelectorAll('pre code')[6].innerText,
-      '7_luenberger.do'      : document.querySelectorAll('pre code')[7].innerText,
-      '8_deaboot.do'         : document.querySelectorAll('pre code')[8].innerText,
-      '9_metafrontier.do'    : document.querySelectorAll('pre code')[9].innerText
+      '0_generate_data.do': document.querySelectorAll('pre code')[0]?.innerText,
+      '1_dea_scale.do': document.querySelectorAll('pre code')[1]?.innerText,
+      '2_dea_cost.do': document.querySelectorAll('pre code')[2]?.innerText,
+      '3_sfa_translog.do': document.querySelectorAll('pre code')[3]?.innerText,
+      '4_sfa_cost.do': document.querySelectorAll('pre code')[4]?.innerText,
+      '5_panel_sfa_bc95.do': document.querySelectorAll('pre code')[5]?.innerText,
+      '6_malmquist.do': document.querySelectorAll('pre code')[6]?.innerText,
+      '7_luenberger.do': document.querySelectorAll('pre code')[7]?.innerText,
+      '8_deaboot.do': document.querySelectorAll('pre code')[8]?.innerText,
+      '9_metafrontier.do': document.querySelectorAll('pre code')[9]?.innerText
     };
     Object.entries(doFiles).forEach(([name, content]) => {
-      const link = document.getElementById(name.replace('.do','').replace(/[0-9]_/,'') + '-do') || 
-                   Array.from(document.querySelectorAll('a.download-btn')).find(a => a.textContent.includes(name));
-      if (link) {
+      const id = name.replace('.do','').replace(/[0-9]_/,'') + '-do';
+      const link = document.getElementById(id);
+      if (link && content) {
         const blob = new Blob([content], {type: 'text/plain'});
         link.href = URL.createObjectURL(blob);
         link.download = name;
