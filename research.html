@@ -1,562 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Dr Abdulla">
-  <meta name="generator" content="Jekyll v4.2.2">
-  <meta name="description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="author" content="Dr Abdulla"/>
+  <meta name="description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia."/>
   <title>Dr Abdulla | Research</title>
-  <link rel="canonical" href="/website/research.html">
-  <!-- Tailwind CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
 
-  <!-- Open Graph for SEO -->
-  <meta property="og:title" content="Dr Abdulla | Research">
-  <meta property="og:description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://abdullahalig007.github.io/website/research.html">
-  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dr Abdulla | Research"/>
+  <meta property="og:description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://abdullahalig007.github.io/website/research.html"/>
+  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg"/>
 
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dr Abdulla | Research">
-  <meta name="twitter:description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-  <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Dr Abdulla | Research"/>
+  <meta name="twitter:description" content="Research publications and work in progress by Dr Abdulla, Assistant Professor at Jamia Millia Islamia."/>
+  <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg"/>
+
+  <!-- Tailwind (CDN for utility classes) + Font Awesome + Prism -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"/>
 
   <style>
-    :root {
-      --bg-color: #0f172a;
-      --text-color: #e2e8f0;
-      --card-bg: #1e293b;
-      --border-color: #334155;
-      --accent-color: #facc15;
-      --link-color: #93c5fd;
-      --hover-link: #facc15;
-      --secondary-accent: #10b981;
+    :root{
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card: rgba(30,41,59,0.7);
+      --border: rgba(148,163,184,0.12);
+      --accent: #facc15;
+      --accent-2: #10b981;
+      --particle: #64748b;
+      --particle-line: #475569;
+    }
+    .light-mode{
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --card: rgba(255,255,255,0.85);
+      --border: rgba(100,116,139,0.12);
+      --accent: #1e3a8a;
+      --accent-2: #059669;
+      --particle: #94a3b8;
+      --particle-line: #cbd5e1;
     }
 
-    body.light-mode {
-      --bg-color: #f8fafc;
-      --text-color: #1e293b;
-      --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --accent-color: #1e3a8a;
-      --link-color: #1e40af;
-      --hover-link: #2563eb;
-      --secondary-accent: #059669;
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      transition: all .35s ease;
+      line-height:1.6;
+      overflow-x:hidden;
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s ease, color 0.4s ease;
-      overflow-x: hidden;
+    /* Particles full-screen behind content */
+    #particles-js{
+      position: fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
     }
 
-    h1, h2, h3, h4 {
+    /* Hero */
+    .hero{
+      background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(250,204,21,0.06) 100%);
+      padding:5rem 0;
+      text-align:center;
+      color:var(--text);
+      clip-path: polygon(0 0,100% 0,100% 86%,0 100%);
+    }
+    .hero h1{
       font-family: 'Playfair Display', serif;
-      color: var(--text-color);
+      font-weight:700;
+      letter-spacing:-0.02em;
     }
 
-    .hero {
-      background: linear-gradient(135deg, var(--bg-color), var(--accent-color));
-      color: white;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s ease;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%);
-      animation: pulse 5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.2; }
-      100% { transform: scale(1); opacity: 0.5; }
-    }
-
-    .sticky-nav {
+    /* Sticky nav */
+    header.site-nav{
       position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: background 0.4s ease, transform 0.3s ease;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(8px);
+      background: rgba(15,23,42,0.75);
+      border-bottom:1px solid var(--border);
     }
+    .nav-link{
+      color:var(--text);
+      text-decoration:none;
+      display:inline-flex;
+      gap:.5rem;
+      align-items:center;
+      transition: color .25s ease;
+      font-weight:500;
+    }
+    .nav-link:hover{ color: var(--accent); }
+    .nav-link.active{ color: var(--accent); }
 
-    .sticky-nav.scrolled {
-      transform: translateY(0);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+    /* Mobile menu */
+    #mobile-menu{ transform: translateX(100%); transition: transform .35s ease; }
+    #mobile-menu.open{ transform: translateX(0); }
 
-    body.light-mode .sticky-nav {
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /* Glass card */
+    .glass{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding:1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
     }
+    .glass:hover{ transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
 
-    .nav-link {
-      transition: all 0.3s ease;
-      color: var(--text-color);
-      position: relative;
-    }
+    .section-title{ font-family: 'Playfair Display', serif; color: var(--accent); border-bottom: 3px solid var(--accent); display:inline-block; padding-bottom:.25rem; }
 
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-color);
-      transition: width 0.3s ease;
+    /* Table styling */
+    table{ width:100%; border-collapse: collapse; margin-top:1rem; border-radius: .6rem; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    th, td{
+      padding:.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      text-align:left;
+      vertical-align:top;
     }
+    th{
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: var(--bg);
+      font-weight:700;
+    }
+    tbody tr:nth-child(even){ background: rgba(255,255,255,0.02); }
+    a.link-inline{ color: inherit; text-decoration: underline; }
 
-    .nav-link:hover::after {
-      width: 100%;
-    }
+    /* collapse */
+    .collapse-btn{ cursor:pointer; display:flex; align-items:center; gap:.6rem; font-weight:600; color:var(--accent-2); }
+    .collapse-content{ max-height:0; overflow:hidden; transition: max-height .5s ease; }
+    .collapse-content.open{ max-height: 4000px; }
 
-    .nav-link:hover {
-      color: var(--accent-color);
-    }
+    /* small helpers */
+    .badge{ display:inline-block; padding:.25rem .6rem; border-radius:999px; font-weight:700; font-size:.8rem }
+    .badge-yellow{ background: var(--accent); color: var(--bg); }
+    .note{ color: rgba(226,232,240,0.7); font-style:italic; margin-top:.75rem; }
 
-    .theme-toggle {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .theme-toggle:hover {
-      transform: rotate(180deg);
-    }
+    footer{ padding:3rem 0; border-top:1px solid var(--border); background: transparent; text-align:center; }
 
-    .section-header {
-      border-bottom: 3px solid var(--accent-color);
-      padding-bottom: 0.5rem;
-      color: var(--accent-color);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(to right, var(--accent-color), var(--secondary-accent));
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-
-    .section-header.in-view::after {
-      transform: translateX(0);
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      overflow: hidden;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent-color);
-      box-shadow: 0 15px 30px rgba(250, 204, 21, 0.2);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.5s;
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    a {
-      color: var(--link-color);
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    a:hover {
-      color: var(--hover-link);
-      text-shadow: 0 0 5px var(--hover-link);
-    }
-
-    .icon-link {
-      color: var(--text-color);
-      transition: all 0.3s ease;
-    }
-    .icon-link:hover {
-      color: var(--accent-color);
-      transform: scale(1.2) rotate(360deg);
-    }
-
-    footer {
-      background: var(--bg-color);
-      border-top: 1px solid var(--border-color);
-      transition: background 0.4s ease;
-      position: relative;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, var(--bg-color), transparent);
-      pointer-events: none;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin-top: 1rem;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    th, td {
-      border: 1px solid var(--border-color);
-      padding: 1rem;
-      text-align: left;
-      transition: background-color 0.3s ease;
-    }
-    th {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-      font-family: 'Playfair Display', serif;
-    }
-    tr:nth-child(even) {
-      background-color: rgba(249, 250, 251, 0.5);
-    }
-    tr:hover {
-      background-color: rgba(243, 244, 246, 0.8);
-    }
-    body.light-mode tr:nth-child(even) {
-      background-color: #f9fafb;
-    }
-    body.light-mode tr:hover {
-      background-color: #f3f4f6;
+    /* responsive tweaks */
+    @media (max-width:768px){
+      .hero{ padding:3rem 1.25rem; }
+      header .container{ padding-left:1rem; padding-right:1rem; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Hero Section -->
-  <section class="hero py-16 text-center relative">
-    <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Dr Abdulla</h1>
-      <p class="text-xl md:text-2xl mb-3 font-light">Assistant Professor at Jamia Millia Islamia</p>
-      <p class="text-md md:text-lg mt-2 italic">Research Publications and Work in Progress</p>
+
+  <!-- Particles background -->
+  <div id="particles-js"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl md:text-6xl font-bold mb-3">Dr Abdulla</h1>
+      <p class="text-xl md:text-2xl font-light mb-1">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-md md:text-lg italic opacity-90">Research publications and work in progress</p>
     </div>
   </section>
 
-<!-- Navigation -->
-  <header class="sticky-nav shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-7 flex items-center">
-        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
-        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity</a>
-        <div id="theme-toggle" class="theme-toggle ml-4"><i class="fas fa-moon fa-lg" style="color:#facc15;"></i></div>
+  <!-- Navigation -->
+  <header class="site-nav">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/website/" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold">DA</div>
+        <span class="font-semibold text-lg">Dr Abdulla</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt"></i><span class="ml-1">CV</span></a>
+        <a href="/website/" class="nav-link"><i class="fas fa-user"></i><span class="ml-1">About</span></a>
+        <a href="/website/research.html" class="nav-link active"><i class="fas fa-flask"></i><span class="ml-1">Research</span></a>
+        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i><span class="ml-1">Teaching</span></a>
+        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book"></i><span class="ml-1">Resources</span></a>
+        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap"></i><span class="ml-1">Learning</span></a>
+        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line"></i><span class="ml-1">Efficiency</span></a>
+
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-slate-700/30 transition" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
       </nav>
+
+      <div class="md:hidden flex items-center">
+        <button id="mobile-open" class="text-white p-2"><i class="fas fa-bars fa-lg"></i></button>
+      </div>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-12">
-    <section id="research" class="mb-12 fade-in">
-      <h1 class="text-4xl font-semibold section-header">Research</h1>
-      <div class="card p-8 mt-6 relative">
-        <h3 class="text-2xl font-medium mb-4">Work in Progress</h3>
-        <h4 class="text-xl font-medium mb-3">Forthcoming Papers</h4>
-        <table class="mt-2">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Journal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Technical Efficiency of Contract Farm: Evidence from Potato Farmers in Gujarat</td>
-              <td>Indian Journal of Agricultural Sciences (Forthcoming)</td>
-            </tr>
-            <tr>
-              <td>Impact of Farmer Producers Organization on the Technical Efficiency of Vegetable Crops in J&K: A Stochastic Frontier Approach</td>
-              <td>Economic and Political Weekly (Forthcoming)</td>
-            </tr>
-          </tbody>
-        </table>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-slate-900/95 z-50 flex flex-col items-center justify-center space-y-6 text-xl p-6">
+    <button id="mobile-close" class="absolute top-6 right-6 text-white text-2xl"><i class="fas fa-times"></i></button>
+    <a href="/website/cv.html" class="nav-link text-2xl">CV</a>
+    <a href="/website/" class="nav-link text-2xl">About</a>
+    <a href="/website/research.html" class="nav-link text-2xl">Research</a>
+    <a href="/website/teaching.html" class="nav-link text-2xl">Teaching</a>
+    <a href="/website/resource.html" class="nav-link text-2xl">Resources</a>
+    <a href="/website/learning-resources.html" class="nav-link text-2xl">Learning</a>
+    <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link text-2xl">Efficiency</a>
+  </div>
 
-        <h4 class="text-xl font-medium mb-3 mt-6">Under Review</h4>
-        <table class="mt-2">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Co-authors</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach</td>
-              <td>Ahmad, I.</td>
-            </tr>
-            <tr>
-              <td>A Meta-Stochastic Frontier Analysis for Energy Efficiency of Sectors in India</td>
-              <td>Masood, T.</td>
-            </tr>
-            <tr>
-              <td>Growth and Productivity Change of Vegetables and Fruits Processing Industry in India</td>
-              <td>Kumar, S.</td>
-            </tr>
-            <tr>
-              <td>A Non-parametric Analysis of Climate Change Nexus on Agricultural Productivity in India: Implications on Food Security</td>
-              <td>Birthal, P. S.</td>
-            </tr>
-            <tr>
-              <td>Climate Change and its Impact on Crops Productivity in Uttar Pradesh</td>
-              <td>Bali, D.</td>
-            </tr>
-            <tr>
-              <td>Spatial Analysis of Climate-Induced Risk in Uttar Pradesh</td>
-              <td>Kumar, N. R.</td>
-            </tr>
-            <tr>
-              <td>Assessing Agriculture Vulnerability in Uttar Pradesh: Evidence from Block Level Data</td>
-              <td>Kumar, N. R.</td>
-            </tr>
-          </tbody>
-        </table>
+  <!-- Main -->
+  <main class="container mx-auto px-6 py-12 relative z-10">
+    <!-- Search (kept simple) -->
+    <section class="mb-8">
+      <input id="search-input" type="text" placeholder="Search titles, co-authors, journals..." class="w-full p-3 rounded-md glass"/>
+    </section>
 
-        <h3 class="text-2xl font-medium mb-4 mt-8">Research Publications</h3>
-        <h4 class="text-xl font-medium mb-3">Journal Articles</h4>
-        <table class="mt-2">
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Title</th>
-              <th>Authors</th>
-              <th>Journal</th>
-              <th>Link/DOI</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2024</td>
-              <td>Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India</td>
-              <td>Kumar, N. R., & Abdulla</td>
-              <td>Agricultural Economics Research Review, 37(1), 71–80</td>
-              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2023</td>
-              <td>The Effect of Information Technology on Banking Efficiency</td>
-              <td>Khan, A. S., & Abdulla</td>
-              <td>Economic and Political Weekly, 58(37), 40–46</td>
-              <td><a href="https://www.epw.in/journal/2023/37" class="hover:text-blue-400">Link</a></td>
-            </tr>
-            <tr>
-              <td>2022</td>
-              <td>Decomposing Productivity Growth in the Indian Sugar Industry</td>
-              <td>Kumar, S., & Abdulla</td>
-              <td>Agricultural Economics Research Review, 35(1), 71–80</td>
-              <td><a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2021</td>
-              <td>Technical Efficiency and Its Determinants in the Indian Meat Processing Industry</td>
-              <td>Abdulla, & Kumar, S.</td>
-              <td>The Indian Journal of Animal Sciences, 91(3), 230–234</td>
-              <td><a href="https://doi.org/10.56093/ijans.v91i3.114149" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2021</td>
-              <td>Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry</td>
-              <td>Kumar, S., & Abdulla</td>
-              <td>The Indian Journal of Animal Sciences, 91(2), 137–142</td>
-              <td><a href="https://doi.org/10.56093/ijans.v91i2.113822" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2021</td>
-              <td>Technical Efficiency and Its Determinants in the Indian Textile Garments Industry</td>
-              <td>Abdulla, & Kumar, S.</td>
-              <td>Research Journal of Textile and Apparel, 25(4), 346–360</td>
-              <td><a href="https://doi.org/10.1108/RJTA-09-2020-0110" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2020</td>
-              <td>Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach</td>
-              <td>Kumar, S., & Abdulla</td>
-              <td>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</td>
-              <td><a href="https://doi.org/10.56093/ijas.v90i8.105958" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2020</td>
-              <td>Trade Off Between Stubble Management and Ecosystem Services</td>
-              <td>Kumar, S., Abdulla, & Singh, C. P.</td>
-              <td>N/A</td>
-              <td><a href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" class="hover:text-blue-400">Link</a></td>
-            </tr>
-            <tr>
-              <td>2020</td>
-              <td>Productivity Growth in India’s Bakery Manufacturing Industry</td>
-              <td>Kumar, S., Abdulla, & Singh, C.</td>
-              <td>Journal of Agribusiness in Developing and Emerging Economies</td>
-              <td><a href="https://doi.org/10.1108/JADEE-12-2019-0204" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2019</td>
-              <td>Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms</td>
-              <td>Khan, M. R., & Abdulla</td>
-              <td>SEDME (Small Enterprises Development, Management & Extension Journal), 46(4), 235–247</td>
-              <td><a href="https://doi.org/10.1177/0970846419894775" class="hover:text-blue-400">DOI</a></td>
-            </tr>
-            <tr>
-              <td>2017</td>
-              <td>An Analysis of Poverty Among Social and Religious Groups in Uttar Pradesh</td>
-              <td>Abdulla, & Ahmad, M. I.</td>
-              <td>The Indian Economic Journal, December (Special Issue)</td>
-              <td>N/A</td>
-            </tr>
-            <tr>
-              <td>2017</td>
-              <td>Technical Efficiency and Its Determinants: A Stochastic Frontier Analysis of Sugar Mills in Uttar Pradesh</td>
-              <td>Ahmad, M. I., & Abdulla</td>
-              <td>IUP Journal of Applied Economics, 16(4)</td>
-              <td>N/A</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4 class="text-xl font-medium mb-3 mt-6">Books and Chapters</h4>
-        <table class="mt-2">
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Title</th>
-              <th>Authors</th>
-              <th>Publisher/Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2025</td>
-              <td>Spreadsheet Modelling MBA-1008</td>
-              <td>Abdulla</td>
-              <td>Aligarh: Center for Distance Education, Aligarh Muslim University</td>
-            </tr>
-            <tr>
-              <td>2019</td>
-              <td>Total Factor Productivity Using Stochastic Frontier Production Function</td>
-              <td>Abdulla, Kumar, S., & Singh, D.</td>
-              <td>In Quantitative Methods for Social Sciences (pp. 264–274). ICAR-NIAP</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Research content wrapped in glass card -->
+    <section class="glass">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-2xl font-semibold section-title">Research</h2>
+          <p class="note">Work in progress, forthcoming and published research by Dr Abdulla</p>
+        </div>
+        <div class="text-right">
+          <span class="badge badge-yellow">Agricultural Economics</span>
+        </div>
       </div>
+
+      <!-- Work in Progress (collapsible) -->
+      <div class="mt-6">
+        <div class="collapse-btn" id="wip-toggle"><i class="fas fa-chevron-down"></i> <span>Work in Progress</span></div>
+        <div class="collapse-content mt-4" id="wip-content">
+          <p class="mb-3 font-medium">Forthcoming Papers</p>
+          <table>
+            <thead>
+              <tr><th>Title</th><th>Journal</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Technical Efficiency of Contract Farm: Evidence from Potato Farmers in Gujarat</td>
+                <td>Indian Journal of Agricultural Sciences (Forthcoming)</td>
+              </tr>
+              <tr>
+                <td>Impact of Farmer Producers Organization on the Technical Efficiency of Vegetable Crops in J&K: A Stochastic Frontier Approach</td>
+                <td>Economic and Political Weekly (Forthcoming)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 class="mt-6 font-semibold">Under Review</h4>
+          <table>
+            <thead><tr><th>Title</th><th>Co-authors</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach</td>
+                <td>Ahmad, I.</td>
+              </tr>
+              <tr>
+                <td>A Meta-Stochastic Frontier Analysis for Energy Efficiency of Sectors in India</td>
+                <td>Masood, T.</td>
+              </tr>
+              <tr>
+                <td>Growth and Productivity Change of Vegetables and Fruits Processing Industry in India</td>
+                <td>Kumar, S.</td>
+              </tr>
+              <tr>
+                <td>A Non-parametric Analysis of Climate Change Nexus on Agricultural Productivity in India: Implications on Food Security</td>
+                <td>Birthal, P. S.</td>
+              </tr>
+              <tr>
+                <td>Climate Change and its Impact on Crops Productivity in Uttar Pradesh</td>
+                <td>Bali, D.</td>
+              </tr>
+              <tr>
+                <td>Spatial Analysis of Climate-Induced Risk in Uttar Pradesh</td>
+                <td>Kumar, N. R.</td>
+              </tr>
+              <tr>
+                <td>Assessing Agriculture Vulnerability in Uttar Pradesh: Evidence from Block Level Data</td>
+                <td>Kumar, N. R.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div class="mt-8">
+        <div class="collapse-btn" id="pub-toggle"><i class="fas fa-chevron-down"></i> <span>Research Publications</span></div>
+        <div class="collapse-content mt-4" id="pub-content">
+          <h3 class="text-xl font-semibold mt-2">Journal Articles</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th><th>Title</th><th>Authors</th><th>Journal</th><th>Link/DOI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2024</td>
+                <td>Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India</td>
+                <td>Kumar, N. R., &amp; Abdulla</td>
+                <td>Agricultural Economics Research Review, 37(1), 71–80</td>
+                <td><a class="link-inline" href="https://doi.org/10.5958/0974-0279.2022.00006.2" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2023</td>
+                <td>The Effect of Information Technology on Banking Efficiency</td>
+                <td>Khan, A. S., &amp; Abdulla</td>
+                <td>Economic and Political Weekly, 58(37), 40–46</td>
+                <td><a class="link-inline" href="https://www.epw.in/journal/2023/37" target="_blank" rel="noopener">Link</a></td>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td>Decomposing Productivity Growth in the Indian Sugar Industry</td>
+                <td>Kumar, S., &amp; Abdulla</td>
+                <td>Agricultural Economics Research Review, 35(1), 71–80</td>
+                <td><a class="link-inline" href="https://doi.org/10.5958/0974-0279.2022.00006.4" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2021</td>
+                <td>Technical Efficiency and Its Determinants in the Indian Meat Processing Industry</td>
+                <td>Abdulla, &amp; Kumar, S.</td>
+                <td>The Indian Journal of Animal Sciences, 91(3), 230–234</td>
+                <td><a class="link-inline" href="https://doi.org/10.56093/ijans.v91i3.114149" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2021</td>
+                <td>Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry</td>
+                <td>Kumar, S., &amp; Abdulla</td>
+                <td>The Indian Journal of Animal Sciences, 91(2), 137–142</td>
+                <td><a class="link-inline" href="https://doi.org/10.56093/ijans.v91i2.113822" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2021</td>
+                <td>Technical Efficiency and Its Determinants in the Indian Textile Garments Industry</td>
+                <td>Abdulla, &amp; Kumar, S.</td>
+                <td>Research Journal of Textile and Apparel, 25(4), 346–360</td>
+                <td><a class="link-inline" href="https://doi.org/10.1108/RJTA-09-2020-0110" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2020</td>
+                <td>Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach</td>
+                <td>Kumar, S., &amp; Abdulla</td>
+                <td>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</td>
+                <td><a class="link-inline" href="https://doi.org/10.56093/ijas.v90i8.105958" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2020</td>
+                <td>Trade Off Between Stubble Management and Ecosystem Services</td>
+                <td>Kumar, S., Abdulla, &amp; Singh, C. P.</td>
+                <td>N/A</td>
+                <td><a class="link-inline" href="https://agris.fao.org/agris-search/search.do?recordID=IN2022013160" target="_blank" rel="noopener">Link</a></td>
+              </tr>
+              <tr>
+                <td>2020</td>
+                <td>Productivity Growth in India’s Bakery Manufacturing Industry</td>
+                <td>Kumar, S., Abdulla, &amp; Singh, C.</td>
+                <td>Journal of Agribusiness in Developing and Emerging Economies</td>
+                <td><a class="link-inline" href="https://doi.org/10.1108/JADEE-12-2019-0204" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2019</td>
+                <td>Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms</td>
+                <td>Khan, M. R., &amp; Abdulla</td>
+                <td>SEDME (Small Enterprises Development, Management &amp; Extension Journal), 46(4), 235–247</td>
+                <td><a class="link-inline" href="https://doi.org/10.1177/0970846419894775" target="_blank" rel="noopener">DOI</a></td>
+              </tr>
+              <tr>
+                <td>2017</td>
+                <td>An Analysis of Poverty Among Social and Religious Groups in Uttar Pradesh</td>
+                <td>Abdulla, &amp; Ahmad, M. I.</td>
+                <td>The Indian Economic Journal, December (Special Issue)</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>2017</td>
+                <td>Technical Efficiency and Its Determinants: A Stochastic Frontier Analysis of Sugar Mills in Uttar Pradesh</td>
+                <td>Ahmad, M. I., &amp; Abdulla</td>
+                <td>IUP Journal of Applied Economics, 16(4)</td>
+                <td>N/A</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="text-xl font-semibold mt-6">Books &amp; Chapters</h3>
+          <table>
+            <thead><tr><th>Year</th><th>Title</th><th>Authors</th><th>Publisher/Details</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>2025</td>
+                <td>Spreadsheet Modelling MBA-1008</td>
+                <td>Abdulla</td>
+                <td>Aligarh: Center for Distance Education, Aligarh Muslim University</td>
+              </tr>
+              <tr>
+                <td>2019</td>
+                <td>Total Factor Productivity Using Stochastic Frontier Production Function</td>
+                <td>Abdulla, Kumar, S., &amp; Singh, D.</td>
+                <td>In Quantitative Methods for Social Sciences (pp. 264–274). ICAR-NIAP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="note mt-6">Tip: click the section headings to collapse / expand lists. Use the search box above to jump to titles or authors.</p>
     </section>
   </main>
 
-  <footer class="py-12 text-center relative">
-    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
-    <nav class="mt-4 flex justify-center space-x-10">
-      <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-      <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
-    </nav>
-    <p class="mt-6 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+  <!-- Footer -->
+  <footer>
+    <div class="container mx-auto px-6">
+      <div class="text-lg font-bold mb-4" style="color:var(--accent-2)">Agricultural Economics</div>
+      <nav class="flex justify-center gap-8 mb-4">
+        <a href="mailto:abdullahalig007@gmail.com" class="icon-link" aria-label="Email"><i class="fas fa-envelope fa-2x"></i></a>
+        <a href="https://x.com/abdullahalig07" class="icon-link" aria-label="Twitter"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link" aria-label="ResearchGate"><i class="fab fa-researchgate fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link" aria-label="ORCID"><i class="fab fa-orcid fa-2x"></i></a>
+        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link" aria-label="Google Scholar"><i class="fas fa-graduation-cap fa-2x"></i></a>
+      </nav>
+      <p class="text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts: particles.js + UI interactions -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    const toggle = document.getElementById('theme-toggle');
+    // Particles config (sync to CSS variables)
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {"value": 70, "density": {"enable": true, "value_area": 700}},
+        "color": {"value": getComputedStyle(document.documentElement).getPropertyValue('--particle').trim()},
+        "shape": {"type":"circle"},
+        "opacity": {"value":0.5, "random": true},
+        "size": {"value":3, "random":true},
+        "line_linked": {
+          "enable": true,
+          "distance": 140,
+          "color": getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim(),
+          "opacity": 0.28,
+          "width": 1
+        },
+        "move": {"enable": true, "speed": 2, "direction":"none", "random": false, "straight": false, "out_mode":"out", "bounce": false}
+      },
+      "interactivity": {
+        "detect_on":"canvas",
+        "events": {"onhover":{"enable": true, "mode":"grab"}, "onclick":{"enable":true,"mode":"push"}, "resize": true},
+        "modes": {"grab": {"distance": 140, "line_linked": {"opacity": 0.7}}, "push": {"particles_nb": 4}}
+      },
+      "retina_detect": true
+    });
+
+    // Theme toggle (persist)
+    const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    const icon = toggle.querySelector('i');
+    const themeIcon = themeToggle.querySelector('i');
 
     // Load saved theme
     if (localStorage.getItem('theme') === 'light') {
       body.classList.add('light-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
-      icon.style.color = '#1e3a8a';
+      themeIcon.classList.replace('fa-moon','fa-sun');
     }
 
-    toggle.addEventListener('click', () => {
+    themeToggle.addEventListener('click', () => {
       body.classList.toggle('light-mode');
       const isLight = body.classList.contains('light-mode');
-
-      icon.classList.toggle('fa-sun', isLight);
-      icon.classList.toggle('fa-moon', !isLight);
-      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
+      themeIcon.classList.toggle('fa-sun', isLight);
+      themeIcon.classList.toggle('fa-moon', !isLight);
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
 
-    // Intersection Observer for fade-in and section-header animations
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+      // update particle colors after theme change
+      setTimeout(() => {
+        if (window.pJSDom && window.pJSDom[0]) {
+          window.pJSDom[0].pJS.particles.color.value = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim();
+          window.pJSDom[0].pJS.particles.line_linked.color = getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim();
+          window.pJSDom[0].pJS.fn.particlesRefresh();
         }
+      }, 120);
+    });
+
+    // Mobile menu controls
+    document.getElementById('mobile-open').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('open');
+    });
+    document.getElementById('mobile-close').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+    });
+
+    // Collapse interactions
+    function toggleCollapse(btnId, contentId) {
+      const btn = document.getElementById(btnId);
+      const content = document.getElementById(contentId);
+      btn.addEventListener('click', () => {
+        const icon = btn.querySelector('i');
+        content.classList.toggle('open');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
       });
-    }, { threshold: 0.1 });
+    }
+    toggleCollapse('wip-toggle','wip-content');
+    toggleCollapse('pub-toggle','pub-content');
 
-    document.querySelectorAll('.fade-in, .section-header').forEach(el => {
-      observer.observe(el);
+    // Simple search: highlight matches and scroll
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (q.length < 2) return;
+      // find table cells that match and scroll to first
+      const cells = Array.from(document.querySelectorAll('table td'));
+      const match = cells.find(td => td.innerText.toLowerCase().includes(q));
+      if (match) match.scrollIntoView({behavior:'smooth', block:'center'});
     });
 
-    // Scrolled class for nav
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.sticky-nav');
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
+    // Intersection observer to animate section headers (optional)
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) en.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.section-title, .glass').forEach(el => obs.observe(el));
   </script>
+
+  <!-- Prism (if you later add code blocks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
 </body>
 </html>
