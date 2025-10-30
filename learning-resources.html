@@ -55,7 +55,7 @@
     .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
     .fade-in.in-view { opacity: 1; transform: translateY(0); }
     .resource-link { @apply text-blue-400 hover:text-blue-300 underline transition; }
-    .tab { cursor: pointer; padding: 1rem 2rem; background: var(--card-bg); border: 1px solid var(--border-color); border-bottom: none; border-radius: 8px 8px 0 0; transition: background 0.3s; }
+    .tab { cursor: pointer; padding: 1rem 2rem; background: var(--card-bg); border: 1px solid var(--border-color); border-bottom: none; border-radius: 8px 8px 0 0; transition: background 0.3s; display: flex; align-items: center; gap: 0.5rem; }
     .tab.active { background: var(--accent-color); color: var(--bg-color); font-weight: bold; }
     .tab-content { display: none; padding: 1.5rem; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 0 0 8px 8px; }
     .tab-content.active { display: block; }
@@ -132,23 +132,21 @@
       <!-- Tabs for Organized Content -->
       <div class="mb-12">
         <div class="flex border-b border-gray-600 flex-wrap">
-          <div class="tab active" data-tab="templates">Do-File Templates</div>
-          <div class="tab" data-tab="jupyter">Jupyter Notebooks</div>
-          <div class="tab" data-tab="webinars">Free Webinars</div>
-          <div class="tab" data-tab="courses">Free Courses</div>
-          <div class="tab" data-tab="books">Books & Communities</div>
-          <div class="tab" data-tab="master">Master Do-File & Roadmap</div>
-          <div class="tab" data-tab="external">External Resources</div>
-          <div class="tab" data-tab="packages">Stata Packages</div>
-          <div class="tab" data-tab="handbook">Commands Handbook</div>
+          <div class="tab active" data-tab="templates"><i class="fas fa-code"></i> Templates & Notebooks</div>
+          <div class="tab" data-tab="free-learning"><i class="fas fa-play-circle"></i> Free Learning</div>
+          <div class="tab" data-tab="references"><i class="fas fa-book"></i> Books & Datasets</div>
+          <div class="tab" data-tab="master"><i class="fas fa-code-branch"></i> Master & Roadmap</div>
+          <div class="tab" data-tab="packages"><i class="fas fa-cubes"></i> Packages & Dataviz</div>
+          <div class="tab" data-tab="handbook"><i class="fas fa-book-open"></i> Command Handbook</div>
         </div>
 
-        <!-- Do-File Templates -->
+        <!-- TEMPLATES & NOTEBOOKS -->
         <div id="templates" class="tab-content active">
           <section class="mb-12">
             <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-file-code"></i> Stata Do-File Templates
+              <i class="fas fa-file-code"></i> Do-File Templates & Jupyter Notebooks
             </h2>
+            <p class="mb-6">Ready-to-use do-files and interactive Jupyter notebooks for every stage of analysis.</p>
 
             <!-- Data Cleaning -->
             <div class="mb-6">
@@ -352,15 +350,11 @@ log close
                 <a href="files/mapping.do" download class="download-btn mt-2">Download mapping.do</a>
               </div>
             </div>
-          </section>
-        </div>
 
-        <!-- Jupyter Notebooks -->
-        <div id="jupyter" class="tab-content">
-          <section class="mb-12">
-            <h2 class="text-3xl font-bold text-green-400 mb-6 flex items-center gap-2">
+            <!-- Jupyter Notebooks -->
+            <h3 class="text-2xl font-bold mt-12 mb-6 text-green-400 flex items-center gap-2">
               <i class="fas fa-laptop-code"></i> Interactive Jupyter/Stata Notebooks
-            </h2>
+            </h3>
 
             <div class="mb-6">
               <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Cleaning + Transformation</h3>
@@ -392,12 +386,15 @@ graph export "map.png", replace
           </section>
         </div>
 
-        <!-- Free Webinars -->
-        <div id="webinars" class="tab-content">
+        <!-- FREE LEARNING -->
+        <div id="free-learning" class="tab-content">
           <section class="mb-12">
             <h2 class="text-3xl font-bold text-blue-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-video"></i> Detailed Free Webinars
+              <i class="fas fa-play-circle"></i> Free Learning: Webinars & Courses
             </h2>
+
+            <!-- Webinars -->
+            <h3 class="text-xl font-bold mb-4">Official Stata Webinars (45–60 min)</h3>
             <p class="mb-4">Stata's official webinars are short (45-60 minutes), expert-led sessions. Recordings are free on the Stata website.</p>
             <table>
               <thead>
@@ -460,15 +457,9 @@ graph export "map.png", replace
               </tbody>
             </table>
             <p class="mt-4">Access full schedule: <a href="https://www.stata.com/training/webinar/" class="resource-link">Stata Webinars</a>.</p>
-          </section>
-        </div>
 
-        <!-- Free Courses -->
-        <div id="courses" class="tab-content">
-          <section class="mb-12">
-            <h2 class="text-3xl font-bold text-green-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-graduation-cap"></i> Detailed Free Online Courses & Tutorials
-            </h2>
+            <!-- Courses -->
+            <h3 class="text-xl font-bold mt-10 mb-4">Self-Paced Free Courses</h3>
             <p class="mb-4">Self-paced courses with videos, quizzes, datasets, and exercises.</p>
             <table>
               <thead>
@@ -539,16 +530,18 @@ graph export "map.png", replace
                 </tr>
               </tbody>
             </table>
-            <p class="mt-4">Pro Tip: Start with Alison or edX for basics, then UCLA for depth.</p>
+            <p class="mt-6">Pro Tip: Start with <strong>Alison</strong> → move to <strong>UCLA</strong> → finish with <strong>NPTEL</strong>.</p>
           </section>
         </div>
 
-        <!-- Books & Communities -->
-        <div id="books" class="tab-content">
+        <!-- BOOKS & DATASETS -->
+        <div id="references" class="tab-content">
           <section class="mb-12">
             <h2 class="text-3xl font-bold text-purple-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-book"></i> Recommended Books & Communities
+              <i class="fas fa-book"></i> Books, Communities & Practice Datasets
             </h2>
+
+            <!-- Books -->
             <p class="mb-4">High-quality books from Stata Press with code examples and datasets.</p>
             <table>
               <thead>
@@ -592,7 +585,48 @@ graph export "map.png", replace
                 </tr>
               </tbody>
             </table>
-            <h3 class="text-2xl font-bold mt-8 mb-4">Communities & Tips</h3>
+
+            <!-- Datasets -->
+            <h3 class="text-xl font-bold mt-10 mb-4">Practice Datasets</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Source</th>
+                  <th>Use Case</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>auto.dta</td>
+                  <td>sysuse auto</td>
+                  <td>Basics, regression</td>
+                </tr>
+                <tr>
+                  <td>hsb2.xls</td>
+                  <td><a href="https://stats.idre.ucla.edu/stat/data/hsb2.xls" class="resource-link">UCLA</a></td>
+                  <td>Data cleaning</td>
+                </tr>
+                <tr>
+                  <td>nhanes2f.dta</td>
+                  <td>webuse nhanes2f</td>
+                  <td>Survey analysis</td>
+                </tr>
+                <tr>
+                  <td>grunfeld.dta</td>
+                  <td>webuse grunfeld</td>
+                  <td>Panel data</td>
+                </tr>
+                <tr>
+                  <td>sem_example.dta</td>
+                  <td>webuse sem_example</td>
+                  <td>SEM</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Communities -->
+            <h3 class="text-xl font-bold mt-8 mb-4">Communities & Tips</h3>
             <ul class="space-y-2">
               <li><i class="fas fa-comments"></i> <a href="https://www.statalist.org/" class="resource-link">Stata Forum (Statalist)</a> – Q&A, archives.</li>
               <li><i class="fab fa-reddit"></i> <a href="https://www.reddit.com/r/stata/" class="resource-link">Reddit (r/stata)</a> – Discussions, tips.</li>
@@ -602,11 +636,11 @@ graph export "map.png", replace
           </section>
         </div>
 
-        <!-- Master Do-File & Roadmap -->
+        <!-- MASTER & ROADMAP -->
         <div id="master" class="tab-content">
           <section class="mb-12">
             <h2 class="text-3xl font-bold text-red-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-code-branch"></i> Master Do-File & Learning Roadmap
+              <i class="fas fa-code-branch"></i> Master Do-File & 4-Week Roadmap
             </h2>
             <p class="mb-4">A complete, self-contained do-file combining all examples. Copy-paste into Stata.</p>
             <div class="mb-6">
@@ -749,43 +783,7 @@ log close
                 <a href="files/stata_learning_complete.do" download class="download-btn mt-2">Download Stata_Learning_Complete.do</a>
               </div>
             </div>
-            <h3 class="text-2xl font-bold mt-8 mb-4">Downloadable Practice Datasets</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Dataset</th>
-                  <th>Source</th>
-                  <th>Use Case</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>auto.dta</td>
-                  <td>sysuse auto</td>
-                  <td>Basics, regression</td>
-                </tr>
-                <tr>
-                  <td>hsb2.xls</td>
-                  <td><a href="https://stats.idre.ucla.edu/stat/data/hsb2.xls" class="resource-link">UCLA</a></td>
-                  <td>Data cleaning</td>
-                </tr>
-                <tr>
-                  <td>nhanes2f.dta</td>
-                  <td>webuse nhanes2f</td>
-                  <td>Survey analysis</td>
-                </tr>
-                <tr>
-                  <td>grunfeld.dta</td>
-                  <td>webuse grunfeld</td>
-                  <td>Panel data</td>
-                </tr>
-                <tr>
-                  <td>sem_example.dta</td>
-                  <td>webuse sem_example</td>
-                  <td>SEM</td>
-                </tr>
-              </tbody>
-            </table>
+
             <h3 class="text-2xl font-bold mt-8 mb-4">4-Week Learning Plan</h3>
             <table>
               <thead>
@@ -823,29 +821,12 @@ log close
           </section>
         </div>
 
-        <!-- External Resources -->
-        <div id="external" class="tab-content">
-          <section class="mb-12 p-6 bg-gradient-to-r from-indigo-900 to-purple-900 rounded-lg border border-purple-500">
-            <h2 class="text-2xl font-bold text-purple-300 mb-4 flex items-center gap-2">
-              <i class="fas fa-external-link-alt"></i> External Learning Resources
-            </h2>
-            <ul class="space-y-3 text-lg">
-              <li><i class="fas fa-book"></i> <a href="https://stats.idre.ucla.edu/stata/" class="resource-link">UCLA Stata Portal</a> – Tutorials & Examples</li>
-              <li><i class="fas fa-globe"></i> <a href="https://gadm.org" class="resource-link">GADM</a> – Free Administrative Boundaries</li>
-              <li><i class="fas fa-database"></i> <a href="https://data.worldbank.org" class="resource-link">World Bank Open Data</a> – GDP, Health, etc.</li>
-              <li><i class="fas fa-code"></i> <a href="https://github.com/asjadnaqvi/stata-schemes" class="resource-link">Stata Schemes by Asjad Naqvi</a></li>
-              <li><i class="fas fa-chalkboard"></i> <a href="https://www.stata.com/netcourse/" class="resource-link">Stata NetCourses</a> – Official Training</li>
-              <li><i class="fas fa-map"></i> <a href="https://geodacenter.github.io" class="resource-link">GeoDa Center</a> – Spatial Analysis</li>
-            </ul>
-          </section>
-        </div>
-
-        <!-- New Tab: Stata Packages -->
+        <!-- PACKAGES & DATAVIZ -->
         <div id="packages" class="tab-content">
           <section class="mb-12">
             <h1 class="text-4xl font-bold mb-6">Asjad Naqvi – Stata Dataviz & Spatial Packages</h1>
 
-            <!-- Section 1: Dataviz Packages -->
+            <!-- Dataviz Packages -->
             <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">Asjad Naqvi's Stata Dataviz Packages</h2>
             <p class="subtitle mb-4"><strong>Click package name for GitHub repository:</strong></p>
 
@@ -887,7 +868,7 @@ log close
               </tbody>
             </table>
 
-            <!-- Section 2: Spatial Analysis Packages -->
+            <!-- Spatial Packages -->
             <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2 mt-8">
               <a href="https://www.stata.com/manuals/sp.pdf" target="_blank">
                 Stata Spatial Analysis Packages
@@ -920,7 +901,7 @@ log close
               </tbody>
             </table>
 
-            <!-- Section 3: Example Code -->
+            <!-- Example Code -->
             <details class="mt-8">
               <summary>Example: Spatial Autoregressive Model (SAR) with Map</summary>
               <div class="code-block">
@@ -967,10 +948,10 @@ spatgsa resid, weights(W) graph
           </section>
         </div>
 
-        <!-- New Tab: Commands Handbook (Integrated from previous HTML) -->
+        <!-- COMMAND HANDBOOK -->
         <div id="handbook" class="tab-content">
           <section class="mb-12">
-            <h1 class="text-4xl font-bold mb-6">📘 Stata Complete Learning Handbook</h1>
+            <h1 class="text-4xl font-bold mb-6">Stata Complete Learning Handbook</h1>
             <p class="text-xl mb-3 font-light">Beginner → Intermediate → Advanced → Analysis → Workflow</p>
 
             <!-- BEGINNER -->
@@ -1308,20 +1289,18 @@ display "All scripts completed!"</code></pre>
     // Search Functionality
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
-    const allContent = document.querySelector('main').innerText.toLowerCase(); // Simple text search
 
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase();
       searchResults.innerHTML = '';
       if (query.length < 3) return;
 
-      // Mock search: Extract matching sections (in real, parse sections)
-      const sections = document.querySelectorAll('h2, h3, td, li');
+      const sections = document.querySelectorAll('h2, h3, h4, td, li, summary');
       sections.forEach(section => {
         if (section.innerText.toLowerCase().includes(query)) {
           const result = document.createElement('div');
           result.classList.add('search-result');
-          result.innerHTML = `<h4 class="font-bold">${section.innerText}</h4><p>${section.parentElement.innerText.slice(0, 150)}...</p>`;
+          result.innerHTML = `<h4 class="font-bold">${section.innerText}</h4><p>${section.closest('section, details, div')?.innerText.slice(0, 150)}...</p>`;
           searchResults.appendChild(result);
         }
       });
