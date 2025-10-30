@@ -140,6 +140,7 @@
           <div class="tab" data-tab="master">Master Do-File & Roadmap</div>
           <div class="tab" data-tab="external">External Resources</div>
           <div class="tab" data-tab="packages">Stata Packages</div>
+          <div class="tab" data-tab="handbook">Commands Handbook</div>
         </div>
 
         <!-- Do-File Templates -->
@@ -965,6 +966,281 @@ spatgsa resid, weights(W) graph
             </p>
           </section>
         </div>
+
+        <!-- New Tab: Commands Handbook (Integrated from previous HTML) -->
+        <div id="handbook" class="tab-content">
+          <section class="mb-12">
+            <h1 class="text-4xl font-bold mb-6">📘 Stata Complete Learning Handbook</h1>
+            <p class="text-xl mb-3 font-light">Beginner → Intermediate → Advanced → Analysis → Workflow</p>
+
+            <!-- BEGINNER -->
+            <section id="beginner">
+              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">1️⃣ Beginner: Basics & Data Management</h2>
+              <details open>
+                <summary>Opening and Managing Data</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Change directory and open a dataset
+cd "~/Desktop/data"
+use mydata.dta, clear
+
+// Built-in example data
+sysuse auto, clear
+list in 1/5
+summarize</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Creating and Replacing Variables</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Generate new variable
+gen price_thousand = price / 1000
+
+// Replace existing variable
+replace mpg = . if mpg < 10
+
+// Create logical variable
+gen expensive = price > 10000</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Labeling and Recoding</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">label variable price "Car Price in USD"
+label define type_lbl 0 "Domestic" 1 "Foreign"
+label values foreign type_lbl
+
+// Recode numeric variable
+recode price (0/5000=1 "Low") (5001/10000=2 "Mid") (10001/max=3 "High"), gen(price_cat)</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Sorting, Saving, and Exporting</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">sort price
+gsort -mpg
+save mydata_clean.dta, replace
+export delimited using "mydata.csv", replace</code></pre>
+                </div>
+              </details>
+            </section>
+
+            <!-- INTERMEDIATE -->
+            <section id="intermediate">
+              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">2️⃣ Intermediate: Loops, Merge, Append, Strings</h2>
+
+              <details>
+                <summary>Looping</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Loop through variables
+foreach var in price mpg weight {
+    summarize `var'
+}
+
+// Loop through numeric range
+forvalues i = 1/5 {
+    gen score`i' = runiform(0,100)
+}</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>String and Type Conversion</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">tostring age, gen(age_str)
+destring age_str, gen(age_num)
+encode region, gen(region_num)
+decode region_num, gen(region_txt)</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Merging and Appending</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Merge datasets
+merge 1:1 id using "data2.dta"
+
+// Append observations
+append using "newdata.dta"</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Split and Combine Strings</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Split a variable
+split fullname, parse(" ")
+
+// Combine two variables
+gen fullname = firstname + " " + lastname</code></pre>
+                </div>
+              </details>
+            </section>
+
+            <!-- ADVANCED -->
+            <section id="advanced">
+              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">3️⃣ Advanced: Reshape, Collapse, egen, by:</h2>
+
+              <details>
+                <summary>Using by:</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">sort region
+by region: summarize income
+by region: egen mean_income = mean(income)</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>egen Functions</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">egen avg_income = mean(income), by(region)
+egen miss_count = rowmiss(age income educ)
+egen total_sales = total(sales), by(store)
+egen rank_income = rank(income), by(region)</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Collapse Summaries</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">collapse (mean) avg_income = income (sd) sd_income = income, by(region)</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Reshape Wide/Long</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Wide to long
+reshape long income, i(id) j(year)
+// Long to wide
+reshape wide income, i(id) j(year)</code></pre>
+                </div>
+              </details>
+            </section>
+
+            <!-- ANALYSIS -->
+            <section id="analysis">
+              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">4️⃣ Analysis & Visualization</h2>
+
+              <details>
+                <summary>Descriptive Statistics</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">summarize price mpg
+tabulate foreign
+by foreign: summarize price</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Correlations & Regression</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">corr price mpg weight
+regress price mpg weight
+anova price foreign##rep78</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Common Graphs</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">histogram mpg, width(2)
+graph box price, over(foreign)
+scatter price mpg
+twoway (scatter price mpg) (lfit price mpg)</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Exporting Graphs</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">graph export "price_mpg.png", replace
+graph export "summary.pdf", replace</code></pre>
+                </div>
+              </details>
+            </section>
+
+            <!-- WORKFLOW -->
+            <section id="workflow">
+              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">5️⃣ Workflow & Do-File Automation</h2>
+
+              <details>
+                <summary>Do-File Basics</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">// Setup
+clear all
+set more off
+cd "~/Desktop/project"
+use data.dta, clear
+
+// Analysis
+summarize
+regress income educ age</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Logging</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">log using "session.log", replace
+summarize
+regress income educ age
+log close</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Loops in Do-Files</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">forvalues y = 2019/2023 {
+    use "data_`y'.dta", clear
+    summarize income
+    save "clean_`y'.dta", replace
+}</code></pre>
+                </div>
+              </details>
+
+              <details>
+                <summary>Master Workflow Example</summary>
+                <div class="code-block">
+                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                  <pre><code class="language-stata">/*****************************************************
+* MASTER DO-FILE
+*****************************************************/
+clear all
+set more off
+do "1_import.do"
+do "2_cleaning.do"
+do "3_analysis.do"
+do "4_graphs.do"
+log using "final.log", replace
+display "All scripts completed!"</code></pre>
+                </div>
+              </details>
+            </section>
+          </section>
+        </div>
+
       </div>
 
       <!-- GitHub -->
@@ -1053,7 +1329,7 @@ spatgsa resid, weights(W) graph
 
     // Copy Code Function
     function copyCode(btn) {
-      const code = btn.nextElementSibling.querySelector('pre').innerText;
+      const code = btn.parentElement.querySelector('pre').innerText;
       navigator.clipboard.writeText(code).then(() => {
         btn.textContent = 'Copied!';
         setTimeout(() => btn.textContent = 'Copy', 2000);
