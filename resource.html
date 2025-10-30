@@ -1,1089 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Dr Abdulla">
-  <meta name="description" content="Research resources for agricultural economics by Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Dr Abdulla" />
+  <meta name="description" content="Research resources for agricultural economics by Dr Abdulla, Assistant Professor at Jamia Millia Islamia." />
   <title>Dr Abdulla | Research Resources</title>
 
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dr Abdulla | Research Resources"/>
+  <meta property="og:description" content="Research resources for agricultural economics by Dr Abdulla, Assistant Professor at Jamia Millia Islamia."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://abdullahalig007.github.io/website/resource.html"/>
+  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg"/>
+
+  <!-- Tailwind CDN, FontAwesome, Prism (for future code blocks) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"/>
 
   <style>
-    :root {
-      --bg-color: #0f172a;
-      --text-color: #e2e8f0;
-      --card-bg: #1e293b;
-      --border-color: #334155;
-      --accent-color: #facc15;
-      --link-color: #93c5fd;
-      --hover-link: #facc15;
-      --secondary-accent: #10b981;
+    :root{
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card: rgba(30,41,59,0.7);
+      --border: rgba(148,163,184,0.12);
+      --accent: #facc15;
+      --accent-2: #10b981;
+      --particle: #64748b;
+      --particle-line: #475569;
+    }
+    .light-mode{
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --card: rgba(255,255,255,0.88);
+      --border: rgba(100,116,139,0.12);
+      --accent: #1e3a8a;
+      --accent-2: #059669;
+      --particle: #94a3b8;
+      --particle-line: #cbd5e1;
     }
 
-    body.light-mode {
-      --bg-color: #f8fafc;
-      --text-color: #1e293b;
-      --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --accent-color: #1e3a8a;
-      --link-color: #1e40af;
-      --hover-link: #2563eb;
-      --secondary-accent: #059669;
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      transition: all .35s ease;
+      line-height:1.6;
+      overflow-x:hidden;
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s ease, color 0.4s ease;
-      overflow-x: hidden;
-    }
+    /* Particles in background */
+    #particles-js{ position:fixed; inset:0; z-index:-1; pointer-events:none; }
 
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--text-color);
+    /* Hero */
+    .hero{
+      background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(250,204,21,0.06) 100%);
+      padding:4.5rem 0;
+      text-align:center;
+      color:var(--text);
+      clip-path: polygon(0 0,100% 0,100% 86%,0 100%);
     }
+    .hero h1{ font-family: 'Playfair Display', serif; font-weight:700; }
 
-    .hero {
-      background: linear-gradient(135deg, var(--bg-color), var(--accent-color));
-      color: white;
-      text-align: center;
-      padding: 5rem 0;
+    /* Nav */
+    header.site-nav{
+      position: sticky; top:0; z-index:60;
+      backdrop-filter: blur(8px);
+      background: rgba(15,23,42,0.75);
+      border-bottom: 1px solid var(--border);
     }
+    .nav-link{ color:var(--text); display:inline-flex; gap:.5rem; align-items:center; text-decoration:none; font-weight:500; }
+    .nav-link:hover{ color:var(--accent); }
 
-    .sticky-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Glass card */
+    .glass{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding:1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
     }
+    .glass:hover{ transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 24px 48px rgba(0,0,0,0.18); }
 
-    body.light-mode .sticky-nav {
-      background: rgba(255, 255, 255, 0.9);
-    }
+    .section-title{ font-family:'Playfair Display', serif; color: var(--accent); border-bottom: 3px solid var(--accent); display:inline-block; padding-bottom:.25rem; }
 
-    .nav-link {
-      transition: all 0.3s ease;
-      color: var(--text-color);
-      position: relative;
+    /* Accordion */
+    .accordion-btn{
+      width:100%; text-align:left; display:flex; justify-content:space-between; align-items:center;
+      padding:.75rem 1rem; border-radius:.75rem; background:transparent; border:1px solid rgba(255,255,255,0.03); cursor:pointer;
+      color:var(--text); font-weight:600;
     }
+    .accordion-btn:hover{ background: rgba(255,255,255,0.02); }
+    .accordion-panel{ max-height:0; overflow:hidden; transition: max-height .45s ease, padding .35s ease; padding:0 1rem; }
+    .accordion-panel.open{ padding:1rem; max-height:2000px; }
 
-    .nav-link:hover {
-      color: var(--accent-color);
-    }
+    table{ width:100%; border-collapse: collapse; margin-top:1rem; border-radius:.5rem; overflow:hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    th, td{ padding:.85rem 1rem; border-bottom:1px solid rgba(255,255,255,0.03); text-align:left; vertical-align:top; }
+    th{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: var(--bg); font-weight:700; }
+    tbody tr:nth-child(even){ background: rgba(255,255,255,0.02); }
 
-    .theme-toggle {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+    .copy-btn{ background:transparent; border: none; color:var(--accent-2); cursor:pointer; }
+    .note{ color: rgba(226,232,240,0.7); font-style:italic; margin-top:.75rem; }
 
-    .theme-toggle:hover {
-      transform: rotate(180deg);
-    }
+    footer{ padding:3rem 0; border-top:1px solid var(--border); text-align:center; background:transparent; }
 
-    .section-header {
-      border-bottom: 3px solid var(--accent-color);
-      padding-bottom: 0.5rem;
-      color: var(--accent-color);
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    a {
-      color: var(--link-color);
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: var(--hover-link);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    th, td {
-      border: 1px solid var(--border-color);
-      padding: 1rem;
-      text-align: left;
-    }
-    th {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-    }
-
-    tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    /* Fade-in Fix — ensure visibility even if JS fails */
-    .fade-in {
-      opacity: 1 !important;
-      transform: none !important;
-    }
+    @media (max-width:768px){ .hero{ padding:2.5rem 1rem } .nav-desktop{ display:none } .nav-mobile{ display:flex } }
+    @media (min-width:769px){ .nav-mobile{ display:none } .nav-desktop{ display:flex } }
   </style>
 </head>
-
 <body>
-  <!-- Hero Section -->
-  <section class="hero py-16 text-center relative">
-    <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Dr Abdulla</h1>
-      <p class="text-xl md:text-2xl mb-3 font-light">Assistant Professor at Jamia Millia Islamia</p>
-      <p class="text-md md:text-lg mt-2 italic">Research Resources for Agricultural Economics</p>
+  <div id="particles-js"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-bold mb-2">Dr Abdulla</h1>
+      <p class="text-lg md:text-xl mb-1 font-light">Assistant Professor at Jamia Millia Islamia</p>
+      <p class="text-sm md:text-md italic opacity-90">Research Resources for Agricultural Economics</p>
     </div>
   </section>
 
- <!-- Navigation -->
-  <header class="sticky-nav shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-7 flex items-center">
-        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
-        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity</a>
-        <div id="theme-toggle" class="theme-toggle ml-4"><i class="fas fa-moon fa-lg" style="color:#facc15;"></i></div>
+  <!-- Navigation -->
+  <header class="site-nav">
+    <div class="container mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="/website/" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold">DA</div>
+        <span class="font-semibold text-lg">Dr Abdulla</span>
+      </a>
+
+      <nav class="nav-desktop items-center gap-6">
+        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt"></i><span class="ml-1">CV</span></a>
+        <a href="/website/" class="nav-link"><i class="fas fa-user"></i><span class="ml-1">About</span></a>
+        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask"></i><span class="ml-1">Research</span></a>
+        <a href="/website/resource.html" class="nav-link active"><i class="fas fa-book"></i><span class="ml-1">Resources</span></a>
+        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i><span class="ml-1">Teaching</span></a>
+        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line"></i><span class="ml-1">Efficiency</span></a>
+
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-slate-700/30" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
       </nav>
+
+      <div class="nav-mobile flex items-center gap-3">
+        <button id="mobile-open" class="p-2"><i class="fas fa-bars fa-lg"></i></button>
+      </div>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-12">
-    <article class="card p-8 relative">
-      <header>
-        <h1 class="text-4xl font-semibold section-header">Research Resources</h1>
-      </header>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-slate-900/95 z-50 flex flex-col items-center justify-center space-y-6 p-6" style="transform:translateX(100%); transition:transform .35s ease;">
+    <button id="mobile-close" class="absolute top-6 right-6 text-white text-2xl"><i class="fas fa-times"></i></button>
+    <a href="/website/cv.html" class="nav-link text-2xl">CV</a>
+    <a href="/website/" class="nav-link text-2xl">About</a>
+    <a href="/website/research.html" class="nav-link text-2xl">Research</a>
+    <a href="/website/resource.html" class="nav-link text-2xl">Resources</a>
+    <a href="/website/teaching.html" class="nav-link text-2xl">Teaching</a>
+    <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link text-2xl">Efficiency</a>
+  </div>
 
-      <!-- 1. Data Sources -->
-      <section class="mt-6 fade-in">
-        <h2 class="text-3xl font-medium section-header">1. Data Sources</h2>
-
-        <!-- 🌾 Agriculture, Rural Economy & Food Systems -->
-        <h3 class="text-2xl font-semibold category-heading">🌾 Agriculture, Rural Economy & Food Systems</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Data</th>
-              <th>Source</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1.</td>
-              <td>Prices and arrivals in wholesale markets</td>
-              <td>AGMARKNET</td>
-              <td><a href="https://agmarknet.gov.in/" target="_blank" rel="noopener" aria-label="AGMARKNET data">Link</a></td>
-            </tr>
-            <tr>
-              <td>2.</td>
-              <td>Land Use, Crop production, Area under production, Cost of Cultivation, Farm Harvest Prices, Agricultural Wages, MSP</td>
-              <td>Directorate of Economics & Statistics, MoA&FW (GoI)</td>
-              <td><a href="https://desagri.gov.in/en/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>3.</td>
-              <td>District Level Database for Agriculture</td>
-              <td>ICRISAT-TCI</td>
-              <td><a href="http://data.icrisat.org/dld/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>4.</td>
-              <td>Village Dynamics in South Asia (panel)</td>
-              <td>ICRISAT</td>
-              <td><a href="https://vdsa.icrisat.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>5.</td>
-              <td>Emissions, Trade, Inputs, Investments (agri modules)</td>
-              <td>FAOSTAT</td>
-              <td><a href="https://www.fao.org/faostat/en/#home" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>6.</td>
-              <td>Milk production, availability, livestock population, share in GDP</td>
-              <td>NDDB</td>
-              <td><a href="https://www.nddb.coop/information/stats/milkprodindia" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>7.</td>
-              <td>Agricultural Census and Input Survey (1970–71 to 2015–16)</td>
-              <td>MoA&FW (GoI)</td>
-              <td><a href="https://inputsurvey.da.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>8.</td>
-              <td>National Food Security Mission – progress, minutes, maps, evaluations</td>
-              <td>MoA&FW (GoI)</td>
-              <td><a href="https://www.nfsm.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>9.</td>
-              <td>Unified Portal for Agricultural Statistics (UPAg) – near real-time crop/market</td>
-              <td>MoA&FW (GoI)</td>
-              <td><a href="https://upag.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>10.</td>
-              <td>Agricultural Science & Technology Indicators (ASTI) – R&amp;D, researchers</td>
-              <td>IFPRI (ASTI)</td>
-              <td><a href="https://asti.cgiar.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>11.</td>
-              <td>Global Animal Disease Information System (EMPRES-i)</td>
-              <td>FAO</td>
-              <td><a href="https://empres-i.apps.fao.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>12.</td>
-              <td>Livestock emission data (GLEAM dashboard)</td>
-              <td>FAO</td>
-              <td><a href="https://gleam.fao.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>13.</td>
-              <td>Global Food Prices (72 countries, 1,500 markets since 2003)</td>
-              <td>World Food Programme</td>
-              <td><a href="https://data.humdata.org/dataset/global-wfp-food-prices" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 📈 Economy, Industry & Finance -->
-        <h3 class="text-2xl font-semibold category-heading">📈 Economy, Industry & Finance</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Data</th>
-              <th>Source</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>14.</td>
-              <td>Wholesale & retail prices of essential commodities</td>
-              <td>Ministry of Consumer Affairs, Food & Public Distribution (GoI)</td>
-              <td><a href="https://fcainfoweb.nic.in/reports/report_menu_web.aspx" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>15.</td>
-              <td>Consumer Price Index (CPI)</td>
-              <td>MoSPI (GoI)</td>
-              <td><a href="https://mospi.gov.in/cpi" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>16.</td>
-              <td>Wholesale Price Index (WPI)</td>
-              <td>Ministry of Commerce & Industry (GoI)</td>
-              <td><a href="https://eaindustry.nic.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>17.</td>
-              <td>Banking, budget, GDP, exchange rate, key rates (DBIE)</td>
-              <td>Reserve Bank of India</td>
-              <td><a href="https://data.rbi.org.in/DBIE/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>18.</td>
-              <td>Exports & imports (incl. agri exports)</td>
-              <td>Ministry of Commerce & Industry / APEDA</td>
-              <td><a href="https://www.commerce.gov.in/trade-statistics/" target="_blank" rel="noopener">Link</a> • <a href="https://www.apeda.gov.in/apedawebsite/trade_promotion/trade_statistics.htm" target="_blank" rel="noopener">APEDA</a></td>
-            </tr>
-            <tr>
-              <td>19.</td>
-              <td>Annual & Quarterly GDP, State Domestic Product, other aggregates</td>
-              <td>MoSPI (GoI)</td>
-              <td><a href="https://www.mospi.gov.in/data" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>20.</td>
-              <td>EPWRF India Time Series (EPWRFITS) — subscription</td>
-              <td>EPW Research Foundation</td>
-              <td><a href="https://epwrfits.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>21.</td>
-              <td>CMIE databases (Prowess, CapEx, Economic Outlook, CPdx) — subscription</td>
-              <td>CMIE</td>
-              <td><a href="https://www.cmie.com/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>22.</td>
-              <td>Capitaline — corporate & financial data — subscription</td>
-              <td>Capital Market Publishers</td>
-              <td><a href="https://www.capitaline.com/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>23.</td>
-              <td>Penn World Table — income/output/productivity (1950–)</td>
-              <td>University of Groningen</td>
-              <td><a href="https://www.rug.nl/ggdc/productivity/pwt/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>24.</td>
-              <td>World Development Indicators (macro, poverty, health, etc.)</td>
-              <td>World Bank</td>
-              <td><a href="https://databank.worldbank.org/source/world-development-indicators" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>25.</td>
-              <td>Commodity prices (oil, natural gas, metals, agriculture, fertilizer)</td>
-              <td>World Bank</td>
-              <td><a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>26.</td>
-              <td>UN Comtrade — global trade (goods)</td>
-              <td>United Nations</td>
-              <td><a href="https://comtradeplus.un.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>27.</td>
-              <td>OECD Producer & Consumer Support Estimates</td>
-              <td>OECD</td>
-              <td><a href="https://www.oecd.org/en/data/indicators/agricultural-financial-support.html" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>28.</td>
-              <td>IndiaStat — socio-economic & electoral databank — subscription</td>
-              <td>Datanet India</td>
-              <td><a href="https://www.indiastat.com/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 🌍 Climate, Weather & Environment -->
-        <h3 class="text-2xl font-semibold category-heading">🌍 Climate, Weather & Environment</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Data</th>
-              <th>Source</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>29.</td>
-              <td>Temperature & rainfall; download climate data</td>
-              <td>World Bank Climate Change Knowledge Portal</td>
-              <td><a href="https://climateknowledgeportal.worldbank.org/download-data" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>30.</td>
-              <td>District & block-level weather prediction</td>
-              <td>India Meteorological Department (IMD)</td>
-              <td><a href="https://mausam.imd.gov.in/imd_latest/contents/agromet/advisory/indiadistrictforecast.php" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>31.</td>
-              <td>Drought Monitoring Portal</td>
-              <td>VEDAS, SAC, ISRO (GoI)</td>
-              <td><a href="https://vedas.sac.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>32.</td>
-              <td>India Drought Monitor — real-time conditions & forecast</td>
-              <td>IIT Gandhinagar</td>
-              <td><a href="https://indiadroughtmonitor.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>33.</td>
-              <td>Poverty, pollution, climate change, fertilizer & water use (maps)</td>
-              <td>Our World in Data</td>
-              <td><a href="https://ourworldindata.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>34.</td>
-              <td>Climate Projections for Indian Districts (2021–2040)</td>
-              <td>Azim Premji University</td>
-              <td><a href="https://cse.azimpremjiuniversity.edu.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>35.</td>
-              <td>Energy subsidies, energy access & fire incidences in Punjab</td>
-              <td>CEEW</td>
-              <td><a href="https://www.ceew.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 🧍 Demography, Health & Social -->
-        <h3 class="text-2xl font-semibold category-heading">🧍 Demography, Health & Social</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Data</th>
-              <th>Source</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>36.</td>
-              <td>NSSO/NSO microdata (ASI, IIP, PLFS, HCES, Economic Census, etc.)</td>
-              <td>NSO, MoSPI (Microdata Access Portal)</td>
-              <td><a href="https://microdata.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>37.</td>
-              <td>NSSO surveys (NADA & ICSSR mirrors)</td>
-              <td>MoSPI (GoI) & ICSSR</td>
-              <td>Register at <a href="https://microdata.gov.in/NADA/index.php/home" target="_blank" rel="noopener">National Data Archive</a> • <a href="https://www.icssrdataservice.in/" target="_blank" rel="noopener">ICSSR</a></td>
-            </tr>
-            <tr>
-              <td>38.</td>
-              <td>Health & Nutrition (DHS Program)</td>
-              <td>USAID / ICF</td>
-              <td><a href="https://dhsprogram.com/data/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>39.</td>
-              <td>Socio-Economic Caste Census (SECC)</td>
-              <td>Ministry of Rural Development (GoI)</td>
-              <td><a href="https://secc.dord.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>40.</td>
-              <td>India Human Development Survey (IHDS) — panel</td>
-              <td>NCAER / University of Maryland</td>
-              <td><a href="https://ihds.umd.edu/data" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>41.</td>
-              <td>India Working in Numbers — employment, earnings, productivity</td>
-              <td>Centre for Sustainable Employment, APU</td>
-              <td><a href="https://cse.azimpremjiuniversity.edu.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>42.</td>
-              <td>Migration — interstate, intrastate, child; migration corridors</td>
-              <td>India Migration Now</td>
-              <td><a href="https://indiamigrationnow.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>43.</td>
-              <td>NRLM — number of SHGs & members</td>
-              <td>Ministry of Rural Development (GoI)</td>
-              <td><a href="https://nrlm.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>44.</td>
-              <td>COVID-19 cases, deaths, RT-PCR tests, vaccination (historical)</td>
-              <td>COVID-19 India API</td>
-              <td><a href="https://api.covid19india.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>45.</td>
-              <td>Replication data & codes of published studies (mostly RCTs)</td>
-              <td>Harvard Dataverse</td>
-              <td><a href="https://dataverse.harvard.edu/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>46.</td>
-              <td>World Inequality Database — income & wealth distribution</td>
-              <td>World Inequality Lab</td>
-              <td><a href="https://wid.world/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 🧭 Governance, Policy & Political Data -->
-        <h3 class="text-2xl font-semibold category-heading">🧭 Governance, Policy & Political Data</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Data</th>
-              <th>Source</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>47.</td>
-              <td>Published Indian government data (surveys → admin; with maps)</td>
-              <td>NITI Aayog — NDAP</td>
-              <td><a href="https://ndap.niti.gov.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>48.</td>
-              <td>Database of national legislation, policies & bilateral agreements (food, agriculture, natural resources)</td>
-              <td>FAOLEX</td>
-              <td><a href="https://www.fao.org/faolex/en/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>49.</td>
-              <td>Border rejections in global markets; standards compliance comparison</td>
-              <td>UNIDO — Trade Standards Compliance</td>
-              <td><a href="https://tsc.unido.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>50.</td>
-              <td>Election results, parties, parliament Q&A, ministers, bureaucrats</td>
-              <td>Trivedi Centre for Political Data</td>
-              <td><a href="https://tcpd.ashoka.edu.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 🗺️ Spatial, Remote Sensing & Geographical Data -->
-        <h3 class="text-2xl font-semibold category-heading">🗺️ Spatial, Remote Sensing & Geographical Data</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Data</th>
-              <th>Source</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>51.</td>
-              <td>Indian maps & shapefiles (state, district, taluk, village boundaries)<p>The Survey of India under the Ministry of Science & Technology provides digital map data, including administrative boundaries at multiple levels.</p></td>
-              <td>Survey of India (MoS&T)</td>
-              <td><a href="https://onlinemaps.surveyofindia.gov.in/Digital_Product_Show.aspx" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>52.</td>
-              <td>Night lights (1994–2013), consumption, forest cover, roads, etc.</td>
-              <td>SHRUG — DevDataLab</td>
-              <td><a href="https://www.devdatalab.org/shrug" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>53.</td>
-              <td>Historical data — Statistical Abstracts from 1840</td>
-              <td>Digital South Asia Library (University of Chicago)</td>
-              <td><a href="https://dsal.uchicago.edu/statistics/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- 2. Literature Reviews -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">2. Literature Reviews</h2>
-        <ol class="list-decimal pl-5 mt-6 space-y-2">
-          <li><a href="https://www.annualreviews.org/" target="_blank" rel="noopener" aria-label="Annual Reviews">Annual Reviews</a></li>
-          <li><a href="https://voxdev.org/voxdevlit" target="_blank" rel="noopener" aria-label="VoxDevLit">VoxDevLit</a></li>
-          <li><a href="https://developmentevidence.3ieimpact.org/" target="_blank" rel="noopener" aria-label="3ie Systematic Reviews">3ie Systematic Reviews</a></li>
-        </ol>
-      </section>
-
-      <!-- 3. Search Engines for Literature Review -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">3. Search Engines for Literature Review</h2>
-        <ol class="list-decimal pl-5 mt-6 space-y-2">
-          <li><a href="https://scholar.google.co.in/" target="_blank" rel="noopener" aria-label="Google Scholar">Google Scholar</a></li>
-          <li><a href="https://ideas.repec.org/search.html" target="_blank" rel="noopener" aria-label="REPEC">REPEC</a></li>
-          <li><a href="https://ageconsearch.umn.edu/?ln=en" target="_blank" rel="noopener" aria-label="AgEcon">AgEcon</a></li>
-          <li><a href="https://www.ssrn.com/index.cfm/en/" target="_blank" rel="noopener" aria-label="SSRN">SSRN</a></li>
-          <li><a href="https://www.sciencedirect.com/" target="_blank" rel="noopener" aria-label="ScienceDirect">ScienceDirect</a></li>
-          <li><a href="https://onlinelibrary.wiley.com/" target="_blank" rel="noopener" aria-label="Wiley Online Library">Wiley Online Library</a></li>
-          <li><a href="https://academic.oup.com/journals" target="_blank" rel="noopener" aria-label="Oxford Academic">Oxford Academic</a></li>
-          <li><a href="https://www.tandfonline.com/" target="_blank" rel="noopener" aria-label="Taylor & Francis Online">Taylor & Francis Online</a></li>
-          <li><a href="https://journals.sagepub.com/" target="_blank" rel="noopener" aria-label="SAGE Journals">SAGE Journals</a></li>
-          <li><a href="https://www.emerald.com/insight/" target="_blank" rel="noopener" aria-label="Emerald Insight">Emerald Insight</a></li>
-          <li><a href="https://www.library.cornell.edu/research/introduction/articles" target="_blank" rel="noopener" aria-label="Cornell University Library">Cornell University Library</a></li>
-          <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener" aria-label="PubMed">PubMed</a></li>
-          <li><a href="https://www.nature.com/" target="_blank" rel="noopener" aria-label="Nature">Nature</a></li>
-          <li><a href="https://developmentevidence.3ieimpact.org/" target="_blank" rel="noopener" aria-label="International Initiative for Impact Evaluation">International Initiative for Impact Evaluation</a></li>
-          <li><a href="https://www.povertyactionlab.org/evaluations" target="_blank" rel="noopener" aria-label="JPAL RCT Database">JPAL RCT Database</a></li>
-        </ol>
-      </section>
-
-      <!-- 4. Methods and Ways to Download Papers for Free (Ethically) -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">4. Methods and Ways to Download Papers for Free (Ethically)</h2>
-        <p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-          The following are legitimate and ethical ways to access academic research papers, journal articles, and theses without violating copyright. These methods support open access and author rights while promoting equitable knowledge sharing.
-        </p>
-        <table class="mt-6">
-          <thead>
-            <tr>
-              <th>Method / Tool</th>
-              <th>Description</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Unpaywall (Browser Extension)</td>
-              <td>Finds free, legal open-access versions of paywalled research papers.</td>
-              <td><a href="https://unpaywall.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>Open Access Button</td>
-              <td>Searches and requests full-texts of articles directly from authors.</td>
-              <td><a href="https://openaccessbutton.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>Google Scholar (“All versions” link)</td>
-              <td>Shows alternative free versions hosted in university repositories.</td>
-              <td><a href="https://scholar.google.com/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>ResearchGate & Academia.edu</td>
-              <td>Authors upload preprints or accepted versions of published papers.</td>
-              <td><a href="https://www.researchgate.net/" target="_blank" rel="noopener">ResearchGate</a> • <a href="https://www.academia.edu/" target="_blank" rel="noopener">Academia</a></td>
-            </tr>
-            <tr>
-              <td>SSRN (Social Science Research Network)</td>
-              <td>Free repository for economics, finance, and social science working papers.</td>
-              <td><a href="https://www.ssrn.com/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>AgEcon Search</td>
-              <td>Open-access repository for agricultural and applied economics papers.</td>
-              <td><a href="https://ageconsearch.umn.edu/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>DOAJ (Directory of Open Access Journals)</td>
-              <td>Finds freely available peer-reviewed journals across disciplines.</td>
-              <td><a href="https://doaj.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>CORE (Open Access Aggregator)</td>
-              <td>Aggregates millions of open-access papers from global repositories.</td>
-              <td><a href="https://core.ac.uk/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>World Bank Open Knowledge Repository</td>
-              <td>Access to World Bank’s research papers, policy documents, and reports.</td>
-              <td><a href="https://openknowledge.worldbank.org/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>FAO Document Repository</td>
-              <td>Free FAO publications on food security, agriculture, and sustainability.</td>
-              <td><a href="https://www.fao.org/documents/en/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>Library Proxy Access</td>
-              <td>University VPN or proxy access for licensed databases like JSTOR, Springer, or ScienceDirect.</td>
-              <td>Your institution</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="mt-4 italic text-sm text-gray-400 dark:text-gray-500">
-          ⚠️ Note: These sources are all <strong>legal and ethical</strong>.
-          Avoid piracy platforms that distribute copyrighted material without authorization.
-        </p>
-      </section>
-
-      <!-- 🇮🇳 Legal Indian and Global Repositories -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">🇮🇳 Legal Indian and Global Repositories for Research Papers</h2>
-        <p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-          India hosts some of the best open-access repositories providing legal access to research articles, theses, and datasets.
-          These platforms are invaluable for students, scholars, and professionals in economics and agricultural economics.
-        </p>
-        <table class="mt-6">
-          <thead>
-            <tr>
-              <th>Resource</th>
-              <th>Description</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>National Digital Library of India (NDLI)</td>
-              <td>A growing repository of academic papers, e-books, and PhD theses curated by IIT Kharagpur.</td>
-              <td><a href="https://ndl.iitkgp.ac.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>Shodhganga</td>
-              <td>UGC–INFLIBNET repository for Indian PhD theses.</td>
-              <td><a href="https://shodhganga.inflibnet.ac.in/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>Unpaywall & CORE</td>
-              <td>Tools to locate legal OA copies of journal articles.</td>
-              <td><a href="https://unpaywall.org/" target="_blank" rel="noopener">Unpaywall</a> • <a href="https://core.ac.uk/" target="_blank" rel="noopener">CORE</a></td>
-            </tr>
-            <tr>
-              <td>Author Requests (Email)</td>
-              <td>Many authors will share preprints on request.</td>
-              <td><a href="#scihub-warning" rel="noopener">Email Template ↓</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- ⚠️ Sci-Hub Warning + Template -->
-      <section class="mt-16 fade-in">
-        <div class="card p-8 border-l-4 border-red-500 relative overflow-hidden">
-          <div class="absolute top-4 right-4 text-red-400 text-3xl">
-            <i class="fas fa-exclamation-triangle"></i>
-          </div>
-          <h2 class="text-3xl font-medium section-header">⚠️ Illegal & Unethical Access — Why NOT to Use Sci-Hub</h2>
-          <p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-            <strong>Sci-Hub</strong> and similar websites distribute copyrighted material without authorization.
-            While they may offer free access, their use constitutes <strong>copyright infringement</strong> and violates academic integrity.
-          </p>
-          <ul class="list-disc pl-5 mt-4 space-y-2 text-gray-600 dark:text-gray-300">
-            <li>Violates international and institutional copyright laws.</li>
-            <li>Poses <strong>legal, ethical, and cybersecurity risks</strong> to users and institutions.</li>
-            <li>Undermines fair scholarly publishing and open-access efforts.</li>
-            <li>May host malware or phishing attempts compromising personal data.</li>
-          </ul>
-          <h3 class="text-2xl font-medium mt-8">✅ Safer Legal Alternatives</h3>
-          <ul class="list-disc pl-5 mt-4 space-y-2 text-gray-600 dark:text-gray-300">
-            <li><a href="https://unpaywall.org/" target="_blank" rel="noopener">Unpaywall</a> and <a href="https://openaccessbutton.org/" target="_blank" rel="noopener">Open Access Button</a></li>
-            <li><a href="https://shodhganga.inflibnet.ac.in/" target="_blank" rel="noopener">Shodhganga</a> and <a href="https://ndl.iitkgp.ac.in/" target="_blank" rel="noopener">NDLI</a></li>
-            <li><a href="https://core.ac.uk/" target="_blank" rel="noopener">CORE</a>, <a href="https://ageconsearch.umn.edu/" target="_blank" rel="noopener">AgEcon Search</a>, and <a href="https://ssrn.com/" target="_blank" rel="noopener">SSRN</a></li>
-          </ul>
-          <h3 class="text-2xl font-medium mt-8">✉️ Polite Email Template for Requesting Papers</h3>
-          <pre class="bg-gray-800 dark:bg-gray-800 text-gray-100 dark:text-gray-100 p-4 rounded mt-4 overflow-x-auto text-sm">
-Subject: Request for a Copy of Your Paper “[Paper Title]”
-
-Dear Dr. [Author’s Last Name],
-
-I hope this message finds you well. I am a researcher/student at [Your Institution].
-I came across your paper titled “[Full Paper Title]” published in [Journal Name, Year],
-but unfortunately, I could not access the full text through my institution.
-
-If permissible, could you kindly share a copy (PDF or preprint version) for my academic use?
-I assure you it will be used solely for research and citation purposes.
-
-Thank you very much for your time and contribution to this field.
-
-Warm regards,
-[Your Full Name]
-[Institution / Department]
-[Email Address]
-          </pre>
-          <p class="mt-4 italic text-sm text-gray-400 dark:text-gray-500">
-            ⚠️ Always use open-access or author-approved copies.
-            Avoid piracy — it risks your credibility and the integrity of scholarly communication.
-          </p>
+  <!-- Main -->
+  <main class="container mx-auto px-6 py-12 relative z-10">
+    <section class="glass p-6">
+      <div class="flex items-start justify-between">
+        <div>
+          <h2 class="text-2xl font-semibold section-title">Research Resources</h2>
+          <p class="note mt-2">Collections of datasets, literature sources, teaching materials, grants and GIS tools — curated for agricultural economics.</p>
         </div>
-      </section>
+        <div class="text-right">
+          <span class="inline-block px-3 py-1 rounded-full" style="background:var(--accent); color:var(--bg); font-weight:700">Agricultural Economics</span>
+        </div>
+      </div>
 
-      <!-- 5. Teaching and Learning Resources for Impact Evaluation (Mostly RCT) -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">5. Teaching and Learning Resources for Impact Evaluation (Mostly RCT)</h2>
-        <table class="mt-6">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Source</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><a href="https://www.povertyactionlab.org/research-resources?view=toc" target="_blank" rel="noopener" aria-label="J-PAL resources">J-PAL</a></td>
-              <td>Research and Teaching Resources on almost everything on RCT (from pre-analysis plans, ethics, planning to analysis)</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td><a href="http://runningres.com/" target="_blank" rel="noopener" aria-label="Running Randomized Evaluations">Running Randomized Evaluations by Rachel Glennerster and Kudzai Takavarasha</a></td>
-              <td>Lecture notes, case studies, data and exercises</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td><a href="https://blogs.worldbank.org/impactevaluations/curated-list-our-postings-technical-topics-your-one-stop-shop-methodology" target="_blank" rel="noopener" aria-label="World Bank Blogs">World Bank Blogs</a></td>
-              <td>One-Stop Shop for Methodology (RCT, PSM, DID, Synthetic control, Power calculation, Analysis, STATA codes, etc.)</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td><a href="https://www.sciencedirect.com/handbook/handbook-of-economic-field-experiments/volumes" target="_blank" rel="noopener" aria-label="Handbook of Economic Field Experiments">Handbook of Economic Field Experiments</a></td>
-              <td>Sections on History and Methodology of RCT, Understanding Preferences and Preference Change, The Challenge of Improving Human Capital and Designing Effective Social Programs</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td><a href="https://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice" target="_blank" rel="noopener" aria-label="Impact Evaluation in Practice">Impact Evaluation in Practice - Second Edition</a></td>
-              <td>Book on impact evaluation covering RCTs, IV, RDD, DID, Matching and more</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td><a href="https://asjadnaqvi.github.io/DiD/" target="_blank" rel="noopener" aria-label="Difference-in-Difference website">Difference-in-Difference (DiD) dedicated website by Asjad Naqvi</a></td>
-              <td>Literature, videos, R & STATA packages, STATA codes and updates on DiD</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td><a href="https://mixtape.scunning.com/" target="_blank" rel="noopener" aria-label="Causal Inference: The Mixtape">Causal Inference: The Mixtape by Scott Cunningham</a></td>
-              <td>Book covering topics like DAGs, Potential Outcomes model, Matching, RDD, IV, Panel data, DID, Synthetic Control and statistical codes</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td><a href="https://theeffectbook.net/" target="_blank" rel="noopener" aria-label="The Effect book">The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein</a></td>
-              <td>Book with topics like research design, causal diagrams, front and back door criterions, treatment effects, regression, matching, fixed effects, simulation, DID, RDD, IV and event studies</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <!-- Search -->
+      <div class="mt-6">
+        <input id="search-input" type="text" placeholder="Search table (type a keyword and hit Enter)..." class="w-full p-3 rounded-md border border-transparent" style="background:rgba(255,255,255,0.03); color:var(--text)"/>
+        <p class="note mt-2">Tip: type at least 2 characters then press Enter to jump to the first match.</p>
+      </div>
 
-      <!-- 6. Research Grant Sites -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">6. Research Grant Sites</h2>
+      <!-- Accordion categories: Data Sources, Literature, Search Engines, Ethical Access, Indian Repos, Teaching, Grants, GIS Tools -->
+      <div class="mt-6 space-y-4">
 
-        <h3 class="text-2xl font-semibold mt-8">🇮🇳 India</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Agency</th>
-              <th>Focus Area</th>
-              <th>Programs / Notes</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ICSSR</td>
-              <td>Economics, Development Studies</td>
-              <td>Major/Minor Research Projects, Fellowships</td>
-              <td><a href="https://icssr.org" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>ICAR</td>
-              <td>Agricultural Economics</td>
-              <td>Competitive & Collaborative Grants under NAHEP, AICRP</td>
-              <td><a href="https://icar.org.in" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>SERB</td>
-              <td>Economics (Quantitative / Applied)</td>
-              <td>MATRICS, CRG, Empowerment Schemes</td>
-              <td><a href="https://serb.gov.in" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>NABARD</td>
-              <td>Agricultural Finance, Rural Development</td>
-              <td>Research and Development Fund</td>
-              <td><a href="https://www.nabard.org" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>RBI</td>
-              <td>Banking, Monetary Policy, Agriculture Finance</td>
-              <td>Research Internship Scheme</td>
-              <td><a href="https://www.rbi.org.in" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- 1. Data Sources -->
+        <div>
+          <button class="accordion-btn" data-target="panel-data">
+            <span><i class="fas fa-seedling mr-2"></i>1. Data Sources — Agriculture, Economy, Climate, Demography, Governance, Spatial</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-data" class="accordion-panel">
+            <!-- Agriculture & Food Systems -->
+            <h3 class="mt-2 font-semibold">🌾 Agriculture, Rural Economy & Food Systems</h3>
+            <table>
+              <thead><tr><th>Sl. No</th><th>Data</th><th>Source</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Prices & arrivals in wholesale markets</td><td>AGMARKNET</td><td><a href="https://agmarknet.gov.in/" target="_blank" rel="noopener">agmarknet.gov.in</a></td></tr>
+                <tr><td>2</td><td>Land use, crop production, cost of cultivation, MSP</td><td>Directorate of Economics & Statistics, MoA&FW</td><td><a href="https://desagri.gov.in/en/" target="_blank" rel="noopener">desagri.gov.in</a></td></tr>
+                <tr><td>3</td><td>District Level Database for Agriculture</td><td>ICRISAT-TCI</td><td><a href="http://data.icrisat.org/dld/" target="_blank" rel="noopener">data.icrisat.org</a></td></tr>
+                <tr><td>4</td><td>Village Dynamics in South Asia (panel)</td><td>ICRISAT</td><td><a href="https://vdsa.icrisat.org/" target="_blank" rel="noopener">vdsa.icrisat.org</a></td></tr>
+                <tr><td>5</td><td>FAOSTAT — emissions, trade, inputs</td><td>FAO</td><td><a href="https://www.fao.org/faostat/en/#home" target="_blank" rel="noopener">faostat.org</a></td></tr>
+                <tr><td>6</td><td>Milk production & livestock stats</td><td>NDDB</td><td><a href="https://www.nddb.coop/information/stats/milkprodindia" target="_blank" rel="noopener">nddb.coop</a></td></tr>
+                <tr><td>7</td><td>Agricultural Census & Input Survey</td><td>MoA&FW</td><td><a href="https://inputsurvey.da.gov.in/" target="_blank" rel="noopener">inputsurvey.da.gov.in</a></td></tr>
+                <tr><td>8</td><td>National Food Security Mission data</td><td>MoA&FW</td><td><a href="https://www.nfsm.gov.in/" target="_blank" rel="noopener">nfsm.gov.in</a></td></tr>
+                <tr><td>9</td><td>UPAg — Unified Portal for Agricultural Statistics</td><td>MoA&FW</td><td><a href="https://upag.gov.in/" target="_blank" rel="noopener">upag.gov.in</a></td></tr>
+                <tr><td>10</td><td>ASTI — R&D, researchers</td><td>IFPRI (ASTI)</td><td><a href="https://asti.cgiar.org/" target="_blank" rel="noopener">asti.cgiar.org</a></td></tr>
+                <tr><td>11</td><td>EMPRES-i (animal disease)</td><td>FAO</td><td><a href="https://empres-i.apps.fao.org/" target="_blank" rel="noopener">empres-i.apps.fao.org</a></td></tr>
+                <tr><td>12</td><td>GLEAM — livestock emissions</td><td>FAO</td><td><a href="https://gleam.fao.org/" target="_blank" rel="noopener">gleam.fao.org</a></td></tr>
+                <tr><td>13</td><td>Global food price data</td><td>WFP (WFP Food Prices)</td><td><a href="https://data.humdata.org/dataset/global-wfp-food-prices" target="_blank" rel="noopener">WFP dataset</a></td></tr>
+              </tbody>
+            </table>
 
-        <h3 class="text-2xl font-semibold mt-8">🌍 International</h3>
-        <table class="mt-4">
-          <thead>
-            <tr>
-              <th>Agency</th>
-              <th>Focus Area</th>
-              <th>Programs / Notes</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>NIFA (USDA)</td>
-              <td>Agriculture, Rural Development</td>
-              <td>AFRI - Foundational & Applied Science</td>
-              <td><a href="https://www.nifa.usda.gov/grants" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>FFAR</td>
-              <td>Food & Agriculture</td>
-              <td>Seeding Solutions, New Innovator Awards</td>
-              <td><a href="https://foundationfar.org/grants-funding/" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>IFPRI</td>
-              <td>Food Policy, Development</td>
-              <td>Collaborative Grants, Fellowships</td>
-              <td><a href="https://www.ifpri.org" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>IGC</td>
-              <td>Development Economics</td>
-              <td>Research Grants for Growth Policy</td>
-              <td><a href="https://www.theigc.org" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>3ie</td>
-              <td>Impact Evaluation</td>
-              <td>Systematic Reviews, Evaluation Grants</td>
-              <td><a href="https://www.3ieimpact.org/funding" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-            <tr>
-              <td>Sloan Foundation</td>
-              <td>Economics Research</td>
-              <td>Quantitative Social Science Grants</td>
-              <td><a href="https://sloan.org/programs/research/economics" target="_blank" rel="noopener">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+            <!-- Economy & Finance -->
+            <h3 class="mt-6 font-semibold">📈 Economy, Industry & Finance</h3>
+            <table>
+              <thead><tr><th>Sl. No</th><th>Data</th><th>Source</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>14</td><td>Wholesale & retail prices</td><td>Ministry of Consumer Affairs (GoI)</td><td><a href="https://fcainfoweb.nic.in/reports/report_menu_web.aspx" target="_blank" rel="noopener">fcainfoweb</a></td></tr>
+                <tr><td>15</td><td>Consumer Price Index (CPI)</td><td>MoSPI</td><td><a href="https://mospi.gov.in/cpi" target="_blank" rel="noopener">mospi.gov.in</a></td></tr>
+                <tr><td>16</td><td>Wholesale Price Index (WPI)</td><td>Ministry of Commerce & Industry</td><td><a href="https://eaindustry.nic.in/" target="_blank" rel="noopener">eaindustry.nic.in</a></td></tr>
+                <tr><td>17</td><td>Banking, GDP, rates (DBIE)</td><td>Reserve Bank of India</td><td><a href="https://data.rbi.org.in/DBIE/" target="_blank" rel="noopener">data.rbi.org.in</a></td></tr>
+                <tr><td>18</td><td>Exports & imports (incl. agri)</td><td>Ministry of Commerce / APEDA</td><td><a href="https://www.commerce.gov.in/trade-statistics/" target="_blank" rel="noopener">commerce.gov.in</a> • <a href="https://www.apeda.gov.in/" target="_blank" rel="noopener">apeda.gov.in</a></td></tr>
+                <tr><td>19</td><td>GDP & State Domestic Product</td><td>MoSPI</td><td><a href="https://www.mospi.gov.in/data" target="_blank" rel="noopener">mospi.gov.in</a></td></tr>
+                <tr><td>20</td><td>EPWRF India Time Series (subscription)</td><td>EPW Research Foundation</td><td><a href="https://epwrfits.in/" target="_blank" rel="noopener">epwrfits.in</a></td></tr>
+                <tr><td>21</td><td>CMIE databases (subscription)</td><td>CMIE</td><td><a href="https://www.cmie.com/" target="_blank" rel="noopener">cmie.com</a></td></tr>
+                <tr><td>22</td><td>Capitaline (subscription)</td><td>Capital Market Publishers</td><td><a href="https://www.capitaline.com/" target="_blank" rel="noopener">capitaline.com</a></td></tr>
+                <tr><td>23</td><td>Penn World Table</td><td>University of Groningen</td><td><a href="https://www.rug.nl/ggdc/productivity/pwt/" target="_blank" rel="noopener">pwt</a></td></tr>
+                <tr><td>24</td><td>World Development Indicators</td><td>World Bank</td><td><a href="https://databank.worldbank.org/source/world-development-indicators" target="_blank" rel="noopener">worldbank WDI</a></td></tr>
+                <tr><td>25</td><td>Commodity prices</td><td>World Bank</td><td><a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">worldbank commodities</a></td></tr>
+                <tr><td>26</td><td>UN Comtrade</td><td>United Nations</td><td><a href="https://comtradeplus.un.org/" target="_blank" rel="noopener">comtradeplus</a></td></tr>
+                <tr><td>27</td><td>OECD support estimates</td><td>OECD</td><td><a href="https://www.oecd.org/en/data/indicators/agricultural-financial-support.html" target="_blank" rel="noopener">oecd</a></td></tr>
+                <tr><td>28</td><td>IndiaStat (subscription)</td><td>Datanet India</td><td><a href="https://www.indiastat.com/" target="_blank" rel="noopener">indiastat.com</a></td></tr>
+              </tbody>
+            </table>
 
-      <!-- 7. GIS Tools -->
-      <section class="mt-16 fade-in">
-        <h2 class="text-3xl font-medium section-header">7. GIS Tools</h2>
-        <table class="mt-6">
-          <thead>
-            <tr>
-              <th>Sl. No</th>
-              <th>Tool</th>
-              <th>Description</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>QGIS</td>
-              <td>Open-source GIS software for mapping, spatial analysis, and visualization of agricultural data, climate patterns, and land use.</td>
-              <td><a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener" aria-label="QGIS website">Link</a></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>ArcGIS</td>
-              <td>Comprehensive GIS platform by Esri for advanced spatial analysis, map creation, and data integration, widely used in agricultural research.</td>
-              <td><a href="https://www.esri.com/en-us/arcgis/about-arcgis/overview" target="_blank" rel="noopener" aria-label="ArcGIS website">Link</a></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>GRASS GIS</td>
-              <td>Open-source GIS tool for geospatial data management, image processing, and spatial modeling, suitable for environmental and agricultural studies.</td>
-              <td><a href="https://grass.osgeo.org/" target="_blank" rel="noopener" aria-label="GRASS GIS website">Link</a></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Google Earth Engine</td>
-              <td>Cloud-based platform for analyzing geospatial datasets, including satellite imagery, for climate and agricultural monitoring.</td>
-              <td><a href="https://earthengine.google.com/" target="_blank" rel="noopener" aria-label="Google Earth Engine website">Link</a></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>R with sf/sp Packages</td>
-              <td>R programming language with GIS packages (sf, sp) for spatial data analysis and visualization, ideal for econometric and agricultural studies.</td>
-              <td><a href="https://r-spatial.org/" target="_blank" rel="noopener" aria-label="R spatial packages">Link</a></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>GeoDa</td>
-              <td>Open-source software for spatial data analysis, exploratory data analysis, and spatial regression, useful for regional agricultural studies.</td>
-              <td><a href="https://geodacenter.github.io/" target="_blank" rel="noopener" aria-label="GeoDa website">Link</a></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>GeoFlow</td>
-              <td>A Stata module for generating spatial flow arcs, useful for visualizing and analyzing directional spatial relationships.</td>
-              <td><a href="https://github.com/asjadnaqvi/stata-geoflow" target="_blank" rel="noopener" aria-label="GeoFlow Stata module GitHub repository">Link</a></td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>spmap (Stata)</td>
-              <td>Community-contributed Stata command for drawing choropleth and thematic maps by merging shapefile data with attributes.</td>
-              <td><a href="https://repec.org/bocode/s/spmap" target="_blank" rel="noopener" aria-label="spmap Stata module page">Link</a></td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>geoplot (Stata)</td>
-              <td>Newer Stata command (16+) using frames; supports multiple layers (regions, boundaries, rivers, labels, points).</td>
-              <td><a href="https://ideas.repec.org/c/boc/bocode/s459211.html" target="_blank" rel="noopener" aria-label="geoplot Stata module page">Link</a></td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>tmap (Stata)</td>
-              <td>Suite for thematic maps — choropleth, proportional symbol, dot, deviation, and label maps.</td>
-              <td><a href="https://ideas.repec.org/a/tsj/stataj/v4y2004i4p361-378.html" target="_blank" rel="noopener" aria-label="tmap Stata module page">Link</a></td>
-            </tr>
-            <tr>
-              <td>11</td>
-              <td>bimap (Stata)</td>
-              <td>Command for bivariate maps; uses <code>geoplot</code> (Stata 16+) or <code>spmap</code> (older).</td>
-              <td><a href="https://fmwww.bc.edu/repec/bocode/b/bimap.sthlp" target="_blank" rel="noopener" aria-label="bimap Stata module page">Link</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </article>
+            <!-- Climate -->
+            <h3 class="mt-6 font-semibold">🌍 Climate, Weather & Environment</h3>
+            <table>
+              <thead><tr><th>Sl. No</th><th>Data</th><th>Source</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>29</td><td>World Bank climate data (download)</td><td>WB Climate Knowledge Portal</td><td><a href="https://climateknowledgeportal.worldbank.org/download-data" target="_blank" rel="noopener">climateknowledgeportal</a></td></tr>
+                <tr><td>30</td><td>District & block-level weather</td><td>India Meteorological Department (IMD)</td><td><a href="https://mausam.imd.gov.in/imd_latest/contents/agromet/advisory/indiadistrictforecast.php" target="_blank" rel="noopener">imd.gov.in</a></td></tr>
+                <tr><td>31</td><td>Drought Monitoring Portal (VEDAS)</td><td>SAC / ISRO</td><td><a href="https://vedas.sac.gov.in/" target="_blank" rel="noopener">vedas.sac.gov.in</a></td></tr>
+                <tr><td>32</td><td>India Drought Monitor</td><td>IIT Gandhinagar</td><td><a href="https://indiadroughtmonitor.in/" target="_blank" rel="noopener">indiadroughtmonitor.in</a></td></tr>
+                <tr><td>33</td><td>Our World in Data — maps & indicators</td><td>Our World in Data</td><td><a href="https://ourworldindata.org/" target="_blank" rel="noopener">ourworldindata</a></td></tr>
+                <tr><td>34</td><td>Climate projections for Indian districts</td><td>Azim Premji University</td><td><a href="https://cse.azimpremjiuniversity.edu.in/" target="_blank" rel="noopener">azimpremjiuniversity</a></td></tr>
+                <tr><td>35</td><td>Energy subsidies & incidents</td><td>CEEW</td><td><a href="https://www.ceew.in/" target="_blank" rel="noopener">ceew.in</a></td></tr>
+              </tbody>
+            </table>
+
+            <!-- Demography & Social -->
+            <h3 class="mt-6 font-semibold">🧍 Demography, Health & Social</h3>
+            <table>
+              <thead><tr><th>Sl. No</th><th>Data</th><th>Source</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>36</td><td>NSO microdata (PLFS, HCES, etc.)</td><td>NSO, MoSPI (Microdata Portal)</td><td><a href="https://microdata.gov.in/" target="_blank" rel="noopener">microdata.gov.in</a></td></tr>
+                <tr><td>37</td><td>NADA / ICSSR mirrors</td><td>MoSPI & ICSSR</td><td><a href="https://microdata.gov.in/NADA/index.php/home" target="_blank" rel="noopener">NADA</a> • <a href="https://www.icssrdataservice.in/" target="_blank" rel="noopener">ICSSR</a></td></tr>
+                <tr><td>38</td><td>Health & Nutrition (DHS)</td><td>USAID / ICF</td><td><a href="https://dhsprogram.com/data/" target="_blank" rel="noopener">DHS Program</a></td></tr>
+                <tr><td>39</td><td>Socio-Economic Caste Census (SECC)</td><td>Ministry of Rural Development</td><td><a href="https://secc.dord.gov.in/" target="_blank" rel="noopener">secc.dord.gov.in</a></td></tr>
+                <tr><td>40</td><td>India Human Development Survey (IHDS)</td><td>NCAER / UMD</td><td><a href="https://ihds.umd.edu/data" target="_blank" rel="noopener">ihds.umd.edu</a></td></tr>
+                <tr><td>41</td><td>India Working in Numbers</td><td>CSE, APU</td><td><a href="https://cse.azimpremjiuniversity.edu.in/" target="_blank" rel="noopener">cse.azimpremjiuniversity</a></td></tr>
+                <tr><td>42</td><td>India Migration Now</td><td>Migration data</td><td><a href="https://indiamigrationnow.org/" target="_blank" rel="noopener">indiamigrationnow.org</a></td></tr>
+                <tr><td>43</td><td>NRLM (SHGs & members)</td><td>Ministry of Rural Development</td><td><a href="https://nrlm.gov.in/" target="_blank" rel="noopener">nrlm.gov.in</a></td></tr>
+                <tr><td>44</td><td>COVID-19 historical data</td><td>COVID-19 India API</td><td><a href="https://api.covid19india.org/" target="_blank" rel="noopener">api.covid19india.org</a></td></tr>
+                <tr><td>45</td><td>Replication data & codes</td><td>Harvard Dataverse</td><td><a href="https://dataverse.harvard.edu/" target="_blank" rel="noopener">dataverse.harvard.edu</a></td></tr>
+                <tr><td>46</td><td>World Inequality Database</td><td>World Inequality Lab</td><td><a href="https://wid.world/" target="_blank" rel="noopener">wid.world</a></td></tr>
+              </tbody>
+            </table>
+
+            <!-- Governance & Policy -->
+            <h3 class="mt-6 font-semibold">🧭 Governance, Policy & Political Data</h3>
+            <table>
+              <thead><tr><th>Sl. No</th><th>Data</th><th>Source</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>47</td><td>Published Indian government data (NDAP)</td><td>NITI Aayog — NDAP</td><td><a href="https://ndap.niti.gov.in/" target="_blank" rel="noopener">ndap.niti.gov.in</a></td></tr>
+                <tr><td>48</td><td>FAOLEX — laws & policies</td><td>FAO</td><td><a href="https://www.fao.org/faolex/en/" target="_blank" rel="noopener">faolex</a></td></tr>
+                <tr><td>49</td><td>Trade standards & border rejections</td><td>UNIDO — TSC</td><td><a href="https://tsc.unido.org/" target="_blank" rel="noopener">tsc.unido.org</a></td></tr>
+                <tr><td>50</td><td>Election & parliamentary datasets</td><td>Trivedi Centre for Political Data</td><td><a href="https://tcpd.ashoka.edu.in/" target="_blank" rel="noopener">tcpd.ashoka.edu.in</a></td></tr>
+              </tbody>
+            </table>
+
+            <!-- Spatial -->
+            <h3 class="mt-6 font-semibold">🗺️ Spatial, Remote Sensing & Geographical Data</h3>
+            <table>
+              <thead><tr><th>Sl. No</th><th>Data</th><th>Source</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>51</td><td>Survey of India — digital maps & shapefiles</td><td>Survey of India</td><td><a href="https://onlinemaps.surveyofindia.gov.in/Digital_Product_Show.aspx" target="_blank" rel="noopener">Survey of India</a></td></tr>
+                <tr><td>52</td><td>SHRUG — night lights, consumption, forest cover</td><td>DevDataLab</td><td><a href="https://www.devdatalab.org/shrug" target="_blank" rel="noopener">devdatalab.org</a></td></tr>
+                <tr><td>53</td><td>Statistical Abstracts (historical)</td><td>Digital South Asia Library</td><td><a href="https://dsal.uchicago.edu/statistics/" target="_blank" rel="noopener">dsal.uchicago.edu</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 2. Literature Reviews -->
+        <div>
+          <button class="accordion-btn" data-target="panel-lit">
+            <span><i class="fas fa-book-open mr-2"></i>2. Literature Reviews & Key Aggregators</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-lit" class="accordion-panel">
+            <ol class="pl-4 list-decimal space-y-2">
+              <li><a href="https://www.annualreviews.org/" target="_blank" rel="noopener">Annual Reviews</a></li>
+              <li><a href="https://voxdev.org/voxdevlit" target="_blank" rel="noopener">VoxDevLit</a></li>
+              <li><a href="https://developmentevidence.3ieimpact.org/" target="_blank" rel="noopener">3ie Systematic Reviews</a></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 3. Search Engines for Literature -->
+        <div>
+          <button class="accordion-btn" data-target="panel-searcheng">
+            <span><i class="fas fa-search mr-2"></i>3. Search Engines for Literature Review</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-searcheng" class="accordion-panel">
+            <ol class="pl-4 list-decimal space-y-2">
+              <li><a href="https://scholar.google.co.in/" target="_blank" rel="noopener">Google Scholar</a></li>
+              <li><a href="https://ideas.repec.org/search.html" target="_blank" rel="noopener">RePEc/IDEAS</a></li>
+              <li><a href="https://ageconsearch.umn.edu/?ln=en" target="_blank" rel="noopener">AgEcon Search</a></li>
+              <li><a href="https://www.ssrn.com/index.cfm/en/" target="_blank" rel="noopener">SSRN</a></li>
+              <li><a href="https://www.sciencedirect.com/" target="_blank" rel="noopener">ScienceDirect</a></li>
+              <li><a href="https://onlinelibrary.wiley.com/" target="_blank" rel="noopener">Wiley Online Library</a></li>
+              <li><a href="https://journals.sagepub.com/" target="_blank" rel="noopener">SAGE Journals</a></li>
+              <li><a href="https://www.emerald.com/insight/" target="_blank" rel="noopener">Emerald Insight</a></li>
+              <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a></li>
+              <li><a href="https://www.nature.com/" target="_blank" rel="noopener">Nature</a></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 4. Ethical ways to download papers -->
+        <div>
+          <button class="accordion-btn" data-target="panel-ethical">
+            <span><i class="fas fa-hands-helping mr-2"></i>4. Ethical Ways to Access Papers (legal tools & tips)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-ethical" class="accordion-panel">
+            <table>
+              <thead><tr><th>Method / Tool</th><th>Description</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>Unpaywall</td><td>Finds legal OA versions of paywalled articles (browser extension)</td><td><a href="https://unpaywall.org/" target="_blank" rel="noopener">unpaywall.org</a></td></tr>
+                <tr><td>Open Access Button</td><td>Requests full-texts from authors or finds OA versions</td><td><a href="https://openaccessbutton.org/" target="_blank" rel="noopener">openaccessbutton.org</a></td></tr>
+                <tr><td>Google Scholar — All Versions</td><td>Shows preprints / institutional repository copies</td><td><a href="https://scholar.google.com/" target="_blank" rel="noopener">scholar.google.com</a></td></tr>
+                <tr><td>ResearchGate / Academia</td><td>Authors often upload preprints or accepted manuscripts</td><td><a href="https://www.researchgate.net/" target="_blank" rel="noopener">ResearchGate</a> • <a href="https://www.academia.edu/" target="_blank" rel="noopener">Academia</a></td></tr>
+                <tr><td>SSRN</td><td>Working papers repository (social sciences)</td><td><a href="https://www.ssrn.com/" target="_blank" rel="noopener">ssrn.com</a></td></tr>
+                <tr><td>AgEcon Search</td><td>Open-access repository for agricultural economics</td><td><a href="https://ageconsearch.umn.edu/" target="_blank" rel="noopener">ageconsearch.umn.edu</a></td></tr>
+                <tr><td>CORE</td><td>Aggregates OA papers from institutional repositories</td><td><a href="https://core.ac.uk/" target="_blank" rel="noopener">core.ac.uk</a></td></tr>
+                <tr><td>World Bank Open Knowledge</td><td>Open access World Bank research & reports</td><td><a href="https://openknowledge.worldbank.org/" target="_blank" rel="noopener">openknowledge.worldbank.org</a></td></tr>
+              </tbody>
+            </table>
+            <p class="mt-4 italic">Note: avoid piracy platforms. If needed, contact the author (polite request template provided in the original resource list).</p>
+          </div>
+        </div>
+
+        <!-- 5. Indian & Global Repositories -->
+        <div>
+          <button class="accordion-btn" data-target="panel-repos">
+            <span><i class="fas fa-globe-asia mr-2"></i>5. Legal Indian & Global Repositories</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-repos" class="accordion-panel">
+            <table>
+              <thead><tr><th>Resource</th><th>Description</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>NDLI</td><td>National Digital Library of India — e-books, theses, papers</td><td><a href="https://ndl.iitkgp.ac.in/" target="_blank" rel="noopener">ndl.iitkgp.ac.in</a></td></tr>
+                <tr><td>Shodhganga</td><td>UGC–INFLIBNET repository for Indian PhD theses</td><td><a href="https://shodhganga.inflibnet.ac.in/" target="_blank" rel="noopener">shodhganga.inflibnet.ac.in</a></td></tr>
+                <tr><td>Unpaywall & CORE</td><td>Tools to locate OA copies</td><td><a href="https://unpaywall.org/" target="_blank" rel="noopener">Unpaywall</a> • <a href="https://core.ac.uk/" target="_blank" rel="noopener">CORE</a></td></tr>
+                <tr><td>Author Requests</td><td>Polite email to authors requesting preprints</td><td>Use the email template in your handbook or contact page</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6. Teaching & Learning (Impact Eval) -->
+        <div>
+          <button class="accordion-btn" data-target="panel-teach">
+            <span><i class="fas fa-chalkboard-teacher mr-2"></i>6. Teaching & Learning Resources — Impact Evaluation / RCT</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-teach" class="accordion-panel">
+            <table>
+              <thead><tr><th>Sl. No</th><th>Source</th><th>Details</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><a href="https://www.povertyactionlab.org/research-resources?view=toc" target="_blank" rel="noopener">J-PAL</a></td><td>RCT resources: pre-analysis plans, ethics, data, exercises</td></tr>
+                <tr><td>2</td><td><a href="http://runningres.com/" target="_blank" rel="noopener">Running Randomized Evaluations</a></td><td>Lecture notes, case studies, datasets</td></tr>
+                <tr><td>3</td><td><a href="https://blogs.worldbank.org/impactevaluations/curated-list-our-postings-technical-topics-your-one-stop-shop-methodology" target="_blank" rel="noopener">World Bank — Methodology</a></td><td>Stata/R codes, power calc, DID, synthetic controls</td></tr>
+                <tr><td>4</td><td><a href="https://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice" target="_blank" rel="noopener">Impact Evaluation in Practice</a></td><td>Practical handbook</td></tr>
+                <tr><td>5</td><td><a href="https://mixtape.scunning.com/" target="_blank" rel="noopener">Causal Inference: The Mixtape</a></td><td>Applied causal methods with code</td></tr>
+                <tr><td>6</td><td><a href="https://theeffectbook.net/" target="_blank" rel="noopener">The Effect</a></td><td>Intro to research design and causal inference</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 7. Research Grants -->
+        <div>
+          <button class="accordion-btn" data-target="panel-grants">
+            <span><i class="fas fa-hand-holding-usd mr-2"></i>7. Research Grant Sites — India & International</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-grants" class="accordion-panel">
+            <h4 class="font-semibold mt-2">India</h4>
+            <table>
+              <thead><tr><th>Agency</th><th>Focus</th><th>Notes</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>ICSSR</td><td>Economics & Development</td><td>Major/Minor projects, fellowships</td><td><a href="https://icssr.org" target="_blank" rel="noopener">icssr.org</a></td></tr>
+                <tr><td>ICAR</td><td>Agricultural research</td><td>Competitive grants, AICRP</td><td><a href="https://icar.org.in" target="_blank" rel="noopener">icar.org.in</a></td></tr>
+                <tr><td>SERB</td><td>Quantitative social science</td><td>MATRICS, CRG</td><td><a href="https://serb.gov.in" target="_blank" rel="noopener">serb.gov.in</a></td></tr>
+                <tr><td>NABARD</td><td>Rural development</td><td>R&D fund</td><td><a href="https://www.nabard.org" target="_blank" rel="noopener">nabard.org</a></td></tr>
+                <tr><td>RBI</td><td>Monetary, financial research</td><td>Research internship schemes</td><td><a href="https://www.rbi.org.in" target="_blank" rel="noopener">rbi.org.in</a></td></tr>
+              </tbody>
+            </table>
+
+            <h4 class="font-semibold mt-6">International</h4>
+            <table>
+              <thead><tr><th>Agency</th><th>Focus</th><th>Notes</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>NIFA (USDA)</td><td>Agriculture & Rural</td><td>AFRI grants</td><td><a href="https://www.nifa.usda.gov/grants" target="_blank" rel="noopener">nifa.usda.gov</a></td></tr>
+                <tr><td>IFPRI</td><td>Food policy</td><td>Collaborative grants</td><td><a href="https://www.ifpri.org" target="_blank" rel="noopener">ifpri.org</a></td></tr>
+                <tr><td>3ie</td><td>Impact evaluation</td><td>Evaluation & review grants</td><td><a href="https://www.3ieimpact.org/funding" target="_blank" rel="noopener">3ieimpact.org</a></td></tr>
+                <tr><td>Sloan Foundation</td><td>Quantitative social science</td><td>Research grants</td><td><a href="https://sloan.org/programs/research/economics" target="_blank" rel="noopener">sloan.org</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 8. GIS Tools -->
+        <div>
+          <button class="accordion-btn" data-target="panel-gis">
+            <span><i class="fas fa-map-marked-alt mr-2"></i>8. GIS Tools & Spatial Packages</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="panel-gis" class="accordion-panel">
+            <table>
+              <thead><tr><th>Sl. No</th><th>Tool</th><th>Description</th><th>Link</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>QGIS</td><td>Open-source GIS for mapping & spatial analysis</td><td><a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener">qgis.org</a></td></tr>
+                <tr><td>2</td><td>ArcGIS</td><td>Esri platform for advanced spatial analytics</td><td><a href="https://www.esri.com/en-us/arcgis/about-arcgis/overview" target="_blank" rel="noopener">esri</a></td></tr>
+                <tr><td>3</td><td>GRASS GIS</td><td>Open-source geospatial processing</td><td><a href="https://grass.osgeo.org/" target="_blank" rel="noopener">grass.osgeo.org</a></td></tr>
+                <tr><td>4</td><td>Google Earth Engine</td><td>Cloud-based satellite imagery analysis</td><td><a href="https://earthengine.google.com/" target="_blank" rel="noopener">earthengine.google.com</a></td></tr>
+                <tr><td>5</td><td>R (sf / sp)</td><td>R packages for spatial data & mapping</td><td><a href="https://r-spatial.org/" target="_blank" rel="noopener">r-spatial.org</a></td></tr>
+                <tr><td>6</td><td>GeoDa</td><td>Exploratory spatial data analysis</td><td><a href="https://geodacenter.github.io/" target="_blank" rel="noopener">geodacenter</a></td></tr>
+                <tr><td>7</td><td>GeoFlow (Stata)</td><td>Spatial flow arcs for directional analysis</td><td><a href="https://github.com/asjadnaqvi/stata-geoflow" target="_blank" rel="noopener">github</a></td></tr>
+                <tr><td>8</td><td>spmap (Stata)</td><td>Choropleth & thematic maps in Stata</td><td><a href="https://repec.org/bocode/s/spmap" target="_blank" rel="noopener">spmap</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div> <!-- end accordion -->
+
+      <p class="note mt-6">If you want any section extracted as a printable PDF, or a CSV of links, I can prepare it for you.</p>
+    </section>
   </main>
 
-  <footer class="py-12 text-center relative">
-    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
-    <nav class="mt-4 flex justify-center space-x-10">
-      <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-      <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
-    </nav>
-    <p class="mt-6 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+  <!-- Footer -->
+  <footer>
+    <div class="container mx-auto px-6">
+      <div class="text-lg font-bold mb-4" style="color:var(--accent-2)">Agricultural Economics</div>
+      <nav class="flex justify-center gap-8 mb-4">
+        <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+        <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://www.researchgate.net/profile/Dr-Abdulla" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+        <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
+      </nav>
+      <p class="text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+    </div>
   </footer>
 
+  <!-- Scripts: particles.js, theme, accordion, search, mobile -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = toggle.querySelector('i');
+    // Particles config (use CSS variables)
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 70, density: { enable: true, value_area: 700 } },
+        color: { value: getComputedStyle(document.documentElement).getPropertyValue('--particle').trim() },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 140,
+          color: getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim(),
+          opacity: 0.28,
+          width: 1
+        },
+        move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 0.7 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
 
-    // Load saved theme
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const bodyEl = document.body;
+    const themeIcon = themeToggle.querySelector('i');
+
     if (localStorage.getItem('theme') === 'light') {
-      body.classList.add('light-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
-      icon.style.color = '#1e3a8a';
+      bodyEl.classList.add('light-mode');
+      themeIcon.classList.replace('fa-moon','fa-sun');
     }
 
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      const isLight = body.classList.contains('light-mode');
-
-      icon.classList.toggle('fa-sun', isLight);
-      icon.classList.toggle('fa-moon', !isLight);
-      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
+    themeToggle.addEventListener('click', () => {
+      bodyEl.classList.toggle('light-mode');
+      const isLight = bodyEl.classList.contains('light-mode');
+      themeIcon.classList.toggle('fa-sun', isLight);
+      themeIcon.classList.toggle('fa-moon', !isLight);
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+      // refresh particles colors
+      setTimeout(() => {
+        if (window.pJSDom && window.pJSDom[0]) {
+          window.pJSDom[0].pJS.particles.color.value = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim();
+          window.pJSDom[0].pJS.particles.line_linked.color = getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim();
+          window.pJSDom[0].pJS.fn.particlesRefresh();
+        }
+      }, 120);
     });
 
-    // Intersection Observer for fade-in and section-header animations
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+    // Mobile menu controls
+    const mobileOpen = document.getElementById('mobile-open');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    mobileOpen.addEventListener('click', () => mobileMenu.style.transform = 'translateX(0)');
+    mobileClose.addEventListener('click', () => mobileMenu.style.transform = 'translateX(100%)');
+
+    // Accordion behavior
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        const panel = document.getElementById(target);
+        const icon = btn.querySelector('i.fas');
+        const isOpen = panel.classList.contains('open');
+
+        // simple accordion: close others, open this
+        document.querySelectorAll('.accordion-panel.open').forEach(p => {
+          if (p.id !== target) {
+            p.classList.remove('open');
+            const siblingBtn = document.querySelector(`.accordion-btn[data-target="${p.id}"]`);
+            if (siblingBtn) siblingBtn.querySelector('i.fas').classList.remove('fa-chevron-up'), siblingBtn.querySelector('i.fas').classList.add('fa-chevron-down');
+          }
+        });
+
+        if (!isOpen) {
+          panel.classList.add('open');
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+          // smooth scroll into view
+          setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'center' }), 120);
+        } else {
+          panel.classList.remove('open');
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
         }
       });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in, .section-header').forEach(el => {
-      observer.observe(el);
     });
 
-    // Scrolled class for nav
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.sticky-nav');
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+    // Simple search (jump to first matching table cell when Enter pressed)
+    document.getElementById('search-input').addEventListener('keydown', function(e){
+      if (e.key === 'Enter') {
+        const q = this.value.trim().toLowerCase();
+        if (q.length < 2) return;
+        const cells = Array.from(document.querySelectorAll('table td'));
+        const match = cells.find(td => td.innerText.toLowerCase().includes(q));
+        if (match) {
+          match.scrollIntoView({ behavior:'smooth', block:'center' });
+          // highlight briefly
+          const origBg = match.style.background;
+          match.style.transition = 'background .5s ease';
+          match.style.background = 'rgba(250,204,21,0.25)';
+          setTimeout(()=> match.style.background = origBg || '', 1500);
+        } else {
+          alert('No match found for: ' + q);
+        }
       }
     });
+
+    // Intersection observer to reveal elements (progressive)
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) en.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.glass, .accordion-btn').forEach(el => io.observe(el));
   </script>
+
+  <!-- Prism (for future code blocks or templates) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
 </body>
 </html>
