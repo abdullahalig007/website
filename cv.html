@@ -1,411 +1,478 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Dr Abdulla">
-  <meta name="generator" content="Jekyll v4.2.2">
-  <meta name="description" content="CV of Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="author" content="Dr Abdulla" />
+  <meta name="description" content="Curriculum Vitae — Dr Abdulla, Assistant Professor, Jamia Millia Islamia. Academic profile, publications, teaching and research." />
+  <title>Dr Abdulla — CV</title>
 
-  <title>Dr Abdulla | CV</title>
-  <link rel="canonical" href="/website/cv.html">
-  <!-- Tailwind CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="Dr Abdulla">
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Dr Abdulla — CV" />
+  <meta property="og:description" content="Curriculum Vitae — Assistant Professor, Jamia Millia Islamia" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg" />
 
-  <!-- Open Graph for SEO -->
-  <meta property="og:title" content="Dr Abdulla | CV">
-  <meta property="og:description" content="Curriculum Vitae of Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://abdullahalig007.github.io/website/cv.html">
-  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg">
-
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dr Abdulla | CV">
-  <meta name="twitter:description" content="Curriculum Vitae of Dr Abdulla, Assistant Professor at Jamia Millia Islamia.">
-  <meta name="twitter:image" content="https://abdullahalig007.github.io/website/ph.jpg">
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    :root {
-      --bg-color: #0f172a;
-      --text-color: #e2e8f0;
-      --card-bg: #1e293b;
-      --border-color: #334155;
-      --accent-color: #facc15;
-      --link-color: #93c5fd;
-      --hover-link: #facc15;
-      --secondary-accent: #10b981;
+    :root{
+      --bg:#0f172a;
+      --text:#e6eef8;
+      --card: rgba(30,41,59,0.72);
+      --border: rgba(148,163,184,0.12);
+      --accent: #4f46e5;
+      --accent-2: #10b981;
+      --particle: #64748b;
+      --particle-line: #475569;
+    }
+    .light-mode {
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --card: rgba(255,255,255,0.9);
+      --border: rgba(100,116,139,0.12);
+      --accent: #4338ca;
+      --accent-2: #059669;
+      --particle: #94a3b8;
+      --particle-line: #cbd5e1;
     }
 
-    body.light-mode {
-      --bg-color: #f8fafc;
-      --text-color: #1e293b;
-      --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --accent-color: #1e3a8a;
-      --link-color: #1e40af;
-      --hover-link: #2563eb;
-      --secondary-accent: #059669;
-    }
-
+    html,body { height:100%; }
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s ease, color 0.4s ease;
-      overflow-x: hidden;
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      transition: all .35s ease;
+      line-height:1.6;
+      overflow-x:hidden;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--text-color);
-    }
+    /* Particles */
+    #particles-js { position:fixed; inset:0; z-index:-1; pointer-events:none; }
 
-    .hero {
-      background: linear-gradient(135deg, var(--bg-color), var(--accent-color));
-      color: white;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s ease;
+    /* Nav */
+    header.site-nav {
+      position:sticky; top:0; z-index:60; backdrop-filter: blur(8px);
+      background: rgba(15,23,42,0.75); border-bottom:1px solid var(--border);
     }
+    .nav-link { color: var(--text); text-decoration:none; display:inline-flex; gap:.5rem; align-items:center; font-weight:600; }
+    .nav-link:hover { color: var(--accent); }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 100%);
-      animation: pulse 5s infinite;
+    /* Glass */
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
+    .glass:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
 
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.2; }
-      100% { transform: scale(1); opacity: 0.5; }
-    }
+    /* Timeline */
+    .timeline { position:relative; padding-left:2.5rem; }
+    .timeline::before { content:''; position:absolute; top:0; left:1rem; width:2px; height:100%; background: linear-gradient(180deg,var(--accent),var(--accent-2)); opacity:0.9; }
+    .timeline-item { position:relative; margin-bottom:1.5rem; padding-left:1rem; }
+    .timeline-dot { position:absolute; left:0.6rem; top:0.25rem; width:14px; height:14px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(79,70,229,0.08); border:3px solid var(--bg); }
 
-    .sticky-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: background 0.4s ease, transform 0.3s ease;
-    }
+    /* Accordion */
+    .accordion-btn{ width:100%; display:flex; justify-content:space-between; align-items:center; padding:.75rem 1rem; border-radius:.75rem; background:transparent; border:1px solid rgba(255,255,255,0.03); cursor:pointer; color:var(--text); font-weight:700; }
+    .accordion-panel{ max-height:0; overflow:hidden; transition:max-height .45s ease, padding .35s ease; padding:0 1rem; }
+    .accordion-panel.open{ padding:1rem; max-height:2000px; }
 
-    .sticky-nav.scrolled {
-      transform: translateY(0);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+    /* Utilities */
+    .muted { color: rgba(226,232,240,0.65); font-size:.95rem; }
+    .tag { display:inline-block; padding:.25rem .5rem; font-size:.8rem; border-radius:.5rem; background: rgba(255,255,255,0.06); color:var(--text); font-weight:700; }
 
-    body.light-mode .sticky-nav {
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-link {
-      transition: all 0.3s ease;
-      color: var(--text-color);
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-color);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-link:hover {
-      color: var(--accent-color);
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .theme-toggle:hover {
-      transform: rotate(180deg);
-    }
-
-    .section-header {
-      border-bottom: 3px solid var(--accent-color);
-      padding-bottom: 0.5rem;
-      color: var(--accent-color);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(to right, var(--accent-color), var(--secondary-accent));
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-
-    .section-header.in-view::after {
-      transform: translateX(0);
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      overflow: hidden;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent-color);
-      box-shadow: 0 15px 30px rgba(250, 204, 21, 0.2);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.5s;
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    a {
-      color: var(--link-color);
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    a:hover {
-      color: var(--hover-link);
-      text-shadow: 0 0 5px var(--hover-link);
-    }
-
-    .icon-link {
-      color: var(--text-color);
-      transition: all 0.3s ease;
-    }
-    .icon-link:hover {
-      color: var(--accent-color);
-      transform: scale(1.2) rotate(360deg);
-    }
-
-    footer {
-      background: var(--bg-color);
-      border-top: 1px solid var(--border-color);
-      transition: background 0.4s ease;
-      position: relative;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, var(--bg-color), transparent);
-      pointer-events: none;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin-top: 1rem;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    th, td {
-      border: 1px solid var(--border-color);
-      padding: 1rem;
-      text-align: left;
-      transition: background-color 0.3s ease;
-    }
-    th {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-      font-family: 'Playfair Display', serif;
-    }
-    tr:nth-child(even) {
-      background-color: rgba(249, 250, 251, 0.5);
-    }
-    tr:hover {
-      background-color: rgba(243, 244, 246, 0.8);
-    }
-    body.light-mode tr:nth-child(even) {
-      background-color: #f9fafb;
-    }
-    body.light-mode tr:hover {
-      background-color: #f3f4f6;
-    }
+    @media (max-width:768px){ .nav-desktop{ display:none } .nav-mobile{ display:flex } }
+    @media (min-width:769px){ .nav-mobile{ display:none } .nav-desktop{ display:flex } }
   </style>
 </head>
-
 <body>
-  <!-- Hero Section -->
-  <section class="hero py-16 text-center relative">
-    <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Dr Abdulla</h1>
-      <p class="text-xl md:text-2xl mb-3 font-light">Assistant Professor at Jamia Millia Islamia</p>
-      <p class="text-md md:text-lg mt-2 italic">Curriculum Vitae</p>
+  <div id="particles-js"></div>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="container mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="/website/" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold">DA</div>
+        <span class="font-semibold text-lg">Dr Abdulla</span>
+      </a>
+
+      <nav class="nav-desktop items-center gap-6">
+        <a href="/website/cv.html" class="nav-link"><i class="fas fa-id-card"></i><span class="ml-1">CV</span></a>
+        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask"></i><span class="ml-1">Research</span></a>
+        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book"></i><span class="ml-1">Resources</span></a>
+        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line"></i><span class="ml-1">Efficiency</span></a>
+
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-slate-700/30" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </nav>
+
+      <div class="nav-mobile flex items-center gap-3">
+        <button id="mobile-open" class="p-2"><i class="fas fa-bars fa-lg"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-slate-900/95 z-50 flex flex-col items-center justify-center space-y-6 p-6" style="transform:translateX(100%); transition:transform .35s ease;">
+    <button id="mobile-close" class="absolute top-6 right-6 text-white text-2xl"><i class="fas fa-times"></i></button>
+    <a href="/website/cv.html" class="nav-link text-2xl">CV</a>
+    <a href="/website/research.html" class="nav-link text-2xl">Research</a>
+    <a href="/website/resource.html" class="nav-link text-2xl">Resources</a>
+    <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link text-2xl">Efficiency</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-br from-slate-900/90 to-indigo-900/20 text-center py-16 md:py-20" style="clip-path: polygon(0 0,100% 0,100% 86%,0 100%);">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Dr Abdulla</h1>
+      <p class="mt-2 text-lg md:text-xl muted">Assistant Professor — Jamia Millia Islamia</p>
+      <p class="mt-2 italic muted">Curriculum Vitae / Academic Profile</p>
+
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <a href="/website/docs/Dr_Abdulla_CV.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md font-semibold" style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--bg);" download>
+          <i class="fas fa-download"></i> Download CV (PDF)
+        </a>
+        <a href="mailto:abdullahalig007@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-transparent muted hover:text-white">
+          <i class="fas fa-envelope"></i> abdullahalig007@gmail.com
+        </a>
+      </div>
     </div>
   </section>
 
-<!-- Navigation -->
-  <header class="sticky-nav shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-7 flex items-center">
-        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
-        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity</a>
-        <div id="theme-toggle" class="theme-toggle ml-4"><i class="fas fa-moon fa-lg" style="color:#facc15;"></i></div>
-      </nav>
-    </div>
-  </header>
-  
-  <main class="container mx-auto px-4 py-12">
-    <section id="cv" class="mb-12 fade-in">
-      <h1 class="text-4xl font-semibold section-header">CV</h1>
-      <div class="card p-8 mt-6 relative">
-        <p class="mb-6">
-          Download my CV: <a href="/website/CV.pdf" class="hover:text-blue-400"><i class="fas fa-download mr-1"></i> CV.pdf</a>
-        </p>
-        <h3 class="text-2xl font-medium mb-4">Education</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Degree</th>
-              <th>Institution</th>
-              <th>Year</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Ph.D. in Economics</td>
-              <td>Aligarh Muslim University</td>
-              <td>2018</td>
-            </tr>
-            <tr>
-              <td>M.Phil. in Economics</td>
-              <td>Aligarh Muslim University</td>
-              <td>2015</td>
-            </tr>
-            <tr>
-              <td>M.A. in Economics</td>
-              <td>Aligarh Muslim University</td>
-              <td>2011</td>
-            </tr>
-            <tr>
-              <td>B.A. (Hons.) in Economics</td>
-              <td>Aligarh Muslim University</td>
-              <td>2009</td>
-            </tr>
-          </tbody>
-        </table>
+  <!-- MAIN -->
+  <main class="container mx-auto px-6 py-12 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- LEFT: Timeline (Education & Experience) -->
+      <div class="lg:col-span-2">
+        <div class="glass">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="text-2xl font-semibold">Academic Timeline</h2>
+              <p class="muted mt-1">Animated timeline for Education and Professional Experience.</p>
+            </div>
+            <div class="tag">Timeline</div>
+          </div>
+
+          <!-- Education timeline -->
+          <div class="mt-6">
+            <h3 class="font-semibold">Education</h3>
+            <div class="timeline mt-4">
+              <!-- PhD -->
+              <div class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div class="ml-6">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <strong>Ph.D., Economics</strong>
+                      <div class="muted">Aligarh Muslim University — Completed</div>
+                    </div>
+                    <div class="muted text-sm">Thesis: [Title — edit here]</div>
+                  </div>
+                  <p class="mt-2 muted">Specialization: Agricultural Economics, Productivity Analysis, Stochastic Frontier Methods.</p>
+                </div>
+              </div>
+
+              <!-- MPhil / Masters -->
+              <div class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div class="ml-6">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <strong>M.A. / M.Sc. (Economics)</strong>
+                      <div class="muted">[University — Year]</div>
+                    </div>
+                    <div class="muted text-sm">Focus: Applied Econometrics</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bachelors -->
+              <div class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div class="ml-6">
+                  <strong>B.A. / B.Sc.</strong>
+                  <div class="muted">[University — Year]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience timeline -->
+          <div class="mt-6">
+            <h3 class="font-semibold">Professional Experience</h3>
+            <div class="timeline mt-4">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <strong>Assistant Professor</strong>
+                      <div class="muted">Jamia Millia Islamia, New Delhi</div>
+                    </div>
+                    <div class="muted text-sm">Present</div>
+                  </div>
+                  <p class="mt-2 muted">Teaching postgraduate courses in Money & Banking, Public Finance, Applied Econometrics; supervising MPhil/PhD students; research on productivity and efficiency.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                  <strong>Research Fellow / Previous Roles</strong>
+                  <div class="muted">ICAR-NIAP / NAAS / DoC, Government of India (previous affiliations)</div>
+                  <p class="mt-2 muted">Policy research on agricultural productivity, member of collaborative projects and training programs.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                  <strong>Visiting / Short-term Positions</strong>
+                  <div class="muted">[Institute / Year]</div>
+                  <p class="mt-2 muted">Lectures, workshops, and invited seminars on efficiency measurement and applied econometrics.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Publications (collapsible) -->
+        <div class="mt-8 glass">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Selected Publications</h2>
+            <div class="tag">Journal articles & chapters</div>
+          </div>
+
+          <div class="mt-4">
+            <button class="accordion-btn" data-target="pub-panel">
+              <span><i class="fas fa-file-alt mr-2"></i>Show / hide publications</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+
+            <div id="pub-panel" class="accordion-panel">
+              <div class="mt-4 space-y-4">
+                <!-- Using publications from uploaded research content -->
+                <div>
+                  <strong>2024</strong> — Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India. <em>Agricultural Economics Research Review, 37(1), 71–80</em>. Kumar, N. R., & Abdulla. <a href="https://doi.org/10.5958/0974-0279.2022.00006.2" class="text-blue-300">DOI</a>
+                </div>
+
+                <div>
+                  <strong>2023</strong> — The Effect of Information Technology on Banking Efficiency. <em>Economic and Political Weekly, 58(37), 40–46</em>. Khan, A. S., & Abdulla.
+                </div>
+
+                <div>
+                  <strong>2022</strong> — Decomposing Productivity Growth in the Indian Sugar Industry. <em>Agricultural Economics Research Review, 35(1), 71–80</em>. Kumar, S., & Abdulla. <a href="https://doi.org/10.5958/0974-0279.2022.00006.4" class="text-blue-300">DOI</a>
+                </div>
+
+                <div>
+                  <strong>2021</strong> — Technical Efficiency and Its Determinants in the Indian Meat Processing Industry. <em>The Indian Journal of Animal Sciences, 91(3), 230–234</em>. Abdulla & Kumar, S.
+                </div>
+
+                <div>
+                  <strong>2020</strong> — Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach. <em>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</em>. Kumar, S., & Abdulla. <a href="https://doi.org/10.56093/ijas.v90i8.105958" class="text-blue-300">DOI</a>
+                </div>
+
+                <div>
+                  <strong>2019</strong> — Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms. <em>SEDME, 46(4), 235–247</em>. Khan, M. R., & Abdulla. <a href="https://doi.org/10.1177/0970846419894775" class="text-blue-300">DOI</a>
+                </div>
+
+                <div class="muted text-sm">For a complete list of publications (books, chapters, conference papers), see the Research page.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grants & Projects -->
+        <div class="mt-8 glass">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Grants & Projects</h2>
+            <div class="tag">Selected</div>
+          </div>
+
+          <div class="mt-4">
+            <ul class="list-disc pl-5 space-y-2 muted">
+              <li>Co-authored: Determinants of Efficiency in Sugarcane Production in India — collaborative research with Mohd. Izhar Ahmad.</li>
+              <li>Projects with ICAR, NAAS, and DoC on agricultural productivity and input use.</li>
+              <li>Work on EPFO / payroll data usage for labor economics (collaborative reports & PIB press releases included in project documentation).</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-    </section>
+
+      <!-- RIGHT: Profile summary & quick links -->
+      <aside class="space-y-6">
+        <div class="glass">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="text-xl font-semibold">Profile</h3>
+              <p class="muted mt-1">Assistant Professor, PhD (AMU). Research interests: productivity & efficiency, stochastic frontier analysis (SFA), DEA, Malmquist indices, agricultural economics, climate impacts on agriculture.</p>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <div class="text-sm muted"><strong>Email:</strong> abdullahalig007@gmail.com</div>
+            <div class="text-sm muted mt-1"><strong>ORCID:</strong> 0000-0002-6544-1056</div>
+            <div class="text-sm muted mt-1"><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="text-blue-300">profile</a></div>
+          </div>
+        </div>
+
+        <div class="glass">
+          <h3 class="text-xl font-semibold">Teaching</h3>
+          <ul class="mt-3 list-disc pl-5 muted space-y-2">
+            <li>Money & Banking; Computer Application for Economics; Public Finance (PG)</li>
+            <li>Applied Econometrics, Efficiency & Productivity Estimation (DEA, SFA)</li>
+            <li>Hands-on Stata labs and reproducible research practices</li>
+          </ul>
+        </div>
+
+        <div class="glass">
+          <h3 class="text-xl font-semibold">Skills & Tools</h3>
+          <div class="mt-3">
+            <div class="muted"><strong>Econometrics:</strong> SFA, DEA, panel data, causal inference (RCT, DiD, IV)</div>
+            <div class="muted mt-2"><strong>Software:</strong> Stata (advanced), R (sf/sp, spatial), EViews, QGIS, Python (pandas, geopandas)</div>
+            <div class="muted mt-2"><strong>Other:</strong> LaTeX, Git, reproducible workflows</div>
+          </div>
+        </div>
+
+        <div class="glass">
+          <h3 class="text-xl font-semibold">Awards & Recognition</h3>
+          <ul class="mt-3 list-disc pl-5 muted space-y-2">
+            <li>Selected grants and collaborative publications (see Research page for details)</li>
+            <li>Invited seminars and conference presentations (national & international)</li>
+          </ul>
+        </div>
+
+        <div class="glass text-center">
+          <a href="/website/docs/Dr_Abdulla_CV.pdf" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-semibold" style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--bg);" download>
+            <i class="fas fa-file-pdf"></i> Download CV (PDF)
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <p class="mt-8 muted text-sm">Last updated: 2025. Edit content inside this HTML to update any section (education entries, publications, or links).</p>
   </main>
 
-  <footer class="py-12 text-center relative">
-    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
-    <nav class="mt-4 flex justify-center space-x-10">
-      <a href="mailto:abdullahalig007@gmail.com" aria-label="Email" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-      <a href="https://x.com/abdullahalig07" aria-label="Twitter" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla?ev=hdr_xprf" aria-label="ResearchGate" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" aria-label="LinkedIn" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" aria-label="ORCID" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" aria-label="Google Scholar" class="icon-link"><i class="fas fa-graduation-cap fa-2x"></i></a>
-    </nav>
-    <p class="mt-6 text-sm">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+  <!-- FOOTER -->
+  <footer class="py-10 text-center">
+    <div class="container mx-auto px-6">
+      <div class="text-lg font-semibold mb-4" style="color:var(--accent-2)">Agricultural Economics</div>
+      <nav class="flex justify-center gap-6 mb-4">
+        <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
+        <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
+      </nav>
+      <p class="text-sm muted">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = toggle.querySelector('i');
+    // particles.js
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 70, density: { enable: true, value_area: 700 } },
+        color: { value: getComputedStyle(document.documentElement).getPropertyValue('--particle').trim() },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 140,
+          color: getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim(),
+          opacity: 0.28,
+          width: 1
+        },
+        move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 0.7 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
 
-    // Load saved theme
+    // Theme toggle (persist)
+    const themeToggle = document.getElementById('theme-toggle');
+    const bodyEl = document.body;
+    const icon = themeToggle.querySelector('i');
+
     if (localStorage.getItem('theme') === 'light') {
-      body.classList.add('light-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
-      icon.style.color = '#1e3a8a';
+      bodyEl.classList.add('light-mode');
+      icon.classList.replace('fa-moon','fa-sun');
     }
 
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      const isLight = body.classList.contains('light-mode');
-
+    themeToggle.addEventListener('click', () => {
+      bodyEl.classList.toggle('light-mode');
+      const isLight = bodyEl.classList.contains('light-mode');
       icon.classList.toggle('fa-sun', isLight);
       icon.classList.toggle('fa-moon', !isLight);
-      icon.style.color = isLight ? '#1e3a8a' : '#facc15';
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+      // refresh particles colors
+      setTimeout(() => {
+        if (window.pJSDom && window.pJSDom[0]) {
+          window.pJSDom[0].pJS.particles.color.value = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim();
+          window.pJSDom[0].pJS.particles.line_linked.color = getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim();
+          window.pJSDom[0].pJS.fn.particlesRefresh();
+        }
+      }, 120);
     });
 
-    // Intersection Observer for fade-in and section-header animations
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+    // Mobile menu controls
+    const mobileOpen = document.getElementById('mobile-open');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    mobileOpen.addEventListener('click', () => mobileMenu.style.transform = 'translateX(0)');
+    mobileClose.addEventListener('click', () => mobileMenu.style.transform = 'translateX(100%)');
+
+    // Accordion
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const panel = document.getElementById(targetId);
+        const icon = btn.querySelector('i.fas');
+        const isOpen = panel.classList.contains('open');
+
+        // close others
+        document.querySelectorAll('.accordion-panel.open').forEach(p => {
+          if (p.id !== targetId) {
+            p.classList.remove('open');
+            const b = document.querySelector(`.accordion-btn[data-target="${p.id}"]`);
+            if (b) { b.querySelector('i.fas').classList.remove('fa-chevron-up'); b.querySelector('i.fas').classList.add('fa-chevron-down'); }
+          }
+        });
+
+        if (!isOpen) {
+          panel.classList.add('open');
+          icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up');
+          setTimeout(()=> panel.scrollIntoView({behavior:'smooth', block:'center'}), 120);
+        } else {
+          panel.classList.remove('open');
+          icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down');
         }
       });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in, .section-header').forEach(el => {
-      observer.observe(el);
     });
 
-    // Scrolled class for nav
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.sticky-nav');
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
+    // Reveal on scroll (simple)
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.glass, .timeline-item, .accordion-btn').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
