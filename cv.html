@@ -25,6 +25,7 @@
       --accent-2: #10b981;
       --particle: #64748b;
       --particle-line: #475569;
+      --muted: rgba(226,232,240,0.65);
     }
     .light-mode {
       --bg: #f8fafc;
@@ -35,6 +36,7 @@
       --accent-2: #059669;
       --particle: #94a3b8;
       --particle-line: #cbd5e1;
+      --muted: rgba(30,41,59,0.75);
     }
     html,body { height:100%; }
     body {
@@ -75,7 +77,7 @@
     .accordion-panel{ max-height:0; overflow:hidden; transition:max-height .45s ease, padding .35s ease; padding:0 1rem; }
     .accordion-panel.open{ padding:1rem; max-height:2000px; }
     /* Utilities */
-    .muted { color: rgba(226,232,240,0.65); font-size:.95rem; }
+    .muted { color: var(--muted); font-size:.95rem; }
     .tag { display:inline-block; padding:.25rem .5rem; font-size:.8rem; border-radius:.5rem; background: rgba(255,255,255,0.06); color:var(--text); font-weight:700; }
     @media (max-width:768px){ .nav-desktop{ display:none } .nav-mobile{ display:flex } }
     @media (min-width:769px){ .nav-mobile{ display:none } .nav-desktop{ display:flex } }
@@ -159,10 +161,10 @@ a:hover {
                 <div class="ml-6">
                   <div class="flex items-center justify-between">
                     <div>
-                      <strong>Ph.D., Economics</strong>
-                      <div class="muted">Aligarh Muslim University — Completed</div>
+                      <strong>Ph.D., Industrial Economics</strong>
+                      <div class="muted">Aligarh Muslim University — 2015-2018</div>
                     </div>
-                    <div class="muted text-sm">Thesis: [Title — edit here]</div>
+                    <div class="muted text-sm">Thesis: Performance of Sugar Mills in India: A Comparative Study of Uttar Pradesh and Maharashtra</div>
                   </div>
                   <p class="mt-2 muted">Specialization: Agricultural Economics, Productivity Analysis, Stochastic Frontier Methods.</p>
                 </div>
@@ -173,10 +175,22 @@ a:hover {
                 <div class="ml-6">
                   <div class="flex items-center justify-between">
                     <div>
-                      <strong>M.A. / M.Sc. (Economics)</strong>
-                      <div class="muted">[University — Year]</div>
+                      <strong>M.Phil., Industrial Economics</strong>
+                      <div class="muted">Aligarh Muslim University — 2013-2015</div>
                     </div>
                     <div class="muted text-sm">Focus: Applied Econometrics</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Masters -->
+              <div class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div class="ml-6">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <strong>M.A., Economics (Econometrics & Mathematical Economics)</strong>
+                      <div class="muted">Aligarh Muslim University — 2009-2011</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -184,8 +198,8 @@ a:hover {
               <div class="timeline-item">
                 <div class="timeline-dot" aria-hidden="true"></div>
                 <div class="ml-6">
-                  <strong>B.A. / B.Sc.</strong>
-                  <div class="muted">[University — Year]</div>
+                  <strong>B.A. (Hons.), Economics (Mathematics & Statistics)</strong>
+                  <div class="muted">Aligarh Muslim University — 2006-2009</div>
                 </div>
               </div>
             </div>
@@ -202,25 +216,36 @@ a:hover {
                       <strong>Assistant Professor</strong>
                       <div class="muted">Jamia Millia Islamia, New Delhi</div>
                     </div>
-                    <div class="muted text-sm">Present</div>
+                    <div class="muted text-sm">Aug 2024 – Present</div>
                   </div>
-                  <p class="mt-2 muted">Teaching postgraduate courses in Money & Banking, Public Finance, Applied Econometrics; supervising MPhil/PhD students; research on productivity and efficiency.</p>
+                  <p class="mt-2 muted">Conduct independent and collaborative research integrating national microdata with advanced econometric techniques. Teach and mentor on applied econometrics and data-driven policy analysis. Supervise postgraduate research projects focused on empirical modelling and policy impact.</p>
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="ml-6">
-                  <strong>Research Fellow / Previous Roles</strong>
-                  <div class="muted">ICAR-NIAP / NAAS / DoC, Government of India (previous affiliations)</div>
-                  <p class="mt-2 muted">Policy research on agricultural productivity, member of collaborative projects and training programs.</p>
+                  <strong>Research Associate</strong>
+                  <div class="muted">ICAR–National Institute of Agricultural Economics & Policy Research (NIAP), New Delhi</div>
+                  <div class="muted text-sm">2018 – 2024</div>
+                  <p class="mt-2 muted">Led empirical research on agricultural productivity, climate risk, market efficiency, and technology adoption. Produced 10+ peer-reviewed publications and contributed to national-level policy reports. Applied advanced panel econometrics, stochastic frontier, and spatial models using NSSO, ASI, NFHS, and CMIE data. Developed reproducible research pipelines in Stata, R, and Python.</p>
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="ml-6">
-                  <strong>Visiting / Short-term Positions</strong>
-                  <div class="muted">[Institute / Year]</div>
-                  <p class="mt-2 muted">Lectures, workshops, and invited seminars on efficiency measurement and applied econometrics.</p>
+                  <strong>Young Professional (Economics & Trade Policy)</strong>
+                  <div class="muted">Ministry of Commerce & Industry, Government of India</div>
+                  <div class="muted text-sm">May 2022 – Jul 2022</div>
+                  <p class="mt-2 muted">Conducted trade cost and efficiency analysis using gravity models and international databases (WITS, ITC Trade Map, UN Comtrade). Prepared policy briefs on export competitiveness, regional integration, and trade strategy.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                  <strong>Research Associate</strong>
+                  <div class="muted">National Academy of Agricultural Sciences, New Delhi</div>
+                  <div class="muted text-sm">2021</div>
+                  <p class="mt-2 muted">Contributed to studies on agricultural productivity and technology adoption using econometric methods.</p>
                 </div>
               </div>
             </div>
@@ -239,28 +264,74 @@ a:hover {
             </button>
             <div id="pub-panel" class="accordion-panel">
               <div class="mt-4 space-y-4">
-                <!-- Using publications from uploaded research content -->
+                <!-- Forthcoming Publications -->
                 <div>
-                  <strong>2024</strong> — Impact of Climate Change on Agriculture in Indo-Gangetic Plains of India. <em>Agricultural Economics Research Review, 37(1), 71–80</em>. Kumar, N. R., & Abdulla. <a href="https://doi.org/10.5958/0974-0279.2022.00006.2" >DOI</a>
+                  <strong>Forthcoming</strong> — Technical Efficiency of Contract Farming: Evidence from Potato Farmers in Gujarat. <em>Indian Journal of Agricultural Sciences</em>. Abdulla. Indexing: WoS (SCI)
                 </div>
                 <div>
-                  <strong>2023</strong> — The Effect of Information Technology on Banking Efficiency. <em>Economic and Political Weekly, 58(37), 40–46</em>. Khan, A. S., & Abdulla.
+                  <strong>Forthcoming</strong> — Technological Heterogeneity and Energy Efficiency across India’s Industrial Sectors: A Meta-Frontier Stochastic Frontier Approach. Abdulla & Tariq Masood. Indexing: WoS (SCI)
+                </div>
+                <!-- Selected Publications -->
+                <div>
+                  <strong>2026</strong> — Labour Market Dynamics and Livelihood Sustainability in India. <em>Discover Sustainability (early view)</em>. Abdulla. Indexing: Scopus | WoS (SCI)
+                </div>
+                <div>
+                  <strong>2026</strong> — Farmer Producer Organisations and the Technical Efficiency of Vegetable Crops. <em>Economic & Political Weekly, 61(2), 56–62</em>. Diksha Bali & Abdulla. Available at: <a href="https://www.epw.in">EPW</a>. Indexing: Scopus | ABDC (B)
+                </div>
+                <div>
+                  <strong>2024</strong> — Impact of Climate Change on Agriculture in the Indo-Gangetic Plains of India. <em>Agricultural Economics Research Review, 37(1), 71–80</em>. Kumar, N. R., & Abdulla. <a href="https://doi.org/10.5958/0974-0279.2022.00006.2" >DOI</a>
+                </div>
+                <div>
+                  <strong>2023</strong> — The Effect of Information Technology on Banking Efficiency. <em>Economic and Political Weekly, 58(37), 40–46</em>. Khan, A. S., & Abdulla. Available at: <a href="https://www.epw.in">EPW</a>. Indexing: Scopus | ABDC (B)
                 </div>
                 <div>
                   <strong>2022</strong> — Decomposing Productivity Growth in the Indian Sugar Industry. <em>Agricultural Economics Research Review, 35(1), 71–80</em>. Kumar, S., & Abdulla. <a href="https://doi.org/10.5958/0974-0279.2022.00006.4" >DOI</a>
                 </div>
                 <div>
-                  <strong>2021</strong> — Technical Efficiency and Its Determinants in the Indian Meat Processing Industry. <em>The Indian Journal of Animal Sciences, 91(3), 230–234</em>. Abdulla & Kumar, S.
+                  <strong>2021a</strong> — Technical Efficiency and Its Determinants in the Indian Meat Processing Industry. <em>The Indian Journal of Animal Sciences, 91(3), 230–234</em>. Abdulla & Kumar, S. <a href="https://doi.org/10.56093/ijans.v91i3.114149" >DOI</a>. Indexing: WoS (SCI)
                 </div>
                 <div>
-                  <strong>2020</strong> — Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach. <em>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</em>. Kumar, S., & Abdulla. <a href="https://doi.org/10.56093/ijas.v90i8.105958" >DOI</a>
+                  <strong>2021</strong> — Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry. <em>Indian Journal of Animal Sciences, 91(2), 137–142</em>. Kumar, S. & Abdulla. <a href="https://doi.org/10.56093/ijans.v91i2.113822" >DOI</a>. Indexing: WoS (SCI)
+                </div>
+                <div>
+                  <strong>2021b</strong> — Technical Efficiency and Its Determinants in the Indian Textile Garments Industry. <em>Research Journal of Textile and Apparel, 25(4), 346–360</em>. Abdulla & Kumar, S. <a href="https://doi.org/10.1108/RJTA-09-2020-0110" >DOI</a>. Indexing: Scopus | ABDC (B)
+                </div>
+                <div>
+                  <strong>2020</strong> — Dynamics of Technical Efficiency of Sugar Mills in India: Stochastic Frontier Approach. <em>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</em>. Kumar, S., & Abdulla. <a href="https://doi.org/10.56093/ijas.v90i8.105958" >DOI</a>. Indexing: WoS (SCI)
+                </div>
+                <div>
+                  <strong>2020</strong> — Productivity Growth in India’s Bakery Manufacturing Industry. <em>Journal of Agribusiness in Developing and Emerging Economies</em>. Kumar, S., Abdulla & Singh, C. P. <a href="https://doi.org/10.1108/JADEE-12-2019-0204" >DOI</a>. Indexing: Scopus | ABDC (B)
                 </div>
                 <div>
                   <strong>2019</strong> — Dynamics of MSME Industry in Uttar Pradesh and Maharashtra: An Analysis of Sugar Firms. <em>SEDME, 46(4), 235–247</em>. Khan, M. R., & Abdulla. <a href="https://doi.org/10.1177/0970846419894775" >DOI</a>
                 </div>
+                <!-- Books and Chapters -->
+                <div>
+                  <strong>2025</strong> — Spreadsheet Modelling (MBA-1008). <em>Centre for Distance Education, Aligarh Muslim University</em>. Abdulla.
+                </div>
+                <div>
+                  <strong>2019</strong> — Total Factor Productivity Using Stochastic Frontier Production Function. <em>ICAR–National Institute of Agricultural Economics and Policy Research (NIAP)</em>. Abdulla, Kumar, S., & Singh, D.
+                </div>
                 <div class="muted text-sm">For a complete list of publications (books, chapters, conference papers), see the Research page.</div>
               </div>
             </div>
+          </div>
+        </div>
+        <!-- Working Papers -->
+        <div class="mt-8 glass">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Working Papers (Under Review)</h2>
+            <div class="tag">Under Review</div>
+          </div>
+          <div class="mt-4">
+            <ul class="list-disc pl-5 space-y-2 muted">
+              <li>India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach. Abdulla & Imran Ahmad.</li>
+              <li>Growth and Productivity Change in the Vegetable and Fruit Processing Industry in India. Abdulla & Shiv Kumar.</li>
+              <li>A Non-Parametric Analysis of the Climate–Agriculture Nexus and Agricultural Productivity in India. Abdulla & P. S. Birthal.</li>
+              <li>Heat, Water, and Yields: Limits to Adaptation in India’s Changing Climate. Abdulla & D. Bali.</li>
+              <li>Spatial Analysis of Climate-Induced Risk in Uttar Pradesh. Abdulla & N. R. Kumar.</li>
+              <li>Assessing Agricultural Vulnerability in Uttar Pradesh: Evidence from Block-Level Data. Abdulla & N. R. Kumar.</li>
+            </ul>
           </div>
         </div>
         <!-- Grants & Projects -->
@@ -271,7 +342,7 @@ a:hover {
           </div>
           <div class="mt-4">
             <ul class="list-disc pl-5 space-y-2 muted">
-              <li>Co-authored: Determinants of Efficiency in Sugarcane Production in India — collaborative research with Mohd. Izhar Ahmad.</li>
+              <li>Co-Principal Investigator, ICSSR Minor Research Project: Assessing the Impact of Jal Jeevan Mission on Rural Health Outcomes using mixed-method evaluation. 2025 – Present.</li>
               <li>Projects with ICAR, NAAS, and DoC on agricultural productivity and input use.</li>
               <li>Work on EPFO / payroll data usage for labor economics (collaborative reports & PIB press releases included in project documentation).</li>
             </ul>
@@ -284,7 +355,7 @@ a:hover {
           <div class="flex items-start justify-between">
             <div>
               <h3 class="text-xl font-semibold">Profile</h3>
-              <p class="muted mt-1">Assistant Professor, PhD (AMU). Research interests: productivity & efficiency, stochastic frontier analysis (SFA), DEA, Malmquist indices, agricultural economics, climate impacts on agriculture.</p>
+              <p class="muted mt-1">Applied economist specializing in applied econometrics, agricultural and development economics, productivity analysis, and policy evaluation. Experienced with large-scale national and international microdata and advanced econometric models (panel data, stochastic frontier, spatial econometrics, and gravity models). Published peer-reviewed research, contributed to policy reports and funded projects, and collaborated with government ministries and research institutions. Skilled in reproducible research workflows using Stata, R, and Python.</p>
             </div>
           </div>
           <div class="mt-4">
@@ -304,16 +375,19 @@ a:hover {
         <div class="glass">
           <h3 class="text-xl font-semibold">Skills & Tools</h3>
           <div class="mt-3">
-            <div class="muted"><strong>Econometrics:</strong> SFA, DEA, panel data, causal inference (RCT, DiD, IV)</div>
-            <div class="muted mt-2"><strong>Software:</strong> Stata (advanced), R (sf/sp, spatial), EViews, QGIS, Python (pandas, geopandas)</div>
-            <div class="muted mt-2"><strong>Other:</strong> LaTeX, Git, reproducible workflows</div>
+            <div class="muted"><strong>Econometric Methods:</strong> Panel data analysis; stochastic frontier analysis (SFA); data envelopment analysis (DEA); gravity models; spatial econometrics; impact evaluation</div>
+            <div class="muted mt-2"><strong>Quantitative Tools:</strong> Stata; R; Python; SPSS; EViews; Tableau; Power BI; ArcGIS; QGIS</div>
+            <div class="muted mt-2"><strong>Datasets:</strong> NSSO; ASI; NFHS; CMIE; WDI; WITS; ITC Trade Map; UN Comtrade</div>
+            <div class="muted mt-2"><strong>Research Areas:</strong> Agricultural productivity; climate risk & adaptation; trade policy; technology adoption; development policy</div>
           </div>
         </div>
         <div class="glass">
           <h3 class="text-xl font-semibold">Awards & Recognition</h3>
           <ul class="mt-3 list-disc pl-5 muted space-y-2">
-            <li>Selected grants and collaborative publications (see Research page for details)</li>
-            <li>Invited seminars and conference presentations (national & international)</li>
+            <li>Peer reviewer for international academic publishers, including Springer Nature and Emerald Publishing, and others.</li>
+            <li>Co-Organising Secretary, International Conference on Digital Banking & Sustainable Finance (2025).</li>
+            <li>Member: International Association of Agricultural Economists (IAAE); Indian Economic Association.</li>
+            <li>Delivered invited lectures on advanced econometric methods and microdata analysis at AMU, NAARM, University of Calicut, and JMI.</li>
           </ul>
         </div>
         <div class="glass text-center">
@@ -323,7 +397,7 @@ a:hover {
         </div>
       </aside>
     </div>
-    <p class="mt-8 muted text-sm">Last updated: 2025. Edit content inside this HTML to update any section (education entries, publications, or links).</p>
+    <p class="mt-8 muted text-sm">Last updated: 2026. Edit content inside this HTML to update any section (education entries, publications, or links).</p>
   </main>
   <!-- FOOTER -->
   <footer class="py-10 text-center">
@@ -336,7 +410,7 @@ a:hover {
         <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
         <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
       </nav>
-      <p class="text-sm muted">&copy; 2025 Dr Abdulla. All rights reserved.</p>
+      <p class="text-sm muted">&copy; 2026 Dr Abdulla. All rights reserved.</p>
     </div>
   </footer>
   <!-- SCRIPTS -->
