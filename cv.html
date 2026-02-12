@@ -3,280 +3,231 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Dr Abdulla — Academic CV</title>
+<title>Dr Abdulla — CV</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-
-/* ==============================
-   THEME TOKENS
-================================*/
 :root{
-  --bg:#0b1220;
-  --text:#e5ecf6;
-  --muted:#94a3b8;
-  --card:rgba(20,30,55,.65);
-  --border:rgba(148,163,184,.15);
-  --accent:#6366f1;
+  --bg:#0f172a;
+  --text:#e6eef8;
+  --card:rgba(30,41,59,0.72);
+  --border:rgba(148,163,184,0.12);
+  --accent:#4f46e5;
   --accent-2:#10b981;
+  --particle:#64748b;
+  --particle-line:#475569;
 }
 
+/* LIGHT MODE */
 .light-mode{
   --bg:#f8fafc;
   --text:#0f172a;
-  --muted:#475569;
-  --card:#ffffff;
-  --border:rgba(15,23,42,.08);
-  --accent:#4f46e5;
+  --card:rgba(255,255,255,0.9);
+  --border:rgba(100,116,139,0.12);
+  --accent:#4338ca;
   --accent-2:#059669;
+  --particle:#94a3b8;
+  --particle-line:#cbd5e1;
 }
 
+html,body{height:100%;}
 body{
   margin:0;
+  font-family:Inter,system-ui;
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui;
-  line-height:1.7;
-  transition:.3s ease;
+  transition:.35s ease;
+  line-height:1.6;
+  overflow-x:hidden;
 }
 
-/* ==============================
-   TYPOGRAPHY
-================================*/
-h1{font-size:2.5rem;font-weight:700;letter-spacing:-.02em;}
-h2{font-size:1.6rem;font-weight:600;}
-h3{font-size:1.15rem;font-weight:600;}
-
-.muted{color:var(--muted);}
-
-/* LINKS */
-a{color:var(--accent);text-decoration:none;}
+/* THEME-AWARE LINKS */
+a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:500;
+}
 a:hover{color:var(--accent-2);}
 
-/* ==============================
-   NAV
-================================*/
-.site-nav{
+/* NAV */
+header.site-nav{
   position:sticky;
   top:0;
-  backdrop-filter:blur(10px);
-  background:var(--card);
+  z-index:60;
+  backdrop-filter:blur(8px);
+  background:var(--card); /* FIXED */
   border-bottom:1px solid var(--border);
-  z-index:50;
 }
 
 .nav-link{
   color:var(--text);
+  display:inline-flex;
+  gap:.5rem;
+  align-items:center;
   font-weight:600;
 }
 .nav-link:hover{color:var(--accent);}
 
-/* ==============================
-   HERO
-================================*/
+/* HERO THEME SUPPORT */
 .hero{
-  padding:3rem 0 2rem;
-  border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,#020617,#1e1b4b);
+}
+.light-mode .hero{
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
 }
 
-/* ==============================
-   LAYOUT BLOCKS
-================================*/
-.container-narrow{
-  max-width:1050px;
-  margin:auto;
-  padding:0 1.5rem;
-}
-
-.section{
-  margin-top:2.5rem;
-}
-
-.card{
+/* GLASS */
+.glass{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:1.4rem;
+  border-radius:1rem;
+  padding:1.25rem;
+  box-shadow:0 8px 28px rgba(0,0,0,.18);
+  transition:.25s ease;
+}
+.glass:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent);
 }
 
-/* ==============================
-   TIMELINE
-================================*/
-.timeline{position:relative;padding-left:2rem;}
+/* TIMELINE */
+.timeline{position:relative;padding-left:2.5rem;}
 .timeline::before{
-  content:"";
+  content:'';
   position:absolute;
-  left:.5rem;
   top:0;
+  left:1rem;
   width:2px;
   height:100%;
-  background:linear-gradient(var(--accent),var(--accent-2));
+  background:linear-gradient(180deg,var(--accent),var(--accent-2));
 }
-.timeline-item{
-  margin-bottom:1.3rem;
-  position:relative;
-}
-.timeline-item::before{
-  content:"";
+.timeline-item{position:relative;margin-bottom:1.5rem;padding-left:1rem;}
+.timeline-dot{
   position:absolute;
-  left:-1.1rem;
-  top:.4rem;
-  width:10px;height:10px;
+  left:0.6rem;
+  top:0.25rem;
+  width:14px;height:14px;border-radius:50%;
   background:var(--accent);
-  border-radius:50%;
+  border:3px solid var(--bg);
 }
 
-/* ==============================
-   PUBLICATIONS
-================================*/
-.pub{
-  padding:.7rem 0;
-  border-bottom:1px dashed var(--border);
-}
-.pub:last-child{border-bottom:none;}
-
-/* ==============================
-   ACCORDION
-================================*/
+/* ACCORDION */
 .accordion-btn{
   width:100%;
   display:flex;
   justify-content:space-between;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:.7rem 1rem;
+  padding:.75rem 1rem;
+  border-radius:.75rem;
   background:transparent;
+  border:1px solid var(--border);
   color:var(--text);
-  font-weight:600;
+  font-weight:700;
 }
-
 .accordion-panel{
   max-height:0;
   overflow:hidden;
-  transition:.4s ease;
+  transition:.45s ease;
+  padding:0 1rem;
 }
-.accordion-panel.open{max-height:2000px;padding-top:.6rem;}
+.accordion-panel.open{
+  padding:1rem;
+  max-height:2000px;
+}
 
+.muted{color:rgba(148,163,184,.8);}
+.tag{
+  display:inline-block;
+  padding:.25rem .5rem;
+  font-size:.8rem;
+  border-radius:.5rem;
+  background:rgba(255,255,255,.06);
+  font-weight:700;
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <header class="site-nav">
-<div class="container-narrow flex justify-between py-3 items-center">
-<div class="font-semibold">Dr Abdulla</div>
+<div class="container mx-auto px-6 py-3 flex justify-between items-center">
+<div class="font-bold text-lg">Dr Abdulla</div>
 
-<div class="flex items-center gap-6">
-<a class="nav-link">CV</a>
-<a class="nav-link">Research</a>
+<nav class="flex gap-6 items-center">
+<a href="#" class="nav-link">CV</a>
+<a href="#" class="nav-link">Research</a>
 
-<button id="theme-toggle"><i class="fas fa-moon"></i></button>
-</div>
+<button id="theme-toggle" class="p-2 rounded-full">
+<i class="fas fa-moon"></i>
+</button>
+</nav>
 </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
-<div class="container-narrow text-center">
-<h1>Dr Abdulla</h1>
+<section class="hero text-center py-16">
+<h1 class="text-4xl font-bold">Dr Abdulla</h1>
 <p class="muted">Assistant Professor — Jamia Millia Islamia</p>
-<p class="muted italic">Agricultural Economics · Productivity & Efficiency Analysis</p>
-</div>
 </section>
 
-<main class="container-narrow">
+<main class="container mx-auto px-6 py-12">
 
-<!-- PROFILE -->
-<section class="section card">
-<h2>Profile</h2>
-<p class="muted">
-Research interests include stochastic frontier analysis, agricultural productivity,
-efficiency measurement, applied econometrics, and climate impacts on agriculture.
-</p>
-</section>
+<div class="glass">
+<h2 class="text-2xl font-semibold">Selected Publications</h2>
 
-<!-- TIMELINE -->
-<section class="section card">
-<h2>Academic Timeline</h2>
-
-<div class="timeline mt-4">
-
-<div class="timeline-item">
-<strong>PhD — Economics</strong>
-<div class="muted">Aligarh Muslim University</div>
-</div>
-
-<div class="timeline-item">
-<strong>Assistant Professor</strong>
-<div class="muted">Jamia Millia Islamia</div>
-</div>
-
-</div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section class="section card">
-<h2>Selected Publications</h2>
-
-<button class="accordion-btn mt-4" data-target="pubs">
-<span>Show Publications</span>
+<button class="accordion-btn mt-4" data-target="pub-panel">
+<span>Show / hide publications</span>
 <i class="fas fa-chevron-down"></i>
 </button>
 
-<div id="pubs" class="accordion-panel">
+<div id="pub-panel" class="accordion-panel">
 
-<div class="pub">
+<div class="mt-4 space-y-4">
+
+<div>
 <strong>2024</strong> —
 Impact of Climate Change on Agriculture.
 <a href="https://doi.org/10.5958/0974-0279.2022.00006.2">DOI</a>
 </div>
 
-<div class="pub">
-<strong>2023</strong> —
-The Effect of Information Technology on Banking Efficiency.
-</div>
-
-<div class="pub">
+<div>
 <strong>2020</strong> —
 Dynamics of Technical Efficiency of Sugar Mills.
 <a href="https://doi.org/10.56093/ijas.v90i8.105958">DOI</a>
 </div>
 
 </div>
-</section>
+</div>
+</div>
 
 </main>
 
 <script>
-
-/* THEME TOGGLE */
-const toggle=document.getElementById('theme-toggle');
-const icon=toggle.querySelector('i');
+const themeToggle=document.getElementById('theme-toggle');
+const bodyEl=document.body;
+const icon=themeToggle.querySelector('i');
 
 if(localStorage.getItem('theme')==='light'){
-document.body.classList.add('light-mode');
+bodyEl.classList.add('light-mode');
 icon.classList.replace('fa-moon','fa-sun');
 }
 
-toggle.onclick=()=>{
-document.body.classList.toggle('light-mode');
-const light=document.body.classList.contains('light-mode');
-icon.classList.toggle('fa-sun',light);
-icon.classList.toggle('fa-moon',!light);
-localStorage.setItem('theme',light?'light':'dark');
-};
-
-/* ACCORDION */
-document.querySelectorAll('.accordion-btn').forEach(btn=>{
-btn.onclick=()=>{
-const panel=document.getElementById(btn.dataset.target);
-panel.classList.toggle('open');
-};
+themeToggle.addEventListener('click',()=>{
+bodyEl.classList.toggle('light-mode');
+const isLight=bodyEl.classList.contains('light-mode');
+icon.classList.toggle('fa-sun',isLight);
+icon.classList.toggle('fa-moon',!isLight);
+localStorage.setItem('theme',isLight?'light':'dark');
 });
 
+document.querySelectorAll('.accordion-btn').forEach(btn=>{
+btn.addEventListener('click',()=>{
+const panel=document.getElementById(btn.dataset.target);
+panel.classList.toggle('open');
+});
+});
 </script>
+
 </body>
 </html>
