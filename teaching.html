@@ -1,246 +1,424 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
-  <meta name="description" content="Teaching courses by Dr Abdulla, Assistant Professor in Economics at Jamia Millia Islamia. Includes syllabi, NPTEL and MIT OCW links, and analytical tools.">
-
+  <meta name="description" content="Teaching courses and resources by Dr Abdulla, Applied Economist & Policy Researcher.">
   <title>Dr Abdulla | Teaching</title>
-  <link rel="canonical" href="https://abdullahalig007.github.io/website/teaching.html">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#D4AF37',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    :root {
-      --bg: #0f172a;
-      --text: #f1f5f9;
-      --card: rgba(30, 41, 59, 0.7);
-      --border: rgba(148, 163, 184, 0.2);
-      --accent: #4f46e5;
-      --accent-2: #10b981;
-      --hover: #6366f1;
+    /* Elegant Link Underlines */
+    .hover-underline {
+      position: relative;
+      text-decoration: none;
     }
-
-    .light-mode {
-      --bg: #f8fafc;
-      --text: #1e293b;
-      --card: rgba(255, 255, 255, 0.9);
-      --border: rgba(100, 116, 139, 0.2);
-      --accent: #4338ca;
-      --accent-2: #059669;
-      --hover: #4f46e5;
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: all 0.4s ease;
-      line-height: 1.7;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Iskoola Pota', serif;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--bg) 0%, var(--accent) 100%);
-      color: white;
-      padding: 6rem 1rem;
-      text-align: center;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    }
-
-    .glass-card {
-      background: var(--card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-      transition: all 0.4s ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent);
-      box-shadow: 0 15px 40px rgba(79, 70, 229, 0.25);
-    }
-
-    table {
+    .hover-underline:hover::after, .hover-underline.active::after {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      font-size: 0.95rem;
     }
 
-    th, td {
-      border: 1px solid var(--border);
-      padding: 0.9rem 1rem;
-      text-align: left;
+    /* Refined Cards */
+    .art-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dark .art-card {
+      background: rgba(30, 30, 30, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .art-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px -10px rgba(0,0,0,0.1);
+    }
+    .dark .art-card:hover {
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      border-color: rgba(212, 175, 55, 0.3); 
     }
 
-    th {
-      background: linear-gradient(to right, var(--accent), var(--accent-2));
-      color: white;
-      font-weight: 600;
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
     }
-
-    tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.03);
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
 
-    a {
-      color: var(--accent-2);
-      transition: color 0.3s ease;
+    /* Abstract Background Accent */
+    .bg-accent {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.04) 0%, rgba(0,0,0,0) 70%);
+      top: -20vw;
+      right: -20vw;
+      z-index: -1;
+      pointer-events: none;
     }
-
-    a:hover {
-      color: var(--hover);
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      margin-top: 4rem;
+    .dark .bg-accent {
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 70%);
     }
   </style>
 </head>
 
-<body class="min-h-screen">
+<body class="antialiased min-h-screen flex flex-col relative bg-[#fcfcfc] dark:bg-[#121212] transition-colors duration-500">
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1 class="text-5xl md:text-6xl font-bold mb-4">Teaching</h1>
-    <p class="text-xl md:text-2xl">Dr Abdulla • Jamia Millia Islamia</p>
-    <p class="text-md italic opacity-90 mt-2">Courses, Resources, and Learning Tools</p>
-  </section>
+  <div class="bg-accent"></div>
 
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-700">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/website/" class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">
-          DA
-        </div>
+  <!-- Minimalist Navigation -->
+  <header class="fixed w-full top-0 z-50 bg-[#fcfcfc]/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="/website/" class="font-serif text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Dr Abdulla<span class="text-brand-gold">.</span>
       </a>
-
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link active text-indigo-400"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
-        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity</a>
-        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-slate-700 transition">
-          <i class="fas fa-moon"></i>
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="/website/" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
+        <a href="/website/cv.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">CV</a>
+        <a href="/website/research.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Research</a>
+        <a href="/website/teaching.html" class="hover-underline active text-brand-gold">Teaching</a>
+        <a href="/website/learning-resources.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Resources</a>
+        
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300" aria-label="Toggle Theme">
+          <i class="fas fa-adjust"></i>
         </button>
       </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-toggle" class="md:hidden text-2xl text-gray-800 dark:text-white">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="container mx-auto px-6 py-16 space-y-16">
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#fcfcfc] dark:bg-[#121212] z-40 hidden flex-col items-center justify-center space-y-8 text-2xl font-serif">
+    <button id="mobile-close" class="absolute top-6 right-6 text-3xl text-gray-800 dark:text-white">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="/website/" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">About</a>
+    <a href="/website/cv.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">CV</a>
+    <a href="/website/research.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Research</a>
+    <a href="/website/teaching.html" class="text-brand-gold">Teaching</a>
+    <a href="/website/learning-resources.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Resources</a>
+  </div>
 
-    <!-- Odd Semester -->
-    <section class="glass-card p-10">
-      <h2 class="text-3xl mb-6" style="color: var(--accent-2);">Odd Semester 2024</h2>
-      <table>
-        <thead><tr><th>Course</th><th>Resources</th></tr></thead>
-        <tbody>
-          <tr><td>Indian Economy</td><td><a href="https://mhrd.gov.in">Ministry of Education</a> | <a href="https://mospi.gov.in/">MOSPI</a> | <a href="https://nptel.ac.in/courses/110/101/110101005/">NPTEL: Indian Economy</a></td></tr>
-          <tr><td>Economics of Education</td><td><a href="https://unesdoc.unesco.org/">UNESCO Reports</a> | <a href="https://nptel.ac.in/courses/110/105/110105121/">NPTEL: Economics of Education</a></td></tr>
-          <tr><td>Mathematical Methods for Economics-I</td><td><a href="https://ocw.mit.edu">MIT OCW</a> | <a href="https://nptel.ac.in/courses/110/105/110105039/">NPTEL: Mathematics for Economics</a></td></tr>
-          <tr><td>Data Visualization for Economics</td><td><a href="https://datavizcatalogue.com/">DataViz Catalogue</a> | <a href="https://nptel.ac.in/courses/106/106/106106224/">NPTEL: Data Visualization</a> | <a href="https://learn.microsoft.com/en-us/power-bi/">Power BI Docs</a></td></tr>
-        </tbody>
-      </table>
+  <main class="flex-grow pt-32 pb-20">
+    
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-gray-200 dark:border-gray-800 pb-8">
+        <div>
+          <p class="text-sm font-semibold tracking-widest uppercase text-brand-gold mb-3">Academic Platform</p>
+          <h1 class="text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white">Teaching.</h1>
+        </div>
+        <div class="text-gray-600 dark:text-gray-400 font-light text-lg max-w-md">
+          Empirical reasoning, policy relevance, quantitative rigor, and reproducible research workflows.
+        </div>
+      </div>
     </section>
 
-    <!-- Even Semester -->
-    <section class="glass-card p-10">
-      <h2 class="text-3xl mb-6" style="color: var(--accent-2);">Even Semester 2025</h2>
-      <table>
-        <thead><tr><th>Course</th><th>Resources</th></tr></thead>
-        <tbody>
-          <tr><td>Money and Banking</td><td><a href="https://rbi.org.in/">RBI</a> | <a href="https://imf.org/en/Publications">IMF</a> | <a href="https://nptel.ac.in/courses/110/105/110105019/">NPTEL: Money and Banking</a></td></tr>
-          <tr><td>Econometrics-I</td><td><a href="https://www.stata.com/">Stata</a> | <a href="https://www.datacamp.com/">DataCamp</a> | <a href="https://nptel.ac.in/courses/110/105/110105083/">NPTEL: Econometrics</a> | <a href="https://www.ibm.com/docs/en/spss-statistics">SPSS</a> | <a href="https://www.eviews.com/learning/">EViews</a></td></tr>
-          <tr><td>Indian Statistical System</td><td><a href="https://mospi.gov.in/">MOSPI</a> | <a href="https://data.gov.in/">Data.gov.in</a> | <a href="https://nptel.ac.in/courses/111/105/111105042/">NPTEL: Statistical Methods</a></td></tr>
-          <tr><td>Public Finance</td><td><a href="https://finmin.nic.in/">Ministry of Finance</a> | <a href="https://niti.gov.in/">NITI Aayog</a> | <a href="https://nptel.ac.in/courses/110/105/110105121/">NPTEL: Public Finance</a></td></tr>
-          <tr><td>Computer Application for Economics</td><td><a href="https://www.python.org/">Python</a> | <a href="https://rstudio.com/">RStudio</a> | <a href="https://learn.microsoft.com/en-us/power-bi/">Power BI</a> | <a href="https://www.ibm.com/docs/en/spss-statistics">SPSS</a> | <a href="https://www.eviews.com/learning/">EViews</a> | <a href="https://medium.com/data-science-at-microsoft">Data Science Blog</a></td></tr>
-        </tbody>
-      </table>
+    <!-- Teaching Philosophy & Core Focus -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      <div class="art-card p-10 lg:p-12 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-2 h-full bg-brand-gold"></div>
+        <h2 class="font-serif text-3xl text-gray-900 dark:text-white mb-6">Teaching Philosophy</h2>
+        <p class="text-xl font-light text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl">
+          My teaching emphasizes <span class="font-medium text-gray-900 dark:text-white">empirical reasoning</span>, 
+          <span class="font-medium text-gray-900 dark:text-white">policy relevance</span>, 
+          <span class="font-medium text-gray-900 dark:text-white">quantitative rigor</span>, 
+          and reproducible research workflows using Stata, R, and large-scale datasets.
+        </p>
+      </div>
     </section>
 
-    <!-- MIT OCW -->
-    <section class="glass-card p-10">
-      <h2 class="text-3xl mb-6" style="color: var(--accent-2);">MIT OpenCourseWare – Recommended Resources</h2>
-      <p class="mb-6">Free, world-class Economics courses and materials from <a href="https://ocw.mit.edu" target="_blank">MIT OpenCourseWare</a>.</p>
-      <table>
-        <thead><tr><th>Course / Topic</th><th>Link</th></tr></thead>
-        <tbody>
-          <tr><td>Indian Economy / Development Economics</td><td><a href="https://ocw.mit.edu/courses/economics/14-73-the-challenge-of-world-poverty-spring-2011/">14.73 – The Challenge of World Poverty</a></td></tr>
-          <tr><td>Economics of Education</td><td><a href="https://ocw.mit.edu/courses/economics/14-48j-economics-of-education-fall-2020/">14.48J – Economics of Education</a></td></tr>
-          <tr><td>Mathematical Methods for Economics</td><td><a href="https://ocw.mit.edu/courses/economics/14-04-intermediate-microeconomic-theory-fall-2020/">14.04 – Mathematical Microeconomic Theory</a></td></tr>
-          <tr><td>Econometrics / Data Analysis</td><td><a href="https://ocw.mit.edu/courses/economics/14-32-econometrics-spring-2019/">14.32 – Econometrics</a> | <a href="https://ocw.mit.edu/courses/economics/14-310x-data-analysis-for-social-scientists-fall-2021/">14.310x – Data Analysis for Social Scientists</a></td></tr>
-          <tr><td>Money and Banking</td><td><a href="https://ocw.mit.edu/courses/economics/14-09-financial-crises-fall-2012/">14.09 – Financial Crises</a></td></tr>
-          <tr><td>Public Finance</td><td><a href="https://ocw.mit.edu/courses/economics/14-41-public-finance-and-public-policy-fall-2012/">14.41 – Public Finance and Public Policy</a></td></tr>
-          <tr><td>Development Policy</td><td><a href="https://ocw.mit.edu/courses/economics/14-74-foundations-of-development-policy-fall-2022/">14.74 – Foundations of Development Policy</a></td></tr>
-        </tbody>
-      </table>
+    <!-- Courses & Workshops -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      <h2 class="font-serif text-3xl lg:text-4xl mb-10 text-gray-900 dark:text-white">Courses & Workshops</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="art-card p-8 rounded-2xl reveal delay-100">
+          <div class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center mb-6 text-brand-gold">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-4 text-gray-900 dark:text-white">Econometrics</h3>
+          <p class="font-light text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Regression, panel data, instrumental variables (IV), causal inference, and empirical workflows.
+          </p>
+        </div>
+
+        <div class="art-card p-8 rounded-2xl reveal delay-200">
+          <div class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center mb-6 text-brand-gold">
+            <i class="fas fa-industry"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-4 text-gray-900 dark:text-white">Productivity Analysis</h3>
+          <p class="font-light text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Data Envelopment Analysis (DEA), Stochastic Frontier Analysis (SFA), productivity decomposition, and efficiency diagnostics.
+          </p>
+        </div>
+
+        <div class="art-card p-8 rounded-2xl reveal delay-300">
+          <div class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center mb-6 text-brand-gold">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-4 text-gray-900 dark:text-white">Policy Analytics</h3>
+          <p class="font-light text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Labour markets, industrial economics, and evidence-based policy evaluation methodologies.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <!-- Software & Blogs -->
-    <section class="glass-card p-10">
-      <h2 class="text-3xl mb-6" style="color: var(--accent-2);">Analytical Tools & Blogs</h2>
-      <ul class="space-y-3 text-lg">
-        <li><i class="fas fa-chart-bar text-indigo-400 mr-2"></i><a href="https://learn.microsoft.com/en-us/power-bi/">Power BI Documentation</a></li>
-        <li><i class="fas fa-database text-indigo-400 mr-2"></i><a href="https://www.ibm.com/docs/en/spss-statistics">SPSS Help Center</a></li>
-        <li><i class="fas fa-chart-line text-indigo-400 mr-2"></i><a href="https://www.eviews.com/learning/">EViews Learning Portal</a></li>
-        <li><i class="fas fa-blog text-indigo-400 mr-2"></i><a href="https://medium.com/data-science-at-microsoft">Data Science at Microsoft Blog</a></li>
-        <li><i class="fas fa-book-open text-indigo-400 mr-2"></i><a href="https://towardsdatascience.com/">Towards Data Science Blog</a></li>
-      </ul>
+    <!-- Semester Archives (Replaces old tables) -->
+    <section class="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 reveal">
+      
+      <!-- Odd Semester -->
+      <div class="art-card rounded-2xl p-8">
+        <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-4">
+          Odd Semester 2024
+        </h2>
+        <ul class="space-y-6 text-sm font-light text-gray-700 dark:text-gray-300">
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Indian Economy</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://mhrd.gov.in" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-link mr-1"></i> Ministry of Education</a>
+              <a href="https://mospi.gov.in/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-link mr-1"></i> MOSPI</a>
+              <a href="https://nptel.ac.in/courses/110/101/110101005/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Economics of Education</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://unesdoc.unesco.org/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-file-pdf mr-1"></i> UNESCO Reports</a>
+              <a href="https://nptel.ac.in/courses/110/105/110105121/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Mathematical Methods for Economics-I</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://ocw.mit.edu" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-graduation-cap mr-1"></i> MIT OCW</a>
+              <a href="https://nptel.ac.in/courses/110/105/110105039/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Data Visualization for Economics</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://datavizcatalogue.com/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-book mr-1"></i> DataViz Catalogue</a>
+              <a href="https://learn.microsoft.com/en-us/power-bi/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-laptop-code mr-1"></i> Power BI Docs</a>
+              <a href="https://nptel.ac.in/courses/106/106/106106224/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Even Semester -->
+      <div class="art-card rounded-2xl p-8">
+        <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-4">
+          Even Semester 2025
+        </h2>
+        <ul class="space-y-6 text-sm font-light text-gray-700 dark:text-gray-300">
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Money and Banking</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://rbi.org.in/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-university mr-1"></i> RBI</a>
+              <a href="https://imf.org/en/Publications" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-globe mr-1"></i> IMF</a>
+              <a href="https://nptel.ac.in/courses/110/105/110105019/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Econometrics-I</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://www.stata.com/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-laptop-code mr-1"></i> Stata</a>
+              <a href="https://www.datacamp.com/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-code mr-1"></i> DataCamp</a>
+              <a href="https://nptel.ac.in/courses/110/105/110105083/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Indian Statistical System</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://mospi.gov.in/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-link mr-1"></i> MOSPI</a>
+              <a href="https://data.gov.in/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-database mr-1"></i> Data.gov.in</a>
+              <a href="https://nptel.ac.in/courses/111/105/111105042/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-video mr-1"></i> NPTEL Course</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800/50 pb-4">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Public Finance</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://finmin.nic.in/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-landmark mr-1"></i> Min. of Finance</a>
+              <a href="https://niti.gov.in/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-chart-bar mr-1"></i> NITI Aayog</a>
+            </div>
+          </li>
+          <li class="flex flex-col gap-2">
+            <strong class="text-gray-900 dark:text-white text-base font-medium">Computer Application for Economics</strong>
+            <div class="flex flex-wrap gap-4 text-xs">
+              <a href="https://www.python.org/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fab fa-python mr-1"></i> Python</a>
+              <a href="https://rstudio.com/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fab fa-r-project mr-1"></i> RStudio</a>
+              <a href="https://www.eviews.com/learning/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-laptop-code mr-1"></i> EViews</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- MIT OCW & Tools Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 reveal">
+      
+      <!-- MIT OCW -->
+      <div class="art-card rounded-2xl p-8">
+        <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-4 border-b border-gray-200 dark:border-gray-800 pb-4 flex items-center gap-3">
+          <i class="fas fa-university text-brand-gold"></i> MIT OpenCourseWare
+        </h2>
+        <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Free, world-class materials</p>
+        <ul class="space-y-4 text-sm font-light text-gray-700 dark:text-gray-300">
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Development Economics</span> <a href="https://ocw.mit.edu/courses/economics/14-73-the-challenge-of-world-poverty-spring-2011/" class="text-brand-gold hover:underline" target="_blank">14.73 – The Challenge of World Poverty</a></li>
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Economics of Education</span> <a href="https://ocw.mit.edu/courses/economics/14-48j-economics-of-education-fall-2020/" class="text-brand-gold hover:underline" target="_blank">14.48J – Economics of Education</a></li>
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Math Methods for Economics</span> <a href="https://ocw.mit.edu/courses/economics/14-04-intermediate-microeconomic-theory-fall-2020/" class="text-brand-gold hover:underline" target="_blank">14.04 – Math Microeconomic Theory</a></li>
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Econometrics & Data Analysis</span> <a href="https://ocw.mit.edu/courses/economics/14-32-econometrics-spring-2019/" class="text-brand-gold hover:underline mr-2" target="_blank">14.32 – Econometrics</a> | <a href="https://ocw.mit.edu/courses/economics/14-310x-data-analysis-for-social-scientists-fall-2021/" class="text-brand-gold hover:underline ml-2" target="_blank">14.310x – Data Analysis</a></li>
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Money and Banking</span> <a href="https://ocw.mit.edu/courses/economics/14-09-financial-crises-fall-2012/" class="text-brand-gold hover:underline" target="_blank">14.09 – Financial Crises</a></li>
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Public Finance</span> <a href="https://ocw.mit.edu/courses/economics/14-41-public-finance-and-public-policy-fall-2012/" class="text-brand-gold hover:underline" target="_blank">14.41 – Public Finance & Policy</a></li>
+          <li><span class="font-medium text-gray-900 dark:text-white block mb-1">Development Policy</span> <a href="https://ocw.mit.edu/courses/economics/14-74-foundations-of-development-policy-fall-2022/" class="text-brand-gold hover:underline" target="_blank">14.74 – Foundations of Development Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Tools & Student Resources -->
+      <div class="space-y-12">
+        <div class="art-card rounded-2xl p-8">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-4 flex items-center gap-3">
+            <i class="fas fa-tools text-brand-gold"></i> Analytical Tools & Blogs
+          </h2>
+          <ul class="space-y-4 text-sm font-light text-gray-700 dark:text-gray-300">
+            <li><a href="https://learn.microsoft.com/en-us/power-bi/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-chart-bar text-brand-gold w-6"></i> Power BI Documentation</a></li>
+            <li><a href="https://www.ibm.com/docs/en/spss-statistics" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-database text-brand-gold w-6"></i> SPSS Help Center</a></li>
+            <li><a href="https://www.eviews.com/learning/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-chart-line text-brand-gold w-6"></i> EViews Learning Portal</a></li>
+            <li><a href="https://medium.com/data-science-at-microsoft" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-blog text-brand-gold w-6"></i> Data Science at Microsoft</a></li>
+            <li><a href="https://towardsdatascience.com/" class="hover:text-brand-gold transition-colors" target="_blank"><i class="fas fa-book-open text-brand-gold w-6"></i> Towards Data Science Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="art-card rounded-2xl p-8">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-4 flex items-center gap-3">
+            <i class="fas fa-folder-open text-brand-gold"></i> Student Resources
+          </h2>
+          <div class="space-y-6 text-sm font-light text-gray-700 dark:text-gray-300">
+            <div>
+              <strong class="text-gray-900 dark:text-white text-base font-medium block mb-1">Replication Exercises</strong>
+              <p>Hands-on empirical assignments using PLFS, ASI, and NSSO datasets.</p>
+            </div>
+            <div>
+              <strong class="text-gray-900 dark:text-white text-base font-medium block mb-1">Workshop Archive</strong>
+              <p>Slides, do-files, notes, datasets, and reproducibility tutorials.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="py-12 text-center">
-    <p class="text-lg font-bold mb-4" style="color: var(--accent-2);">Agricultural Economics</p>
-    <div class="flex justify-center space-x-8 text-2xl mb-6">
-      <a href="mailto:abdullahalig007@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://x.com/abdullahalig07"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla"><i class="fab fa-researchgate"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/"><i class="fab fa-linkedin"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056"><i class="fab fa-orcid"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ"><i class="fas fa-graduation-cap"></i></a>
+  <footer class="mt-auto border-t border-gray-200 dark:border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-serif text-xl text-gray-900 dark:text-white">Dr Abdulla<span class="text-brand-gold">.</span></div>
+      <p class="text-sm font-light text-gray-600 dark:text-gray-400">&copy; 2026 Dr Abdulla. All rights reserved.</p>
+      <div class="flex gap-4 text-gray-500 dark:text-gray-400">
+        <a href="https://github.com/abdullahalig007" class="hover:text-brand-gold transition"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="hover:text-brand-gold transition"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/abdullahalig07" class="hover:text-brand-gold transition"><i class="fab fa-twitter"></i></a>
+      </div>
     </div>
-    <p class="text-sm opacity-70">© 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
 
   <script>
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = toggle.querySelector('i');
-
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
     if (localStorage.getItem('theme') === 'light') {
-      body.classList.add('light-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
+      htmlElement.classList.remove('dark');
+    } else {
+      htmlElement.classList.add('dark'); 
     }
 
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      const isLight = body.classList.contains('light-mode');
-      icon.classList.toggle('fa-sun', isLight);
-      icon.classList.toggle('fa-moon', !isLight);
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    themeToggle.addEventListener('click', () => {
+      htmlElement.classList.toggle('dark');
+      const isDark = htmlElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+    });
+
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+
+    // Scroll Reveal Animation Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    revealElements.forEach(el => { revealOnScroll.observe(el); });
   </script>
 </body>
 </html>

@@ -1,434 +1,335 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
-  <meta name="description" content="Dr Abdulla | Assistant Professor in Economics | Jamia Millia Islamia">
-  <title>Dr Abdulla | Agricultural Economics</title>
+  <meta name="description" content="Dr Abdulla | Applied Economist | Policy Researcher | V.V. Giri National Labour Institute">
+  <title>Dr Abdulla | Applied Economics</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#D4AF37',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    :root {
-      --bg: #0f172a;
-      --text: #f1f5f9;
-      --card: rgba(30, 41, 59, 0.7);
-      --border: rgba(148, 163, 184, 0.2);
-      --accent: #4f46e5;
-      --accent-2: #10b981;
-      --hover: #6366f1;
-      --particle: #64748b;
-      --particle-line: #475569;
+    /* Elegant Link Underlines */
+    .hover-underline {
+      position: relative;
+      text-decoration: none;
     }
-
-    .light-mode {
-      --bg: #f8fafc;
-      --text: #1e293b;
-      --card: rgba(255, 255, 255, 0.8);
-      --border: rgba(100, 116, 139, 0.2);
-      --accent: #4338ca;
-      --accent-2: #059669;
-      --hover: #4f46e5;
-      --particle: #94a3b8;
-      --particle-line: #cbd5e1;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: all 0.4s ease;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4, .section-title {
-      font-family: 'Iskoola Pota', Georgia, serif;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    /* Particles */
-    #particles-js {
-      position: fixed;
-      top: 0;
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
       left: 0;
+      background-color: currentColor;
+      transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .hover-underline:hover::after, .hover-underline.active::after {
       width: 100%;
-      height: 100%;
+    }
+
+    /* Refined Cards */
+    .art-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dark .art-card {
+      background: rgba(30, 30, 30, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .art-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px -10px rgba(0,0,0,0.1);
+    }
+    .dark .art-card:hover {
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      border-color: rgba(212, 175, 55, 0.3); 
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+
+    /* Abstract Background Accent */
+    .bg-accent {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 70%);
+      top: -20vw;
+      right: -20vw;
       z-index: -1;
       pointer-events: none;
     }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, var(--bg) 0%, var(--accent) 100%);
-      position: relative;
-      overflow: hidden;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      color: white;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    /* Glass Card */
-    .glass-card {
-      background: var(--card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-
-    .glass-card:hover {
-      transform: translateY(-12px) rotateX(2deg);
-      box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
-      border-color: var(--accent);
-    }
-
-    /* Nav */
-    .nav-link {
-      position: relative;
-      color: var(--text);
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--accent), var(--accent-2));
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after, .nav-link.active::after {
-      width: 100%;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: var(--accent);
-    }
-
-    /* Mobile Menu */
-    #mobile-menu {
-      transition: transform 0.4s ease;
-      transform: translateX(100%);
-    }
-
-    #mobile-menu.open {
-      transform: translateX(0);
-    }
-
-    /* Tilt */
-    .tilt {
-      transition: transform 0.3s ease;
+    .dark .bg-accent {
+      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 70%);
     }
   </style>
 </head>
 
-<body class="min-h-screen">
+<!-- Removed the buggy 'dark' class from the body tag -->
+<body class="antialiased min-h-screen flex flex-col relative bg-[#fcfcfc] dark:bg-[#121212] transition-colors duration-500">
 
-  <!-- Animated Particles -->
-  <div id="particles-js"></div>
+  <div class="bg-accent"></div>
 
-  <!-- Hero -->
-  <section class="hero py-32 text-center relative">
-    <div class="container mx-auto px-6">
-      <h1 class="text-5xl md:text-7xl font-bold mb-4">Dr Abdulla</h1>
-      <p class="text-xl md:text-2xl font-light mb-2">Assistant Professor(Contractual) </p>
-      <p class="text-lg opacity-90"> Economics • Jamia Millia Islamia</p>
-    </div>
-  </section>
-
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-slate-700">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/website/" class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">
-          DA
-        </div>
+  <!-- Minimalist Navigation -->
+  <header class="fixed w-full top-0 z-50 bg-[#fcfcfc]/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="/website/" class="font-serif text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Dr Abdulla<span class="text-brand-gold">.</span>
       </a>
-
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link active"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
-        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity
-</a>
-        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-slate-700 transition">
-          <i class="fas fa-moon"></i>
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="/website/" class="hover-underline active text-brand-gold">About</a>
+        <a href="/website/cv.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">CV</a>
+        <a href="/website/research.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Research</a>
+        <a href="/website/teaching.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Teaching</a>
+        <a href="/website/learning-resources.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Resources</a>
+        
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300" aria-label="Toggle Theme">
+          <i class="fas fa-adjust"></i>
         </button>
       </nav>
 
-      <button id="mobile-toggle" class="md:hidden text-white">
-        <i class="fas fa-bars text-xl"></i>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-toggle" class="md:hidden text-2xl text-gray-800 dark:text-white">
+        <i class="fas fa-bars"></i>
       </button>
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-6 text-2xl">
-    <button id="mobile-close" class="absolute top-6 right-6 text-white">
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#fcfcfc] dark:bg-[#121212] z-40 hidden flex-col items-center justify-center space-y-8 text-2xl font-serif">
+    <button id="mobile-close" class="absolute top-6 right-6 text-3xl text-gray-800 dark:text-white">
       <i class="fas fa-times"></i>
     </button>
-    <a href="/website/cv.html" class="nav-link">CV</a>
-    <a href="/website/" class="nav-link">About</a>
-    <a href="/website/research.html" class="nav-link">Research</a>
-    <a href="/website/teaching.html" class="nav-link">Teaching</a>
-    <a href="/website/resource.html" class="nav-link">Resources</a>
-    <a href="/website/learning-resources.html" class="nav-link">Learning</a>
-    <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link">Efficiency</a>
+    <a href="/website/" class="text-brand-gold">About</a>
+    <a href="/website/cv.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">CV</a>
+    <a href="/website/research.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Research</a>
+    <a href="/website/teaching.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Teaching</a>
+    <a href="/website/learning-resources.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Resources</a>
   </div>
 
-  <!-- Main Content -->
-  <main class="container mx-auto px-6 py-16 relative z-10">
-
-    <!-- About Me -->
-    <section class="mb-20">
-      <h2 class="section-title text-4xl mb-10 text-center" style="color: var(--accent);">
-        About Me
-      </h2>
-      <div class="glass-card p-10">
-        <div class="grid md:grid-cols-3 gap-10 items-center">
-          <div class="flex justify-center">
-            <img src="/website/ph.jpg" alt="Dr Abdulla" class="w-56 h-56 rounded-full object-cover border-4 border-indigo-500 shadow-xl">
+  <main class="flex-grow pt-32 pb-20">
+    
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-20 lg:py-32 reveal">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <p class="text-sm font-semibold tracking-widest uppercase text-brand-gold">Economist & Researcher</p>
+          <h1 class="text-5xl lg:text-7xl font-serif leading-tight text-gray-900 dark:text-white">
+            Advancing policy through <span class="italic text-brand-gold">empirical</span> rigor.
+          </h1>
+          <p class="text-lg lg:text-xl font-light max-w-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            Researcher at the V.V. Giri National Labour Institute, specializing in labour markets, industrial productivity, and climate resilience.
+          </p>
+          <div class="flex gap-6 pt-4">
+            <a href="mailto:abdullahalig007@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold dark:hover:text-brand-gold transition-colors text-2xl"><i class="fas fa-envelope"></i></a>
+            <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold dark:hover:text-brand-gold transition-colors text-2xl"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://orcid.org/0000-0002-6544-1056" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold dark:hover:text-brand-gold transition-colors text-2xl"><i class="fab fa-orcid"></i></a>
+            <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold dark:hover:text-brand-gold transition-colors text-2xl"><i class="fab fa-researchgate"></i></a>
           </div>
+        </div>
+        
+        <div class="relative flex justify-center lg:justify-end reveal delay-200">
+          <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-gray-200 dark:border-gray-800 shadow-2xl relative z-10 bg-white">
+            <img src="/website/ph.jpg" alt="Dr Abdulla" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700 ease-in-out">
+          </div>
+          <div class="absolute w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-brand-gold/40 top-4 right-4 lg:right-0 lg:-translate-x-4 -translate-y-4 z-0"></div>
+        </div>
+      </div>
+    </section>
 
-          <div class="md:col-span-2 space-y-5">
-            <h3 class="text-2xl font-bold">Dr Abdulla</h3>
-            <p class="text-lg">
-              <strong>Assistant Professor</strong> in <strong>Agricultural Economics</strong><br>
-              <a href="https://jmi.ac.in" class="text-indigo-400 hover:text-indigo-300">Jamia Millia Islamia (Central University)</a>, New Delhi
-            </p>
+    <!-- Refined Metrics -->
+    <section class="max-w-7xl mx-auto px-6 py-16 border-y border-gray-200 dark:border-white/5 reveal">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-200 dark:divide-white/5">
+        <div class="text-center px-4">
+          <div class="font-serif text-4xl md:text-5xl mb-2 text-brand-gold">14+</div>
+          <div class="text-sm tracking-wider uppercase font-medium text-gray-600 dark:text-gray-400">Publications</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="font-serif text-4xl md:text-5xl mb-2 text-brand-gold">5+</div>
+          <div class="text-sm tracking-wider uppercase font-medium text-gray-600 dark:text-gray-400">Gov. Projects</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="font-serif text-4xl md:text-5xl mb-2 text-brand-gold">100+</div>
+          <div class="text-sm tracking-wider uppercase font-medium text-gray-600 dark:text-gray-400">Empirical Analyses</div>
+        </div>
+        <div class="text-center px-4">
+          <div class="font-serif text-4xl md:text-5xl mb-2 text-brand-gold">10+</div>
+          <div class="text-sm tracking-wider uppercase font-medium text-gray-600 dark:text-gray-400">Years Experience</div>
+        </div>
+      </div>
+    </section>
 
-            <p>
-              Previously: Research Associate at <a href="https://niap.icar.gov.in" class="text-indigo-400">ICAR-NIAP</a>, 
-              <a href="https://naas.org.in" class="text-indigo-400">NAAS</a>, and 
-              <a href="https://commerce.gov.in" class="text-indigo-400">Ministry of Commerce</a>.
-            </p>
-
-            <p>
-              Ph.D. & M.Phil. in Economics from 
-              <a href="https://amu.ac.in" class="text-indigo-400">Aligarh Muslim University</a>.
-            </p>
-
-            <!-- Research Span Tag Cloud -->
-            <div class="mt-6">
-              <p class="font-medium text-lg mb-3">Research Focus:</p>
-              <div class="flex flex-wrap gap-2 text-xs">
-                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full">Poverty & Inequality</span>
-                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full">Trade</span>
-                <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 rounded-full">Banking</span>
-                <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded-full">Climate Change</span>
-                <span class="px-3 py-1 bg-rose-100 dark:bg-rose-900 text-rose-700 dark:text-rose-300 rounded-full">Climate Resilience</span>
-                <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300 rounded-full">Development Economics</span>
-                <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full">Environmental Economics</span>
-                <span class="px-3 py-1 bg-lime-100 dark:bg-lime-900 text-lime-700 dark:text-lime-300 rounded-full">Agricultural Economics</span>
-                <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full">Agricultural Marketing</span>
-                <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-300 rounded-full">Value Chain Analysis</span>
-                <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full">Agriculture & Allied</span>
-                <span class="px-3                <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full">Efficiency & Productivity</span>
-                <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 rounded-full">Sustainable Agri-Food</span>
-                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full">Organic Farming</span>
-                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full">Sustainable Agriculture</span>
-                <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300 rounded-full">Water Management</span>
-                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full">Agricultural Policy</span>
-              </div>
-            </div>
+    <!-- Biography Section -->
+    <section class="max-w-7xl mx-auto px-6 py-24 reveal">
+      <div class="grid md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+          <h2 class="font-serif text-3xl lg:text-4xl text-gray-900 dark:text-white">Background &<br>Expertise.</h2>
+        </div>
+        <div class="md:col-span-8 space-y-6 font-light leading-relaxed text-lg text-gray-700 dark:text-gray-300">
+          <p>
+            With over a decade of experience, my work focuses on applying causal inference, advanced econometrics, and statistical modeling to large-scale survey and administrative data. My research translates complex datasets into actionable, evidence-based policy insights.
+          </p>
+          <p>
+            Currently serving as a Researcher at the <span class="font-medium text-gray-900 dark:text-white">V.V. Giri National Labour Institute</span> (Ministry of Labour & Employment, GoI). Previously, I served as an Assistant Professor at <span class="font-medium text-gray-900 dark:text-white">Jamia Millia Islamia</span>, and contributed to research at ICAR-NIAP, NAAS, and the Ministry of Commerce & Industry.
+          </p>
+          <div class="pt-6">
+            <a href="/website/cv.html" class="inline-flex items-center gap-3 pb-1 border-b border-brand-gold text-brand-gold hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white transition-colors uppercase tracking-widest text-sm font-medium">
+              View Full Curriculum Vitae <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Explore My Work -->
-    <section>
-      <h2 class="section-title text-4xl mb-12 text-center" style="background: linear-gradient(to right, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        Explore My Work
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <a href="/website/cv.html" class="glass-card p-8 text-center tilt group">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center group-hover:scale-110 transition">
-            <i class="fas fa-file-alt text-2xl text-indigo-600 dark:text-indigo-300"></i>
+    <!-- Featured Research Areas -->
+    <section class="max-w-7xl mx-auto px-6 py-16 reveal">
+      <h2 class="font-serif text-3xl lg:text-4xl mb-12 text-center text-gray-900 dark:text-white">Core Research Pillars</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <div class="art-card p-10 rounded-2xl reveal delay-100">
+          <div class="w-12 h-12 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center mb-6 text-brand-gold">
+            <i class="fas fa-users"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Curriculum Vitae</h3>
-          <p class="text-sm opacity-80">Full academic & professional profile</p>
-        </a>
+          <h3 class="font-serif text-xl mb-4 text-gray-900 dark:text-white">Labour Economics</h3>
+          <p class="font-light text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Exploring labour informality, wage dynamics, worker vulnerability, employment transitions, and the efficacy of social protection programs using PLFS and NSSO data.
+          </p>
+        </div>
 
-        <a href="/website/research.html" class="glass-card p-8 text-center tilt group">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center group-hover:scale-110 transition">
-            <i class="fas fa-flask text-2xl text-purple-600 dark:text-purple-300"></i>
+        <div class="art-card p-10 rounded-2xl reveal delay-200">
+          <div class="w-12 h-12 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center mb-6 text-brand-gold">
+            <i class="fas fa-industry"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Research</h3>
-          <p class="text-sm opacity-80">Publications, projects, citations</p>
-        </a>
+          <h3 class="font-serif text-xl mb-4 text-gray-900 dark:text-white">Industrial Productivity</h3>
+          <p class="font-light text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Conducting ASI-based productivity decomposition, estimating technological disparities, and analyzing the economics of the industrial energy transition.
+          </p>
+        </div>
 
-        <a href="/website/teaching.html" class="glass-card p-8 text-center tilt group">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center group-hover:scale-110 transition">
-            <i class="fas fa-chalkboard-teacher text-2xl text-emerald-600 dark:text-emerald-300"></i>
+        <div class="art-card p-10 rounded-2xl reveal delay-300">
+          <div class="w-12 h-12 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center mb-6 text-brand-gold">
+            <i class="fas fa-leaf"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Teaching</h3>
-          <p class="text-sm opacity-80">Courses, syllabi, materials</p>
-        </a>
+          <h3 class="font-serif text-xl mb-4 text-gray-900 dark:text-white">Climate & Agriculture</h3>
+          <p class="font-light text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Evaluating climate resilience, adaptation economics, and the vulnerability of agricultural systems across varying geopolitical landscapes in India.
+          </p>
+        </div>
 
-        <a href="/website/resource.html" class="glass-card p-8 text-center tilt group">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-amber-100 dark:bg-amber-900 flex items-center justify-center group-hover:scale-110 transition">
-            <i class="fas fa-book text-2xl text-amber-600 dark:text-amber-300"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Resources</h3>
-          <p class="text-sm opacity-80">Datasets, tools, code</p>
-        </a>
-
-        <a href="/website/learning-resources.html" class="glass-card p-8 text-center tilt group">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-100 dark:bg-pink-900 flex items-center justify-center group-hover:scale-110 transition">
-            <i class="fas fa-graduation-cap text-2xl text-pink-600 dark:text-pink-300"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Learning</h3>
-          <p class="text-sm opacity-80">Stata, Python, tutorials</p>
-        </a>
-
-        <a href="/website/Efficiency & Productivity Estimation.html" class="glass-card p-8 text-center tilt group">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-rose-100 dark:bg-rose-900 flex items-center justify-center group-hover:scale-110 transition">
-            <i class="fas fa-chart-line text-2xl text-rose-600 dark:text-rose-300"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Efficiency & Productivity</h3>
-          <p class="text-sm opacity-80">DEA, SFA, productivity models</p>
-        </a>
       </div>
     </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="py-12 text-center border-t border-slate-700 mt-20 relative z-10">
-    <p class="text-lg font-bold mb-4" style="color: var(--accent-2);">Agricultural Economics</p>
-    <div class="flex justify-center space-x-8 text-2xl mb-6">
-      <a href="mailto:abdullahalig007@gmail.com" class="hover:text-indigo-400 transition"><i class="fas fa-envelope"></i></a>
-      <a href="https://x.com/abdullahalig07" class="hover:text-indigo-400 transition"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="hover:text-indigo-400 transition"><i class="fab fa-researchgate"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" class="hover:text-indigo-400 transition"><i class="fab fa-orcid"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="hover:text-indigo-400 transition"><i class="fas fa-graduation-cap"></i></a>
+  <footer class="mt-auto border-t border-gray-200 dark:border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-serif text-xl text-gray-900 dark:text-white">Dr Abdulla<span class="text-brand-gold">.</span></div>
+      <p class="text-sm font-light text-gray-600 dark:text-gray-400">&copy; 2026 Dr Abdulla. All rights reserved.</p>
+      <div class="flex gap-4 text-gray-500 dark:text-gray-400">
+        <a href="https://github.com/abdullahalig007" class="hover:text-brand-gold transition"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="hover:text-brand-gold transition"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/abdullahalig07" class="hover:text-brand-gold transition"><i class="fab fa-twitter"></i></a>
+      </div>
     </div>
-    <p class="text-sm opacity-70">© 2025 Dr Abdulla. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // === PARTICLES.JS ===
-    particlesJS('particles-js', {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": getComputedStyle(document.documentElement).getPropertyValue('--particle').trim() },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": true },
-        "size": { "value": 3, "random": true },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim(),
-          "opacity": 0.3,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" },
-          "resize": true
-        },
-        "modes": {
-          "grab": { "distance": 140, "line_linked": { "opacity": 0.7 } },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
-    });
-
-    // === THEME TOGGLE + PARTICLE SYNC ===
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = toggle.querySelector('i');
-
-    function updateParticles() {
-      const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim();
-      const lineColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim();
-      if (window.pJSDom && window.pJSDom[0]) {
-        window.pJSDom[0].pJS.particles.color.value = particleColor;
-        window.pJSDom[0].pJS.particles.line_linked.color = lineColor;
-        window.pJSDom[0].pJS.fn.particlesRefresh();
-      }
-    }
-
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Check local storage or system preference
     if (localStorage.getItem('theme') === 'light') {
-      body.classList.add('light-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
+      htmlElement.classList.remove('dark');
+    } else {
+      htmlElement.classList.add('dark'); 
     }
 
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      const isLight = body.classList.contains('light-mode');
-      icon.classList.toggle('fa-sun', isLight);
-      icon.classList.toggle('fa-moon', !isLight);
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      setTimeout(updateParticles, 100);
+    themeToggle.addEventListener('click', () => {
+      htmlElement.classList.toggle('dark');
+      const isDark = htmlElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
-    // === MOBILE MENU ===
-    document.getElementById('mobile-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.add('open');
-    });
-    document.getElementById('mobile-close').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.remove('open');
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
     });
 
-    // === 3D TILT ===
-    document.querySelectorAll('.tilt').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+
+    // Scroll Reveal Animation Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
       });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
+    }, revealOptions);
 
-    // === ACTIVE NAV ===
-    document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.href === location.href) link.classList.add('active');
+    revealElements.forEach(el => {
+      revealOnScroll.observe(el);
     });
-
-    updateParticles();
   </script>
 </body>
 </html>

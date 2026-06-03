@@ -1,168 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Dr Abdulla">
   <meta name="description" content="Stata Learning Hub: Templates, Jupyter, Reproducibility — by Dr Abdulla">
   <title>Dr Abdulla | Stata Learning Hub</title>
-  <link rel="canonical" href="https://abdullahalig007.github.io/website/learning-resources.html">
 
   <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <!-- Prism.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#D4AF37',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    :root {
-      --bg-color: #0f172a; --text-color: #e2e8f0; --card-bg: #1e293b; --border-color: #334155;
-      --accent-color: #facc15; --link-color: #93c5fd; --hover-link: #facc15; --secondary-accent: #10b981;
-    }
-    body.light-mode {
-      --bg-color: #f8fafc; --text-color: #1e293b; --card-bg: #ffffff; --border-color: #e2e8f0;
-      --accent-color: #1e3a8a; --link-color: #1e40af; --hover-link: #2563eb; --secondary-accent: #059669;
-    }
-    body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: all 0.4s ease; overflow-x: hidden; }
-    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
-    .hero { background: linear-gradient(135deg, var(--bg-color), var(--accent-color)); color: white; }
-    .sticky-nav { position: sticky; top: 0; z-index: 50; background: rgba(15,23,42,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
-    body.light-mode .sticky-nav { background: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(0,0,0,0.1); }
-    .nav-link { color: var(--text-color); position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s; }
-    .nav-link:hover::after { width: 100%; }
-    .nav-link:hover { color: var(--accent-color); }
-    .theme-toggle { cursor: pointer; transition: transform 0.5s; }
-    .theme-toggle:hover { transform: rotate(180deg); }
-    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; transition: all 0.3s; }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(250,204,21,0.2); }
-    a { color: var(--link-color); transition: color 0.3s; }
-    a:hover { color: var(--hover-link); }
-    .collapse-btn { cursor: pointer; font-weight: 600; color: var(--accent-color); display: flex; align-items: center; gap: .5rem; transition: color 0.3s; }
-    .collapse-btn:hover { color: var(--secondary-accent); }
-    .collapse-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-    .collapse-content.open { max-height: 5000px; }
-    pre { background: #1a1a1a !important; padding: 1rem !important; border-radius: 8px; overflow-x: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    code { font-size: .875rem; }
-    .download-btn { @apply inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-600 to-green-600 text-white font-medium rounded-lg hover:from-yellow-500 hover:to-green-500 transition text-sm shadow-md; }
-    .github-btn { @apply inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition text-lg shadow-lg; }
-    .footer { background: var(--bg-color); border-top: 1px solid var(--border-color); }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-    .fade-in.in-view { opacity: 1; transform: translateY(0); }
-    .resource-link { @apply text-blue-400 hover:text-blue-300 underline transition; }
-    .tab { cursor: pointer; padding: 1rem 2rem; background: var(--card-bg); border: 1px solid var(--border-color); border-bottom: none; border-radius: 8px 8px 0 0; transition: background 0.3s; display: flex; align-items: center; gap: 0.5rem; }
-    .tab.active { background: var(--accent-color); color: var(--bg-color); font-weight: bold; }
-    .tab-content { display: none; padding: 1.5rem; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 0 0 8px 8px; }
-    .tab-content.active { display: block; }
-    #search-input { @apply w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:border-yellow-400 focus:outline-none transition; }
-    .search-result { @apply p-4 bg-gray-900 rounded-lg mb-4 border border-gray-700 hover:border-yellow-400 transition; }
-    table { @apply w-full border-collapse; }
-    th { @apply bg-gray-800 p-3 text-left; }
-    td { @apply p-3 border-t border-gray-700; }
-    body.light-mode #search-input { @apply bg-gray-100 text-black border-gray-300; }
-    body.light-mode .search-result { @apply bg-white border-gray-200; }
-    body.light-mode th { @apply bg-gray-200; }
-    body.light-mode td { @apply border-gray-200; }
-    .code-block { background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px; padding: 1rem; margin: 1.5rem 0; overflow-x: auto; position: relative; }
-    .code-block pre { margin: 0; white-space: pre; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9rem; line-height: 1.4; }
-    .copy-btn { position: absolute; top: 8px; right: 8px; background: #0366d6; color: white; border: none; padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; cursor: pointer; }
-    .copy-btn:hover { background: #024a9e; }
-    details { margin: 1.5rem 0; border: 1px solid #ddd; border-radius: 6px; padding: 0.5rem; }
-    summary { font-weight: 600; cursor: pointer; padding: 0.5rem; background: #f0f0f0; border-radius: 4px; }
-    summary:hover { background: #e6e6e6; }
-    body.light-mode .code-block { background: #f8f9fa; }
-    body.light-mode summary { background: #f0f0f0; }
+    /* Base Theme */
+    body { background-color: #fcfcfc; color: #1f2937; transition: background-color 0.5s ease, color 0.5s ease; }
+    .dark body { background-color: #121212; color: #e5e5e5; }
+
+    /* Elegant Links */
+    .hover-underline { position: relative; text-decoration: none; }
+    .hover-underline::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background-color: currentColor; transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .hover-underline:hover::after, .hover-underline.active::after { width: 100%; }
+
+    /* Refined Cards */
+    .art-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(0, 0, 0, 0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .dark .art-card { background: rgba(30, 30, 30, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .art-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px -10px rgba(0,0,0,0.1); }
+    .dark .art-card:hover { box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5); border-color: rgba(212, 175, 55, 0.3); }
+
+    /* Scroll Reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+
+    /* Abstract Background */
+    .bg-accent { position: absolute; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.04) 0%, rgba(0,0,0,0) 70%); top: -20vw; right: -20vw; z-index: -1; pointer-events: none; }
+    .dark .bg-accent { background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 70%); }
+
+    /* Accordion & Code */
+    .collapse-btn { cursor: pointer; transition: color 0.3s; }
+    .collapse-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease; opacity: 0; }
+    .collapse-content.open { max-height: 8000px; opacity: 1; }
+    pre[class*=language-] { border-radius: 0.75rem; margin: 1.5rem 0; font-size: 0.875rem; border: 1px solid rgba(0,0,0,0.1); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+    .dark pre[class*=language-] { border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+    
+    /* Elegant Tables */
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { border-bottom: 2px solid #D4AF37; padding: 1rem 0.5rem; font-weight: 500; }
+    td { border-bottom: 1px solid rgba(150,150,150,0.2); padding: 1rem 0.5rem; font-weight: 300; font-size: 0.875rem; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.5s; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body>
-  <!-- Hero -->
-  <section class="hero py-16 text-center relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-wide">Stata Learning Hub</h1>
-      <p class="text-xl md:text-2xl mb-3 font-light">Templates • Jupyter • Reproducibility • Advanced Resources</p>
-      <p class="text-lg italic">Curated by Dr Abdulla</p>
-    </div>
-  </section>
 
-<!-- Navigation -->
-  <header class="sticky-nav shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/website/" class="text-2xl font-bold text-white">Dr Abdulla</a>
-      <nav class="space-x-7 flex items-center">
-        <a href="/website/cv.html" class="nav-link"><i class="fas fa-file-alt mr-1"></i> CV</a>
-        <a href="/website/" class="nav-link"><i class="fas fa-user mr-1"></i> About</a>
-        <a href="/website/research.html" class="nav-link"><i class="fas fa-flask mr-1"></i> Research</a>
-        <a href="/website/teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher mr-1"></i> Teaching</a>
-        <a href="/website/resource.html" class="nav-link"><i class="fas fa-book mr-1"></i> Resources</a>
-        <a href="/website/learning-resources.html" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i> Learning</a>
-        <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link"><i class="fas fa-chart-line mr-1"></i> Efficiency & Productivity</a>
-        <div id="theme-toggle" class="theme-toggle ml-4"><i class="fas fa-moon fa-lg" style="color:#facc15;"></i></div>
+<body class="antialiased min-h-screen flex flex-col relative bg-[#fcfcfc] dark:bg-[#121212] transition-colors duration-500">
+  <div class="bg-accent"></div>
+
+  <!-- Unified 7-Link Navigation -->
+  <header class="fixed w-full top-0 z-50 bg-[#fcfcfc]/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="/website/" class="font-serif text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Dr Abdulla<span class="text-brand-gold">.</span>
+      </a>
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium tracking-wide">
+        <a href="/website/" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
+        <a href="/website/cv.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">CV</a>
+        <a href="/website/research.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Research</a>
+        <a href="/website/teaching.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Teaching</a>
+        <a href="/website/resource.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Resources</a>
+        <a href="/website/learning-resources.html" class="hover-underline active text-brand-gold">Learning</a>
+        <a href="/website/Efficiency & Productivity Estimation.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Efficiency</a>
+        
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300" aria-label="Toggle Theme">
+          <i class="fas fa-adjust"></i>
+        </button>
       </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-toggle" class="xl:hidden text-2xl text-gray-800 dark:text-white">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-12">
-    <article class="card p-8 fade-in">
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#fcfcfc] dark:bg-[#121212] z-40 hidden flex-col items-center justify-center space-y-6 text-xl font-serif">
+    <button id="mobile-close" class="absolute top-6 right-6 text-3xl text-gray-800 dark:text-white"><i class="fas fa-times"></i></button>
+    <a href="/website/" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">About</a>
+    <a href="/website/cv.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">CV</a>
+    <a href="/website/research.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Research</a>
+    <a href="/website/teaching.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Teaching</a>
+    <a href="/website/resource.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Resources</a>
+    <a href="/website/learning-resources.html" class="text-brand-gold">Learning</a>
+    <a href="/website/Efficiency & Productivity Estimation.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Efficiency</a>
+  </div>
 
-      <!-- Intro -->
-      <section class="text-center mb-12">
-        <p class="text-lg leading-relaxed max-w-3xl mx-auto">
-          A complete, one-stop resource for learning Stata — from project templates to interactive Jupyter notebooks, advanced webinars, courses, and a master do-file combining all examples.
-        </p>
-        <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn mt-6">
-          <i class="fab fa-github"></i> Full GitHub Repo
-        </a>
-      </section>
+  <main class="flex-grow pt-32 pb-20">
+    
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-gray-200 dark:border-gray-800 pb-8">
+        <div>
+          <p class="text-sm font-semibold tracking-widest uppercase text-brand-gold mb-3">Academic Platform</p>
+          <h1 class="text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white">Learning Hub.</h1>
+        </div>
+        <div class="text-gray-600 dark:text-gray-400 font-light text-lg max-w-md">
+          Templates, Jupyter notebooks, reproducibility frameworks, and advanced Stata resources.
+        </div>
+      </div>
+    </section>
 
-      <!-- Search Bar for Resources -->
-      <section class="mb-12">
-        <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
-          <i class="fas fa-search"></i> Search Learning Resources
-        </h2>
-        <input type="text" id="search-input" placeholder="Search for webinars, courses, books, or do-files...">
-        <div id="search-results" class="mt-6"></div>
-      </section>
-
-      <!-- Tabs for Organized Content -->
-      <div class="mb-12">
-        <div class="flex border-b border-gray-600 flex-wrap">
-          <div class="tab active" data-tab="templates"><i class="fas fa-code"></i> Templates & Notebooks</div>
-          <div class="tab" data-tab="free-learning"><i class="fas fa-play-circle"></i> Free Learning</div>
-          <div class="tab" data-tab="references"><i class="fas fa-book"></i> Books & Datasets</div>
-          <div class="tab" data-tab="master"><i class="fas fa-code-branch"></i> Master & Roadmap</div>
-          <div class="tab" data-tab="packages"><i class="fas fa-cubes"></i> Packages & Dataviz</div>
-          <div class="tab" data-tab="handbook"><i class="fas fa-book-open"></i> Command Handbook</div>
+    <!-- Introductory Appended Sections Integrated Here -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Academy Paths -->
+        <div class="lg:col-span-2 space-y-8">
+          <div class="art-card p-8 rounded-2xl">
+            <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6">Econometrics Learning Academy</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h3 class="font-medium text-gray-900 dark:text-white border-b border-brand-gold pb-2 mb-3">Beginner</h3>
+                <ul class="text-sm font-light text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>Stata Basics & Data Cleaning</li>
+                  <li>Descriptive Statistics</li>
+                  <li>Visualization & Regression</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-medium text-gray-900 dark:text-white border-b border-brand-gold pb-2 mb-3">Intermediate</h3>
+                <ul class="text-sm font-light text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>Panel Data (FE/RE)</li>
+                  <li>Instrumental Variables</li>
+                  <li>Difference-in-Differences</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-medium text-gray-900 dark:text-white border-b border-brand-gold pb-2 mb-3">Advanced</h3>
+                <ul class="text-sm font-light text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>DEA & SFA</li>
+                  <li>Productivity Decomposition</li>
+                  <li>Causal Inference</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- TEMPLATES & NOTEBOOKS -->
-        <div id="templates" class="tab-content active">
-          <section class="mb-12">
-            <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-file-code"></i> Do-File Templates & Jupyter Notebooks
-            </h2>
-            <p class="mb-6">Ready-to-use do-files and interactive Jupyter notebooks for every stage of analysis.</p>
+        <!-- Repo & Workflows -->
+        <div class="lg:col-span-1 space-y-8">
+          <div class="art-card p-8 rounded-2xl h-full flex flex-col justify-center">
+            <h3 class="font-serif text-2xl text-gray-900 dark:text-white mb-4">Replication & Reproducibility</h3>
+            <p class="font-light text-sm text-gray-700 dark:text-gray-300 mb-6">
+              Downloadable project structures, master do-files, variable dictionaries, and workflow templates.
+            </p>
+            <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-full hover:bg-brand-gold dark:hover:bg-brand-gold transition-colors text-sm">
+              <i class="fab fa-github text-lg"></i> Access GitHub Repository
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- Data Cleaning -->
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> cleaning.do — Data Cleaning</h3>
-              <div class="collapse-content mt-3">
+    <!-- Main Learning Hub with Tabs -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      
+      <!-- Custom Elegant Tabs -->
+      <div class="flex flex-wrap gap-4 border-b border-gray-200 dark:border-gray-800 pb-4 mb-10" id="tabs">
+        <button class="tab-btn active px-4 py-2 font-serif text-lg tracking-wide text-brand-gold border-b-2 border-brand-gold transition-colors" data-target="templates">Templates</button>
+        <button class="tab-btn px-4 py-2 font-serif text-lg tracking-wide text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors" data-target="free-learning">Courses</button>
+        <button class="tab-btn px-4 py-2 font-serif text-lg tracking-wide text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors" data-target="references">Books & Data</button>
+        <button class="tab-btn px-4 py-2 font-serif text-lg tracking-wide text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors" data-target="master">Master Workflow</button>
+        <button class="tab-btn px-4 py-2 font-serif text-lg tracking-wide text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors" data-target="packages">Dataviz Packages</button>
+        <button class="tab-btn px-4 py-2 font-serif text-lg tracking-wide text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors" data-target="handbook">Command Handbook</button>
+      </div>
+
+      <!-- TAB 1: TEMPLATES -->
+      <div id="templates" class="tab-content active space-y-8">
+        <div class="art-card rounded-2xl p-8">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-file-code text-brand-gold mr-2"></i> Do-File Templates</h2>
+          
+          <div class="space-y-6">
+            <!-- Cleaning -->
+            <div class="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 class="collapse-btn font-medium text-lg text-gray-900 dark:text-white flex items-center gap-3">
+                <i class="fas fa-chevron-down text-brand-gold transition-transform"></i> cleaning.do — Data Cleaning
+              </h3>
+              <div class="collapse-content mt-4 relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
                 <pre><code class="language-stata">
 ********************************************************************************
 * DATA CLEANING TEMPLATE
 * AUTHOR: Dr Abdulla
-* DATE: 2025-10-29
 * DESCRIPTION: Handle missings, outliers, duplicates, and validate data.
 ********************************************************************************
-
 clear all
 set more off
-set varabbrev off
-
 global project_root "C:/Users/YourName/Dropbox/Projects/YourProject"
 global data_raw     "$project_root/01_data/raw"
 global data_clean   "$project_root/01_data/clean"
@@ -171,1148 +230,337 @@ global log          "$project_root/04_log"
 capture log close
 log using "$log/cleaning_`c(current_date)'.log", replace
 
-*--- Install packages -------------------------------------------------------
-foreach pkg in missings winsor2 {
-    capture which `pkg'
-    if _rc ssc install `pkg', replace
-}
-
-*--- Load raw data ----------------------------------------------------------
 use "$data_raw/raw_data.dta", clear
-
-*--- Missing values ---------------------------------------------------------
 missings report
 replace income = . if income == -999
-drop if missing(id)
-
-*--- Outliers ---------------------------------------------------------------
 winsor2 income age, cuts(1 99) replace
-replace income = . if income > 1e6
-
-*--- Duplicates -------------------------------------------------------------
-duplicates report id
 duplicates drop id, force
-
-*--- Recode & label ---------------------------------------------------------
 recode gender (1=0 "Male") (2=1 "Female"), gen(gender_bin)
-label var gender_bin "Gender: 0=Male, 1=Female"
-
-*--- Validation -------------------------------------------------------------
-assert age >= 0 & age <= 120
-codebook, compact
-
-*--- Save -------------------------------------------------------------------
 save "$data_clean/cleaned_data.dta", replace
-
 log close
                 </code></pre>
-                <a href="files/cleaning.do" download class="download-btn mt-2">Download cleaning.do</a>
               </div>
             </div>
 
-            <!-- Data Transformation -->
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> transformation.do — Reshape & Merge</h3>
-              <div class="collapse-content mt-3">
+            <!-- Transformation -->
+            <div class="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 class="collapse-btn font-medium text-lg text-gray-900 dark:text-white flex items-center gap-3">
+                <i class="fas fa-chevron-down text-brand-gold transition-transform"></i> transformation.do — Reshape & Merge
+              </h3>
+              <div class="collapse-content mt-4 relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
                 <pre><code class="language-stata">
 ********************************************************************************
 * DATA TRANSFORMATION TEMPLATE
-* AUTHOR: Dr Abdulla
-* DATE: 2025-10-29
 ********************************************************************************
-
-clear all
-set more off
-
-global data_clean     "$project_root/01_data/clean"
-global data_transform "$project_root/01_data/transformed"
-
-log using "$log/transformation_`c(current_date)'.log", replace
-
-*--- Load cleaned data ------------------------------------------------------
 use "$data_clean/cleaned_data.dta", clear
-
-*--- Generate variables -----------------------------------------------------
 gen log_income = log(income + 1)
 egen z_age = std(age)
-gen income_cat = cond(income < 5e4, 1, cond(income < 1e5, 2, 3))
-
-*--- Reshape: wide to long --------------------------------------------------
 reshape long sales_, i(id) j(year)
-
-*--- Merge additional data --------------------------------------------------
 merge 1:1 id year using "$data_clean/covariates.dta", nogen
-merge m:1 region using "$data_clean/region_info.dta", keepusing(region_name) nogen
-
-*--- Group-wise transformations ---------------------------------------------
 bysort region: egen mean_income = mean(income)
-
-*--- Save -------------------------------------------------------------------
 save "$data_transform/analysis_ready.dta", replace
-
-log close
                 </code></pre>
-                <a href="files/transformation.do" download class="download-btn mt-2">Download transformation.do</a>
               </div>
             </div>
-
-            <!-- Measurement & Summary Stats -->
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> measurement.do — Summary & Indices</h3>
-              <div class="collapse-content mt-3">
-                <pre><code class="language-stata">
-********************************************************************************
-* MEASUREMENT & SUMMARY STATISTICS
-* AUTHOR: Dr Abdulla
-********************************************************************************
-
-clear all
-set more off
-
-global data_transform "$project_root/01_data/transformed"
-global output         "$project_root/03_output"
-
-log using "$log/measurement_`c(current_date)'.log", replace
-
-*--- Packages ---------------------------------------------------------------
-foreach pkg in estout asdoc {
-    capture which `pkg'
-    if _rc ssc install `pkg', replace
-}
-
-*--- Load data --------------------------------------------------------------
-use "$data_transform/analysis_ready.dta", clear
-
-*--- Summary statistics -----------------------------------------------------
-summarize income age, detail
-tabstat income age, by(gender) stats(mean sd n)
-
-*--- Correlations -----------------------------------------------------------
-pwcorr income education assets, sig star(.05)
-
-*--- Composite index --------------------------------------------------------
-egen ses_index = rowmean(income education assets)
-factor income education assets, pcf
-predict ses_pca
-
-*--- Export table -----------------------------------------------------------
-estpost tabstat income age education, stats(mean sd min max n) columns(statistics)
-esttab using "$output/summary.rtf", cells("mean sd count") replace
-
-log close
-                </code></pre>
-                <a href="files/measurement.do" download class="download-btn mt-2">Download measurement.do</a>
-              </div>
-            </div>
-
-            <!-- Mapping & Geospatial -->
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> mapping.do — Choropleth Maps</h3>
-              <div class="collapse-content mt-3">
+            
+            <!-- Mapping -->
+            <div class="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 class="collapse-btn font-medium text-lg text-gray-900 dark:text-white flex items-center gap-3">
+                <i class="fas fa-chevron-down text-brand-gold transition-transform"></i> mapping.do — Choropleth Maps
+              </h3>
+              <div class="collapse-content mt-4 relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
                 <pre><code class="language-stata">
 ********************************************************************************
 * GEOSPATIAL MAPPING TEMPLATE
-* AUTHOR: Dr Abdulla
-* DESCRIPTION: Create publication-ready maps with spmap
 ********************************************************************************
-
-clear all
-set more off
-
-global gis_data "$project_root/01_data/gis"
-global output   "$project_root/03_output"
-
-log using "$log/mapping_`c(current_date)'.log", replace
-
-*--- Install packages -------------------------------------------------------
-foreach pkg in spmap shp2dta geo2xy {
-    capture which `pkg'
-    if _rc ssc install `pkg', replace
-}
-
-*--- Convert shapefile (run once) -------------------------------------------
 shp2dta using "$gis_data/india_adm2.shp", database(india_db) coord(india_coord) genid(id) replace
-
-*--- Merge data -------------------------------------------------------------
 use "$data_transform/analysis_ready.dta", clear
 merge m:1 district using "india_db.dta", keepusing(id) nogen
 
-*--- Create map -------------------------------------------------------------
 spmap income using "india_coord.dta", id(id) ///
     fcolor(Blues) clmethod(quantile) clnumber(5) ///
-    title("Income by District") legend(pos(4)) ///
-    note("Source: Your Survey + GADM")
+    title("Income by District") legend(pos(4))
 graph export "$output/income_map.pdf", replace
-
-log close
                 </code></pre>
-                <a href="files/mapping.do" download class="download-btn mt-2">Download mapping.do</a>
               </div>
             </div>
 
-            <!-- Jupyter Notebooks -->
-            <h3 class="text-2xl font-bold mt-12 mb-6 text-green-400 flex items-center gap-2">
-              <i class="fas fa-laptop-code"></i> Interactive Jupyter/Stata Notebooks
-            </h3>
+          </div>
+        </div>
+      </div>
 
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Cleaning + Transformation</h3>
-              <div class="collapse-content mt-3">
-                <pre><code class="language-python"># Install: pip install stata_kernel
-# Run: jupyter lab
-
-%%stata
-use raw_data.dta, clear
-missings report
-winsor2 income, cuts(1 99)
-gen log_inc = log(income)
-save cleaned.dta, replace
-                </code></pre>
-                <a href="files/clean_transform.ipynb" download class="download-btn mt-2">Download clean_transform.ipynb</a>
-              </div>
-            </div>
-
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Interactive Mapping Dashboard</h3>
-              <div class="collapse-content mt-3">
-                <pre><code class="language-python">%%stata
-spmap income using india_coord.dta, id(id) fcolor(Reds) clnumber(6)
-graph export "map.png", replace
-                </code></pre>
-                <a href="files/mapping_dashboard.ipynb" download class="download-btn mt-2">Download mapping_dashboard.ipynb</a>
-              </div>
-            </div>
-          </section>
+      <!-- TAB 2: FREE LEARNING -->
+      <div id="free-learning" class="tab-content space-y-8">
+        <div class="art-card rounded-2xl p-8 overflow-x-auto">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-video text-brand-gold mr-2"></i> Official Stata Webinars</h2>
+          <table>
+            <thead>
+              <tr><th>Webinar Title</th><th>Description & Key Topics</th><th>Duration</th><th>Access</th></tr>
+            </thead>
+            <tbody class="text-gray-700 dark:text-gray-300">
+              <tr><td>Ready. Set. Go Stata</td><td>Beginners: Interface, data import, basic commands.</td><td>60 min</td><td><a href="https://www.stata.com/training/webinar/ready-set-go-stata/" class="text-brand-gold hover:underline" target="_blank">Watch</a></td></tr>
+              <tr><td>Survey Statistics Using Stata</td><td>Sampling, weights, svyset, variance estimation.</td><td>60 min</td><td><a href="https://www.stata.com/training/webinar/survey-statistics/" class="text-brand-gold hover:underline" target="_blank">Watch</a></td></tr>
+              <tr><td>Panel-Data Analysis Using Stata</td><td>Fixed/random effects, dynamic estimation.</td><td>60 min</td><td><a href="https://www.stata.com/training/webinar/panel-data/" class="text-brand-gold hover:underline" target="_blank">Watch</a></td></tr>
+              <tr><td>Structural Equation Modeling</td><td>Path analysis, latent variables, fit diagnostics.</td><td>60 min</td><td><a href="https://www.stata.com/training/webinar/sem/" class="text-brand-gold hover:underline" target="_blank">Watch</a></td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <!-- FREE LEARNING -->
-        <div id="free-learning" class="tab-content">
-          <section class="mb-12">
-            <h2 class="text-3xl font-bold text-blue-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-play-circle"></i> Free Learning: Webinars & Courses
-            </h2>
-
-            <!-- Webinars -->
-            <h3 class="text-xl font-bold mb-4">Official Stata Webinars (45–60 min)</h3>
-            <p class="mb-4">Stata's official webinars are short (45-60 minutes), expert-led sessions. Recordings are free on the Stata website.</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Webinar Title</th>
-                  <th>Description & Key Topics</th>
-                  <th>Duration</th>
-                  <th>Access & Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Ready. Set. Go Stata</td>
-                  <td>Ideal for beginners: Interface, data import/export, basic commands, simple graphs.</td>
-                  <td>60 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/ready-set-go-stata/" class="resource-link">Watch Recording</a>. Includes datasets.</td>
-                </tr>
-                <tr>
-                  <td>Introduction to Stata for Students</td>
-                  <td>Tailored for academics: Navigation, cleaning, stats, do-files.</td>
-                  <td>45 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/" class="resource-link">Free Recording</a>.</td>
-                </tr>
-                <tr>
-                  <td>Introduction to Survey Statistics Using Stata</td>
-                  <td>Sampling, weights, svyset, variance estimation.</td>
-                  <td>60 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/survey-statistics/" class="resource-link">Free Recording</a>.</td>
-                </tr>
-                <tr>
-                  <td>Panel-Data Analysis Using Stata</td>
-                  <td>Fixed/random effects, dynamic estimation.</td>
-                  <td>60 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/panel-data/" class="resource-link">Free Recording</a>.</td>
-                </tr>
-                <tr>
-                  <td>Structural Equation Modeling (SEM) Using Stata</td>
-                  <td>Path analysis, latent variables, fit diagnostics.</td>
-                  <td>60 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/sem/" class="resource-link">Free Recording</a>.</td>
-                </tr>
-                <tr>
-                  <td>Working with Dates and Times in Stata</td>
-                  <td>Converting formats, time intervals.</td>
-                  <td>45 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/" class="resource-link">Free Recording</a>.</td>
-                </tr>
-                <tr>
-                  <td>Tips and Tricks</td>
-                  <td>Efficiency hacks, loops, debugging.</td>
-                  <td>45 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/" class="resource-link">Free Recording</a>.</td>
-                </tr>
-                <tr>
-                  <td>Introduction to Stata Webinar (Timberlake/Stata UK)</td>
-                  <td>Interface, regressions, graphs.</td>
-                  <td>60 minutes</td>
-                  <td><a href="https://www.stata.com/training/webinar/" class="resource-link">Free via Zoom</a>.</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="mt-4">Access full schedule: <a href="https://www.stata.com/training/webinar/" class="resource-link">Stata Webinars</a>.</p>
-
-            <!-- Courses -->
-            <h3 class="text-xl font-bold mt-10 mb-4">Self-Paced Free Courses</h3>
-            <p class="mb-4">Self-paced courses with videos, quizzes, datasets, and exercises.</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Course/Tutorial Title</th>
-                  <th>Provider</th>
-                  <th>Description & Key Topics</th>
-                  <th>Duration/Format</th>
-                  <th>Access & Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Stata Level 1: Fundamentals of Data Analysis</td>
-                  <td>Alison</td>
-                  <td>Data import, manipulation, recoding, basic stats.</td>
-                  <td>3-5 hours; 6 modules</td>
-                  <td><a href="https://alison.com/course/stata-level-1-fundamentals-of-data-analysis" class="resource-link">Free Course</a>. Certificate optional.</td>
-                </tr>
-                <tr>
-                  <td>Stata for Beginners (Module 1.1)</td>
-                  <td>edX/BerkeleyX (CEGA)</td>
-                  <td>Interface, loading data, do-files, visualizations.</td>
-                  <td>5-6 hours; PDF + videos</td>
-                  <td><a href="https://cega.berkeley.edu/wp-content/uploads/2020/08/Stata_Module_1.1.pdf" class="resource-link">Free PDF/Videos</a>.</td>
-                </tr>
-                <tr>
-                  <td>Handling Large-Scale Unit Level Data Using STATA</td>
-                  <td>NPTEL/SWAYAM (IIT Roorkee)</td>
-                  <td>Descriptive/inferential stats, panel data.</td>
-                  <td>12 weeks (40+ hours)</td>
-                  <td><a href="https://nptel.ac.in/courses/110107095" class="resource-link">Free Course</a>.</td>
-                </tr>
-                <tr>
-                  <td>UCLA IDRE Stata Learning Modules</td>
-                  <td>UCLA</td>
-                  <td>Data management, graphics, regression.</td>
-                  <td>10-20 hours; guides + videos</td>
-                  <td><a href="https://stats.idre.ucla.edu/stata/" class="resource-link">Free Portal</a>.</td>
-                </tr>
-                <tr>
-                  <td>Princeton University Stata Tutorials</td>
-                  <td>Princeton Library</td>
-                  <td>Importing, cleaning, econometrics.</td>
-                  <td>4-6 hours; interactive</td>
-                  <td><a href="https://libguides.princeton.edu/stata" class="resource-link">Free Guides</a>.</td>
-                </tr>
-                <tr>
-                  <td>University of Michigan Stata Workshops</td>
-                  <td>UMich ICPSR</td>
-                  <td>Basics, regression, graphics.</td>
-                  <td>8-10 hours; videos + PDFs</td>
-                  <td><a href="https://www.icpsr.umich.edu/web/pages/instructors/stata-workshops.html" class="resource-link">Free Modules</a>.</td>
-                </tr>
-                <tr>
-                  <td>Data, Economic Modeling, and Forecasting with Stata</td>
-                  <td>LinkedIn Learning</td>
-                  <td>Exploration, time-series, simulations.</td>
-                  <td>4 hours; 50+ videos</td>
-                  <td><a href="https://www.linkedin.com/learning/" class="resource-link">Free Trial</a>.</td>
-                </tr>
-                <tr>
-                  <td>Introduction to Stata 15/19</td>
-                  <td>LinkedIn Learning</td>
-                  <td>Interface, ANOVA, survival analysis.</td>
-                  <td>4 hours; video lessons</td>
-                  <td><a href="https://www.linkedin.com/learning/" class="resource-link">Free Trial</a>.</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="mt-6">Pro Tip: Start with <strong>Alison</strong> → move to <strong>UCLA</strong> → finish with <strong>NPTEL</strong>.</p>
-          </section>
+        <div class="art-card rounded-2xl p-8 overflow-x-auto">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-laptop text-brand-gold mr-2"></i> Self-Paced Courses</h2>
+          <table>
+            <thead>
+              <tr><th>Course/Tutorial Title</th><th>Provider</th><th>Description</th><th>Access</th></tr>
+            </thead>
+            <tbody class="text-gray-700 dark:text-gray-300">
+              <tr><td>Stata Level 1: Fundamentals</td><td>Alison</td><td>Data import, manipulation, recoding.</td><td><a href="https://alison.com/course/stata-level-1-fundamentals-of-data-analysis" class="text-brand-gold hover:underline" target="_blank">Free Course</a></td></tr>
+              <tr><td>Handling Large-Scale Unit Level Data</td><td>NPTEL (IIT Roorkee)</td><td>Descriptive/inferential stats, panel data.</td><td><a href="https://nptel.ac.in/courses/110107095" class="text-brand-gold hover:underline" target="_blank">Free Course</a></td></tr>
+              <tr><td>UCLA IDRE Stata Learning Modules</td><td>UCLA</td><td>Data management, graphics, regression.</td><td><a href="https://stats.idre.ucla.edu/stata/" class="text-brand-gold hover:underline" target="_blank">Portal</a></td></tr>
+              <tr><td>Princeton University Tutorials</td><td>Princeton Library</td><td>Importing, cleaning, econometrics.</td><td><a href="https://libguides.princeton.edu/stata" class="text-brand-gold hover:underline" target="_blank">Guides</a></td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <!-- BOOKS & DATASETS -->
-        <div id="references" class="tab-content">
-          <section class="mb-12">
-            <h2 class="text-3xl font-bold text-purple-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-book"></i> Books, Communities & Practice Datasets
-            </h2>
-
-            <!-- Books -->
-            <p class="mb-4">High-quality books from Stata Press with code examples and datasets.</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Book Title</th>
-                  <th>Author(s)</th>
-                  <th>Best For</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>A Gentle Introduction to Stata</td>
-                  <td>Alan C. Acock</td>
-                  <td>Beginners</td>
-                  <td>Step-by-step basics, data management; SPSS migration.</td>
-                </tr>
-                <tr>
-                  <td>The Workflow of Data Analysis Using Stata</td>
-                  <td>J. Scott Long</td>
-                  <td>Intermediate</td>
-                  <td>Workflows, programming, reproducibility.</td>
-                </tr>
-                <tr>
-                  <td>Statistics with Stata</td>
-                  <td>Lawrence Hamilton</td>
-                  <td>Beginners to intermediate</td>
-                  <td>Stats theory with syntax; exercises.</td>
-                </tr>
-                <tr>
-                  <td>Introduction to Stata Programming</td>
-                  <td>Christopher F. Baum</td>
-                  <td>Programming</td>
-                  <td>Scripting and automation.</td>
-                </tr>
-                <tr>
-                  <td>Microeconometrics Using Stata</td>
-                  <td>A. Colin Cameron & Pravin K. Trivedi</td>
-                  <td>Econometrics</td>
-                  <td>In-depth for econ/finance; datasets.</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- Datasets -->
-            <h3 class="text-xl font-bold mt-10 mb-4">Practice Datasets</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Dataset</th>
-                  <th>Source</th>
-                  <th>Use Case</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>auto.dta</td>
-                  <td>sysuse auto</td>
-                  <td>Basics, regression</td>
-                </tr>
-                <tr>
-                  <td>hsb2.xls</td>
-                  <td><a href="https://stats.idre.ucla.edu/stat/data/hsb2.xls" class="resource-link">UCLA</a></td>
-                  <td>Data cleaning</td>
-                </tr>
-                <tr>
-                  <td>nhanes2f.dta</td>
-                  <td>webuse nhanes2f</td>
-                  <td>Survey analysis</td>
-                </tr>
-                <tr>
-                  <td>grunfeld.dta</td>
-                  <td>webuse grunfeld</td>
-                  <td>Panel data</td>
-                </tr>
-                <tr>
-                  <td>sem_example.dta</td>
-                  <td>webuse sem_example</td>
-                  <td>SEM</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- Communities -->
-            <h3 class="text-xl font-bold mt-8 mb-4">Communities & Tips</h3>
-            <ul class="space-y-2">
-              <li><i class="fas fa-comments"></i> <a href="https://www.statalist.org/" class="resource-link">Stata Forum (Statalist)</a> – Q&A, archives.</li>
-              <li><i class="fab fa-reddit"></i> <a href="https://www.reddit.com/r/stata/" class="resource-link">Reddit (r/stata)</a> – Discussions, tips.</li>
-              <li><i class="fas fa-stack-exchange"></i> <a href="https://stats.stackexchange.com/questions/tagged/stata" class="resource-link">Cross Validated</a> – Stats Q&A.</li>
-            </ul>
-            <p class="mt-4">Pro Tip: Practice with sysuse datasets; replicate examples.</p>
-          </section>
+      <!-- TAB 3: BOOKS & DATA -->
+      <div id="references" class="tab-content space-y-8">
+        <div class="art-card rounded-2xl p-8 overflow-x-auto">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-book text-brand-gold mr-2"></i> Essential Books</h2>
+          <table>
+            <thead>
+              <tr><th>Book Title</th><th>Author(s)</th><th>Best For</th></tr>
+            </thead>
+            <tbody class="text-gray-700 dark:text-gray-300">
+              <tr><td>A Gentle Introduction to Stata</td><td>Alan C. Acock</td><td>Beginners</td></tr>
+              <tr><td>The Workflow of Data Analysis Using Stata</td><td>J. Scott Long</td><td>Intermediate/Reproducibility</td></tr>
+              <tr><td>Microeconometrics Using Stata</td><td>A. Colin Cameron & Pravin K. Trivedi</td><td>Econometrics</td></tr>
+              <tr><td>Introduction to Stata Programming</td><td>Christopher F. Baum</td><td>Programming & Automation</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <!-- MASTER & ROADMAP -->
-        <div id="master" class="tab-content">
-          <section class="mb-12">
-            <h2 class="text-3xl font-bold text-red-400 mb-6 flex items-center gap-2">
-              <i class="fas fa-code-branch"></i> Master Do-File & 4-Week Roadmap
-            </h2>
-            <p class="mb-4">A complete, self-contained do-file combining all examples. Copy-paste into Stata.</p>
-            <div class="mb-6">
-              <h3 class="collapse-btn text-xl"><i class="fas fa-chevron-down"></i> Stata_Learning_Complete.do</h3>
-              <div class="collapse-content mt-3">
-                <pre><code class="language-stata">
+      <!-- TAB 4: MASTER WORKFLOW -->
+      <div id="master" class="tab-content space-y-8">
+        <div class="art-card rounded-2xl p-8">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-code-branch text-brand-gold mr-2"></i> 4-Week Master Do-File</h2>
+          <p class="font-light text-sm text-gray-700 dark:text-gray-300 mb-6">A complete, self-contained workflow combining all webinar and course examples.</p>
+          <div class="relative group">
+            <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
+            <pre><code class="language-stata">
 * ==============================================================================
 * STATA LEARNING: COMPLETE DO-FILE (BEGINNER → ADVANCED)
-* Combines: Webinars + Free Courses + Real Examples
-* Run in Stata 17/18/19 (works in 15+)
 * ==============================================================================
-
 clear all
 set more off
-cd "C:\stata_learning"  // CHANGE TO YOUR FOLDER
 
-* -----------------------------------------------------------------------------
-* EXAMPLE 1: READY. SET. GO STATA (Webinar 1)
-* -----------------------------------------------------------------------------
-sysuse auto, clear
-describe
-summarize price mpg weight
-list make price mpg in 1/5
-twoway scatter price mpg, title("Price vs MPG") 
-
-* Save graph
-graph export "price_mpg.png", replace
-
-* -----------------------------------------------------------------------------
-* EXAMPLE 2: DATA IMPORT & CLEANING (UCLA + Alison Course)
-* -----------------------------------------------------------------------------
+* EXAMPLE 1: DATA IMPORT & CLEANING
 import excel "https://stats.idre.ucla.edu/stat/data/hsb2.xls", firstrow clear
 rename id ID
-rename race Race
 label variable read "Reading Score"
-label define racelbl 1 "Hispanic" 2 "Asian" 3 "African Am" 4 "White"
-label values Race racelbl
-tab Race
-
-* Recode and generate
 gen high_math = (math > 60)
-replace high_math = . if missing(math)
-tab high_math
-
-* Save cleaned data
 save "hsb2_clean.dta", replace
 
-* -----------------------------------------------------------------------------
-* EXAMPLE 3: SURVEY DATA (Webinar: Survey Statistics)
-* -----------------------------------------------------------------------------
+* EXAMPLE 2: SURVEY DATA
 webuse nhanes2f, clear
 svyset psuid [pweight=finalwgt], strata(stratid)
-svy: mean age
 svy: mean bpsystol, over(sex)
 svy: regress bpsystol age i.sex
 
-* -----------------------------------------------------------------------------
-* EXAMPLE 4: PANEL DATA (Webinar: Panel Data)
-* -----------------------------------------------------------------------------
+* EXAMPLE 3: PANEL DATA
 webuse grunfeld, clear
 xtset company year
-xtdescribe
-xtsum invest
-
-* Fixed effects
 xtreg invest mvalue kstock, fe
 estimates store fe
-
-* Random effects
 xtreg invest mvalue kstock, re
 estimates store re
-
-* Hausman test
 hausman fe re
 
-* -----------------------------------------------------------------------------
-* EXAMPLE 5: STRUCTURAL EQUATION MODELING (Webinar: SEM)
-* -----------------------------------------------------------------------------
-webuse sem_example, clear
-sem (Math -> read write) (Science -> math science), standardized
-estat eqgof
-estat teffects
-sem, standardized
-
-* Draw path diagram
-estat mindices
-* (Use Graph Editor to refine)
-
-* -----------------------------------------------------------------------------
-* EXAMPLE 6: GRAPHICS & EXPORT (UCLA + Princeton)
-* -----------------------------------------------------------------------------
-use hsb2_clean.dta, clear
-twoway (scatter read write) (lfit read write), ///
-    title("Reading vs Writing Scores") legend(label(1 "Data") label(2 "Fit"))
-
-graph export "read_write_scatter.png", replace
-
-* Multiple graphs
-graph combine "price_mpg.png" "read_write_scatter.png", cols(2) title("Combined Graphs")
-graph export "combined_graphs.png", replace
-
-* -----------------------------------------------------------------------------
-* EXAMPLE 7: AUTOMATION & LOOP (Tips and Tricks Webinar)
-* -----------------------------------------------------------------------------
-foreach var of varlist read write math science {
-    summarize `var'
-}
-    display "Mean of `var' = " r(mean)
-}
-
-* Save summary table
+* EXAMPLE 4: AUTOMATION & LOOP
 eststo clear
 foreach var of varlist read write math science {
     eststo: quietly sum `var'
 }
 esttab using "summary_table.rtf", cells(mean sd) replace
-
-* -----------------------------------------------------------------------------
-* EXAMPLE 8: TIME SERIES (Bonus: LinkedIn Learning)
-* -----------------------------------------------------------------------------
-webuse air2, clear
-tsset t, yearly
-tsline air
-dfuller air, lags(1)
-arima air, ar(1) ma(1)
-predict air_fcast, dynamic(t+1)
-
-* -----------------------------------------------------------------------------
-* BONUS: REPRODUCIBILITY (Best Practice)
-* -----------------------------------------------------------------------------
-log using "stata_learning_log.smcl", replace
-display "Analysis completed on $S_DATE at $S_TIME"
-log close
-
-* ==============================================================================
-* END OF DO-FILE
-* Practice Tip: Run one section at a time. Modify with your own data!
-* ==============================================================================
-                </code></pre>
-                <a href="files/stata_learning_complete.do" download class="download-btn mt-2">Download Stata_Learning_Complete.do</a>
-              </div>
-            </div>
-
-            <h3 class="text-2xl font-bold mt-8 mb-4">4-Week Learning Plan</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  <th>Focus</th>
-                  <th>Resources</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Interface + Basics</td>
-                  <td>Webinar 1 + Alison Course + Example 1-2</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Data Cleaning + Graphs</td>
-                  <td>UCLA Modules + Example 2, 6</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Survey + Panel</td>
-                  <td>Webinars 2-3 + Example 3-4</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>SEM + Automation</td>
-                  <td>Webinar 4 + Example 5, 7 + esttab</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="mt-4">Quick Links: <a href="https://www.stata.com/training/webinar/" class="resource-link">Webinars</a>, <a href="https://stats.idre.ucla.edu/stata/" class="resource-link">UCLA</a>, <a href="https://alison.com/course/stata-level-1-fundamentals-of-data-analysis" class="resource-link">Alison</a>, <a href="https://www.statalist.org/" class="resource-link">Statalist</a>.</p>
-            <p class="mt-4 font-bold">"The best way to learn Stata is to break it — then fix it."</p>
-          </section>
+            </code></pre>
+          </div>
         </div>
-
-        <!-- PACKAGES & DATAVIZ -->
-        <div id="packages" class="tab-content">
-          <section class="mb-12">
-            <h1 class="text-4xl font-bold mb-6">Asjad Naqvi – Stata Dataviz & Spatial Packages</h1>
-
-            <!-- Dataviz Packages -->
-            <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">Asjad Naqvi's Stata Dataviz Packages</h2>
-            <p class="subtitle mb-4"><strong>Click package name for GitHub repository:</strong></p>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Package</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-alluvial" target="_blank"><code>alluvial</code></a></td><td>Alluvial charts</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-arcplot" target="_blank"><code>arcplot</code></a></td><td>Arc plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-bimap" target="_blank"><code>bimap</code></a></td><td>Bi-variate maps</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-bumparea" target="_blank"><code>bumparea</code></a></td><td>Ribbon plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-bumpline" target="_blank"><code>bumpline</code></a></td><td>Bump line charts</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-circlebar" target="_blank"><code>circlebar</code></a></td><td>Polar bar graphs</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-circlepack" target="_blank"><code>circlepack</code></a></td><td>Circle packing</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-clipgeo" target="_blank"><code>clipgeo</code></a></td><td>Polygon and polyline shape clipping</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-delaunay-voronoi" target="_blank"><code>delaunay</code></a></td><td>Delaunay triangles, Convex Hull, Voronoi</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-geoboundary" target="_blank"><code>geoboundary</code></a></td><td>Fetching administrative boundaries</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-geoflow" target="_blank"><code>geoflow</code></a></td><td>Generating spatial arcs</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-graphfunctions" target="_blank"><code>graphfunctions</code></a></td><td>Helper functions for figures</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-marimekko" target="_blank"><code>marimekko</code></a></td><td>Marimekko charts</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-polarspike" target="_blank"><code>polarspike</code></a></td><td>Polar spike plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-ridgeline" target="_blank"><code>ridgeline</code></a></td><td>Ridgeline / joyplots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-sankey" target="_blank"><code>sankey</code></a></td><td>Sankey diagrams</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/Stata-schemepack" target="_blank"><code>schemepack</code></a></td><td>A suite of Stata schemes</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-spider" target="_blank"><code>spider</code></a></td><td>Spider plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-splinefit" target="_blank"><code>splinefit</code></a></td><td>Spline fit plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-streamplot" target="_blank"><code>streamplot</code></a></td><td>Streamplots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-sunburst" target="_blank"><code>sunburst</code></a></td><td>Sunburst diagrams</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-ternary" target="_blank"><code>ternary</code></a></td><td>Tri-variate plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-tidytuesday" target="_blank"><code>tidytuesday</code></a></td><td>Fetching TidyTuesday data</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-treecluster" target="_blank"><code>treecluster</code></a></td><td>Tree plots</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-treemap" target="_blank"><code>treemap</code></a></td><td>Tree maps</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-trimap" target="_blank"><code>trimap</code></a></td><td>Tri-variate maps</td></tr>
-                <tr><td><a href="https://github.com/asjadnaqvi/stata-waffle" target="_blank"><code>waffle</code></a></td><td>Waffle plots</td></tr>
-              </tbody>
-            </table>
-
-            <!-- Spatial Packages -->
-            <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2 mt-8">
-              <a href="https://www.stata.com/manuals/sp.pdf" target="_blank">
-                Stata Spatial Analysis Packages
-              </a>
-            </h2>
-            <p class="subtitle mb-4">Built-in (<code>sp</code> commands) + user-written tools for ESDA, mapping, and regression.</p>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Package / Command</th>
-                  <th>Description</th>
-                  <th>Install / Use</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><code>spshape2dta</code></td><td>Import shapefiles to Stata</td><td>Built-in (Stata 15+)</td></tr>
-                <tr><td><code>spset</code></td><td>Declare spatial dataset</td><td>Built-in</td></tr>
-                <tr><td><code>spmat</code></td><td>Create spatial weight matrices</td><td>Built-in</td></tr>
-                <tr><td><code>spregress</code></td><td>SAR, SEM, SDM models (cross-section)</td><td>Built-in</td></tr>
-                <tr><td><code>spxtregress</code></td><td>Spatial panel models (FE/RE)</td><td>Built-in</td></tr>
-                <tr><td><code>spmap</code></td><td>Choropleth & symbol maps</td><td>Built-in (or <code>ssc install spmap</code>)</td></tr>
-                <tr><td><code>spmap</code> (Pisati)</td><td>Advanced mapping</td><td><span class="install">ssc install spmap</span></td></tr>
-                <tr><td><code>xsmle</code></td><td>Spatial panel models (dynamic, FE/RE)</td><td><span class="install">net install xsmle, fro[](http://www.econometrics.it/stata)</span></td></tr>
-                <tr><td><code>sppack</code></td><td>SAR, SEM, GMM for cross-section</td><td><span class="install">ssc install sppack</span></td></tr>
-                <tr><td><code>spregxt</code></td><td>Spatial panel GMM/2SLS</td><td><span class="install">ssc install spregxt</span></td></tr>
-                <tr><td><code>spatlsa</code></td><td>Local Indicators of Spatial Association (LISA)</td><td><span class="install">ssc install spatlsa</span></td></tr>
-                <tr><td><code>spatgsa</code></td><td>Moran’s I, Geary’s C</td><td><span class="install">ssc install spatgsa</span></td></tr>
-                <tr><td><code>shp2dta</code></td><td>Legacy shapefile import</td><td><span class="install">ssc install shp2dta</span></td></tr>
-              </tbody>
-            </table>
-
-            <!-- Example Code -->
-            <details class="mt-8">
-              <summary>Example: Spatial Autoregressive Model (SAR) with Map</summary>
-              <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code class="language-stata">
-// 1. Import shapefile (e.g., US counties)
-spshape2dta us_counties.shp, replace
-
-// 2. Load data and merge with shapefile
-use us_counties, clear
-merge 1:1 _ID using us_counties_shp, nogen
-
-// 3. Declare spatial structure
-spset _ID
-
-// 4. Create contiguity weight matrix (queen)
-spmat use W using us_counties.spmat, replace
-spmat summarize W
-
-// 5. Estimate Spatial Autoregressive Model (SAR)
-spregress income education unemployment, gs2sls dvarlag(W)
-
-// 6. Predict spatial lag and residuals
-predict yhat, xb
-predict resid, residuals
-
-// 7. Visualize results on map
-spmap income using us_counties_shp, id(_ID) clmethod(custom) clbreaks(0 20000 40000 60000 80000) ///
-    title("Median Income by County") legend(pos(5) size(small))
-
-// Optional: Moran’s I test on residuals
-spatgsa resid, weights(W) graph
-</code></pre>
-              </div>
-              <p><strong>Requirements:</strong> Stata 15+, shapefile (<code>.shp</code>), and data merged on <code>_ID</code>.</p>
-            </details>
-
-            <p class="note mt-6">
-              Dataviz packages by <a href="https://github.com/asjadnaqvi" target="_blank">Asjad Naqvi</a> • 
-              <a href="https://asjadnaqvi.github.io/" target="_blank">Website</a> • 
-              <a href="https://medium.com/@asjadnaqvi" target="_blank">Medium</a> • 
-              Full spatial docs: <a href="https://www.stata.com/manuals/sp.pdf" target="_blank">Stata Sp Manual</a>
-            </p>
-          </section>
-        </div>
-
-        <!-- COMMAND HANDBOOK -->
-        <div id="handbook" class="tab-content">
-          <section class="mb-12">
-            <h1 class="text-4xl font-bold mb-6">Stata Complete Learning Handbook</h1>
-            <p class="text-xl mb-3 font-light">Beginner → Intermediate → Advanced → Analysis → Workflow</p>
-
-            <!-- BEGINNER -->
-            <section id="beginner">
-              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">1️⃣ Beginner: Basics & Data Management</h2>
-              <details open>
-                <summary>Opening and Managing Data</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Change directory and open a dataset
-cd "~/Desktop/data"
-use mydata.dta, clear
-
-// Built-in example data
-sysuse auto, clear
-list in 1/5
-summarize</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Creating and Replacing Variables</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Generate new variable
-gen price_thousand = price / 1000
-
-// Replace existing variable
-replace mpg = . if mpg < 10
-
-// Create logical variable
-gen expensive = price > 10000</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Labeling and Recoding</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">label variable price "Car Price in USD"
-label define type_lbl 0 "Domestic" 1 "Foreign"
-label values foreign type_lbl
-
-// Recode numeric variable
-recode price (0/5000=1 "Low") (5001/10000=2 "Mid") (10001/max=3 "High"), gen(price_cat)</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Sorting, Saving, and Exporting</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">sort price
-gsort -mpg
-save mydata_clean.dta, replace
-export delimited using "mydata.csv", replace</code></pre>
-                </div>
-              </details>
-            </section>
-
-            <!-- INTERMEDIATE -->
-            <section id="intermediate">
-              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">2️⃣ Intermediate: Loops, Merge, Append, Strings</h2>
-
-              <details>
-                <summary>Looping</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Loop through variables
-foreach var in price mpg weight {
-    summarize `var'
-}
-
-// Loop through numeric range
-forvalues i = 1/5 {
-    gen score`i' = runiform(0,100)
-}</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>String and Type Conversion</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">tostring age, gen(age_str)
-destring age_str, gen(age_num)
-encode region, gen(region_num)
-decode region_num, gen(region_txt)</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Merging and Appending</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Merge datasets
-merge 1:1 id using "data2.dta"
-
-// Append observations
-append using "newdata.dta"</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Split and Combine Strings</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Split a variable
-split fullname, parse(" ")
-
-// Combine two variables
-gen fullname = firstname + " " + lastname</code></pre>
-                </div>
-              </details>
-            </section>
-
-            <!-- ADVANCED -->
-            <section id="advanced">
-              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">3️⃣ Advanced: Reshape, Collapse, egen, by:</h2>
-
-              <details>
-                <summary>Using by:</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">sort region
-by region: summarize income
-by region: egen mean_income = mean(income)</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>egen Functions</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">egen avg_income = mean(income), by(region)
-egen miss_count = rowmiss(age income educ)
-egen total_sales = total(sales), by(store)
-egen rank_income = rank(income), by(region)</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Collapse Summaries</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">collapse (mean) avg_income = income (sd) sd_income = income, by(region)</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Reshape Wide/Long</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Wide to long
-reshape long income, i(id) j(year)
-// Long to wide
-reshape wide income, i(id) j(year)</code></pre>
-                </div>
-              </details>
-            </section>
-
-            <!-- ANALYSIS -->
-            <section id="analysis">
-              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">4️⃣ Analysis & Visualization</h2>
-
-              <details>
-                <summary>Descriptive Statistics</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">summarize price mpg
-tabulate foreign
-by foreign: summarize price</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Correlations & Regression</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">corr price mpg weight
-regress price mpg weight
-anova price foreign##rep78</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Common Graphs</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">histogram mpg, width(2)
-graph box price, over(foreign)
-scatter price mpg
-twoway (scatter price mpg) (lfit price mpg)</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Exporting Graphs</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">graph export "price_mpg.png", replace
-graph export "summary.pdf", replace</code></pre>
-                </div>
-              </details>
-            </section>
-
-            <!-- WORKFLOW -->
-            <section id="workflow">
-              <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center gap-2">5️⃣ Workflow & Do-File Automation</h2>
-
-              <details>
-                <summary>Do-File Basics</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">// Setup
-clear all
-set more off
-cd "~/Desktop/project"
-use data.dta, clear
-
-// Analysis
-summarize
-regress income educ age</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Logging</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">log using "session.log", replace
-summarize
-regress income educ age
-log close</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Loops in Do-Files</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">forvalues y = 2019/2023 {
-    use "data_`y'.dta", clear
-    summarize income
-    save "clean_`y'.dta", replace
-}</code></pre>
-                </div>
-              </details>
-
-              <details>
-                <summary>Master Workflow Example</summary>
-                <div class="code-block">
-                  <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                  <pre><code class="language-stata">/*****************************************************
-* MASTER DO-FILE
-*****************************************************/
-clear all
-set more off
-do "1_import.do"
-do "2_cleaning.do"
-do "3_analysis.do"
-do "4_graphs.do"
-log using "final.log", replace
-display "All scripts completed!"</code></pre>
-                </div>
-              </details>
-            </section>
-          </section>
-        </div>
-
       </div>
 
-      <!-- GitHub -->
-      <section class="text-center py-10 bg-gradient-to-r from-purple-900 to-blue-900 bg-opacity-20 rounded-lg border border-purple-500">
-        <h2 class="text-2xl font-bold text-purple-400 mb-4">GitHub Repository</h2>
-        <p class="mb-4">All templates, notebooks, datasets, and shapefiles included.</p>
-        <a href="https://github.com/abdullahalig007/stata-learning-hub" target="_blank" class="github-btn">
-          <i class="fab fa-github"></i> abdullahalig007/stata-learning-hub
-        </a>
-      </section>
+      <!-- TAB 5: PACKAGES -->
+      <div id="packages" class="tab-content space-y-8">
+        <div class="art-card rounded-2xl p-8 overflow-x-auto">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-palette text-brand-gold mr-2"></i> Asjad Naqvi's Dataviz Packages</h2>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody class="text-gray-700 dark:text-gray-300">
+              <tr><td><a href="https://github.com/asjadnaqvi/stata-alluvial" class="text-brand-gold hover:underline" target="_blank"><code>alluvial</code></a></td><td>Alluvial charts</td></tr>
+              <tr><td><a href="https://github.com/asjadnaqvi/stata-bimap" class="text-brand-gold hover:underline" target="_blank"><code>bimap</code></a></td><td>Bi-variate maps</td></tr>
+              <tr><td><a href="https://github.com/asjadnaqvi/stata-joyplot" class="text-brand-gold hover:underline" target="_blank"><code>ridgeline</code></a></td><td>Ridgeline / joyplots</td></tr>
+              <tr><td><a href="https://github.com/asjadnaqvi/stata-sankey" class="text-brand-gold hover:underline" target="_blank"><code>sankey</code></a></td><td>Sankey diagrams</td></tr>
+              <tr><td><a href="https://github.com/asjadnaqvi/Stata-schemepack" class="text-brand-gold hover:underline" target="_blank"><code>schemepack</code></a></td><td>Suite of beautiful Stata schemes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="art-card rounded-2xl p-8 overflow-x-auto">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-globe text-brand-gold mr-2"></i> Spatial Packages</h2>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th><th>Install Command</th></tr>
+            </thead>
+            <tbody class="text-gray-700 dark:text-gray-300">
+              <tr><td><code>spmap</code></td><td>Choropleth maps</td><td><code>ssc install spmap</code></td></tr>
+              <tr><td><code>xsmle</code></td><td>Spatial panel models</td><td><code>net install xsmle</code></td></tr>
+              <tr><td><code>sppack</code></td><td>SAR, SEM, GMM</td><td><code>ssc install sppack</code></td></tr>
+              <tr><td><code>spregxt</code></td><td>Spatial panel GMM/2SLS</td><td><code>ssc install spregxt</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-    </article>
+      <!-- TAB 6: HANDBOOK -->
+      <div id="handbook" class="tab-content space-y-8">
+        <div class="art-card rounded-2xl p-8">
+          <h2 class="font-serif text-2xl text-gray-900 dark:text-white mb-6"><i class="fas fa-terminal text-brand-gold mr-2"></i> Command Handbook</h2>
+          
+          <!-- Beginner -->
+          <div class="mb-8">
+            <h3 class="font-medium text-lg text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">1. Beginner: Basics & Data Management</h3>
+            <div class="grid lg:grid-cols-2 gap-6">
+              <div class="relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
+                <pre><code class="language-stata">// Create and Replace
+gen price_k = price / 1000
+replace mpg = . if mpg < 10
+gen expensive = price > 10000</code></pre>
+              </div>
+              <div class="relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
+                <pre><code class="language-stata">// Label and Recode
+label variable price "Car Price"
+label define t_lbl 0 "Dom" 1 "For"
+label values foreign t_lbl
+recode price (0/5000=1) (5001/max=2)</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Advanced -->
+          <div>
+            <h3 class="font-medium text-lg text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">2. Advanced: Reshape & egen</h3>
+            <div class="grid lg:grid-cols-2 gap-6">
+              <div class="relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
+                <pre><code class="language-stata">// Reshape
+reshape long inc, i(id) j(year)
+reshape wide inc, i(id) j(year)</code></pre>
+              </div>
+              <div class="relative group">
+                <button class="copy-btn absolute top-3 right-3 text-xs border border-gray-400 bg-gray-200 dark:border-white/20 dark:bg-white/10 px-3 py-1.5 rounded transition-colors opacity-0 group-hover:opacity-100">Copy</button>
+                <pre><code class="language-stata">// egen Functions
+egen avg = mean(inc), by(region)
+egen miss = rowmiss(age inc)
+egen rank = rank(inc), by(region)</code></pre>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="footer py-12 text-center">
-    <div class="text-lg font-semibold text-yellow-400 mb-4">Agricultural Economics</div>
-    <nav class="flex justify-center space-x-10 text-2xl">
-      <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
-      <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter"></i></a>
-      <a href="https://github.com/abdullahalig007" class="icon-link"><i class="fab fa-github"></i></a>
-      <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link"><i class="fab fa-researchgate"></i></a>
-      <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin"></i></a>
-      <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid"></i></a>
-      <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" class="icon-link"><i class="fas fa-graduation-cap"></i></a>
-    </nav>
-    <p class="mt-6 text-sm">© 2025 Dr Abdulla. All rights reserved.</p>
+  <footer class="mt-auto border-t border-gray-200 dark:border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-serif text-xl text-gray-900 dark:text-white">Dr Abdulla<span class="text-brand-gold">.</span></div>
+      <p class="text-sm font-light text-gray-600 dark:text-gray-400">&copy; 2026 Dr Abdulla. All rights reserved.</p>
+      <div class="flex gap-4 text-gray-500 dark:text-gray-400">
+        <a href="https://github.com/abdullahalig007" class="hover:text-brand-gold transition"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="hover:text-brand-gold transition"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/abdullahalig07" class="hover:text-brand-gold transition"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
   <script>
-    // Theme Toggle
-    const t = document.getElementById('theme-toggle'), b = document.body, i = t.querySelector('i');
-    if (localStorage.getItem('theme')==='light') { b.classList.add('light-mode'); i.classList.replace('fa-moon','fa-sun'); i.style.color='#1e3a8a'; }
-    t.addEventListener('click',()=>{ b.classList.toggle('light-mode'); const l=b.classList.contains('light-mode');
-      i.classList.toggle('fa-sun',l); i.classList.toggle('fa-moon',!l); i.style.color=l?'#1e3a8a':'#facc15';
-      localStorage.setItem('theme',l?'light':'dark');
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { htmlElement.classList.remove('dark'); } 
+    else { htmlElement.classList.add('dark'); }
+
+    themeToggle.addEventListener('click', () => {
+      htmlElement.classList.toggle('dark');
+      localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // Collapse
-    document.querySelectorAll('.collapse-btn').forEach(c=>{ c.addEventListener('click',()=>{ const x=c.nextElementSibling, ic=c.querySelector('i');
-      x.classList.toggle('open'); ic.classList.toggle('fa-chevron-down'); ic.classList.toggle('fa-chevron-up');
-    });});
+    // Mobile Menu
+    document.getElementById('mobile-toggle').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('hidden'); document.getElementById('mobile-menu').classList.add('flex'); });
+    document.getElementById('mobile-close').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('hidden'); document.getElementById('mobile-menu').classList.remove('flex'); });
 
-    // Fade-in
-    const obs = new IntersectionObserver(e=>{ e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in-view'); }); }, {threshold:0.1});
-    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    // Custom Tabs Logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-    // Highlight active page
-    document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.href === window.location.href) {
-        link.classList.add('text-yellow-400', 'font-bold');
-      }
-    });
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active from all
+        tabBtns.forEach(b => {
+          b.classList.remove('active', 'text-brand-gold', 'border-b-2', 'border-brand-gold');
+          b.classList.add('text-gray-500');
+        });
+        tabContents.forEach(c => c.classList.remove('active'));
 
-    // Tabs
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+        // Add active to clicked
+        btn.classList.add('active', 'text-brand-gold', 'border-b-2', 'border-brand-gold');
+        btn.classList.remove('text-gray-500');
+        document.getElementById(btn.getAttribute('data-target')).classList.add('active');
       });
     });
 
-    // Search Functionality
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase();
-      searchResults.innerHTML = '';
-      if (query.length < 3) return;
-
-      const sections = document.querySelectorAll('h2, h3, h4, td, li, summary');
-      sections.forEach(section => {
-        if (section.innerText.toLowerCase().includes(query)) {
-          const result = document.createElement('div');
-          result.classList.add('search-result');
-          result.innerHTML = `<h4 class="font-bold">${section.innerText}</h4><p>${section.closest('section, details, div')?.innerText.slice(0, 150)}...</p>`;
-          searchResults.appendChild(result);
-        }
+    // Accordion Logic
+    document.querySelectorAll('.collapse-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('i');
+        content.classList.toggle('open');
+        icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
       });
     });
 
-    // Copy Code Function
-    function copyCode(btn) {
-      const code = btn.parentElement.querySelector('pre').innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy', 2000);
+    // Copy Code Logic
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const code = this.parentElement.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const orig = this.textContent;
+          this.textContent = 'Copied!';
+          this.classList.add('bg-brand-gold', 'border-brand-gold', 'text-white');
+          setTimeout(() => {
+            this.textContent = orig;
+            this.classList.remove('bg-brand-gold', 'border-brand-gold', 'text-white');
+          }, 2000);
+        });
       });
-    }
+    });
+
+    // Scroll Reveal Animation Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    revealElements.forEach(el => { revealOnScroll.observe(el); });
   </script>
 </body>
 </html>

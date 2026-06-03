@@ -1,788 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="author" content="Dr Abdulla" />
-  <meta name="description" content="Curriculum Vitae — Dr Abdulla, Assistant Professor, Jamia Millia Islamia. Academic profile, publications, teaching and research." />
-  <title>Dr Abdulla — CV</title>
-  <!-- OpenGraph -->
-  <meta property="og:title" content="Dr Abdulla — CV" />
-  <meta property="og:description" content="Curriculum Vitae — Assistant Professor, Jamia Millia Islamia" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://abdullahalig007.github.io/website/ph.jpg" />
-  <!-- Tailwind -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Dr Abdulla">
+  <meta name="description" content="Curriculum Vitae — Dr Abdulla, Applied Economist & Policy Researcher.">
+  <title>Dr Abdulla | Curriculum Vitae</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#D4AF37',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root{
-      --bg:#0f172a;
-      --text:#e2e8f0;
-      --card:rgba(30,41,59,0.78);
-      --border:rgba(148,163,184,0.12);
+    /* Elegant Link Underlines */
+    .hover-underline {
+      position: relative;
+      text-decoration: none;
+    }
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .hover-underline:hover::after, .hover-underline.active::after {
+      width: 100%;
+    }
 
-      --primary:#6366f1;
-      --secondary:#10b981;
-      --accent:#f59e0b;
+    /* Refined Cards */
+    .art-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dark .art-card {
+      background: rgba(30, 30, 30, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .art-card:hover {
+      box-shadow: 0 12px 40px -10px rgba(0,0,0,0.08);
+    }
+    .dark .art-card:hover {
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      border-color: rgba(212, 175, 55, 0.3); 
+    }
 
-      --particle:#64748b;
-      --particle-line:#475569;
-      --muted:#94a3b8;
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
     }
-    .light-mode {
-      --bg: #f8fafc;
-      --text: #0f172a;
-      --card: rgba(255,255,255,0.9);
-      --border: rgba(100,116,139,0.12);
-      --accent: #4338ca;
-      --accent-2: #059669;
-      --particle: #94a3b8;
-      --particle-line: #cbd5e1;
-      --muted: rgba(30,41,59,0.75);
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
-    html,body { height:100%; }
-    body {
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg);
-      color: var(--text);
-      transition: all .35s ease;
-      line-height:1.6;
-      overflow-x:hidden;
+
+    /* Abstract Background Accent */
+    .bg-accent {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.04) 0%, rgba(0,0,0,0) 70%);
+      top: -20vw;
+      left: -20vw;
+      z-index: -1;
+      pointer-events: none;
     }
-    /* Particles */
-    #particles-js { position:fixed; inset:0; z-index:-1; pointer-events:none; }
-    /* Nav */
-    header.site-nav {
-      position:sticky; top:0; z-index:60; backdrop-filter: blur(8px);
-      background: rgba(15,23,42,0.75); border-bottom:1px solid var(--border);
+    .dark .bg-accent {
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 70%);
     }
-    .nav-link { color: var(--text); text-decoration:none; display:inline-flex; gap:.5rem; align-items:center; font-weight:600; }
-    .nav-link:hover { color: var(--accent); }
-    /* Glass */
-    .glass {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.25rem;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+    /* Custom Timeline Styles */
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
     }
-    .glass:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-    /* Timeline */
-    .timeline { position:relative; padding-left:2.5rem; }
-    .timeline::before { content:''; position:absolute; top:0; left:1rem; width:2px; height:100%; background: linear-gradient(180deg,var(--accent),var(--accent-2)); opacity:0.9; }
-    .timeline-item { position:relative; margin-bottom:1.5rem; padding-left:1rem; }
-    .timeline-dot { position:absolute; left:0.6rem; top:0.25rem; width:14px; height:14px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(79,70,229,0.08); border:3px solid var(--bg); }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0.5rem;
+      width: 1px;
+      height: 100%;
+      background: rgba(212, 175, 55, 0.3); /* Subtle gold line */
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #D4AF37;
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    }
+
     /* Accordion */
-    .accordion-btn{ width:100%; display:flex; justify-content:space-between; align-items:center; padding:.75rem 1rem; border-radius:.75rem; background:transparent; border:1px solid rgba(255,255,255,0.03); cursor:pointer; color:var(--text); font-weight:700; }
-    .accordion-panel{ max-height:0; overflow:hidden; transition:max-height .45s ease, padding .35s ease; padding:0 1rem; }
-    .accordion-panel.open{ padding:1rem; max-height:2000px; }
-    /* Utilities */
-    .muted { color: var(--muted); font-size:.95rem; }
-    .tag{
-      display:inline-block;
-      padding:.35rem .75rem;
-      font-size:.78rem;
-      border-radius:.6rem;
-      background:linear-gradient(
-        90deg,
-        rgba(99,102,241,0.18),
-        rgba(16,185,129,0.18)
-      );
-      border:1px solid rgba(255,255,255,0.08);
-      color:var(--text);
-      font-weight:700;
-      letter-spacing:.02em;
-      backdrop-filter:blur(4px);
+    .accordion-btn {
+      cursor: pointer;
+      transition: color 0.3s;
     }
-    @media (max-width:768px){ .nav-desktop{ display:none } .nav-mobile{ display:flex } }
-    @media (min-width:769px){ .nav-mobile{ display:none } .nav-desktop{ display:flex } }
-   a {
-  color: var(--accent);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--secondary);
-}
-
-    h1,h2,h3{
-      letter-spacing:-0.02em;
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
     }
-
-    p, li{
-      line-height:1.75;
+    .accordion-content.open {
+      max-height: 2000px;
     }
-
-    .glass{
-      backdrop-filter:blur(10px);
-    }
-
-    .pub-badge{
-      display:inline-block;
-      padding:.2rem .55rem;
-      margin-left:.35rem;
-      border-radius:999px;
-      font-size:.72rem;
-      font-weight:700;
-      background:rgba(245,158,11,0.15);
-      color:#fbbf24;
-      border:1px solid rgba(245,158,11,0.2);
-    }
-
-    .metric-card{
-      text-align:center;
-      padding:1rem;
-    }
-
-    .metric-number{
-      font-size:2rem;
-      font-weight:800;
-      color:var(--accent);
-    }
-
-    @media(max-width:768px){
-      .glass{
-        padding:1rem;
-      }
-
-      body{
-        font-size:15px;
-      }
-    }
-
   </style>
 </head>
-<body>
-  <div id="particles-js"></div>
-  <!-- NAV -->
-  <header class="site-nav">
-    <div class="container mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="/website/" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold">DA</div>
-        <span class="font-semibold text-lg">Dr Abdulla</span>
+
+<body class="antialiased min-h-screen flex flex-col relative bg-[#fcfcfc] dark:bg-[#121212] transition-colors duration-500">
+
+  <div class="bg-accent"></div>
+
+  <!-- Minimalist Navigation -->
+  <header class="fixed w-full top-0 z-50 bg-[#fcfcfc]/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="/website/" class="font-serif text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Dr Abdulla<span class="text-brand-gold">.</span>
       </a>
-<nav class="nav-desktop items-center gap-6">
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="/website/" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
+        <a href="/website/cv.html" class="hover-underline active text-brand-gold">CV</a>
+        <a href="/website/research.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Research</a>
+        <a href="/website/teaching.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Teaching</a>
+        <a href="/website/learning-resources.html" class="hover-underline text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Resources</a>
+        
+        <button id="theme-toggle" class="ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300" aria-label="Toggle Theme">
+          <i class="fas fa-adjust"></i>
+        </button>
+      </nav>
 
-  <a href="/website/cv.html" class="nav-link">
-    <i class="fas fa-id-card"></i>
-    <span class="ml-1">CV</span>
-  </a>
-    <a href="/website/about.html" class="nav-link">
-    <i class="fas fa-user"></i>
-    <span class="ml-1">About</span>
-  </a>
-  <a href="/website/research.html" class="nav-link">
-    <i class="fas fa-flask"></i>
-    <span class="ml-1">Research</span>
-  </a>
-  <a href="/website/teaching.html" class="nav-link">
-    <i class="fas fa-chalkboard-teacher"></i>
-    <span class="ml-1">Teaching</span>
-  </a>
-  <a href="/website/resource.html" class="nav-link">
-    <i class="fas fa-book"></i>
-    <span class="ml-1">Resources</span>
-  </a>
-  <a href="/website/learning.html" class="nav-link">
-    <i class="fas fa-graduation-cap"></i>
-    <span class="ml-1">Learning</span>
-  </a>
-  <a href="/website/Efficiency & Productivity Estimation.html" class="nav-link">
-    <i class="fas fa-chart-line"></i>
-    <span class="ml-1">Efficiency & Productivity</span>
-  </a>
-
-  <button id="theme-toggle"
-          class="ml-4 p-2 rounded-full hover:bg-slate-700/30"
-          aria-label="Toggle theme">
-    <i class="fas fa-moon"></i>
-  </button>
-
-</nav>
-
-      <div class="nav-mobile flex items-center gap-3">
-        <button id="mobile-open" class="p-2"><i class="fas fa-bars fa-lg"></i></button>
-      </div>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-toggle" class="md:hidden text-2xl text-gray-800 dark:text-white">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="fixed inset-0 bg-slate-900/95 z-50 flex flex-col items-center justify-center space-y-6 p-6" style="transform:translateX(100%); transition:transform .35s ease;">
-    <button id="mobile-close" class="absolute top-6 right-6 text-white text-2xl"><i class="fas fa-times"></i></button>
-<a href="/website/cv.html" class="nav-link text-2xl">CV</a>
-<a href="/website/about.html" class="nav-link text-2xl">About</a>
-<a href="/website/research.html" class="nav-link text-2xl">Research</a>
-<a href="/website/teaching.html" class="nav-link text-2xl">Teaching</a>
-<a href="/website/resource.html" class="nav-link text-2xl">Resources</a>
-<a href="/website/learning.html" class="nav-link text-2xl">Learning</a>
-<a href="/website/Efficiency & Productivity Estimation.html"
-   class="nav-link text-2xl">
-   Efficiency & Productivity
-</a>
 
-  </div>
-  <!-- HERO -->
-  <section class="bg-gradient-to-br from-slate-900/90 to-indigo-900/20 text-center py-16 md:py-20" style="clip-path: polygon(0 0,100% 0,100% 86%,0 100%);">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Dr Abdulla</h1>
-      <p class="mt-2 text-lg md:text-xl muted">Assistant Professor — Jamia Millia Islamia</p>
-      <p class="mt-2 italic muted">Applied Economist | Agricultural Productivity | Climate Risk & Trade Policy</p>
-      <div class="mt-6 flex items-center justify-center gap-4">
-        <a href="/website/docs/Dr_Abdulla_CV.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md font-semibold" style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--bg);" download>
-          <i class="fas fa-download"></i> Download CV (PDF)
-        </a>
-        <a href="mailto:abdullahalig007@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-transparent muted hover:text-white">
-          <i class="fas fa-envelope"></i> abdullahalig007@gmail.com
-        </a>
-      </div>
-    </div>
-  </section>
-  
-<section class="container mx-auto px-6 -mt-10 relative z-20">
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-
-    <div class="glass metric-card">
-      <div class="metric-number">16+</div>
-      <div class="muted">Publications</div>
-    </div>
-
-    <div class="glass metric-card">
-      <div class="metric-number">50+</div>
-      <div class="muted">Citations</div>
-    </div>
-
-    <div class="glass metric-card">
-      <div class="metric-number">4</div>
-      <div class="muted">WoS Indexed</div>
-    </div>
-
-    <div class="glass metric-card">
-      <div class="metric-number">12+</div>
-      <div class="muted">Scopus Indexed</div>
-    </div>
-
-  </div>
-</section>
-
-
-  <!-- MAIN -->
-  <main class="container mx-auto px-6 py-12 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- LEFT: Timeline (Education & Experience) -->
-      <div class="lg:col-span-2">
-        <div class="glass">
-          <div class="flex items-start justify-between">
-            <div>
-              <h2 class="text-2xl font-semibold">Academic Timeline</h2>
-              <p class="muted mt-1"> Education and Professional Experience.</p>
-            </div>
-            <div class="tag">Timeline</div>
-          </div>
-          <!-- Education timeline -->
-          <div class="mt-6">
-            <h3 class="font-semibold">Education</h3>
-            <div class="timeline mt-4">
-              <!-- PhD -->
-              <div class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="ml-6">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <strong>Ph.D., Industrial Economics</strong>
-                      <div class="muted">Aligarh Muslim University — 2015-2018</div>
-                    </div>
-                    <div class="muted text-sm">Thesis: Performance of Sugar Mills in India: A Comparative Study of Uttar Pradesh and Maharashtra</div>
-                  </div>
-                  <p class="mt-2 muted">Specialization: Research • Teaching • Policy • Econometrics, Productivity Analysis, Stochastic Frontier Methods.</p>
-                </div>
-              </div>
-              <!-- MPhil / Masters -->
-              <div class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="ml-6">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <strong>M.Phil., Industrial Economics</strong>
-                      <div class="muted">Aligarh Muslim University — 2013-2015</div>
-                    </div>
-                    <div class="muted text-sm">Focus: Applied Econometrics</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Masters -->
-              <div class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="ml-6">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <strong>M.A., Economics (Econometrics & Mathematical Economics)</strong>
-                      <div class="muted">Aligarh Muslim University — 2009-2011</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Bachelors -->
-              <div class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="ml-6">
-                  <strong>B.A. (Hons.), Economics (Mathematics & Statistics)</strong>
-                  <div class="muted">Aligarh Muslim University — 2006-2009</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Experience timeline -->
-          <div class="mt-6">
-            <h3 class="font-semibold">Professional Experience</h3>
-            <div class="timeline mt-4">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="ml-6">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <strong>Assistant Professor</strong>
-                      <div class="muted">Jamia Millia Islamia, New Delhi</div>
-                    </div>
-                    <div class="muted text-sm">Aug 2024 – Present</div>
-                  </div>
-                  <p class="mt-2 muted">Conduct independent and collaborative research integrating national microdata with advanced econometric techniques. Teach and mentor on applied econometrics and data-driven policy analysis. Supervise postgraduate research projects focused on empirical modelling and policy impact.</p>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="ml-6">
-                  <strong>Research Associate</strong>
-                  <div class="muted">ICAR–National Institute of Research • Teaching • Policy • Econometrics & Policy Research (NIAP), New Delhi</div>
-                  <div class="muted text-sm">2018 – 2024</div>
-                  <p class="mt-2 muted">Led empirical research on agricultural productivity, climate risk, market efficiency, and technology adoption. Produced 10+ peer-reviewed publications and contributed to national-level policy reports. Applied advanced panel econometrics, stochastic frontier, and spatial models using NSSO, ASI, NFHS, and CMIE data. Developed reproducible research pipelines in Stata, R, and Python.</p>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="ml-6">
-                  <strong>Young Professional (Economics & Trade Policy)</strong>
-                  <div class="muted">Ministry of Commerce & Industry, Government of India</div>
-                  <div class="muted text-sm">May 2022 – Jul 2022</div>
-                  <p class="mt-2 muted">Conducted trade cost and efficiency analysis using gravity models and international databases (WITS, ITC Trade Map, UN Comtrade). Prepared policy briefs on export competitiveness, regional integration, and trade strategy.</p>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="ml-6">
-                  <strong>Research Associate</strong>
-                  <div class="muted">National Academy of Agricultural Sciences, New Delhi</div>
-                  <div class="muted text-sm">2021</div>
-                  <p class="mt-2 muted">Contributed to studies on agricultural productivity and technology adoption using econometric methods.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Publications (collapsible) -->
-        <div class="mt-8 glass">
-          <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-semibold">Selected Publications</h2>
-            <div class="tag">Journal articles & chapters</div>
-          </div>
-          <div class="mt-4">
-            <button class="accordion-btn" data-target="pub-panel">
-              <span><i class="fas fa-file-alt mr-2"></i>Show / hide publications</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div id="pub-panel" class="accordion-panel open">
-              <div class="mt-4 space-y-4">
-                <!-- Forthcoming Publications -->
-                <div>
-                  <strong>Forthcoming</strong> — Technical Efficiency of Contract Farming: Evidence from Potato Farmers in Gujarat. <em>Indian Journal of Agricultural Sciences</em>. Abdulla. Indexing: WoS (SCI)
-                </div>
-                <div>
-                  <strong>Forthcoming</strong> — Technological Heterogeneity and Energy Efficiency across India’s Industrial Sectors: A Meta-Frontier Stochastic Frontier Approach. Abdulla & Tariq Masood. Indexing: WoS (SCI)
-                </div>
-<!-- Publications (collapsible) -->
-<div class="mt-8 glass">
-  <div class="flex items-center justify-between">
-    <h2 class="text-2xl font-semibold">Selected Publications</h2>
-    <div class="tag">Journal articles & chapters</div>
-  </div>
-
-  <div class="mt-4">
-
-    <button class="accordion-btn" data-target="pub-panel">
-      <span>
-        <i class="fas fa-file-alt mr-2"></i>
-        Show / hide publications
-      </span>
-      <i class="fas fa-chevron-down"></i>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#fcfcfc] dark:bg-[#121212] z-40 hidden flex-col items-center justify-center space-y-8 text-2xl font-serif">
+    <button id="mobile-close" class="absolute top-6 right-6 text-3xl text-gray-800 dark:text-white">
+      <i class="fas fa-times"></i>
     </button>
+    <a href="/website/" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">About</a>
+    <a href="/website/cv.html" class="text-brand-gold">CV</a>
+    <a href="/website/research.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Research</a>
+    <a href="/website/teaching.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Teaching</a>
+    <a href="/website/learning-resources.html" class="text-gray-800 dark:text-gray-200 hover:text-brand-gold transition-colors">Resources</a>
+  </div>
 
-    <div id="pub-panel" class="accordion-panel">
-
-      <div class="mt-4 space-y-4">
-
-        <!-- Forthcoming -->
+  <main class="flex-grow pt-32 pb-20">
+    
+    <!-- Hero Section for CV -->
+    <section class="max-w-7xl mx-auto px-6 py-12 reveal">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-gray-200 dark:border-gray-800 pb-8">
         <div>
-          <strong>Forthcoming</strong> —
-          Technical Efficiency of Contract Farming: Evidence from Potato Farmers in Gujarat.
-          <em>Indian Journal of Agricultural Sciences</em>.
-          Abdulla.
-          Indexing: WoS (SCI)
+          <p class="text-sm font-semibold tracking-widest uppercase text-brand-gold mb-3">Professional Profile</p>
+          <h1 class="text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white">Curriculum Vitae.</h1>
         </div>
-
-        <div>
-          <strong>Forthcoming</strong> —
-          Technological Heterogeneity and Energy Efficiency across India’s Industrial Sectors:
-          A Meta-Frontier Stochastic Analysis.
-          Abdulla & Tariq Masood.
-          Indexing: WoS (SCI)
-        </div>
-
-        <!-- Published -->
-
-        <div>
-          <strong>2026</strong> —
-          India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia:
-          An Empirical Analysis.
-          <em>Applied Economics</em>, 1–20.
-          Ahmad, I., Kunroo, M. H., & Abdulla.
-          <a href="https://doi.org/10.1080/00036846.2026.2645229">DOI</a>.
-          Indexing: Scopus | WoS (SSCI)
-        </div>
-
-        <div>
-          <strong>2026</strong> —
-          Labour Market Dynamics and Livelihood Sustainability in India.
-          <em>Discover Sustainability</em>, 7, 531.
-          Abdulla, Amir, M. & Khan, M.A.
-          <a href="https://doi.org/10.1007/s43621-026-02673-4">DOI</a>.
-          Indexing: Scopus | WoS (ESCI)
-        </div>
-
-        <div>
-          <strong>2026</strong> —
-          Farmer Producer Organisations and the Technical Efficiency of Vegetable Crops.
-          <em>Economic & Political Weekly, 61(2), 56–62</em>.
-          Diksha Bali & Abdulla.
-          <a href="https://www.epw.in/journal/2026/2/special-articles/farmer-producer-organisations-and-technical.html">
-            Article Link
-          </a>.
-          Indexing: Scopus | ABDC (B)
-        </div>
-
-        <div>
-          <strong>2024</strong> —
-          Impact of Climate Change on Agriculture in the Indo-Gangetic Plains of India.
-          <em>Research • Teaching • Policy • Econometrics Research Review, 37(1), 71–80</em>.
-          Kumar, N. R., & Abdulla.
-          <a href="https://doi.org/10.5958/0974-0279.2022.00006.2">DOI</a>
-        </div>
-
-        <div>
-          <strong>2023</strong> —
-          The Effect of Information Technology on Banking Efficiency.
-          <em>Economic & Political Weekly, 58(37), 40–46</em>.
-          Khan, A. S., & Abdulla.
-          <a href="https://www.epw.in">EPW</a>.
-          Indexing: Scopus | ABDC (B)
-        </div>
-
-        <div>
-          <strong>2022</strong> —
-          Decomposing Productivity Growth in the Indian Sugar Industry.
-          <em>Research • Teaching • Policy • Econometrics Research Review, 35(1), 71–80</em>.
-          Kumar, S., & Abdulla.
-          <a href="https://doi.org/10.5958/0974-0279.2022.00006.4">DOI</a>
-        </div>
-
-        <div>
-          <strong>2021</strong> —
-          Technical Efficiency and Its Determinants in the Indian Meat Processing Industry.
-          <em>Indian Journal of Animal Sciences, 91(3), 230–234</em>.
-          Abdulla & Kumar, S.
-          <a href="https://doi.org/10.56093/ijans.v91i3.114149">DOI</a>.
-          Indexing: WoS (ESCI)
-        </div>
-
-        <div>
-          <strong>2021</strong> —
-          Dynamics of Productivity Growth in Indian Dairy Products Manufacturing Industry.
-          <em>Indian Journal of Animal Sciences, 91(2), 137–142</em>.
-          Kumar, S. & Abdulla.
-          <a href="https://doi.org/10.56093/ijans.v91i2.113822">DOI</a>.
-          Indexing: WoS (ESCI)
-        </div>
-
-        <div>
-          <strong>2021</strong> —
-          Technical Efficiency and Its Determinants in the Indian Textile Garments Industry.
-          <em>Research Journal of Textile and Apparel, 25(4), 346–360</em>.
-          Abdulla & Kumar, S.
-          <a href="https://doi.org/10.1108/RJTA-09-2020-0110">DOI</a>.
-          Indexing: Scopus | ABDC (B)
-        </div>
-
-        <div>
-          <strong>2020</strong> —
-          Dynamics of Technical Efficiency of Sugar Mills in India:
-          Stochastic Frontier Approach.
-          <em>The Indian Journal of Agricultural Sciences, 90(8), 1532–1537</em>.
-          Kumar, S., & Abdulla.
-          <a href="https://doi.org/10.56093/ijas.v90i8.105958">DOI</a>.
-          Indexing: WoS (SCI)
-        </div>
-
-        <div>
-          <strong>2020</strong> —
-          Productivity Growth in India’s Bakery Manufacturing Industry.
-          <em>Journal of Agribusiness in Developing and Emerging Economies</em>.
-          Kumar, S., Abdulla & Singh, C. P.
-          <a href="https://doi.org/10.1108/JADEE-12-2019-0204">DOI</a>.
-          Indexing: Scopus | ABDC (B)
-        </div>
-
-        <div>
-          <strong>2019</strong> —
-          Dynamics of MSME Industry in Uttar Pradesh and Maharashtra:
-          An Analysis of Sugar Firms.
-          <em>SEDME, 46(4), 235–247</em>.
-          Khan, M. R., & Abdulla.
-          <a href="https://doi.org/10.1177/0970846419894775">DOI</a>
-        </div>
-
+        <a href="/website/docs/Dr_Abdulla_CV.pdf" download class="inline-flex items-center gap-3 px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-colors rounded-full text-sm tracking-wide font-medium">
+          <i class="fas fa-download"></i> Download PDF
+        </a>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<!-- Working Papers -->
-<div class="mt-8 glass">
+    <!-- Main CV Content -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        <!-- LEFT COLUMN: Experience, Education, Publications -->
+        <div class="lg:col-span-8 space-y-16">
+          
+          <!-- Professional Experience -->
+          <div class="reveal">
+            <h2 class="font-serif text-3xl text-gray-900 dark:text-white mb-8 flex items-center gap-4">
+              <i class="fas fa-briefcase text-brand-gold text-2xl"></i> Experience
+            </h2>
+            <div class="timeline-container">
+              
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Researcher</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-3 mt-1">Aug 2025 – Present</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">V.V. Giri National Labour Institute (VVGNLI), Noida</p>
+                <p class="text-gray-600 dark:text-gray-400 font-light mt-2 text-sm leading-relaxed">
+                  Developed research reports and policy briefs on labour market dynamics, employment, and livelihood sustainability, including econometric analyses on wages and informal employment using nationally representative micro-datasets. Led capacity building workshops on applied econometrics and data-driven policy analysis.
+                </p>
+              </div>
 
-  <div class="flex items-center justify-between">
-    <h2 class="text-2xl font-semibold">Working Papers (Under Review)</h2>
-    <div class="tag">Under Review</div>
-  </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Assistant Professor, Economics</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-3 mt-1">Aug 2024 – May 2025</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Jamia Millia Islamia (Central University), New Delhi</p>
+                <p class="text-gray-600 dark:text-gray-400 font-light mt-2 text-sm leading-relaxed">
+                  Mentored postgraduate empirical research in development economics, international trade, and applied econometrics. Published multiple WoS-indexed journal papers and co-organised the International Conference on Digital Banking & Sustainable Finance.
+                </p>
+              </div>
 
-  <div class="mt-4">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Research Associate</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-3 mt-1">Jul 2022 – Aug 2024 & Aug 2018 – Aug 2024</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">ICAR-NIAP / NAAS, New Delhi</p>
+                <p class="text-gray-600 dark:text-gray-400 font-light mt-2 text-sm leading-relaxed">
+                  Led econometric research for the National Innovations in Climate Resilient Agriculture (NICRA), applying advanced econometric models to assess climate risk and adaptation. Developed reproducible workflows in Stata, R, and Python.
+                </p>
+              </div>
 
-    <ul class="list-disc pl-5 space-y-2 muted">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Young Professional - Economics & Trade Policy</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-3 mt-1">May 2022 – Jul 2022</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Ministry of Commerce & Industry, Government of India</p>
+                <p class="text-gray-600 dark:text-gray-400 font-light mt-2 text-sm leading-relaxed">
+                  Analyzed trade costs and efficiency using structural gravity models and global trade databases (WITS, ITC Trade Map, UN Comtrade). Prepared policy briefs on export competitiveness.
+                </p>
+              </div>
 
-      <li>
-        Growth and Productivity Change in the Vegetable and Fruit Processing Industry in India.
-        Abdulla & Shiv Kumar.
-      </li>
+            </div>
+          </div>
 
-      <li>
-        A Non-Parametric Analysis of the Climate–Agriculture Nexus and Agricultural Productivity in India.
-        Abdulla & P. S. Birthal.
-      </li>
+          <!-- Education -->
+          <div class="reveal">
+            <h2 class="font-serif text-3xl text-gray-900 dark:text-white mb-8 flex items-center gap-4">
+              <i class="fas fa-graduation-cap text-brand-gold text-2xl"></i> Education
+            </h2>
+            <div class="timeline-container">
+              
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Ph.D., Industrial Economics</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-2 mt-1">2015 – 2018</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Aligarh Muslim University, Aligarh</p>
+                <p class="text-gray-600 dark:text-gray-400 font-light mt-1 text-sm italic">Thesis: "Performance of Sugar Mills in India: A Comparative Study of Uttar Pradesh and Maharashtra"</p>
+              </div>
 
-      <li>
-        Extreme Heat, Irrigation, and Agricultural Yields over Five Decades:
-        Evidence from Panel Data in Uttar Pradesh, India.
-        Abdulla & D. Bali.
-      </li>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">M.Phil., Industrial Economics</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-2 mt-1">2013 – 2015</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Aligarh Muslim University, Aligarh</p>
+              </div>
 
-      <li>
-        Spatial Analysis of Climate-Induced Risk in Uttar Pradesh.
-        Abdulla & N. R. Kumar.
-      </li>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">M.A. in Economics</h3>
+                <div class="text-brand-gold text-sm tracking-wide mb-2 mt-1">2009 – 2011</div>
+                <p class="text-gray-800 dark:text-gray-300 font-medium">Aligarh Muslim University, Aligarh</p>
+                <p class="text-gray-600 dark:text-gray-400 font-light mt-1 text-sm">Specialization: Econometrics & Mathematical Economics</p>
+              </div>
 
-      <li>
-        Assessing Agricultural Vulnerability in Uttar Pradesh:
-        Evidence from Block-Level Data.
-        Abdulla & N. R. Kumar.
-      </li>
+            </div>
+          </div>
 
-      <li>
-        Stunting Falls, Anaemia Rises:
-        India’s Nutritional Transition and the Aspirational Districts Programme.
-        Abdulla & Kalu Naik.
-      </li>
-
-    </ul>
-
-  </div>
-</div>
-
-                
-    <!-- Books and Chapters -->
-                <div>
-                  <strong>2025</strong> — Spreadsheet Modelling (MBA-1008). <em>Centre for Distance Education, Aligarh Muslim University</em>. Abdulla.
+          <!-- Selected Publications Accordion -->
+          <div class="reveal">
+            <h2 class="font-serif text-3xl text-gray-900 dark:text-white mb-8 flex items-center gap-4">
+              <i class="fas fa-book-open text-brand-gold text-2xl"></i> Selected Publications
+            </h2>
+            
+            <div class="art-card rounded-2xl p-2">
+              <div class="accordion-btn flex justify-between items-center p-4 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl text-gray-900 dark:text-white font-medium" data-target="pub-content">
+                <span class="tracking-wide">Peer-Reviewed Journal Articles</span>
+                <i class="fas fa-chevron-down text-brand-gold transition-transform duration-300"></i>
+              </div>
+              <div id="pub-content" class="accordion-content open px-4 pb-4">
+                <ul class="space-y-4 mt-2 text-sm font-light text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <li class="pl-4 border-l border-gray-200 dark:border-gray-700">
+                    <span class="font-medium text-gray-900 dark:text-white">Forthcoming</span> — Abdulla. Technical Efficiency of Contract Farming: Evidence from Potato Farmers in Gujarat. <span class="italic">Indian Journal of Agricultural Sciences</span>. [WoS SCI]
+                  </li>
+                  <li class="pl-4 border-l border-gray-200 dark:border-gray-700">
+                    <span class="font-medium text-gray-900 dark:text-white">Forthcoming</span> — Abdulla & Tariq Masood. Energy Efficiency and Technological Disparities in Indian Industrial Sectors.
+                  </li>
+                  <li class="pl-4 border-l border-gray-200 dark:border-gray-700">
+                    <span class="font-medium text-gray-900 dark:text-white">2026</span> — Ahmad, I., Kunroo, M. H., & Abdulla. India’s Trade Cost, Trade Efficiency, and Trade Potential with South Asia: A Stochastic Frontier Gravity Approach. <span class="italic">Applied Economics</span>. [ABDC-A]
+                  </li>
+                  <li class="pl-4 border-l border-gray-200 dark:border-gray-700">
+                    <span class="font-medium text-gray-900 dark:text-white">2026</span> — Abdulla. Labour Market Dynamics and Livelihood Sustainability in India. <span class="italic">Discover Sustainability</span>.
+                  </li>
+                  <li class="pl-4 border-l border-gray-200 dark:border-gray-700">
+                    <span class="font-medium text-gray-900 dark:text-white">2026</span> — Bali, D. & Abdulla. Farmer Producer Organisations and the Technical Efficiency of Vegetable Crops. <span class="italic">Economic & Political Weekly</span>. [ABDC-B]
+                  </li>
+                </ul>
+                <div class="mt-6 text-sm">
+                  <a href="/website/research.html" class="text-brand-gold hover:underline">View complete list of publications & working papers &rarr;</a>
                 </div>
-                <div>
-                  <strong>2019</strong> — Total Factor Productivity Using Stochastic Frontier Production Function. <em>ICAR–National Institute of Research • Teaching • Policy • Econometrics and Policy Research (NIAP)</em>. Abdulla, Kumar, S., & Singh, D.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Sidebar (Profile, Skills, Grants) -->
+        <div class="lg:col-span-4 space-y-8">
+          
+          <div class="art-card p-8 rounded-2xl reveal delay-100">
+            <h3 class="font-serif text-2xl text-gray-900 dark:text-white mb-4">Core Profile</h3>
+            <p class="text-gray-700 dark:text-gray-300 font-light text-sm leading-relaxed mb-6">
+              Applied economist specializing in applied econometrics, agricultural economics, productivity analysis, and policy evaluation. Highly experienced with large-scale national microdata and advanced econometric models.
+            </p>
+            <div class="space-y-3 text-sm font-light text-gray-600 dark:text-gray-400">
+              <p><strong class="text-gray-900 dark:text-white font-medium">Email:</strong> abdullahalig007@gmail.com</p>
+              <p><strong class="text-gray-900 dark:text-white font-medium">Phone:</strong> +91-9532892550</p>
+            </div>
+          </div>
+
+          <div class="art-card p-8 rounded-2xl reveal delay-200">
+            <h3 class="font-serif text-2xl text-gray-900 dark:text-white mb-4">Methods & Software</h3>
+            <div class="space-y-4 text-sm">
+              <div>
+                <strong class="block text-gray-900 dark:text-white font-medium mb-1">Methods</strong>
+                <p class="text-gray-700 dark:text-gray-300 font-light leading-relaxed">Structural Gravity Modelling, Panel Data, SFA, DEA, Spatial Econometrics, Impact Evaluation (DiD, IV, RDD).</p>
+              </div>
+              <div>
+                <strong class="block text-gray-900 dark:text-white font-medium mb-1">Datasets</strong>
+                <p class="text-gray-700 dark:text-gray-300 font-light leading-relaxed">WDI, WITS, UN Comtrade, NSSO, ASI, NFHS, PLFS, CMIE Prowess.</p>
+              </div>
+              <div>
+                <strong class="block text-gray-900 dark:text-white font-medium mb-1">Software</strong>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="px-2 py-1 text-xs rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300">Stata</span>
+                  <span class="px-2 py-1 text-xs rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300">R</span>
+                  <span class="px-2 py-1 text-xs rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300">Python</span>
+                  <span class="px-2 py-1 text-xs rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300">Power BI</span>
+                  <span class="px-2 py-1 text-xs rounded border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300">QGIS</span>
                 </div>
-                <div class="muted text-sm">For a complete list of publications (books, chapters, conference papers), see the Research page.</div>
               </div>
             </div>
           </div>
-        </div>
-       
-        <!-- Grants & Projects -->
-        <div class="mt-8 glass">
-          <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-semibold">Grants & Projects</h2>
-            <div class="tag">Selected</div>
+
+          <div class="art-card p-8 rounded-2xl reveal delay-300">
+            <h3 class="font-serif text-2xl text-gray-900 dark:text-white mb-4">Research Grants</h3>
+            <p class="text-gray-700 dark:text-gray-300 font-light text-sm leading-relaxed mb-2">
+              <strong class="text-gray-900 dark:text-white font-medium block">ICSSR Minor Research Project (2025–2026)</strong>
+              Co-Principal Investigator. "Assessing the Impact of Jal Jeevan Mission on Rural Health Outcomes using Mixed-Method Evaluation."
+            </p>
           </div>
-          <div class="mt-4">
-            <ul class="list-disc pl-5 space-y-2 muted">
-              <li>Co-Principal Investigator, ICSSR Minor Research Project: Assessing the Impact of Jal Jeevan Mission on Rural Health Outcomes using mixed-method evaluation. 2025 – Present.</li>
-              <li>Projects with ICAR, NAAS, and DoC on agricultural productivity and input use.</li>
-              <li>Work on EPFO / payroll data usage for labor economics (collaborative reports & PIB press releases included in project documentation).</li>
-            </ul>
-          </div>
+
         </div>
+
       </div>
-      <!-- RIGHT: Profile summary & quick links -->
-      <aside class="space-y-6">
-        <div class="glass">
-          <div class="flex items-start justify-between">
-            <div>
-              <h3 class="text-xl font-semibold">Profile</h3>
-              <p class="muted mt-1">Applied economist specializing in applied econometrics, agricultural and development economics, productivity analysis, and policy evaluation. Experienced with large-scale national and international microdata and advanced econometric models (panel data, stochastic frontier, spatial econometrics, and gravity models). Published peer-reviewed research, contributed to policy reports and funded projects, and collaborated with government ministries and research institutions. Skilled in reproducible research workflows using Stata, R, and Python.</p>
-            </div>
-          </div>
-          <div class="mt-4">
-            <div class="text-sm muted"><strong>Email:</strong> abdullahalig007@gmail.com</div>
-            <div class="text-sm muted mt-1"><strong>ORCID:</strong> 0000-0002-6544-1056</div>
-            <div class="text-sm muted mt-1"><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=6CE-0s8AAAAJ" >profile</a></div>
-          </div>
-        </div>
-        <div class="glass">
-          <h3 class="text-xl font-semibold">Teaching</h3>
-          <ul class="mt-3 list-disc pl-5 muted space-y-2">
-            <li>Money & Banking; Computer Application for Economics; Public Finance (PG)</li>
-            <li>Applied Econometrics, Efficiency & Productivity Estimation (DEA, SFA)</li>
-            <li>Hands-on Stata labs and reproducible research practices</li>
-          </ul>
-        </div>
-        <div class="glass">
-          <h3 class="text-xl font-semibold">Skills & Tools</h3>
-          <div class="mt-3">
-            <div class="muted"><strong>Econometric Methods:</strong> Panel data analysis; stochastic frontier analysis (SFA); data envelopment analysis (DEA); gravity models; spatial econometrics; impact evaluation</div>
-            <div class="muted mt-2"><strong>Quantitative Tools:</strong> Stata; R; Python; SPSS; EViews; Tableau; Power BI; ArcGIS; QGIS</div>
-            <div class="muted mt-2"><strong>Datasets:</strong> NSSO; ASI; NFHS; CMIE; WDI; WITS; ITC Trade Map; UN Comtrade</div>
-            <div class="muted mt-2"><strong>Research Areas:</strong> Agricultural productivity; climate risk & adaptation; trade policy; technology adoption; development policy</div>
-          </div>
-        </div>
-        <div class="glass">
-          <h3 class="text-xl font-semibold">Awards & Recognition</h3>
-          <ul class="mt-3 list-disc pl-5 muted space-y-2">
-            <li>Peer reviewer for international academic publishers, including Springer Nature and Emerald Publishing, and others.</li>
-            <li>Co-Organising Secretary, International Conference on Digital Banking & Sustainable Finance (2025).</li>
-            <li>Member: International Association of Agricultural Economists (IAAE); Indian Economic Association.</li>
-            <li>Delivered invited lectures on advanced econometric methods and microdata analysis at AMU, NAARM, University of Calicut, and JMI.</li>
-          </ul>
-        </div>
-        <div class="glass text-center">
-          <a href="/website/docs/Dr_Abdulla_CV.pdf" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-semibold" style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--bg);" download>
-            <i class="fas fa-file-pdf"></i> Download CV (PDF)
-          </a>
-        </div>
-      </aside>
-    </div>
-    <p class="mt-8 muted text-sm">Last updated: 2026. Edit content inside this HTML to update any section (education entries, publications, or links).</p>
+    </section>
+
   </main>
-  <!-- FOOTER -->
-  <footer class="py-10 text-center">
-    <div class="container mx-auto px-6">
-      <div class="text-lg font-semibold mb-4" style="color:var(--accent-2)">Research • Teaching • Policy • Econometrics</div>
-      <nav class="flex justify-center gap-6 mb-4">
-        <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
-        <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="https://www.researchgate.net/profile/Dr-Abdulla" class="icon-link"><i class="fab fa-researchgate fa-2x"></i></a>
-        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="icon-link"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a href="https://orcid.org/0000-0002-6544-1056" class="icon-link"><i class="fab fa-orcid fa-2x"></i></a>
-      </nav>
-      <p class="text-sm muted">&copy; 2026 Dr Abdulla. All rights reserved.</p>
+
+  <footer class="mt-auto border-t border-gray-200 dark:border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="font-serif text-xl text-gray-900 dark:text-white">Dr Abdulla<span class="text-brand-gold">.</span></div>
+      <p class="text-sm font-light text-gray-600 dark:text-gray-400">&copy; 2026 Dr Abdulla. All rights reserved.</p>
+      <div class="flex gap-4 text-gray-500 dark:text-gray-400">
+        <a href="https://github.com/abdullahalig007" class="hover:text-brand-gold transition"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dr-abdulla-00793160/" class="hover:text-brand-gold transition"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/abdullahalig07" class="hover:text-brand-gold transition"><i class="fab fa-twitter"></i></a>
+      </div>
     </div>
   </footer>
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
   <script>
-    // particles.js
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 70, density: { enable: true, value_area: 700 } },
-        color: { value: getComputedStyle(document.documentElement).getPropertyValue('--particle').trim() },
-        shape: { type: 'circle' },
-        opacity: { value: 0.5, random: true },
-        size: { value: 3, random: true },
-        line_linked: {
-          enable: true,
-          distance: 140,
-          color: getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim(),
-          opacity: 0.28,
-          width: 1
-        },
-        move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-        modes: { grab: { distance: 140, line_linked: { opacity: 0.7 } }, push: { particles_nb: 4 } }
-      },
-      retina_detect: true
-    });
-    // Theme toggle (persist)
+    // Theme Toggle Logic
     const themeToggle = document.getElementById('theme-toggle');
-    const bodyEl = document.body;
-    const icon = themeToggle.querySelector('i');
+    const htmlElement = document.documentElement;
+    
     if (localStorage.getItem('theme') === 'light') {
-      bodyEl.classList.add('light-mode');
-      icon.classList.replace('fa-moon','fa-sun');
+      htmlElement.classList.remove('dark');
+    } else {
+      htmlElement.classList.add('dark'); 
     }
+
     themeToggle.addEventListener('click', () => {
-      bodyEl.classList.toggle('light-mode');
-      const isLight = bodyEl.classList.contains('light-mode');
-      icon.classList.toggle('fa-sun', isLight);
-      icon.classList.toggle('fa-moon', !isLight);
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      // refresh particles colors
-      setTimeout(() => {
-        if (window.pJSDom && window.pJSDom[0]) {
-          window.pJSDom[0].pJS.particles.color.value = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim();
-          window.pJSDom[0].pJS.particles.line_linked.color = getComputedStyle(document.documentElement).getPropertyValue('--particle-line').trim();
-          window.pJSDom[0].pJS.fn.particlesRefresh();
-        }
-      }, 120);
+      htmlElement.classList.toggle('dark');
+      const isDark = htmlElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-    // Mobile menu controls
-    const mobileOpen = document.getElementById('mobile-open');
-    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-toggle');
     const mobileClose = document.getElementById('mobile-close');
-    mobileOpen.addEventListener('click', () => mobileMenu.style.transform = 'translateX(0)');
-    mobileClose.addEventListener('click', () => mobileMenu.style.transform = 'translateX(100%)');
-    // Accordion
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+    });
+
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+
+    // Accordion Logic
     document.querySelectorAll('.accordion-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const targetId = btn.getAttribute('data-target');
-        const panel = document.getElementById(targetId);
-        const icon = btn.querySelector('i.fas');
-        const isOpen = panel.classList.contains('open');
-        // close others
-        document.querySelectorAll('.accordion-panel.open').forEach(p => {
-          if (p.id !== targetId) {
-            p.classList.remove('open');
-            const b = document.querySelector(`.accordion-btn[data-target="${p.id}"]`);
-            if (b) { b.querySelector('i.fas').classList.remove('fa-chevron-up'); b.querySelector('i.fas').classList.add('fa-chevron-down'); }
-          }
-        });
-        if (!isOpen) {
-          panel.classList.add('open');
-          icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up');
-          setTimeout(()=> panel.scrollIntoView({behavior:'smooth', block:'center'}), 120);
+        const content = document.getElementById(targetId);
+        const icon = btn.querySelector('i');
+        
+        content.classList.toggle('open');
+        if (content.classList.contains('open')) {
+          icon.style.transform = 'rotate(180deg)';
         } else {
-          panel.classList.remove('open');
-          icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down');
+          icon.style.transform = 'rotate(0deg)';
         }
       });
     });
-    // Reveal on scroll (simple)
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.glass, .timeline-item, .accordion-btn').forEach(el => io.observe(el));
+
+    // Scroll Reveal Animation Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    revealElements.forEach(el => { revealOnScroll.observe(el); });
   </script>
 </body>
 </html>
