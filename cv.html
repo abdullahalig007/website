@@ -18,14 +18,17 @@
   <style>
     :root{
       --bg:#0f172a;
-      --text:#e6eef8;
-      --card: rgba(30,41,59,0.72);
-      --border: rgba(148,163,184,0.12);
-      --accent: #4f46e5;
-      --accent-2: #10b981;
-      --particle: #64748b;
-      --particle-line: #475569;
-      --muted: rgba(226,232,240,0.65);
+      --text:#e2e8f0;
+      --card:rgba(30,41,59,0.78);
+      --border:rgba(148,163,184,0.12);
+
+      --primary:#6366f1;
+      --secondary:#10b981;
+      --accent:#f59e0b;
+
+      --particle:#64748b;
+      --particle-line:#475569;
+      --muted:#94a3b8;
     }
     .light-mode {
       --bg: #f8fafc;
@@ -79,21 +82,21 @@
     /* Utilities */
     .muted { color: var(--muted); font-size:.95rem; }
     .tag{
-  display:inline-block;
-  padding:.3rem .7rem;
-  font-size:.8rem;
-  border-radius:.55rem;
-  background:linear-gradient(
-    90deg,
-    rgba(79,70,229,0.18),
-    rgba(16,185,129,0.18)
-  );
-  border:1px solid rgba(255,255,255,0.08);
-  color:var(--text);
-  font-weight:700;
-  letter-spacing:.02em;
-  backdrop-filter:blur(4px);
-}
+      display:inline-block;
+      padding:.35rem .75rem;
+      font-size:.78rem;
+      border-radius:.6rem;
+      background:linear-gradient(
+        90deg,
+        rgba(99,102,241,0.18),
+        rgba(16,185,129,0.18)
+      );
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--text);
+      font-weight:700;
+      letter-spacing:.02em;
+      backdrop-filter:blur(4px);
+    }
     @media (max-width:768px){ .nav-desktop{ display:none } .nav-mobile{ display:flex } }
     @media (min-width:769px){ .nav-mobile{ display:none } .nav-desktop{ display:flex } }
    a {
@@ -101,8 +104,54 @@
   text-decoration: none;
 }
 a:hover {
-  color: var(--accent-2);
+  color: var(--secondary);
 }
+
+    h1,h2,h3{
+      letter-spacing:-0.02em;
+    }
+
+    p, li{
+      line-height:1.75;
+    }
+
+    .glass{
+      backdrop-filter:blur(10px);
+    }
+
+    .pub-badge{
+      display:inline-block;
+      padding:.2rem .55rem;
+      margin-left:.35rem;
+      border-radius:999px;
+      font-size:.72rem;
+      font-weight:700;
+      background:rgba(245,158,11,0.15);
+      color:#fbbf24;
+      border:1px solid rgba(245,158,11,0.2);
+    }
+
+    .metric-card{
+      text-align:center;
+      padding:1rem;
+    }
+
+    .metric-number{
+      font-size:2rem;
+      font-weight:800;
+      color:var(--accent);
+    }
+
+    @media(max-width:768px){
+      .glass{
+        padding:1rem;
+      }
+
+      body{
+        font-size:15px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -142,7 +191,7 @@ a:hover {
     <div class="container mx-auto px-6">
       <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Dr Abdulla</h1>
       <p class="mt-2 text-lg md:text-xl muted">Assistant Professor — Jamia Millia Islamia</p>
-      <p class="mt-2 italic muted">Curriculum Vitae / Academic Profile</p>
+      <p class="mt-2 italic muted">Applied Economist | Agricultural Productivity | Climate Risk & Trade Policy</p>
       <div class="mt-6 flex items-center justify-center gap-4">
         <a href="/website/docs/Dr_Abdulla_CV.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md font-semibold" style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--bg);" download>
           <i class="fas fa-download"></i> Download CV (PDF)
@@ -153,6 +202,34 @@ a:hover {
       </div>
     </div>
   </section>
+  
+<section class="container mx-auto px-6 -mt-10 relative z-20">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <div class="glass metric-card">
+      <div class="metric-number">16+</div>
+      <div class="muted">Publications</div>
+    </div>
+
+    <div class="glass metric-card">
+      <div class="metric-number">250+</div>
+      <div class="muted">Citations</div>
+    </div>
+
+    <div class="glass metric-card">
+      <div class="metric-number">4</div>
+      <div class="muted">WoS Indexed</div>
+    </div>
+
+    <div class="glass metric-card">
+      <div class="metric-number">12+</div>
+      <div class="muted">Scopus Indexed</div>
+    </div>
+
+  </div>
+</section>
+
+
   <!-- MAIN -->
   <main class="container mx-auto px-6 py-12 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -181,7 +258,7 @@ a:hover {
                     </div>
                     <div class="muted text-sm">Thesis: Performance of Sugar Mills in India: A Comparative Study of Uttar Pradesh and Maharashtra</div>
                   </div>
-                  <p class="mt-2 muted">Specialization: Agricultural Economics, Productivity Analysis, Stochastic Frontier Methods.</p>
+                  <p class="mt-2 muted">Specialization: Research • Teaching • Policy • Econometrics, Productivity Analysis, Stochastic Frontier Methods.</p>
                 </div>
               </div>
               <!-- MPhil / Masters -->
@@ -240,7 +317,7 @@ a:hover {
                 <div class="timeline-dot"></div>
                 <div class="ml-6">
                   <strong>Research Associate</strong>
-                  <div class="muted">ICAR–National Institute of Agricultural Economics & Policy Research (NIAP), New Delhi</div>
+                  <div class="muted">ICAR–National Institute of Research • Teaching • Policy • Econometrics & Policy Research (NIAP), New Delhi</div>
                   <div class="muted text-sm">2018 – 2024</div>
                   <p class="mt-2 muted">Led empirical research on agricultural productivity, climate risk, market efficiency, and technology adoption. Produced 10+ peer-reviewed publications and contributed to national-level policy reports. Applied advanced panel econometrics, stochastic frontier, and spatial models using NSSO, ASI, NFHS, and CMIE data. Developed reproducible research pipelines in Stata, R, and Python.</p>
                 </div>
@@ -267,6 +344,26 @@ a:hover {
           </div>
         </div>
         <!-- Publications (collapsible) -->
+        <div class="mt-8 glass">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Selected Publications</h2>
+            <div class="tag">Journal articles & chapters</div>
+          </div>
+          <div class="mt-4">
+            <button class="accordion-btn" data-target="pub-panel">
+              <span><i class="fas fa-file-alt mr-2"></i>Show / hide publications</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="pub-panel" class="accordion-panel open">
+              <div class="mt-4 space-y-4">
+                <!-- Forthcoming Publications -->
+                <div>
+                  <strong>Forthcoming</strong> — Technical Efficiency of Contract Farming: Evidence from Potato Farmers in Gujarat. <em>Indian Journal of Agricultural Sciences</em>. Abdulla. Indexing: WoS (SCI)
+                </div>
+                <div>
+                  <strong>Forthcoming</strong> — Technological Heterogeneity and Energy Efficiency across India’s Industrial Sectors: A Meta-Frontier Stochastic Frontier Approach. Abdulla & Tariq Masood. Indexing: WoS (SCI)
+                </div>
+<!-- Publications (collapsible) -->
 <div class="mt-8 glass">
   <div class="flex items-center justify-between">
     <h2 class="text-2xl font-semibold">Selected Publications</h2>
@@ -283,7 +380,7 @@ a:hover {
       <i class="fas fa-chevron-down"></i>
     </button>
 
-    <div id="pub-panel" class="accordion-panel open">
+    <div id="pub-panel" class="accordion-panel">
 
       <div class="mt-4 space-y-4">
 
@@ -339,7 +436,7 @@ a:hover {
         <div>
           <strong>2024</strong> —
           Impact of Climate Change on Agriculture in the Indo-Gangetic Plains of India.
-          <em>Agricultural Economics Research Review, 37(1), 71–80</em>.
+          <em>Research • Teaching • Policy • Econometrics Research Review, 37(1), 71–80</em>.
           Kumar, N. R., & Abdulla.
           <a href="https://doi.org/10.5958/0974-0279.2022.00006.2">DOI</a>
         </div>
@@ -356,7 +453,7 @@ a:hover {
         <div>
           <strong>2022</strong> —
           Decomposing Productivity Growth in the Indian Sugar Industry.
-          <em>Agricultural Economics Research Review, 35(1), 71–80</em>.
+          <em>Research • Teaching • Policy • Econometrics Research Review, 35(1), 71–80</em>.
           Kumar, S., & Abdulla.
           <a href="https://doi.org/10.5958/0974-0279.2022.00006.4">DOI</a>
         </div>
@@ -477,7 +574,7 @@ a:hover {
                   <strong>2025</strong> — Spreadsheet Modelling (MBA-1008). <em>Centre for Distance Education, Aligarh Muslim University</em>. Abdulla.
                 </div>
                 <div>
-                  <strong>2019</strong> — Total Factor Productivity Using Stochastic Frontier Production Function. <em>ICAR–National Institute of Agricultural Economics and Policy Research (NIAP)</em>. Abdulla, Kumar, S., & Singh, D.
+                  <strong>2019</strong> — Total Factor Productivity Using Stochastic Frontier Production Function. <em>ICAR–National Institute of Research • Teaching • Policy • Econometrics and Policy Research (NIAP)</em>. Abdulla, Kumar, S., & Singh, D.
                 </div>
                 <div class="muted text-sm">For a complete list of publications (books, chapters, conference papers), see the Research page.</div>
               </div>
@@ -553,7 +650,7 @@ a:hover {
   <!-- FOOTER -->
   <footer class="py-10 text-center">
     <div class="container mx-auto px-6">
-      <div class="text-lg font-semibold mb-4" style="color:var(--accent-2)">Agricultural Economics</div>
+      <div class="text-lg font-semibold mb-4" style="color:var(--accent-2)">Research • Teaching • Policy • Econometrics</div>
       <nav class="flex justify-center gap-6 mb-4">
         <a href="mailto:abdullahalig007@gmail.com" class="icon-link"><i class="fas fa-envelope fa-2x"></i></a>
         <a href="https://x.com/abdullahalig07" class="icon-link"><i class="fab fa-twitter fa-2x"></i></a>
