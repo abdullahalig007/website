@@ -78,7 +78,22 @@
     .accordion-panel.open{ padding:1rem; max-height:2000px; }
     /* Utilities */
     .muted { color: var(--muted); font-size:.95rem; }
-    .tag { display:inline-block; padding:.25rem .5rem; font-size:.8rem; border-radius:.5rem; background: rgba(255,255,255,0.06); color:var(--text); font-weight:700; }
+    .tag{
+  display:inline-block;
+  padding:.3rem .7rem;
+  font-size:.8rem;
+  border-radius:.55rem;
+  background:linear-gradient(
+    90deg,
+    rgba(79,70,229,0.18),
+    rgba(16,185,129,0.18)
+  );
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--text);
+  font-weight:700;
+  letter-spacing:.02em;
+  backdrop-filter:blur(4px);
+}
     @media (max-width:768px){ .nav-desktop{ display:none } .nav-mobile{ display:flex } }
     @media (min-width:769px){ .nav-mobile{ display:none } .nav-desktop{ display:flex } }
    a {
@@ -252,26 +267,6 @@ a:hover {
           </div>
         </div>
         <!-- Publications (collapsible) -->
-        <div class="mt-8 glass">
-          <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-semibold">Selected Publications</h2>
-            <div class="tag">Journal articles & chapters</div>
-          </div>
-          <div class="mt-4">
-            <button class="accordion-btn" data-target="pub-panel">
-              <span><i class="fas fa-file-alt mr-2"></i>Show / hide publications</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div id="pub-panel" class="accordion-panel open">
-              <div class="mt-4 space-y-4">
-                <!-- Forthcoming Publications -->
-                <div>
-                  <strong>Forthcoming</strong> — Technical Efficiency of Contract Farming: Evidence from Potato Farmers in Gujarat. <em>Indian Journal of Agricultural Sciences</em>. Abdulla. Indexing: WoS (SCI)
-                </div>
-                <div>
-                  <strong>Forthcoming</strong> — Technological Heterogeneity and Energy Efficiency across India’s Industrial Sectors: A Meta-Frontier Stochastic Frontier Approach. Abdulla & Tariq Masood. Indexing: WoS (SCI)
-                </div>
-<!-- Publications (collapsible) -->
 <div class="mt-8 glass">
   <div class="flex items-center justify-between">
     <h2 class="text-2xl font-semibold">Selected Publications</h2>
@@ -288,7 +283,7 @@ a:hover {
       <i class="fas fa-chevron-down"></i>
     </button>
 
-    <div id="pub-panel" class="accordion-panel">
+    <div id="pub-panel" class="accordion-panel open">
 
       <div class="mt-4 space-y-4">
 
