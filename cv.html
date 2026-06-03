@@ -365,21 +365,26 @@ a:hover {
                 </div>
 <!-- Publications (collapsible) -->
 <div class="mt-8 glass">
-  <div class="flex items-center justify-between">
-    <h2 class="text-2xl font-semibold">Selected Publications</h2>
-    <div class="tag">Journal articles & chapters</div>
+<div class="flex items-center justify-between mb-3">
+  <div>
+    <h2 class="text-2xl font-semibold">
+      Selected Publications
+    </h2>
+
+    <p class="muted text-sm mt-1">
+      Peer-reviewed journal articles, forthcoming papers, and book chapters
+    </p>
   </div>
+</div>
 
-  <div class="mt-4">
+<button class="accordion-btn" data-target="pub-panel">
+  <span>
+    <i class="fas fa-file-alt mr-2"></i>
+    Publications
+  </span>
 
-    <button class="accordion-btn" data-target="pub-panel">
-      <span>
-        <i class="fas fa-file-alt mr-2"></i>
-        Show / hide publications
-      </span>
-      <i class="fas fa-chevron-down"></i>
-    </button>
-
+  <i class="fas fa-chevron-down"></i>
+</button>
     <div id="pub-panel" class="accordion-panel">
 
       <div class="mt-4 space-y-4">
